@@ -1,0 +1,11 @@
+<h1>{{chartTitle}}</h1>
+<ul class="electionList">
+  <li *ngFor="let election of electionList" (click)="onSelect(election)" [class.selected]="election === selectedElection">
+    <span class="badge">{{election.electionId}}</span> {{election.electionName}}
+  </li>
+</ul>
+
+<div *ngIf="selectedElection">
+  <h2>{{selectedElection.electionName}}</h2>
+  <div><label>Election ID: </label>{{selectedElection.electionId}}</div>
+</div>
