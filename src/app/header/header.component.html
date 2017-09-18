@@ -1,0 +1,18 @@
+<md-toolbar color = "primary">
+  <button md-button>Voting System</button>
+  <span class = "spacer"></span>
+  <button md-button>Sign in</button>
+  <button md-button routerLink = "/signup">Register</button>
+
+
+
+  <md-menu #appMenu = "mdMenu">
+    <button md-menu-item> User Dashboard</button>
+    <button md-menu-item> Edit Profile</button>
+  </md-menu>
+
+  <button md-icon-button [mdMenuTriggerFor] = "appMenu">
+    <md-icon class = "material-icons">list</md-icon>
+  </button>
+
+</md-toolbar>
