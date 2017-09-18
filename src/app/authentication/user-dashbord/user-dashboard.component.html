@@ -1,0 +1,8 @@
+<p *ngIf = "!signInStatus">You are a guest!</p>
+
+<p *ngIf = "signInStatus">
+  Your username is: {{this.authenInfo.username}}
+</p>
+<p *ngIf = "signInStatus">
+  Your password is: {{this.authenInfo.password}}
+</p>

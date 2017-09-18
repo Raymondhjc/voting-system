@@ -14,6 +14,8 @@ import {SignupComponent} from './authentication/signup/signup.component';
 import {SigninComponent} from './authentication/signin/signin.component';
 import {AuthenticationService} from './authentication/authentication.service';
 import {AppRoutingModule} from './app-routing.module';
+import {WelcomePageComponent} from './welcome-page/welcome-page.component';
+import {DashboardComponent} from './authentication/user-dashbord/user-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import {AppRoutingModule} from './app-routing.module';
     HeaderComponent,
     SignupComponent,
     SigninComponent,
+    DashboardComponent,
+    WelcomePageComponent
   ],
   imports: [
     BrowserModule,
