@@ -1,0 +1,17 @@
+<form class = "form" #f="ngForm">
+  <p>
+    <md-form-field class = "full-width">
+      <input mdInput
+             name="Username" placeholder = "Username" required>
+    </md-form-field>
+    <md-form-field class = "full-width">
+      <input mdInput
+             name="Password"placeholder = "Password" required>
+    </md-form-field>
+  </p>
+</form>
+<div md-dialog-actions>
+  <button md-raised-button  [disabled] = "!f.valid" color = "primary">Ok
+  </button>
+  <button md-raised-button  color = "warn">Cancel</button>
+</div>

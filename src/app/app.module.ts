@@ -10,12 +10,16 @@ import {
   MdToolbarModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { SignupComponent } from './authentication/signup/signup.component';
+import { SigninComponent } from './authentication/signin/signin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminComponent,
-    HeaderComponent
+    HeaderComponent,
+    SignupComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
