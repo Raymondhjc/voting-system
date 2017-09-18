@@ -10,8 +10,10 @@ import {
   MdToolbarModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { SignupComponent } from './authentication/signup/signup.component';
-import { SigninComponent } from './authentication/signin/signin.component';
+import {SignupComponent} from './authentication/signup/signup.component';
+import {SigninComponent} from './authentication/signin/signin.component';
+import {AuthenticationService} from './authentication/authentication.service';
+import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -19,12 +21,13 @@ import { SigninComponent } from './authentication/signin/signin.component';
     AdminComponent,
     HeaderComponent,
     SignupComponent,
-    SigninComponent
+    SigninComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    AppRoutingModule,
     MdButtonModule,
     MdCheckboxModule,
     MdMenuModule,
@@ -33,9 +36,8 @@ import { SigninComponent } from './authentication/signin/signin.component';
     MdInputModule,
     MdDialogModule
   ],
-  providers: [],
-  bootstrap: [
-    AppComponent]
+  providers: [AuthenticationService],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

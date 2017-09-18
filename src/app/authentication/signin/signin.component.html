@@ -1,17 +1,17 @@
 <form class = "form" #f="ngForm">
   <p>
     <md-form-field class = "full-width">
-      <input mdInput
+      <input mdInput [(ngModel)] = "this.authenInfo.username"
              name="Username" placeholder = "Username" required>
     </md-form-field>
     <md-form-field class = "full-width">
-      <input mdInput
+      <input mdInput [(ngModel)] = "this.authenInfo.password"
              name="Password"placeholder = "Password" required>
     </md-form-field>
   </p>
 </form>
 <div md-dialog-actions>
-  <button md-raised-button  [disabled] = "!f.valid" color = "primary">Ok
+  <button md-raised-button [md-dialog-close] = "this.authenInfo" [disabled] = "!f.valid" color = "primary">Ok
   </button>
-  <button md-raised-button  color = "warn">Cancel</button>
+  <button md-raised-button (click) = "onCancelClick()" color = "warn">Cancel</button>
 </div>
