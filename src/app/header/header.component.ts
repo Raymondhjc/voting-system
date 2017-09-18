@@ -28,4 +28,8 @@ export class HeaderComponent implements OnInit {
   onHeaderSignIn() {
     this.authenService.onSignIn();
   }
+
+  onHeaderSignOut() {
+    this.authenService.onSignOut();
+  }
 }

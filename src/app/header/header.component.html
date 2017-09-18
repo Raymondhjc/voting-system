@@ -8,7 +8,7 @@
 
   <md-menu #appMenu = "mdMenu">
     <button md-menu-item routerLink = "/user-dashboard"> User Dashboard</button>
-    <button md-menu-item> Edit Profile</button>
+    <button md-menu-item (click)="onHeaderSignOut()"> Sign out</button>
   </md-menu>
 
   <button md-icon-button [mdMenuTriggerFor] = "appMenu" *ngIf = "signInStatus">
