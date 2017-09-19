@@ -9,7 +9,7 @@ import {isUndefined} from 'util';
 export class AuthenticationService {
   authenInfoChanged = new Subject<AuthenInfo>();
   private authenInfo = new AuthenInfo('Guest', '');
-  private signInStatus = false;
+  private loggedIn = false;
 
   constructor(public dialog: MdDialog) {
   }
@@ -23,7 +23,7 @@ export class AuthenticationService {
   }
 
   isSignedIn() {
-    return this.signInStatus;
+    return this.loggedIn;
   }
 
   onSignIn(): void {
@@ -35,7 +35,7 @@ export class AuthenticationService {
       console.log('The dialog was closed');
       if (!isUndefined(result)) {
         this.authenInfo = result;
-        this.signInStatus = true;
+        this.loggedIn = true;
       }
       this.authenInfoChanged.next(this.authenInfo);
     });
@@ -44,7 +44,7 @@ export class AuthenticationService {
   onSignOut(): void {
     this.authenInfo.username = 'Guest';
     this.authenInfo.password = '';
-    this.signInStatus = false;
+    this.loggedIn = false;
     this.authenInfoChanged.next(this.authenInfo);
   }
 
