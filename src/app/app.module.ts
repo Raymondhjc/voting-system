@@ -7,6 +7,7 @@ import {AdminComponent} from './admin/admin.component';
 import {HeaderComponent} from './header/header.component'
 import {
   MdButtonModule, MdCheckboxModule, MdDialogModule, MdExpansionModule, MdGridListModule, MdInputModule, MdMenuModule,
+  MdSidenavModule,
   MdToolbarModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -40,7 +41,7 @@ import {DashboardComponent} from './authentication/user-dashbord/user-dashboard.
     MdInputModule,
     MdDialogModule,
     MdExpansionModule,
-
+    MdSidenavModule
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]

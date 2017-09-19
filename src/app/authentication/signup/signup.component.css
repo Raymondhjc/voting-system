@@ -10,4 +10,40 @@
 
 .centering{
   text-align: center;
+  width: 80%;
+}
+
+
+
+
+
+
+
+
+
+.example-sidenav-fab-container {
+  padding:0;
+  margin:0;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-fab-container md-sidenav {
+  max-width: 200px;
+}
+
+.example-sidenav-fab-container .mat-sidenav-content,
+.example-sidenav-fab-container md-sidenav {
+  display: flex;
+  overflow: visible;
+}
+
+.example-scrolling-content {
+  overflow: auto;
+}
+
+.example-fab {
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
 }
