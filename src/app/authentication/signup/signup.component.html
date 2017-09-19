@@ -1,20 +1,37 @@
-<form class="form">
-  <table class="full-width" cellspacing="0"><tr>
-    <td><md-form-field class="full-width">
-      <input mdInput placeholder="First name">
-    </md-form-field></td>
-    <td><md-form-field class="full-width">
-      <input mdInput placeholder="Last Name">
-    </md-form-field></td>
-  </tr>
-  </table>
-  <md-form-field class="full-width">
-    <input mdInput placeholder="Username">
-  </md-form-field>
-  <md-form-field class="full-width">
-    <input mdInput placeholder="Password">
-  </md-form-field>
-  <md-form-field class="full-width">
-    <input mdInput placeholder="UFID">
-  </md-form-field>
-</form>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-12">
+      <form #registerForm = "ngForm">
+        <table class = "full-width" cellspacing = "0">
+          <tr>
+            <td>
+              <md-form-field class = "full-width">
+                <input mdInput placeholder = "First name">
+              </md-form-field>
+            </td>
+            <td>
+              <md-form-field class = "full-width">
+                <input mdInput placeholder = "Last Name">
+              </md-form-field>
+            </td>
+          </tr>
+        </table>
+        <md-form-field class = "full-width">
+          <input mdInput placeholder = "Username">
+        </md-form-field>
+        <md-form-field class = "full-width">
+          <input mdInput placeholder = "Password">
+        </md-form-field>
+        <md-form-field class = "full-width">
+          <input mdInput placeholder = "UFID">
+        </md-form-field>
+      </form>
+
+      <div class = "centering">
+        <button md-raised-button [disabled] = "!registerForm.valid" color = "primary">Submit
+        </button>
+        <button md-raised-button color = "warn">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

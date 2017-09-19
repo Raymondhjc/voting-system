@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
 import {AdminComponent} from './admin/admin.component';
 import {HeaderComponent} from './header/header.component'
 import {
-  MdButtonModule, MdCheckboxModule, MdDialogModule, MdGridListModule, MdInputModule, MdMenuModule,
+  MdButtonModule, MdCheckboxModule, MdDialogModule, MdExpansionModule, MdGridListModule, MdInputModule, MdMenuModule,
   MdToolbarModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -38,7 +38,9 @@ import {DashboardComponent} from './authentication/user-dashbord/user-dashboard.
     MdGridListModule,
     MdToolbarModule,
     MdInputModule,
-    MdDialogModule
+    MdDialogModule,
+    MdExpansionModule,
+
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]

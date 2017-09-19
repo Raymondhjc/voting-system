@@ -1,4 +1,4 @@
-<form class = "form" #f="ngForm">
+<form #signInForm="ngForm">
   <p>
     <md-form-field class = "full-width">
       <input mdInput [(ngModel)] = "this.authenInfo.username"
@@ -10,8 +10,9 @@
     </md-form-field>
   </p>
 </form>
-<div md-dialog-actions>
-  <button md-raised-button [md-dialog-close] = "this.authenInfo" [disabled] = "!f.valid" color = "primary">Ok
+<div style="text-align: center;">
+  <button md-raised-button [md-dialog-close] = "this.authenInfo" [disabled] = "!signInForm.valid" color = "primary">Sign In
   </button>
   <button md-raised-button (click) = "onCancelClick()" color = "warn">Cancel</button>
 </div>
+
