@@ -1,58 +1,56 @@
-<md-sidenav-container class = "example-sidenav-fab-container">
-  <md-sidenav #sidenav mode = "side" opened = "true">
-    <div class = "example-scrolling-content">
-      Menu+++++++++++++ ++++++++++++++++++++ +++++++++++++++
-    </div>
-  </md-sidenav>
-  <div class = "container-fluid">
-    <div class = "row">
-      <div class = "col-md-12">
-        <button md-mini-fab class = "example-fab" (click) = "sidenav.toggle()">
-          <md-icon class = "material-icons">add</md-icon>
-        </button>
-        <form #registerForm = "ngForm">
-          <table class = "full-width" cellspacing = "0">
-            <tr>
-              <td>
-                <md-form-field class = "full-width">
-                  <input mdInput placeholder = "First name">
-                </md-form-field>
-              </td>
+<md-toolbar color = "primary">
+  <span class = "spacer"></span>
+  <span>Yay, Material in Angular 2!</span>
+  <span class = "spacer"></span>
 
-              <td>
-                <md-form-field class = "full-width">
-                  <input mdInput placeholder = "Last Name">
-                </md-form-field>
-              </td>
-            </tr>
-          </table>
-          <md-form-field class = "full-width">
-            <input mdInput placeholder = "Username">
-          </md-form-field>
-          <md-form-field class = "full-width">
-            <input mdInput placeholder = "Password">
-          </md-form-field>
-          <md-form-field class = "full-width">
-            <input mdInput placeholder = "UFID">
-          </md-form-field>
-        </form>
+</md-toolbar>
+<md-menu x-position = "before" #menu = "mdMenu">
+  <button md-menu-item>Option 1</button>
+  <button md-menu-item>Option 2</button>
+</md-menu>
 
-        <div class = "centering">
-          <button md-raised-button [disabled] = "!registerForm.valid" color = "primary">Submit
-          </button>
-          <button md-raised-button color = "warn">Cancel</button>
-        </div>
-      </div>
-    </div>
+<md-card>
+  <form #registerForm = "ngForm">
+    <table class = "full-width" cellspacing = "0">
+      <tr>
+        <td>
+          <md-form-field class = "full-width">
+            <input mdInput placeholder = "First name">
+          </md-form-field>
+        </td>
+
+        <td>
+          <md-form-field class = "full-width">
+            <input mdInput placeholder = "Last Name">
+          </md-form-field>
+        </td>
+      </tr>
+    </table>
+    <md-form-field class = "full-width">
+      <input mdInput placeholder = "Username">
+    </md-form-field>
+    <md-form-field class = "full-width">
+      <input mdInput placeholder = "Password">
+    </md-form-field>
+    <md-form-field class = "full-width">
+      <input mdInput placeholder = "UFID">
+    </md-form-field>
+  </form>
+
+  <div>
+    <button md-fab [disabled] = "!registerForm.valid" color = "primary">
+      <md-icon class = "material-icons">done</md-icon>
+
+    </button>
+    <button md-fab color = "warn">
+      <md-icon class = "material-icons">clear</md-icon>
+    </button>
   </div>
-</md-sidenav-container>
+</md-card>
 
-
-
-
-
-
-
-
-
+<span class = "done">
+    <button md-fab>
+      <md-icon class = "material-icons">add</md-icon>
+    </button>
+</span>
 

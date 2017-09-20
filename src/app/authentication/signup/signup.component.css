@@ -13,37 +13,23 @@
   width: 80%;
 }
 
-
-
-
-
-
-
-
-
-.example-sidenav-fab-container {
-  padding:0;
-  margin:0;
-  width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+.spacer {
+  flex: 1 1 auto;
 }
 
-.example-sidenav-fab-container md-sidenav {
-  max-width: 200px;
+md-card {
+  max-width: 80%;
+  margin: 2em auto;
+  text-align: center;
 }
 
-.example-sidenav-fab-container .mat-sidenav-content,
-.example-sidenav-fab-container md-sidenav {
-  display: flex;
-  overflow: visible;
+md-toolbar-row {
+  justify-content: space-between;
 }
 
-.example-scrolling-content {
-  overflow: auto;
-}
-
-.example-fab {
-  position: absolute;
+.done {
+  position: fixed;
+  bottom: 20px;
   right: 20px;
-  bottom: 10px;
+  color: white;
 }
