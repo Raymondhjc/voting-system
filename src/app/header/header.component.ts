@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from '../authentication/authentication.service';
-import {AuthenInfo} from '../authentication/authenInfo.model';
+import {AuthenInfo} from '../common/authenInfo.model';
 import {Subscription} from 'rxjs/Subscription';
 
 @Component({

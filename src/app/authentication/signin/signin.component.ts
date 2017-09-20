@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MD_DIALOG_DATA, MdDialogRef} from '@angular/material';
-import {AuthenInfo} from '../authenInfo.model';
+import {AuthenInfo} from '../../common/authenInfo.model';
 
 @Component({
   selector: 'app-signin',

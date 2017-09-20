@@ -6,8 +6,8 @@ import {AppComponent} from './app.component';
 import {AdminComponent} from './admin/admin.component';
 import {HeaderComponent} from './header/header.component'
 import {
-  MdButtonModule, MdCheckboxModule, MdDialogModule, MdGridListModule, MdInputModule, MdMenuModule,
-  MdToolbarModule
+  MdButtonModule, MdCheckboxModule, MdDialogModule, MdExpansionModule, MdGridListModule, MdInputModule, MdMenuModule,
+  MdSidenavModule, MdToolbarModule, MdCardModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SignupComponent} from './authentication/signup/signup.component';
@@ -16,6 +16,8 @@ import {AuthenticationService} from './authentication/authentication.service';
 import {AppRoutingModule} from './app-routing.module';
 import {WelcomePageComponent} from './welcome-page/welcome-page.component';
 import {DashboardComponent} from './authentication/user-dashbord/user-dashboard.component';
+import {NotSignedInGuardsService} from './common/not-signed-in-guards.service';
+import {SignedInAuthGuardService} from './common/signed-in-auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -38,9 +40,12 @@ import {DashboardComponent} from './authentication/user-dashbord/user-dashboard.
     MdGridListModule,
     MdToolbarModule,
     MdInputModule,
-    MdDialogModule
+    MdDialogModule,
+    MdExpansionModule,
+    MdSidenavModule,
+    MdCardModule
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService, NotSignedInGuardsService, SignedInAuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
