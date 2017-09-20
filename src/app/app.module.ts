@@ -18,6 +18,7 @@ import {WelcomePageComponent} from './welcome-page/welcome-page.component';
 import {DashboardComponent} from './authentication/user-dashbord/user-dashboard.component';
 import {NotSignedInGuardsService} from './common/not-signed-in-guards.service';
 import {SignedInAuthGuardService} from './common/signed-in-auth-guard.service';
+import {EqualValidatorDirective} from './common/equal-validator.directive';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {SignedInAuthGuardService} from './common/signed-in-auth-guard.service';
     SignupComponent,
     SigninComponent,
     DashboardComponent,
-    WelcomePageComponent
+    WelcomePageComponent,
+    EqualValidatorDirective
   ],
   imports: [
     BrowserModule,

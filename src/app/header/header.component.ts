@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from '../authentication/authentication.service';
-import {AuthenInfo} from '../common/authenInfo.model';
+import {AnthenticationInfoModel} from '../common/anthentication-info.model';
 import {Subscription} from 'rxjs/Subscription';
 
 @Component({
@@ -10,7 +10,7 @@ import {Subscription} from 'rxjs/Subscription';
 })
 export class HeaderComponent implements OnInit {
   signInStatus: boolean;
-  authenInfo: AuthenInfo;
+  authenInfo: AnthenticationInfoModel;
   private subscription: Subscription;
 
   constructor(private authenService: AuthenticationService) {
@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.subscription = this.authenService.authenInfoChanged.subscribe(
-      (authenInfo: AuthenInfo) => {
+      (authenInfo: AnthenticationInfoModel) => {
         this.authenInfo = authenInfo;
         this.signInStatus = this.authenService.isSignedIn();
       }

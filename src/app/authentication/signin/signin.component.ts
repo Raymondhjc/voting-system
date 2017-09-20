@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MD_DIALOG_DATA, MdDialogRef} from '@angular/material';
-import {AuthenInfo} from '../../common/authenInfo.model';
+import {AnthenticationInfoModel} from '../../common/anthentication-info.model';
 
 @Component({
   selector: 'app-signin',
@@ -8,7 +8,7 @@ import {AuthenInfo} from '../../common/authenInfo.model';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
-  authenInfo: AuthenInfo = new AuthenInfo('', '');
+  authenInfo: AnthenticationInfoModel = new AnthenticationInfoModel('', '');
 
 
   constructor(public dialogRef: MdDialogRef<SigninComponent>,

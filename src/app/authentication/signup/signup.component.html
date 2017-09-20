@@ -1,5 +1,5 @@
 <md-card>
-  <form #registerForm = "ngForm">
+  <form (ng-submit) = "onRegiserSubmit(registerForm)" #registerForm = "ngForm">
     <table class = "full-width" cellspacing = "0">
       <tr>
         <td>
@@ -16,17 +16,28 @@
       </tr>
     </table>
     <md-form-field class = "full-width">
+      <input mdInput placeholder = "Email" ngModel required email name = "email">
+    </md-form-field>
+    <md-form-field class = "full-width">
       <input mdInput placeholder = "Username" ngModel required name = "username">
     </md-form-field>
     <md-form-field class = "full-width">
-      <input mdInput placeholder = "Password" ngModel required name = "password">
+      <input mdInput placeholder = "Password" [ngModel] = "regInfo.password" required #password = "ngModel"
+             name = "password"
+             type = "password">
+    </md-form-field>
+    <md-form-field class = "full-width">
+      <input mdInput placeholder = "Repeat your password" [ngModel] = "regInfo.confirmPassword" required
+             validateEqual = "password" #confirmPassword = "ngModel" name = "passwordRep" type = "password"
+      >
     </md-form-field>
     <md-form-field class = "full-width">
       <input mdInput placeholder = "UFID" ngModel required name = "ufid">
     </md-form-field>
 
+
     <div>
-      <button md-fab [disabled] = "!registerForm.valid" color = "primary">
+      <button md-fab [disabled] = "!registerForm.valid" color = "primary" type = "submit">
         <md-icon class = "material-icons">done</md-icon>
       </button>
       <button md-fab color = "warn" (click) = "onClearClick()">
@@ -37,9 +48,4 @@
 
 </md-card>
 
-<!--<span class = "done">-->
-    <!--<button md-fab>-->
-      <!--<md-icon class = "material-icons">add</md-icon>-->
-    <!--</button>-->
-<!--</span>-->
 

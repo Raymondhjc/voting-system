@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AuthenInfo} from '../../common/authenInfo.model';
+import {AnthenticationInfoModel} from '../../common/anthentication-info.model';
 import {AuthenticationService} from '../authentication.service';
 import {Subscription} from 'rxjs/Subscription';
 
@@ -10,7 +10,7 @@ import {Subscription} from 'rxjs/Subscription';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   signInStatus: boolean;
-  authenInfo: AuthenInfo;
+  authenInfo: AnthenticationInfoModel;
   private subscription: Subscription;
 
   constructor(private authenService: AuthenticationService) {
@@ -18,9 +18,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.signInStatus = this.authenService.isSignedIn();
-    this.authenInfo = new AuthenInfo(this.authenService.getUsername(), this.authenService.getPassword());
+    this.authenInfo = new AnthenticationInfoModel(this.authenService.getUsername(), this.authenService.getPassword());
     this.subscription = this.authenService.authenInfoChanged.subscribe(
-      (authenInfo: AuthenInfo) => {
+      (authenInfo: AnthenticationInfoModel) => {
         this.authenInfo = authenInfo;
         this.signInStatus = this.authenService.isSignedIn();
       }

@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
+import {NgForm} from '@angular/forms';
+import {RegistrationInfoModel} from '../../common/registration-info.model';
 
 @Component({
   selector: 'app-signup',
@@ -7,6 +9,9 @@ import {Observable} from 'rxjs/Observable';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+
+  regInfo: RegistrationInfoModel = new RegistrationInfoModel('', '');
+
 
   constructor() {
   }
@@ -26,4 +31,7 @@ export class SignupComponent implements OnInit {
   //   }
   // }
 
+  onRegiserSubmit(form: NgForm) {
+
+  }
 }

@@ -1,9 +1,12 @@
-export class AuthenInfo {
-  public username: string;
-  public password: string;
+export class RegistrationInfoModel {
+  public username;
+  public password;
+  public confirmPassword;
 
   constructor(username: string, password: string) {
     this.username = username;
     this.password = password;
+
+    // more
   }
 }

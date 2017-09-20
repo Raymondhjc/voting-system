@@ -1,4 +1,4 @@
-import {AuthenInfo} from '../common/authenInfo.model';
+import {AnthenticationInfoModel} from '../common/anthentication-info.model';
 import {MdDialog} from '@angular/material';
 import {SigninComponent} from './signin/signin.component';
 import {Injectable} from '@angular/core';
@@ -8,8 +8,8 @@ import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthenticationService {
-  authenInfoChanged = new Subject<AuthenInfo>();
-  private authenInfo = new AuthenInfo('Guest', '');
+  authenInfoChanged = new Subject<AnthenticationInfoModel>();
+  private authenInfo = new AnthenticationInfoModel('Guest', '');
   private signedIn = false;
 
   constructor(public dialog: MdDialog,
