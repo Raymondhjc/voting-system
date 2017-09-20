@@ -6,13 +6,14 @@
     </md-form-field>
     <md-form-field class = "full-width">
       <input mdInput [(ngModel)] = "this.authenInfo.password"
-             name="Password"placeholder = "Password" required>
+             name="Password" placeholder = "Password" required>
     </md-form-field>
   </p>
+  <div style="text-align: center;">
+    <button md-raised-button [md-dialog-close] = "this.authenInfo" [disabled] = "!signInForm.valid" color = "primary">Sign In
+    </button>
+    <button md-raised-button (click) = "onCancelClick()" color = "warn">Cancel</button>
+  </div>
 </form>
-<div style="text-align: center;">
-  <button md-raised-button [md-dialog-close] = "this.authenInfo" [disabled] = "!signInForm.valid" color = "primary">Sign In
-  </button>
-  <button md-raised-button (click) = "onCancelClick()" color = "warn">Cancel</button>
-</div>
+
 
