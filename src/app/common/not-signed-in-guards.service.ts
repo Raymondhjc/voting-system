@@ -4,7 +4,7 @@ import {AuthenticationService} from '../authentication/authentication.service';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
-export class AuthGuardService implements CanActivate, CanActivateChild {
+export class NotSignedInGuardsService implements CanActivate, CanActivateChild {
 
   constructor(private authenService: AuthenticationService,
               private router: Router) {
@@ -12,18 +12,28 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
 
   canActivate(route: ActivatedRouteSnapshot,
               state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return this.authenService.isAuthenticated().then(
-      (authenticated: boolean) => {
-        if (authenticated) {
-          return true;
-        } else {
-          this.router.navigate(['/']);
-          this.authenService.onSignIn();
-          // console.log('executed!');
-          // TODO: give information say "YOU ARE NOT SIGNED IN"
-        }
-      }
-    );
+    if (this.authenService.isSignedIn()) {
+      return true;
+    } else {
+      this.router.navigate(['/']);
+      this.authenService.onSignIn();
+      // TODO: give information say "YOU ARE NOT SIGNED IN"
+      return false;
+    }
+
+    // There is no need to check with server for page guard
+
+    // return this.authenService.isAuthenticated().then(
+    //   (authenticated: boolean) => {
+    //     if (authenticated) {
+    //       return true;
+    //     } else {
+    //       this.router.navigate(['/']);
+    //       this.authenService.onSignIn();
+    //       // console.log('executed!');
+    //     }
+    //   }
+    // );
   }
 
   canActivateChild(route: ActivatedRouteSnapshot,

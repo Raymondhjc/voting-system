@@ -16,8 +16,8 @@ import {AuthenticationService} from './authentication/authentication.service';
 import {AppRoutingModule} from './app-routing.module';
 import {WelcomePageComponent} from './welcome-page/welcome-page.component';
 import {DashboardComponent} from './authentication/user-dashbord/user-dashboard.component';
-import {AuthGuardService} from './common/auth-guards.service';
-import {InverseAuthGuardService} from './common/inverse-auth-guard.service';
+import {NotSignedInGuardsService} from './common/not-signed-in-guards.service';
+import {SignedInAuthGuardService} from './common/signed-in-auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +45,7 @@ import {InverseAuthGuardService} from './common/inverse-auth-guard.service';
     MdSidenavModule,
     MdCardModule
   ],
-  providers: [AuthenticationService, AuthGuardService, InverseAuthGuardService],
+  providers: [AuthenticationService, NotSignedInGuardsService, SignedInAuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

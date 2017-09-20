@@ -4,8 +4,8 @@ import {DashboardComponent} from './authentication/user-dashbord/user-dashboard.
 import {SignupComponent} from './authentication/signup/signup.component';
 import {SigninComponent} from './authentication/signin/signin.component';
 import {WelcomePageComponent} from './welcome-page/welcome-page.component';
-import {AuthGuardService} from './common/auth-guards.service';
-import {InverseAuthGuardService} from './common/inverse-auth-guard.service';
+import {NotSignedInGuardsService} from './common/not-signed-in-guards.service';
+import {SignedInAuthGuardService} from './common/signed-in-auth-guard.service';
 
 const appRoute: Routes = [
   {path: '', redirectTo: 'welcome', pathMatch: 'full'},
@@ -13,11 +13,11 @@ const appRoute: Routes = [
   {
     path: 'user-dashboard',
     component: DashboardComponent,
-    canActivate: [AuthGuardService],
-    canActivateChild: [AuthGuardService]
+    canActivate: [NotSignedInGuardsService],
+    canActivateChild: [NotSignedInGuardsService]
   },
-  {path: 'signup', component: SignupComponent, canActivate: [InverseAuthGuardService]},
-  {path: 'signin', component: SigninComponent, canActivate: [InverseAuthGuardService]}
+  {path: 'signup', component: SignupComponent, canActivate: [SignedInAuthGuardService]},
+  {path: 'signin', component: SigninComponent, canActivate: [SignedInAuthGuardService]}
 ];
 
 @NgModule({

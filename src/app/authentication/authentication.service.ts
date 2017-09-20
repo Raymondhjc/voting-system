@@ -4,14 +4,16 @@ import {SigninComponent} from './signin/signin.component';
 import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs/Subject';
 import {isUndefined} from 'util';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthenticationService {
   authenInfoChanged = new Subject<AuthenInfo>();
   private authenInfo = new AuthenInfo('Guest', '');
-  private loggedIn = false;
+  private signedIn = false;
 
-  constructor(public dialog: MdDialog) {
+  constructor(public dialog: MdDialog,
+              private router: Router) {
   }
 
   getUsername() {
@@ -23,7 +25,7 @@ export class AuthenticationService {
   }
 
   isSignedIn() {
-    return this.loggedIn;
+    return this.signedIn;
   }
 
   onSignIn(): void {
@@ -32,10 +34,11 @@ export class AuthenticationService {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
       if (!isUndefined(result)) {
         this.authenInfo = result;
-        this.loggedIn = true;
+        this.signedIn = true;
+        this.router.navigate(['/user-dashboard']);
       }
       this.authenInfoChanged.next(this.authenInfo);
     });
@@ -44,16 +47,17 @@ export class AuthenticationService {
   onSignOut(): void {
     this.authenInfo.username = 'Guest';
     this.authenInfo.password = '';
-    this.loggedIn = false;
+    this.signedIn = false;
     this.authenInfoChanged.next(this.authenInfo);
   }
 
   isAuthenticated() {
     const promise = new Promise(
       (resolve, reject) => {
-        setTimeout(() => {
-          resolve(this.loggedIn);
-        }, 800);
+        // setTimeout(() => {
+        //   resolve(this.signedIn);
+        // }, 800);
+        resolve(this.signedIn);
       }
     );
     return promise;

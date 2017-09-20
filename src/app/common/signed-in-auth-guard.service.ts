@@ -4,7 +4,7 @@ import {AuthenticationService} from '../authentication/authentication.service';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
-export class InverseAuthGuardService implements CanActivate, CanActivateChild {
+export class SignedInAuthGuardService implements CanActivate, CanActivateChild {
 
   constructor(private authenService: AuthenticationService,
               private router: Router) {
@@ -12,16 +12,24 @@ export class InverseAuthGuardService implements CanActivate, CanActivateChild {
 
   canActivate(route: ActivatedRouteSnapshot,
               state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return this.authenService.isAuthenticated().then(
-      (authenticated: boolean) => {
-        if (!authenticated) {
-          return true;
-        } else {
-          this.router.navigate(['/user-dashboard']);
-          // TODO: give information say "You are ready signed in!"
-        }
-      }
-    );
+    if (!this.authenService.isSignedIn()) {
+      return true;
+    } else {
+      this.router.navigate(['/user-dashboard']);
+      // TODO: give information say "You are ready signed in!"
+      return false;
+    }
+    // There is no need to check with server for page guard
+    // return this.authenService.isAuthenticated().then(
+    //   (authenticated: boolean) => {
+    //     if (!authenticated) {
+    //       return true;
+    //     } else {
+    //       this.router.navigate(['/user-dashboard']);
+    //     }
+    //   }
+    // );
+
   }
 
   canActivateChild(route: ActivatedRouteSnapshot,
