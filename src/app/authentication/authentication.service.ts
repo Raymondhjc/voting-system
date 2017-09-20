@@ -1,4 +1,4 @@
-import {AuthenInfo} from './authenInfo.model';
+import {AuthenInfo} from '../common/authenInfo.model';
 import {MdDialog} from '@angular/material';
 import {SigninComponent} from './signin/signin.component';
 import {Injectable} from '@angular/core';
@@ -46,6 +46,17 @@ export class AuthenticationService {
     this.authenInfo.password = '';
     this.loggedIn = false;
     this.authenInfoChanged.next(this.authenInfo);
+  }
+
+  isAuthenticated() {
+    const promise = new Promise(
+      (resolve, reject) => {
+        setTimeout(() => {
+          resolve(this.loggedIn);
+        }, 800);
+      }
+    );
+    return promise;
   }
 
 }
