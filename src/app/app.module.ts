@@ -16,6 +16,7 @@ import {AuthenticationService} from './authentication/authentication.service';
 import {AppRoutingModule} from './app-routing.module';
 import {WelcomePageComponent} from './welcome-page/welcome-page.component';
 import {DashboardComponent} from './authentication/user-dashbord/user-dashboard.component';
+import { ScannerPageComponent } from './scanner-page/scanner-page.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {DashboardComponent} from './authentication/user-dashbord/user-dashboard.
     SignupComponent,
     SigninComponent,
     DashboardComponent,
-    WelcomePageComponent
+    WelcomePageComponent,
+    ScannerPageComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,7 @@ import {DashboardComponent} from './authentication/user-dashbord/user-dashboard.
     MdGridListModule,
     MdToolbarModule,
     MdInputModule,
-    MdDialogModule
+    MdDialogModule,
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]
