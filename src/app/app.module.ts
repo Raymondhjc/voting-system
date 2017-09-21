@@ -16,6 +16,8 @@ import {AuthenticationService} from './authentication/authentication.service';
 import {AppRoutingModule} from './app-routing.module';
 import {WelcomePageComponent} from './welcome-page/welcome-page.component';
 import {DashboardComponent} from './authentication/user-dashbord/user-dashboard.component';
+//data-view
+import {DataViewComponent} from './data-view/data-view.component'
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import {DashboardComponent} from './authentication/user-dashbord/user-dashboard.
     SignupComponent,
     SigninComponent,
     DashboardComponent,
-    WelcomePageComponent
+    WelcomePageComponent,
+    DataViewComponent//data-view
   ],
   imports: [
     BrowserModule,

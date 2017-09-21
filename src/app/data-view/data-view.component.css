@@ -1,0 +1,13 @@
+.button-column {
+  display: flex ;
+  align-items: center;
+  justify-content: space-around;
+
+}
+.circle-button {
+	 width:150px; 
+	 height:150px;
+
+
+
+}
