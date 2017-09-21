@@ -10,9 +10,3 @@ p {
   font-size: 17px;
 }
 
-.fixed-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  color: white;
-}

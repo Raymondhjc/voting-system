@@ -1,7 +1,8 @@
 export class RegistrationInfoModel {
-  public username;
-  public password;
-  public confirmPassword;
+  public username: string;
+  public password: string;
+  public email = '';
+  public UFID = '';
 
   constructor(username: string, password: string) {
     this.username = username;

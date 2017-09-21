@@ -1,8 +1,20 @@
-<app-header></app-header>
+<md-sidenav-container class="dim-screen">
+  <md-sidenav #sidenav class = "example-sidenav">
+    add menu here
+  </md-sidenav>
 
-<router-outlet></router-outlet>
+  <app-header></app-header>
+
+  <router-outlet></router-outlet>
 
 
-<h1>admin</h1>
-<admin-root></admin-root>
+  <h1>admin</h1>
+  <admin-root></admin-root>
 
+</md-sidenav-container>
+
+<span class = "fixed-button">
+<button md-fab>
+<md-icon class = "material-icons" (click) = "sidenav.open()">add</md-icon>
+</button>
+</span>

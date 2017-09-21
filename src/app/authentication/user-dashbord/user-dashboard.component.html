@@ -1,8 +1,69 @@
-<p *ngIf = "!signInStatus">You are a guest!</p>
+<md-card>
 
-<p *ngIf = "signInStatus">
-  Your username is: {{this.authenInfo.username}}
-</p>
-<p *ngIf = "signInStatus">
-  Your password is: {{this.authenInfo.password}}
-</p>
+  <md-tab-group>
+    <md-tab label = "Manage Account">
+      <md-toolbar color = "primary">
+        You are logged in as:&nbsp;{{this.authenInfo.username}}
+      </md-toolbar>
+      <md-expansion-panel>
+        <md-expansion-panel-header>
+          <md-panel-title> password:</md-panel-title>
+          <md-panel-description>******</md-panel-description>
+        </md-expansion-panel-header>
+
+        <md-form-field class = "full-width">
+          <input mdInput placeholder = "Previous password">
+        </md-form-field>
+        <md-form-field class = "full-width">
+          <input mdInput placeholder = "New password">
+        </md-form-field>
+        <md-form-field class = "full-width">
+          <input mdInput placeholder = "Confirm new password">
+        </md-form-field>
+
+        <div style = "  text-align: right;">
+          <button md-button color = "primary">
+            Modify
+          </button>
+          <button md-button color = "warn">
+            Clear
+          </button>
+        </div>
+      </md-expansion-panel>
+
+      <md-expansion-panel>
+        <md-expansion-panel-header>
+          <md-panel-title> Email:</md-panel-title>
+          <md-panel-description>TODO: email should be show here using 1-way-binding</md-panel-description>
+        </md-expansion-panel-header>
+
+        <md-form-field class = "full-width">
+          <input mdInput placeholder = "New Email address:">
+        </md-form-field>
+
+        <div style = "  text-align: right;">
+          <button md-button color = "primary">
+            Modify
+          </button>
+          <button md-button color = "warn">
+            Clear
+          </button>
+        </div>
+
+      </md-expansion-panel>
+
+    </md-tab>
+    <md-tab label = "Tasks">
+
+
+      Scanning tasks should list here, with filtering functionality.
+
+
+    </md-tab>
+  </md-tab-group>
+
+
+  <p *ngIf = "!signInStatus">You are a guest!</p>
+
+
+</md-card>

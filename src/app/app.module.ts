@@ -4,10 +4,10 @@ import {FormsModule} from '@angular/forms';
 
 import {AppComponent} from './app.component';
 import {AdminComponent} from './admin/admin.component';
-import {HeaderComponent} from './header/header.component'
+import {HeaderComponent} from './header/header.component';
 import {
   MdButtonModule, MdCheckboxModule, MdDialogModule, MdExpansionModule, MdGridListModule, MdInputModule, MdMenuModule,
-  MdSidenavModule, MdToolbarModule, MdCardModule
+  MdSidenavModule, MdToolbarModule, MdCardModule, MdTabsModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SignupComponent} from './authentication/signup/signup.component';
@@ -45,7 +45,8 @@ import {EqualValidatorDirective} from './common/equal-validator.directive';
     MdDialogModule,
     MdExpansionModule,
     MdSidenavModule,
-    MdCardModule
+    MdCardModule,
+    MdTabsModule
   ],
   providers: [AuthenticationService, NotSignedInGuardsService, SignedInAuthGuardService],
   bootstrap: [AppComponent]

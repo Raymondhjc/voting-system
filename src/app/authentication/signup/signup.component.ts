@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {NgForm} from '@angular/forms';
-import {RegistrationInfoModel} from '../../common/registration-info.model';
+import {RegistrationInfoModel} from '../../common/user-info.model';
 
 @Component({
   selector: 'app-signup',

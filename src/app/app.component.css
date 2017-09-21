@@ -1,6 +1,23 @@
-.contentPage {
-  min-width: 90%;
-  max-width: 90%;
+.fixed-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: white;
+}
+
+.dim-screen
+{
+  position:fixed;
+  padding:0;
+  margin:0;
+  top:0;
+  left:0;
   width: 100%;
-  text-align:center;
+  height: 100%;
+  background:rgba(255,255,255,0.5);
+}
+
+.body-content {
+  width: 75%;
+  float: left;
 }

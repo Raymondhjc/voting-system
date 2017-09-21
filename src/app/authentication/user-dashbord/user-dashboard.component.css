@@ -1,0 +1,13 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.full-width {
+  width: 100%;
+}
+
+md-card {
+  max-width: 80%;
+  margin: 2em auto;
+  /*text-align: center;*/
+}
