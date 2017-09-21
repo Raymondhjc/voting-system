@@ -11,24 +11,27 @@
           <md-panel-description>******</md-panel-description>
         </md-expansion-panel-header>
 
-        <md-form-field class = "full-width">
-          <input mdInput placeholder = "Previous password">
-        </md-form-field>
-        <md-form-field class = "full-width">
-          <input mdInput placeholder = "New password">
-        </md-form-field>
-        <md-form-field class = "full-width">
-          <input mdInput placeholder = "Confirm new password">
-        </md-form-field>
+        <form #changePassword="ngForm">
+          <md-form-field class = "full-width">
+            <input mdInput placeholder = "Previous password">
+          </md-form-field>
+          <md-form-field class = "full-width">
+            <input mdInput placeholder = "New password" name = "password" ngModel>
+          </md-form-field>
+          <md-form-field class = "full-width">
+            <input mdInput placeholder = "Confirm new password" validateEqual = "password" ngModel name="confirmPassword">
+          </md-form-field>
 
-        <div style = "  text-align: right;">
-          <button md-button color = "primary">
-            Modify
-          </button>
-          <button md-button color = "warn">
-            Clear
-          </button>
-        </div>
+          <div style = "  text-align: right;">
+            <button md-button color = "primary" [disabled] = "!changePassword.valid">
+              Modify
+            </button>
+            <button md-button color = "warn">
+              Clear
+            </button>
+          </div>
+
+        </form>
       </md-expansion-panel>
 
       <md-expansion-panel>

@@ -49,6 +49,7 @@ export class AuthenticationService {
     this.authenInfo.password = '';
     this.signedIn = false;
     this.authenInfoChanged.next(this.authenInfo);
+    this.router.navigate(['/welcome']);
   }
 
   isAuthenticated() {

@@ -1,5 +1,5 @@
 <md-card>
-  <md-toolbar color="primary">
+  <md-toolbar color = "primary">
     <span>Register</span>
   </md-toolbar>
   <form (ng-submit) = "onRegiserSubmit(registerForm)" #registerForm = "ngForm">
@@ -26,11 +26,10 @@
     </md-form-field>
     <md-form-field class = "full-width">
       <input mdInput placeholder = "Password" [ngModel] = "regInfo.password" required #password = "ngModel"
-             name = "password"
-             type = "password">
+             name = "password" type = "password">
     </md-form-field>
     <md-form-field class = "full-width">
-      <input mdInput placeholder = "Repeat your password" [ngModel] = "regInfo.confirmPassword" required
+      <input mdInput placeholder = "Repeat your password" ngModel required
              validateEqual = "password" #confirmPassword = "ngModel" name = "passwordRep" type = "password"
       >
     </md-form-field>
