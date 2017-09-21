@@ -4,14 +4,13 @@
   <span class = "spacer"></span>
   <button md-button (click) = "onHeaderSignIn()" *ngIf = "!signInStatus">Sign in</button>
   <button md-button routerLink = "/signup" *ngIf = "!signInStatus">Register</button>
-  <p *ngIf = "signInStatus">Hello, {{authenInfo.username}}!  </p>
 
 
   <md-menu #appMenu = "mdMenu">
     <button md-menu-item routerLink = "/user-dashboard"> User Dashboard</button>
     <button md-menu-item (click)="onHeaderSignOut()"> Sign out</button>
   </md-menu>
-
+  <p *ngIf = "signInStatus">Hello, {{authenInfo.username}}!  </p>
   <button md-icon-button [mdMenuTriggerFor] = "appMenu" *ngIf = "signInStatus">
     <md-icon class = "material-icons">list</md-icon>
   </button>

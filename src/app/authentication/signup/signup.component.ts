@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-signup',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
+
+  onClearClick() {
+
+  }
+
+  // canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+  //   if ((this.serverName !== this.server.name || this.serverStatus !== this.server.status) && !this.changesSaved) {
+  //     return confirm('Do you want to discard the changes?');
+  //   } else {
+  //     return true;
+  //   }
+  // }
 
 }
