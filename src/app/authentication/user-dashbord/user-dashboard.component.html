@@ -1,8 +1,27 @@
-<p *ngIf = "!signInStatus">You are a guest!</p>
+<md-sidenav-container>
+  <md-sidenav mode="side" opened="true" mode="side">
+    <ul>
+      <li>
+        <a >
+          Elections
+        </a>
+      </li>
+    </ul>
+  </md-sidenav>
+  <div class="my-content">
+    <div>
+      <p *ngIf="!signInStatus">You are a guest!</p>
 
-<p *ngIf = "signInStatus">
-  Your username is: {{this.authenInfo.username}}
-</p>
-<p *ngIf = "signInStatus">
-  Your password is: {{this.authenInfo.password}}
-</p>
+      <p *ngIf="signInStatus">
+        Your username is: {{this.authenInfo.username}}
+      </p>
+      <p *ngIf="signInStatus">
+        Your password is: {{this.authenInfo.password}}
+      </p>
+    </div>
+
+    <div>
+      <admin-root></admin-root>
+    </div>
+  </div>
+</md-sidenav-container>

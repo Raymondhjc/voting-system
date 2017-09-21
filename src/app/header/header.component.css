@@ -2,6 +2,10 @@
   flex: 1 1 auto;
 }
 
+.icon-padding {
+  padding: 0 14px;
+}
+
 p {
-  font-size: 15px;
+  font-size: 17px;
 }

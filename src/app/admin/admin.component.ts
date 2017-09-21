@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MdButtonModule } from '@angular/material';
 
-import { electionDetails } from '../election-details'
+import { electionDetails } from './election-details'
 import { AdminService } from './admin.service'
 
 @Component({

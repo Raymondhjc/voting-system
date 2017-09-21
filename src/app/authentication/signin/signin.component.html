@@ -1,17 +1,19 @@
-<form class = "form" #f="ngForm">
+<form #signInForm="ngForm">
   <p>
     <md-form-field class = "full-width">
-      <input mdInput [(ngModel)] = "this.authenInfo.username"
+      <input autofocus mdInput [(ngModel)] = "this.authenInfo.username"
              name="Username" placeholder = "Username" required>
     </md-form-field>
     <md-form-field class = "full-width">
       <input mdInput [(ngModel)] = "this.authenInfo.password"
-             name="Password"placeholder = "Password" required>
+             name="Password" placeholder = "Password" required>
     </md-form-field>
   </p>
+  <div style="text-align: center;">
+    <button md-raised-button [md-dialog-close] = "this.authenInfo" [disabled] = "!signInForm.valid" color = "primary">Sign In
+    </button>
+    <button md-raised-button (click) = "onCancelClick()" color = "warn">Cancel</button>
+  </div>
 </form>
-<div md-dialog-actions>
-  <button md-raised-button [md-dialog-close] = "this.authenInfo" [disabled] = "!f.valid" color = "primary">Ok
-  </button>
-  <button md-raised-button (click) = "onCancelClick()" color = "warn">Cancel</button>
-</div>
+
+

@@ -1,20 +1,45 @@
-<form class="form">
-  <table class="full-width" cellspacing="0"><tr>
-    <td><md-form-field class="full-width">
-      <input mdInput placeholder="First name">
-    </md-form-field></td>
-    <td><md-form-field class="full-width">
-      <input mdInput placeholder="Last Name">
-    </md-form-field></td>
-  </tr>
-  </table>
-  <md-form-field class="full-width">
-    <input mdInput placeholder="Username">
-  </md-form-field>
-  <md-form-field class="full-width">
-    <input mdInput placeholder="Password">
-  </md-form-field>
-  <md-form-field class="full-width">
-    <input mdInput placeholder="UFID">
-  </md-form-field>
-</form>
+<md-card>
+  <form #registerForm = "ngForm">
+    <table class = "full-width" cellspacing = "0">
+      <tr>
+        <td>
+          <md-form-field class = "full-width">
+            <input mdInput placeholder = "First Name" ngModel required name = "firstName">
+          </md-form-field>
+        </td>
+
+        <td>
+          <md-form-field class = "full-width">
+            <input mdInput placeholder = "Last Name" ngModel required name = "lastName">
+          </md-form-field>
+        </td>
+      </tr>
+    </table>
+    <md-form-field class = "full-width">
+      <input mdInput placeholder = "Username" ngModel required name = "username">
+    </md-form-field>
+    <md-form-field class = "full-width">
+      <input mdInput placeholder = "Password" ngModel required name = "password">
+    </md-form-field>
+    <md-form-field class = "full-width">
+      <input mdInput placeholder = "UFID" ngModel required name = "ufid">
+    </md-form-field>
+
+    <div>
+      <button md-fab [disabled] = "!registerForm.valid" color = "primary">
+        <md-icon class = "material-icons">done</md-icon>
+      </button>
+      <button md-fab color = "warn" (click) = "onClearClick()">
+        <md-icon class = "material-icons">clear</md-icon>
+      </button>
+    </div>
+  </form>
+
+</md-card>
+
+<!--<span class = "done">-->
+    <!--<button md-fab>-->
+      <!--<md-icon class = "material-icons">add</md-icon>-->
+    <!--</button>-->
+<!--</span>-->
+

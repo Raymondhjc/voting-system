@@ -7,3 +7,29 @@
 .full-width {
   width: 100%;
 }
+
+.centering{
+  text-align: center;
+  width: 80%;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+md-card {
+  max-width: 80%;
+  margin: 2em auto;
+  text-align: center;
+}
+
+md-toolbar-row {
+  justify-content: space-between;
+}
+
+.done {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: white;
+}
