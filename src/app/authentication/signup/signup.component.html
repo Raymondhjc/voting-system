@@ -1,39 +1,39 @@
-<md-card>
+<md-card class = "lverg-md-card">
   <md-toolbar color = "primary">
     <span>Register</span>
   </md-toolbar>
   <form (ng-submit) = "onRegiserSubmit(registerForm)" #registerForm = "ngForm">
-    <table class = "full-width" cellspacing = "0">
+    <table class = "lverg-full-width" cellspacing = "0">
       <tr>
         <td>
-          <md-form-field class = "full-width">
+          <md-form-field class = "lverg-full-width">
             <input mdInput placeholder = "First Name" ngModel required name = "firstName">
           </md-form-field>
         </td>
 
         <td>
-          <md-form-field class = "full-width">
+          <md-form-field class = "lverg-full-width">
             <input mdInput placeholder = "Last Name" ngModel required name = "lastName">
           </md-form-field>
         </td>
       </tr>
     </table>
-    <md-form-field class = "full-width">
+    <md-form-field class = "lverg-full-width">
       <input mdInput placeholder = "Email" ngModel required email name = "email">
     </md-form-field>
-    <md-form-field class = "full-width">
+    <md-form-field class = "lverg-full-width">
       <input mdInput placeholder = "Username" ngModel required name = "username">
     </md-form-field>
-    <md-form-field class = "full-width">
+    <md-form-field class = "lverg-full-width">
       <input mdInput placeholder = "Password" [ngModel] = "regInfo.password" required #password = "ngModel"
              name = "password" type = "password">
     </md-form-field>
-    <md-form-field class = "full-width">
+    <md-form-field class = "lverg-full-width">
       <input mdInput placeholder = "Repeat your password" ngModel required
              validateEqual = "password" #confirmPassword = "ngModel" name = "passwordRep" type = "password"
       >
     </md-form-field>
-    <md-form-field class = "full-width">
+    <md-form-field class = "lverg-full-width">
       <input mdInput placeholder = "UFID" ngModel required name = "ufid">
     </md-form-field>
 

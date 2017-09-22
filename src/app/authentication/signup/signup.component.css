@@ -1,24 +1,20 @@
-.form {
-  min-width: 150px;
-  max-width: 500px;
+.lverg-full-width {
   width: 100%;
 }
 
-.full-width {
-  width: 100%;
-}
-
-.centering{
-  text-align: center;
-  width: 80%;
-}
-
-.spacer {
+.lverg-spacer {
   flex: 1 1 auto;
 }
 
-md-card {
-   max-width: 80%;
-   margin: 2em auto;
-   text-align: center;
- }
+.lverg-md-card {
+  max-width: 80%;
+  margin: 2em auto;
+  text-align: center;
+}
+
+.lverg-subheader{
+  position:absolute;
+  top:0;
+  left:0;
+  width: 100%;
+}

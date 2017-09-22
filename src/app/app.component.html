@@ -1,20 +1,18 @@
-<md-sidenav-container class="dim-screen">
-  <md-sidenav #sidenav class = "example-sidenav">
-    add menu here
-  </md-sidenav>
-
+<div class = "lverg-dim-screen">
   <app-header></app-header>
 
-  <router-outlet></router-outlet>
-
-
-  <h1>admin</h1>
-  <admin-root></admin-root>
-
-</md-sidenav-container>
+  <md-sidenav-container class = "lverg-body-content">
+    <md-sidenav #sidenav mode = "side" opened = "true" class = "lverg-sidenav">
+      add menu here
+    </md-sidenav>
+    <router-outlet></router-outlet>
+  </md-sidenav-container>
+</div>
 
 <span class = "fixed-button">
-<button md-fab>
-<md-icon class = "material-icons" (click) = "sidenav.open()">add</md-icon>
-</button>
+  <button md-fab class = "example-fab" (click) = "sidenav.toggle()">
+    <md-icon class = "material-icons" *ngIf = "!sidenav.opened">add</md-icon>
+    <md-icon class = "material-icons" *ngIf = "sidenav.opened">remove</md-icon>
+  </button>
 </span>
+
