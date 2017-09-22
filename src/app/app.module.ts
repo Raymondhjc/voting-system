@@ -16,13 +16,13 @@ import {AuthenticationService} from './authentication/authentication.service';
 import {AppRoutingModule} from './app-routing.module';
 import {WelcomePageComponent} from './welcome-page/welcome-page.component';
 import {DashboardComponent} from './authentication/user-dashbord/user-dashboard.component';
-<<<<<<< HEAD
+
 //data-view
 import {DataViewComponent} from './data-view/data-view.component'
-=======
+
 import {NotSignedInGuardsService} from './common/not-signed-in-guards.service';
 import {SignedInAuthGuardService} from './common/signed-in-auth-guard.service';
->>>>>>> bae60fa4ebdcef06a0b96be0e5dc9095fef0856c
+
 
 @NgModule({
   declarations: [
