@@ -1,4 +1,5 @@
 export class electionDetails {
-    electionId: number;
-    electionName: string;
+    id: string;
+    name: string;
+    count: number;
   }

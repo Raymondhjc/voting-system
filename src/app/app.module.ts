@@ -7,7 +7,7 @@ import {AdminComponent} from './admin/admin.component';
 import {HeaderComponent} from './header/header.component'
 import {
   MdButtonModule, MdCheckboxModule, MdDialogModule, MdExpansionModule, MdGridListModule, MdInputModule, MdMenuModule,
-  MdSidenavModule, MdToolbarModule, MdCardModule
+  MdSidenavModule, MdToolbarModule, MdCardModule, MdTabsModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SignupComponent} from './authentication/signup/signup.component';
@@ -19,6 +19,12 @@ import {DashboardComponent} from './authentication/user-dashbord/user-dashboard.
 import {NotSignedInGuardsService} from './common/not-signed-in-guards.service';
 import {SignedInAuthGuardService} from './common/signed-in-auth-guard.service';
 
+//added
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { MaterialModule, MdTableModule  } from '@angular/material';
+//import { FlexLayoutModule } from '@angular/flex-layout';
+import { CdkTableModule } from '@angular/cdk/Table';
+//added
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +49,13 @@ import {SignedInAuthGuardService} from './common/signed-in-auth-guard.service';
     MdDialogModule,
     MdExpansionModule,
     MdSidenavModule,
-    MdCardModule
+    MdCardModule,
+    MdTabsModule,
+
+    BrowserAnimationsModule,
+    CdkTableModule,
+    BrowserModule,
+    MaterialModule, MdTableModule
   ],
   providers: [AuthenticationService, NotSignedInGuardsService, SignedInAuthGuardService],
   bootstrap: [AppComponent]

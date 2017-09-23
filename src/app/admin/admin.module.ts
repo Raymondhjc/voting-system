@@ -3,6 +3,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AdminComponent } from './admin.component';
+import { DataSource } from '@angular/cdk/collections';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/observable/merge';
+import 'rxjs/add/operator/map';
 
 @NgModule({
   declarations: [
@@ -10,7 +16,9 @@ import { AdminComponent } from './admin.component';
     RouterModule
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    Observable,
+    BehaviorSubject
   ],
   providers: [],
   bootstrap: [AdminComponent]
