@@ -2,24 +2,23 @@
   <h1>{{chartTitle}}</h1>
   <md-tab-group>
     <md-tab label="All Elections">
-      <div class="admin-table-container mat-elevation-z8">
-        <md-table #table [dataSource]="elecTable">
-
+      <div class="admin-container mat-elevation-z8">
+        <md-table #table [dataSource]="elecTable" mdSort>
           <!-- ID Column -->
           <ng-container mdColumnDef="id">
-            <md-header-cell *mdHeaderCellDef> ID </md-header-cell>
+            <md-header-cell *mdHeaderCellDef md-sort-header> ID </md-header-cell>
             <md-cell *mdCellDef="let row"> {{row.id}} </md-cell>
           </ng-container>
 
           <!-- Election Column -->
           <ng-container mdColumnDef="name">
-            <md-header-cell *mdHeaderCellDef> Election </md-header-cell>
+            <md-header-cell *mdHeaderCellDef md-sort-header> Election </md-header-cell>
             <md-cell *mdCellDef="let row"> {{row.name}} </md-cell>
           </ng-container>
 
           <!-- Count Column -->
           <ng-container mdColumnDef="count">
-            <md-header-cell *mdHeaderCellDef> Ballot Count </md-header-cell>
+            <md-header-cell *mdHeaderCellDef md-sort-header> Ballot Count </md-header-cell>
             <md-cell *mdCellDef="let row"> {{row.count}} </md-cell>
           </ng-container>
 
@@ -30,16 +29,18 @@
         <md-paginator #paginator 
         [length]="adminService.data.length" 
         [pageIndex]="0" 
-        [pageSize]="1" 
-        [pageSizeOptions]="[1,2,3,4]">
+        [pageSize]="4" 
+        [pageSizeOptions]="[2, 4, 6, 8]">
         </md-paginator>
+
       </div>
     </md-tab>
     <md-tab label="Active Elections">
-      
+
+
     </md-tab>
     <md-tab label="Closed Elections">
-      
+
     </md-tab>
   </md-tab-group>
 </md-card>

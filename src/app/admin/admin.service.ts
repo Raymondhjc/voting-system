@@ -10,7 +10,6 @@ import { electionList } from './mock-elections'
 export class AdminService {
     /** Stream that emits whenever the data has been modified. */
     dataChange: BehaviorSubject<ElectionDetails[]> = new BehaviorSubject<ElectionDetails[]>([]);
-    //get data(): ElectionDetails[] { return this.dataChange.value; }
 
     fetchData(){
         this.dataChange.next(electionList);
