@@ -2,7 +2,13 @@
   <h1>{{chartTitle}}</h1>
   <md-tab-group>
     <md-tab label="All Elections">
-      <div class="admin-container mat-elevation-z8">
+      <div class="search-header">
+        <md-icon>search</md-icon>
+        <md-form-field floatPlaceholder="">
+          <input mdInput #filter placeholder="Search by Election Name">
+        </md-form-field>
+      </div>
+      <div class="admin-table-container mat-elevation-z8">
         <md-table #table [dataSource]="elecTable" mdSort>
           <!-- ID Column -->
           <ng-container mdColumnDef="id">
@@ -26,21 +32,17 @@
           <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
         </md-table>
 
-        <md-paginator #paginator 
-        [length]="adminService.data.length" 
-        [pageIndex]="0" 
-        [pageSize]="4" 
-        [pageSizeOptions]="[2, 4, 6, 8]">
+        <md-paginator #paginator [length]="adminService.data.length" [pageIndex]="0" [pageSize]="4" [pageSizeOptions]="[2, 4, 6, 8]">
         </md-paginator>
 
       </div>
     </md-tab>
-    <md-tab label="Active Elections">
-
+    <md-tab label="Proceeding Elections">
+      content 2
 
     </md-tab>
     <md-tab label="Closed Elections">
-
+      content 3
     </md-tab>
   </md-tab-group>
 </md-card>
