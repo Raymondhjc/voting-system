@@ -2,58 +2,44 @@
   <h1>{{chartTitle}}</h1>
   <md-tab-group>
     <md-tab label="All Elections">
-      <!-- <ng-container cdkColumnDef="ID">
-        <cdk-header-cell *cdkHeaderCellDef> ID </cdk-header-cell>
-        <cdk-cell *cdkCellDef="let row"> {{row.id}} </cdk-cell>
-      </ng-container>
-
-      <ng-container cdkColumnDef="ID">
-        <cdk-header-cell *cdkHeaderCellDef> ID </cdk-header-cell>
-        <cdk-cell *cdkCellDef="let row"> {{row.name}} </cdk-cell>
-      </ng-container>
-
-      <ng-container cdkColumnDef="ID">
-        <cdk-header-cell *cdkHeaderCellDef> ID </cdk-header-cell>
-        <cdk-cell *cdkCellDef="let row"> {{row.count}} </cdk-cell>
-      </ng-container>
-
-      <cdk-header-row *cdkHeaderRowDef="['ID', 'Name', 'Ballot']"></cdk-header-row>
-      <cdk-row *cdkRowDef="let row; columns: ['id', 'name', 'count']"></cdk-row> -->
-      <div class="example-container mat-elevation-z8">
-        <md-table #table [dataSource]="dataSource" mdSort>
-          <!--- Note that these columns can be defined in any order.
-                  The actual rendered columns are set as a property on the row definition" -->
+      <div class="admin-table-container mat-elevation-z8">
+        <md-table #table [dataSource]="elecTable">
 
           <!-- ID Column -->
-          <ng-container cdkColumnDef="id">
-            <md-header-cell *cdkHeaderCellDef md-sort-header> ID </md-header-cell>
-            <md-cell *cdkCellDef="let row"> {{row.id}} </md-cell>
+          <ng-container mdColumnDef="id">
+            <md-header-cell *mdHeaderCellDef> ID </md-header-cell>
+            <md-cell *mdCellDef="let row"> {{row.id}} </md-cell>
           </ng-container>
 
-          <!-- Progress Column -->
-          <ng-container cdkColumnDef="name">
-            <md-header-cell *cdkHeaderCellDef md-sort-header> Name </md-header-cell>
-            <md-cell *cdkCellDef="let row"> {{row.name}} </md-cell>
+          <!-- Election Column -->
+          <ng-container mdColumnDef="name">
+            <md-header-cell *mdHeaderCellDef> Election </md-header-cell>
+            <md-cell *mdCellDef="let row"> {{row.name}} </md-cell>
           </ng-container>
 
-          <!-- Name Column -->
-          <ng-container cdkColumnDef="count">
-            <md-header-cell *cdkHeaderCellDef> Count </md-header-cell>
-            <md-cell *cdkCellDef="let row"> {{row.count}} </md-cell>
+          <!-- Count Column -->
+          <ng-container mdColumnDef="count">
+            <md-header-cell *mdHeaderCellDef> Ballot Count </md-header-cell>
+            <md-cell *mdCellDef="let row"> {{row.count}} </md-cell>
           </ng-container>
 
-          <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
-          <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+          <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+          <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
         </md-table>
 
-        <md-paginator #paginator [length]="exampleDatabase.data.length" [pageIndex]="0" [pageSize]="25" [pageSizeOptions]="[5, 10, 25, 100]">
+        <md-paginator #paginator 
+        [length]="adminService.data.length" 
+        [pageIndex]="0" 
+        [pageSize]="1" 
+        [pageSizeOptions]="[1,2,3,4]">
         </md-paginator>
-
       </div>
-
-
     </md-tab>
-    <md-tab label="Active Elections">Content 2</md-tab>
-    <md-tab label="Finished Elections">Content 3</md-tab>
+    <md-tab label="Active Elections">
+      
+    </md-tab>
+    <md-tab label="Closed Elections">
+      
+    </md-tab>
   </md-tab-group>
 </md-card>
