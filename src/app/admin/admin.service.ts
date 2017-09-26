@@ -1,11 +1,27 @@
 import { Injectable } from '@angular/core';
 
-import { electionDetails } from '../election-details'
-import { electionList } from '../mock-elections'
+//for table
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+
+import { ElectionDetails } from './election-details'
+import { electionList } from './mock-elections'
 
 @Injectable()
 export class AdminService {
-    getElectionDetails(): electionDetails[]{
-        return electionList;
+    /** Stream that emits whenever the data has been modified. */
+    dataChange: BehaviorSubject<ElectionDetails[]> = new BehaviorSubject<ElectionDetails[]>([]);
+
+    fetchData(){
+        this.dataChange.next(electionList);
     }
+
+    get data(): ElectionDetails[] {
+        //first handle the fetched data
+        //then output the processed data
+        return this.dataChange.value;
+    }
+    constructor(){
+        this.fetchData();
+    }
+
 }

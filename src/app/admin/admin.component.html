@@ -1,11 +1,48 @@
-<h1>{{chartTitle}}</h1>
-<ul class="electionList">
-  <li *ngFor="let election of electionList" (click)="onSelect(election)" [class.selected]="election === selectedElection">
-    <span class="badge">{{election.electionId}}</span> {{election.electionName}}
-  </li>
-</ul>
+<md-card>
+  <h1>{{chartTitle}}</h1>
+  <md-tab-group>
+    <md-tab label="All Elections">
+      <div class="search-header">
+        <md-icon>search</md-icon>
+        <md-form-field floatPlaceholder="">
+          <input mdInput #filter placeholder="Search by Election Name">
+        </md-form-field>
+      </div>
+      <div class="admin-table-container mat-elevation-z8">
+        <md-table #table [dataSource]="elecTable" mdSort>
+          <!-- ID Column -->
+          <ng-container mdColumnDef="id">
+            <md-header-cell *mdHeaderCellDef md-sort-header> ID </md-header-cell>
+            <md-cell *mdCellDef="let row"> {{row.id}} </md-cell>
+          </ng-container>
 
-<div *ngIf="selectedElection">
-  <h2>{{selectedElection.electionName}}</h2>
-  <div><label>Election ID: </label>{{selectedElection.electionId}}</div>
-</div>
+          <!-- Election Column -->
+          <ng-container mdColumnDef="name">
+            <md-header-cell *mdHeaderCellDef md-sort-header> Election </md-header-cell>
+            <md-cell *mdCellDef="let row"> {{row.name}} </md-cell>
+          </ng-container>
+
+          <!-- Count Column -->
+          <ng-container mdColumnDef="count">
+            <md-header-cell *mdHeaderCellDef md-sort-header> Ballot Count </md-header-cell>
+            <md-cell *mdCellDef="let row"> {{row.count}} </md-cell>
+          </ng-container>
+
+          <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+          <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+        </md-table>
+
+        <md-paginator #paginator [length]="adminService.data.length" [pageIndex]="0" [pageSize]="4" [pageSizeOptions]="[2, 4, 6, 8]">
+        </md-paginator>
+
+      </div>
+    </md-tab>
+    <md-tab label="Proceeding Elections">
+      content 2
+
+    </md-tab>
+    <md-tab label="Closed Elections">
+      content 3
+    </md-tab>
+  </md-tab-group>
+</md-card>
