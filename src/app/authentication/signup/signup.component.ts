@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {RegistrationInfoModel} from '../../common/user-info.model';
 
@@ -9,8 +8,8 @@ import {RegistrationInfoModel} from '../../common/user-info.model';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-
-  regInfo: RegistrationInfoModel = new RegistrationInfoModel('', '');
+  @ViewChild('registerForm') registerForm: NgForm;
+  regInfo: RegistrationInfoModel = new RegistrationInfoModel();
 
 
   constructor() {
@@ -32,6 +31,15 @@ export class SignupComponent implements OnInit {
   // }
 
   onRegiserSubmit(form: NgForm) {
+    this.regInfo.firstName = this.registerForm.value.firstName;
+    this.regInfo.lastName = this.registerForm.value.lastName;
+    this.regInfo.username = this.registerForm.value.username;
+    this.regInfo.password = this.registerForm.value.password;
+    this.regInfo.email = this.registerForm.value.email;
+    this.regInfo.ufid = this.registerForm.value.ufid;
 
+    // check validity;
+
+    // send to server;
   }
 }

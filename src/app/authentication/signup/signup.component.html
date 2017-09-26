@@ -2,7 +2,7 @@
   <md-toolbar color = "primary">
     <span>Register</span>
   </md-toolbar>
-  <form (ng-submit) = "onRegiserSubmit(registerForm)" #registerForm = "ngForm">
+  <form (ngSubmit) = "onRegiserSubmit(registerForm)" #registerForm = "ngForm">
     <table class = "lverg-full-width" cellspacing = "0">
       <tr>
         <td>
@@ -25,7 +25,7 @@
       <input mdInput placeholder = "Username" ngModel required name = "username">
     </md-form-field>
     <md-form-field class = "lverg-full-width">
-      <input mdInput placeholder = "Password" [ngModel] = "regInfo.password" required #password = "ngModel"
+      <input mdInput placeholder = "Password" ngModel required #password = "ngModel"
              name = "password" type = "password">
     </md-form-field>
     <md-form-field class = "lverg-full-width">

@@ -1,3 +1,5 @@
+// TODO: Show last signed in date.
+
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AnthenticationInfoModel} from '../../common/anthentication-info.model';
 import {AuthenticationService} from '../authentication.service';

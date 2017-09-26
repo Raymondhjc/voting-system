@@ -1,9 +1,9 @@
-<md-card>
+<md-card class="lverg-md-card">
 
   <md-tab-group>
     <md-tab label = "Manage Account">
       <md-toolbar color = "primary">
-        You are logged in as:&nbsp;{{this.authenInfo.username}}
+        <i>You are logged in as</i>:&nbsp;<b>{{this.authenInfo.username}}</b>
       </md-toolbar>
       <md-expansion-panel>
         <md-expansion-panel-header>
@@ -11,15 +11,16 @@
           <md-panel-description>******</md-panel-description>
         </md-expansion-panel-header>
 
-        <form #changePassword="ngForm">
+        <form #changePassword = "ngForm">
           <md-form-field class = "full-width">
-            <input mdInput placeholder = "Previous password">
+            <input mdInput placeholder = "Previous password" required ngModel name="previousPassword" type="password">
           </md-form-field>
           <md-form-field class = "full-width">
-            <input mdInput placeholder = "New password" name = "password" ngModel>
+            <input mdInput placeholder = "New password" name = "password" ngModel required type="password">
           </md-form-field>
           <md-form-field class = "full-width">
-            <input mdInput placeholder = "Confirm new password" validateEqual = "password" ngModel name="confirmPassword">
+            <input mdInput placeholder = "Confirm new password" validateEqual = "password" ngModel
+                   name = "confirmPassword" required type="password">
           </md-form-field>
 
           <div style = "  text-align: right;">
@@ -40,19 +41,20 @@
           <md-panel-description>TODO: email should be show here using 1-way-binding</md-panel-description>
         </md-expansion-panel-header>
 
-        <md-form-field class = "full-width">
-          <input mdInput placeholder = "New Email address:">
-        </md-form-field>
+        <form #changeEmail = "ngForm">
+          <md-form-field class = "full-width">
+            <input mdInput placeholder = "New Email address:" email required ngModel name = "email">
+          </md-form-field>
 
-        <div style = "  text-align: right;">
-          <button md-button color = "primary">
-            Modify
-          </button>
-          <button md-button color = "warn">
-            Clear
-          </button>
-        </div>
-
+          <div style = "  text-align: right;">
+            <button md-button color = "primary" [disabled] = "!changeEmail.valid">
+              Modify
+            </button>
+            <button md-button color = "warn">
+              Clear
+            </button>
+          </div>
+        </form>
       </md-expansion-panel>
 
     </md-tab>
