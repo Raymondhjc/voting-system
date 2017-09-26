@@ -42,11 +42,11 @@ const data: Element[] = [
 ];
 
 const data1: Element[] = [
-  {position: 1, name: 'Hydrogen', votes: 10079, rate: '5%'},
-  {position: 2, name: 'Helium', votes: 40026, rate: '5%'},
-  {position: 3, name: 'Lithium', votes: 6941, rate: '5%'},
-  {position: 4, name: 'Beryllium', votes: 90122, rate: '5%'},
-  {position: 5, name: 'Boron', votes: 10811, rate: '5%'},
+  {position: 1, name: 'Nancy', votes: 10079, rate: ' 6.3%'},
+  {position: 2, name: 'Helen', votes: 40026, rate: '25.3%'},
+  {position: 3, name: 'Dasiy', votes: 6941, rate: ' 4.4%'},
+  {position: 4, name: 'Bob', votes: 90122, rate: '57.%'},
+  {position: 5, name: 'Jackie', votes: 10811, rate: ' 6.8%'},
 ];
 const data2: Element[] = [
   {position: 1, name: 'Carbon', votes: 120107, rate: '5%'},
@@ -69,7 +69,7 @@ const data4: Element[] = [
   {position: 4, name: 'Potassium', votes: 390983, rate: '5%'},
   {position: 5, name: 'Calcium', votes: 40078, rate: '5%'},
 ];
-var datatmp = data;
+var datatmp = data1;
 export class DataSample extends DataSource<any> {
   /** Connect function called by the table to retrieve one stream containing the data to render. */
   		
