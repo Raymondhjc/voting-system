@@ -1,0 +1,52 @@
+
+
+<h1 style="text-align:center">All the Positions</h1>
+<div class="button-column">
+
+
+  <button md-raised-button md-button  (click)="SelectData1()" class="raised-button"> President</button>
+  
+  <button md-raised-button class="raised-button" color="primary">vice-President</button>
+
+  <button md-raised-button class="raised-button" color="accent">Governor</button>
+    
+  <button md-raised-button class="raised-button" disabled>Nobody</button>
+
+
+</div>
+
+<div class="example-container mat-elevation-z8">
+  <md-table #table [dataSource]="dataSource">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container mdColumnDef="position">
+      <md-header-cell *mdHeaderCellDef> No. </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.position}} </md-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container mdColumnDef="name">
+      <md-header-cell *mdHeaderCellDef> Name </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.name}} </md-cell>
+    </ng-container>
+
+    <!-- votes Column -->
+    <ng-container mdColumnDef="votes">
+      <md-header-cell *mdHeaderCellDef> Votes </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.votes}} </md-cell>
+    </ng-container>
+
+    <!-- Crate Column -->
+    <ng-container mdColumnDef="rate">
+      <md-header-cell *mdHeaderCellDef> Rate </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.rate}} </md-cell>
+    </ng-container>
+
+    <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+  </md-table>
+</div>
+
