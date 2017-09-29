@@ -14,13 +14,46 @@
 
 
 </div>
+<div>
+<md-tab-group>
 
+<!--the first table shows the total votes -->
+ <md-tab label="Total">
 <div class="example-container mat-elevation-z8">
   <md-table #table [dataSource]="dataSource">
+   <!-- Position Column -->
+    <ng-container mdColumnDef="position">
+      <md-header-cell *mdHeaderCellDef> No. </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.position}} </md-cell>
+    </ng-container>
 
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
+    <!-- Name Column -->
+    <ng-container mdColumnDef="name">
+      <md-header-cell *mdHeaderCellDef> Name </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.name}} </md-cell>
+    </ng-container>
 
+    <!-- votes Column -->
+    <ng-container mdColumnDef="votes">
+      <md-header-cell *mdHeaderCellDef> Votes </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.votes}} </md-cell>
+    </ng-container>
+
+    <!-- rate Column -->
+    <ng-container mdColumnDef="rate">
+      <md-header-cell *mdHeaderCellDef> Rate </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.rate}} </md-cell>
+    </ng-container>
+
+    <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+  </md-table>
+</div>
+</md-tab>
+<!--the second table shows the votes we are confident about  -->
+ <md-tab label="For Sure">
+ <div class="example-container mat-elevation-z8">
+  <md-table #table [dataSource]="dataSource">
     <!-- Position Column -->
     <ng-container mdColumnDef="position">
       <md-header-cell *mdHeaderCellDef> No. </md-header-cell>
@@ -39,7 +72,7 @@
       <md-cell *mdCellDef="let element"> {{element.votes}} </md-cell>
     </ng-container>
 
-    <!-- Crate Column -->
+    <!-- rate Column -->
     <ng-container mdColumnDef="rate">
       <md-header-cell *mdHeaderCellDef> Rate </md-header-cell>
       <md-cell *mdCellDef="let element"> {{element.rate}} </md-cell>
@@ -49,4 +82,43 @@
     <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
   </md-table>
 </div>
+</md-tab>
+<!--the third table shows the uncertain votes -->
+ <md-tab label="Uncertain">
+ <div class="container-mat-elevation-z8">
+  <md-table #table [dataSource]="dataSource">
 
+   
+    <!-- Position Column -->
+    <ng-container mdColumnDef="position">
+      <md-header-cell *mdHeaderCellDef> No. </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.position}} </md-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container mdColumnDef="name">
+      <md-header-cell *mdHeaderCellDef> Name </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.name}} </md-cell>
+    </ng-container>
+
+    <!-- votes Column -->
+    <ng-container mdColumnDef="votes">
+      <md-header-cell *mdHeaderCellDef> Votes </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.votes}} </md-cell>
+    </ng-container>
+
+    <!-- rate Column -->
+    <ng-container mdColumnDef="rate">
+      <md-header-cell *mdHeaderCellDef> Rate </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.rate}} </md-cell>
+    </ng-container>
+
+    <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+  </md-table>
+</div>
+</md-tab>
+</md-tab-group>
+</div>
+
+<button md-raised-button routerLink = "/votes-inspect" class="check-button" color="primary">Check Votes</button>

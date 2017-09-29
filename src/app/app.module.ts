@@ -33,7 +33,7 @@ import {ScannerPageComponent} from './scanner-page/scanner-page.component';
 import {NotSignedInGuardsService} from './common/not-signed-in-guards.service';
 import {SignedInAuthGuardService} from './common/signed-in-auth-guard.service';
 import {EqualValidatorDirective} from './common/equal-validator.directive';
-
+import {VotesInspectComponent} from './votes-inspect/votes-inspect.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +45,8 @@ import {EqualValidatorDirective} from './common/equal-validator.directive';
     WelcomePageComponent,
     DataViewComponent,
     ScannerPageComponent,
-    EqualValidatorDirective
+    EqualValidatorDirective,
+    VotesInspectComponent
   ],
   imports: [
     BrowserModule,

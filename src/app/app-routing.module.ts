@@ -8,7 +8,7 @@ import {DataViewComponent} from './data-view/data-view.component';
 import {ScannerPageComponent} from './scanner-page/scanner-page.component';
 import {NotSignedInGuardsService} from './common/not-signed-in-guards.service';
 import {SignedInAuthGuardService} from './common/signed-in-auth-guard.service';
-
+import {VotesInspectComponent} from './votes-inspect/votes-inspect.component';
 const appRoute: Routes = [
   {path: '', redirectTo: 'welcome', pathMatch: 'full'},
   {path: 'welcome', component: WelcomePageComponent},
@@ -22,6 +22,7 @@ const appRoute: Routes = [
   {path: 'signin', component: SigninComponent, canActivate: [SignedInAuthGuardService]},
 
   {path: 'data-view', component: DataViewComponent},
+  {path: 'votes-inspect', component: VotesInspectComponent},
   {path: 'scanner', component: ScannerPageComponent}
 ];
 
