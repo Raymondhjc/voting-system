@@ -1,4 +1,3 @@
-import {AnthenticationInfoModel} from '../common/anthentication-info.model';
 import {MdDialog} from '@angular/material';
 import {SigninComponent} from './signin/signin.component';
 import {Injectable} from '@angular/core';
@@ -8,8 +7,8 @@ import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthenticationService {
-    authenInfoChanged = new Subject<AnthenticationInfoModel>();
-    private authenInfo = new AnthenticationInfoModel('Guest', '');
+    private username = 'Guest';
+    usernameChanged = new Subject<string>();
     private signedIn = false;
 
     constructor(public dialog: MdDialog,
@@ -17,11 +16,7 @@ export class AuthenticationService {
     }
 
     getUsername() {
-        return this.authenInfo.username;
-    }
-
-    getPassword() {
-        return this.authenInfo.password;
+        return this.username;
     }
 
     isSignedIn() {
@@ -36,32 +31,37 @@ export class AuthenticationService {
         dialogRef.afterClosed().subscribe(result => {
             // console.log('The dialog was closed');
             if (!isUndefined(result)) {
-                this.authenInfo = result;
-                this.signedIn = true;
-                this.router.navigate(['/user-dashboard']);
+                result.subscribe(
+                    (response) => {
+                        console.log(response);
+                        // this.username = get username from server response;
+                        this.signedIn = true;
+                        this.usernameChanged.next(this.username);
+                        this.router.navigate(['/user-dashboard']);
+                    },
+                    (error) => console.log(error)
+                );
             }
-            this.authenInfoChanged.next(this.authenInfo);
         });
     }
 
     onSignOut(): void {
-        this.authenInfo.username = 'Guest';
-        this.authenInfo.password = '';
+        this.username = 'Guest';
         this.signedIn = false;
-        this.authenInfoChanged.next(this.authenInfo);
+        this.usernameChanged.next(this.username);
         this.router.navigate(['/welcome']);
     }
 
-    isAuthenticated() {
-        const promise = new Promise(
-            (resolve, reject) => {
-                // setTimeout(() => {
-                //   resolve(this.signedIn);
-                // }, 800);
-                resolve(this.signedIn);
-            }
-        );
-        return promise;
-    }
+    // isAuthenticated() {
+    //     const promise = new Promise(
+    //         (resolve, reject) => {
+    //             // setTimeout(() => {
+    //             //   resolve(this.signedIn);
+    //             // }, 800);
+    //             resolve(this.signedIn);
+    //         }
+    //     );
+    //     return promise;
+    // }
 
 }

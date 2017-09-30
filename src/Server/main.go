@@ -1,3 +1,5 @@
+//For reference: https://godoc.org/net/http
+
 package main
 
 import (
@@ -8,8 +10,7 @@ import (
 	"os"
 )
 
-//For reference: https://godoc.org/net/http
-
+// struct
 type RegistrationInfo struct {
 	FirstName string
 	LastName  string
@@ -19,36 +20,49 @@ type RegistrationInfo struct {
 	Ufid      string
 }
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	//decoder := json.NewDecoder(r.Body)
-	//var t registrationInfo
-	//err := decoder.Decode(&t)
-	//if err != nil {
-	//	panic(err)
-	//}
-	//defer r.Body.Close()
-	//log.Println(t.firstName)
-	//log.Println(t.lastName)
-	//log.Println(t.username)
-	//log.Println(t.password)
-	//log.Println(t.email)
-	//log.Println(t.ufid)
+type SigninInfo struct {
+	Username string
+	Password string
+}
 
+// handler
+func readBytes(r *http.Request) []byte {
 	file, e := ioutil.ReadAll(r.Body)
 	if e != nil {
 		fmt.Printf("File error: %v\n", e)
 		os.Exit(1)
 	}
+	return file
+}
+
+func signupHandler(w http.ResponseWriter, r *http.Request) {
+	file := readBytes(r)
 	var t RegistrationInfo
 	json.Unmarshal(file, &t)
 
-	fmt.Printf("Result:\n%v\n",t)
+	fmt.Printf("SIGNUP:\nFirst Name: %v\n,Last Name: %v\nUsername: %v\nPassword: %v\nEmail: %v\nUFID: %v\n",
+		t.FirstName, t.LastName, t.Username, t.Password, t.Email, t.Ufid)
 
-	fmt.Fprintf(w, "Hi there, you reached /%s!", r.URL.Path[1:])
+	fmt.Fprintf(w, "You reached /%s", r.URL.Path[1:])
 }
 
+func signinHandler(w http.ResponseWriter, r *http.Request) {
+	file := readBytes(r)
+	var t SigninInfo
+	json.Unmarshal(file, &t)
+
+	fmt.Printf("SIGNIN:\nUsername: %v\nPassword: %v\n", t.Username, t.Password)
+
+	fmt.Fprintf(w, "You reached /%s", r.URL.Path[1:])
+}
+
+// main
 func main() {
-	fmt.Println("Executing...")
-	http.HandleFunc("/", handler)
-	http.ListenAndServe(":4400", nil)
+	fmt.Println("Running ...")
+
+	// mux:
+	h := http.NewServeMux()
+	h.HandleFunc("/signup", signupHandler)
+	h.HandleFunc("/signin", signinHandler)
+	http.ListenAndServe(":4400", h)
 }

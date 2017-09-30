@@ -32,17 +32,12 @@ export class SignupComponent implements OnInit {
     // }
 
     onRegiserSubmit(form: NgForm) {
-        this.regInfo.firstName = this.registerForm.value.firstName;
-        this.regInfo.lastName = this.registerForm.value.lastName;
-        this.regInfo.username = this.registerForm.value.username;
-        this.regInfo.password = this.registerForm.value.password;
-        this.regInfo.email = this.registerForm.value.email;
-        this.regInfo.ufid = this.registerForm.value.ufid;
+        this.regInfo = this.registerForm.value;
 
         // check validity;
 
         // send to server;
-        this.serverInteract.sendSignUp(this.regInfo).subscribe(
+        this.serverInteract.sendSignup(this.regInfo).subscribe(
             (response) => console.log(response),
             (error) => console.log(error)
         );
