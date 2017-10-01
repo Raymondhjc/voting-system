@@ -13,14 +13,12 @@ export class ServerInteractService {
     sendSignup(regInfo: RegistrationInfoModel) {
 
         const body = JSON.stringify(regInfo);
-        console.log(body);
         return this.http.post(this.serverURL + 'signup', body);
     }
 
     sendSignin(signinInfo: AnthenticationInfoModel) {
 
         const body = JSON.stringify(signinInfo);
-        console.log(body);
         return this.http.post(this.serverURL + 'signin', body);
     }
 }

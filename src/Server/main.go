@@ -8,7 +8,10 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"os"
+	"github.com/dgrijalva/jwt-go"
+	"time"
 )
+
 
 // struct
 type RegistrationInfo struct {
@@ -23,6 +26,26 @@ type RegistrationInfo struct {
 type SigninInfo struct {
 	Username string
 	Password string
+}
+
+type SigninResponse struct{
+	Username string
+	JWT string
+}
+
+// jwt
+func createToken(username string) string {
+	var privateKey=[]byte("jmy2Lem12VOlq33RunwWFbeSYb22GZDdLFKjIWuTUxB8d8K9B6Qxx3ADrSG0POia")
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+		"username": username,
+		"nbf":      time.Date(2018, 1, 1, 0, 0, 0, 0, time.UTC).Unix(),
+	})
+
+	// Sign and get the complete encoded token as a string using the secret
+	tokenString, err := token.SignedString(privateKey)
+
+	fmt.Println(tokenString, err)
+	return tokenString
 }
 
 // handler
@@ -53,7 +76,21 @@ func signinHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Printf("SIGNIN:\nUsername: %v\nPassword: %v\n", t.Username, t.Password)
 
-	fmt.Fprintf(w, "You reached /%s", r.URL.Path[1:])
+	if t.Username == "junkfood" && t.Password == "frenchfries" {
+		response:=SigninResponse{t.Username, createToken(t.Username)}
+		js, err := json.Marshal(response)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		w.Header().Set("Content-Type", "application/json")
+		w.Write(js)
+
+	} else {
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("Username and Password combination does not exist"))
+	}
+
 }
 
 // main
