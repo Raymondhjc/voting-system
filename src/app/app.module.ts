@@ -19,7 +19,8 @@ import {
     MdSidenavModule,
     MdTableModule,
     MdTabsModule,
-    MdToolbarModule
+    MdToolbarModule,
+    MatSnackBarModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SignupComponent} from './authentication/signup/signup.component';
@@ -70,7 +71,8 @@ import {HttpModule} from '@angular/http';
         MdTabsModule,
         MatTableModule,
         MdPaginatorModule,
-        HttpModule
+        HttpModule,
+        MatSnackBarModule
     ],
     providers: [AuthenticationService, NotSignedInGuardsService, SignedInAuthGuardService, ServerInteractService],
     bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-import {MdDialog} from '@angular/material';
+import {MdDialog, MdSnackBar} from '@angular/material';
 import {SigninComponent} from './signin/signin.component';
 import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs/Subject';
@@ -12,7 +12,8 @@ export class AuthenticationService {
     private signedIn = false;
 
     constructor(public dialog: MdDialog,
-                private router: Router) {
+                private router: Router,
+                public snackBar: MdSnackBar) {
     }
 
     getUsername() {
@@ -33,13 +34,19 @@ export class AuthenticationService {
             if (!isUndefined(result)) {
                 result.subscribe(
                     (response) => {
-                        console.log(response);
-                        // this.username = get username from server response;
+                        const r = JSON.parse(response.text());
+                        this.username = r.Username;
+                        localStorage.setItem('currentUser', response.text());
+                        console.log(localStorage.getItem('currentUser'));
                         this.signedIn = true;
                         this.usernameChanged.next(this.username);
                         this.router.navigate(['/user-dashboard']);
                     },
-                    (error) => console.log(error)
+                    (error) => {
+                        console.log(error);
+                        this.onSignIn();
+                        this.snackBar.open('Signin Faliure!', 'close', {duration: 2000});
+                    }
                 );
             }
         });

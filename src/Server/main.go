@@ -76,7 +76,7 @@ func signinHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Printf("SIGNIN:\nUsername: %v\nPassword: %v\n", t.Username, t.Password)
 
-	if t.Username == "junkfood" && t.Password == "frenchfries" {
+	if t.Username == "lvergergsk" && t.Password == "frozenFrog" {
 		response:=SigninResponse{t.Username, createToken(t.Username)}
 		js, err := json.Marshal(response)
 		if err != nil {
