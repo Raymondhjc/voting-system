@@ -1,9 +1,9 @@
-import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
-import {DataSource} from '@angular/cdk/collections';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { DataSource } from '@angular/cdk/collections';
 // for tables
-import {MdPaginator, MdSort} from '@angular/material';
-import {Observable} from 'rxjs/Observable';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import { MdPaginator, MdSort } from '@angular/material';
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
@@ -12,7 +12,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 
 // services required
-import {AdminService} from './admin.service';
+import { AdminService } from './admin.service';
 
 @Component({
   selector: 'admin-app',
@@ -28,7 +28,7 @@ export class AdminComponent implements OnInit {
 
   }
 
-  displayedColumns = ['id', 'name', 'count'];
+  displayedColumns = ['id', 'name', 'count', 'status'];
   elecTable: elecTableDataSource | null;
 
   @ViewChild(MdPaginator) paginator: MdPaginator;
@@ -50,24 +50,10 @@ export class AdminComponent implements OnInit {
 
 }
 
-// export class elecTableDataSource extends DataSource<any> {
-//   /** Connect function called by the table to retrieve one stream containing the data to render. */
-//   constructor(private adminService: AdminService) {
-//     super();
-//   }
-//   AllElectionList = this.adminService.getElectionDetails();
-
-//   connect(): Observable<any> {
-//     return Observable.of(this.AllElectionList);
-//   }
-
-//   disconnect() { }
-// }
-
 export class elecTableDataSource extends DataSource<any> {
   constructor(private adminService: AdminService,
-              private _paginator: MdPaginator,
-              private _sort: MdSort) {
+    private _paginator: MdPaginator,
+    private _sort: MdSort) {
 
     super();
   }
@@ -138,6 +124,9 @@ export class elecTableDataSource extends DataSource<any> {
         case 'count':
           [propertyA, propertyB] = [a.count, b.count];
           break;
+        case 'status':
+          [propertyA, propertyB] = [a.status, b.status];
+          break;
       }
 
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
@@ -146,6 +135,7 @@ export class elecTableDataSource extends DataSource<any> {
       return (valueA < valueB ? -1 : 1) * (this._sort.direction === 'asc' ? 1 : -1);
     });
   }
+
 
 }
 

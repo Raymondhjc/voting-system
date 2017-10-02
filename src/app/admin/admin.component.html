@@ -28,6 +28,12 @@
             <md-cell *mdCellDef="let row"> {{row.count}} </md-cell>
           </ng-container>
 
+          <!-- Status Column -->
+          <ng-container mdColumnDef="status">
+            <md-header-cell *mdHeaderCellDef md-sort-header> Election Status </md-header-cell>
+            <md-cell *mdCellDef="let row"> {{row.status}} </md-cell>
+          </ng-container>
+
           <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
           <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
         </md-table>
@@ -38,7 +44,8 @@
       </div>
     </md-tab>
     <md-tab label="Proceeding Elections">
-      content 2
+      
+      <new-election></new-election>
 
     </md-tab>
     <md-tab label="Closed Elections">
