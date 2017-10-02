@@ -11,10 +11,18 @@
 .raised-button{
 		margin-right: 30px;
 }
-.sec{
-	float:left;
+.check{
+	
 	margin : 0px 0px 0px 50px;
+	float:left;
 }
+.submit{
+	
+	
+	margin : 65px 0px 0px 0px;
+
+}
+
 .example-radio-group {
   display: inline;/* to show the button in one line*/
   flex-direction: column;

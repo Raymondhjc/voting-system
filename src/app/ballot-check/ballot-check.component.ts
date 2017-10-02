@@ -12,15 +12,28 @@ import { MatRadioModule} from '@angular/material';
 
 export class BallotCheckComponent implements OnInit{
 	ngOnInit() {  }
-	theOne: string;
+	theOneP: string;
+	theOneV: string;
+	theOneG: string;
 
-  candidates = [
+  candidatesP = [
     'Nancy',
     'Helen',
     'Daisy',
-    'Bob',
+    
+	  ];
+	  candidatesV = [
+    'Neux',
+    'Serra',
+    'Thomas',
+    
   ];
-
+  candidatesG = [
+    'Charles',
+    'Leiserson',
+    'Ronald',
+    
+  ];
 
 
 

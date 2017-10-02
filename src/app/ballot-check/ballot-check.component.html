@@ -8,11 +8,30 @@
 <button md-raised-button class="raised-button" >Next</button>
 </div>
 </div>
+<div class="check">
 <div class="sec">
-<div class="example-selected-value">President: {{theOne}}</div>
-<md-radio-group class="example-radio-group" [(ngModel)]="theOne">
-  <md-radio-button class="example-radio-button" *ngFor="let candidate of candidates" [value]="candidate">
-    {{candidate}}
+<div class="example-selected-value">President: {{theOneP}}</div>
+<md-radio-group class="example-radio-group" [(ngModel)]="theOneP">
+  <md-radio-button class="example-radio-button" *ngFor="let candidateP of candidatesP" [value]="candidateP">
+    {{candidateP}}
   </md-radio-button>
 </md-radio-group>
+</div>
+<div class="sec">
+<div class="example-selected-value">Vice-President: {{theOneV}}</div>
+<md-radio-group class="example-radio-group" [(ngModel)]="theOneV">
+  <md-radio-button class="example-radio-button" *ngFor="let candidateV of candidatesV" [value]="candidateV">
+    {{candidateV}}
+  </md-radio-button>
+</md-radio-group>
+</div>
+<div class="sec">
+<div class="example-selected-value">Vice-President: {{theOneG}}</div>
+<md-radio-group class="example-radio-group" [(ngModel)]="theOneG">
+  <md-radio-button class="example-radio-button" *ngFor="let candidateG of candidatesG" [value]="candidateG">
+    {{candidateG}}
+  </md-radio-button>
+</md-radio-group>
+</div>
+<button md-raised-button class="submit" >Submit</button>
 </div>
