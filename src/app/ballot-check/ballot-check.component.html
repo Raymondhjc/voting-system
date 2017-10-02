@@ -1,0 +1,18 @@
+<h1>ballot-check</h1>
+<div class="ballot-view" >
+<div>
+<img src="assets/ballot.gif" alt="Ballot Sample"/>
+</div>
+<div class="PreNex">
+<button md-raised-button class="raised-button" >Previous</button>
+<button md-raised-button class="raised-button" >Next</button>
+</div>
+</div>
+<div class="sec">
+<div class="example-selected-value">President: {{theOne}}</div>
+<md-radio-group class="example-radio-group" [(ngModel)]="theOne">
+  <md-radio-button class="example-radio-button" *ngFor="let candidate of candidates" [value]="candidate">
+    {{candidate}}
+  </md-radio-button>
+</md-radio-group>
+</div>

@@ -4,9 +4,11 @@ import {FormsModule} from '@angular/forms';
 import {AppComponent} from './app.component';
 import {AdminComponent} from './admin/admin.component';
 import {HeaderComponent} from './header/header.component';
+import {BallotCheckComponent} from './ballot-check/ballot-check.component';
 import {
   MatSortModule,
   MatTableModule,
+  MatRadioModule,
   MdButtonModule,
   MdCardModule,
   MdCheckboxModule,
@@ -33,7 +35,7 @@ import {ScannerPageComponent} from './scanner-page/scanner-page.component';
 import {NotSignedInGuardsService} from './common/not-signed-in-guards.service';
 import {SignedInAuthGuardService} from './common/signed-in-auth-guard.service';
 import {EqualValidatorDirective} from './common/equal-validator.directive';
-import {VotesInspectComponent} from './votes-inspect/votes-inspect.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +48,7 @@ import {VotesInspectComponent} from './votes-inspect/votes-inspect.component';
     DataViewComponent,
     ScannerPageComponent,
     EqualValidatorDirective,
-    VotesInspectComponent
+    BallotCheckComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +70,7 @@ import {VotesInspectComponent} from './votes-inspect/votes-inspect.component';
     MatSortModule,
     MdTabsModule,
     MatTableModule,
+    MatRadioModule,
     MdPaginatorModule
   ],
   providers: [AuthenticationService, NotSignedInGuardsService, SignedInAuthGuardService],

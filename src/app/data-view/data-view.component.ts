@@ -6,7 +6,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
 
-import { MdTableModule, MdButtonModule, MdListModule } from '@angular/material';
+import { MdTableModule, MdButtonModule, MdListModule, MatTabsModule } from '@angular/material';
 @Component({
   selector: 'app-data-view',
   templateUrl: './data-view.component.html',
