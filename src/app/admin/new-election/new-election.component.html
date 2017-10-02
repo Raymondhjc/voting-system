@@ -1,0 +1,61 @@
+<md-horizontal-stepper [linear]="isLinear">
+    <md-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+            <ng-template mdStepLabel>Election Configuration</ng-template>
+            <md-list>
+                <h2 mdSubheader>Create a New Election</h2>
+                <md-list-item>
+                    <md-form-field>
+                        <input mdInput placeholder="Election Name" formControlName="firstCtrl" required>
+                    </md-form-field>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-list-item>
+                    <md-form-field>
+                        <input mdInput [mdDatepicker]="start-date" placeholder="Start at MM/DD/YYYY">
+                        <md-datepicker-toggle mdSuffix [for]="start-date"></md-datepicker-toggle>
+                        <md-datepicker #picker></md-datepicker>
+                    </md-form-field>
+                    <md-form-field>
+                        <input mdInput [mdDatepicker]="end-date" placeholder="End at MM/DD/YYYY">
+                        <md-datepicker-toggle mdSuffix [for]="end-date"></md-datepicker-toggle>
+                        <md-datepicker #picker></md-datepicker>
+                    </md-form-field>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-list-item>(Other Configurations)</md-list-item>
+            </md-list>
+
+            <div>
+                <button md-button mdStepperNext>Next</button>
+            </div>
+        </form>
+    </md-step>
+    <md-step [stepControl]="secondFormGroup">
+        <ng-template mdStepLabel>Election Content</ng-template>
+        <md-expansion-panel>
+            <md-expansion-panel-header>
+                <md-panel-title>Add a new section</md-panel-title>
+                <md-panel-description>Click to select the type of the section</md-panel-description>
+            </md-expansion-panel-header>
+            <md-radio-group>
+                <md-radio-button value="1">Single Choice</md-radio-button>
+                <md-radio-button value="2">Multiple Choices</md-radio-button>
+            </md-radio-group>
+            <div>
+                <button md-button>Add</button>
+            </div>
+        </md-expansion-panel>
+        <div>
+            <button md-button mdStepperPrevious>Back</button>
+            <button md-button mdStepperNext>Next</button>
+        </div>
+    </md-step>
+    <md-step>
+        <ng-template mdStepLabel>Done</ng-template>
+        You are now done.
+        <div>
+            <button md-button mdStepperPrevious>Back</button>
+        </div>
+    </md-step>
+</md-horizontal-stepper>
