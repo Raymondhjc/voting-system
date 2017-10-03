@@ -2,24 +2,22 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {AppComponent} from './app.component';
-import {AdminComponent} from './admin/admin.component';
+/** For the Admin Module */
+import {AdminModule} from './admin/admin.module';
+
 import {HeaderComponent} from './header/header.component';
 import {
-    MatSortModule,
-    MatTableModule,
     MdButtonModule,
     MdCardModule,
     MdCheckboxModule,
     MdDialogModule,
-    MdExpansionModule,
     MdGridListModule,
     MdInputModule,
     MdMenuModule,
-    MdPaginatorModule,
     MdSidenavModule,
-    MdTableModule,
-    MdTabsModule,
     MdToolbarModule,
+    MdTabsModule,
+    MdExpansionModule,
     MatSnackBarModule,
     MatListModule
 } from '@angular/material';
@@ -41,7 +39,6 @@ import {HttpModule} from '@angular/http';
 @NgModule({
     declarations: [
         AppComponent,
-        AdminComponent,
         HeaderComponent,
         SignupComponent,
         SigninComponent,
@@ -63,18 +60,15 @@ import {HttpModule} from '@angular/http';
         MdToolbarModule,
         MdInputModule,
         MdDialogModule,
-        MdExpansionModule,
         MdSidenavModule,
+        MdTabsModule,
         MdCardModule,
-        MdTabsModule,
-        MdTableModule,
-        MatSortModule,
-        MdTabsModule,
-        MatTableModule,
-        MdPaginatorModule,
+        MdExpansionModule,
         HttpModule,
         MatSnackBarModule,
-        MatListModule
+        MatListModule,
+        /** Admin module*/
+        AdminModule
     ],
     providers: [AuthenticationService, NotSignedInGuardsService, SignedInAuthGuardService, ServerInteractService],
     bootstrap: [AppComponent]
