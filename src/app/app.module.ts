@@ -20,7 +20,8 @@ import {
     MdTableModule,
     MdTabsModule,
     MdToolbarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatListModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SignupComponent} from './authentication/signup/signup.component';
@@ -72,7 +73,8 @@ import {HttpModule} from '@angular/http';
         MatTableModule,
         MdPaginatorModule,
         HttpModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatListModule
     ],
     providers: [AuthenticationService, NotSignedInGuardsService, SignedInAuthGuardService, ServerInteractService],
     bootstrap: [AppComponent]

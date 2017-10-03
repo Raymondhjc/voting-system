@@ -22,14 +22,11 @@ export class SigninComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        // console.log('SignIn component created!!');
+
     }
 
     ngOnDestroy() {
-        // console.log('SignIn component destoried!!');
+
     }
 
-    // onSigninClick() {
-    //     this.serverInteract.sendSignin(this.authenInfo);
-    // }
 }

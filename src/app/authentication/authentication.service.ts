@@ -30,7 +30,6 @@ export class AuthenticationService {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            // console.log('The dialog was closed');
             if (!isUndefined(result)) {
                 result.subscribe(
                     (response) => {

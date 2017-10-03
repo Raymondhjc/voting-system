@@ -5,7 +5,7 @@ import {AnthenticationInfoModel} from './anthentication-info.model';
 
 @Injectable()
 export class ServerInteractService {
-    serverURL = 'http://localhost:4400/';
+    serverURL = 'http://localhost:4500/';
 
     constructor(private http: Http) {
     }

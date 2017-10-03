@@ -8,26 +8,28 @@ import {DataViewComponent} from './data-view/data-view.component';
 import {ScannerPageComponent} from './scanner-page/scanner-page.component';
 import {NotSignedInGuardsService} from './common/not-signed-in-guards.service';
 import {SignedInAuthGuardService} from './common/signed-in-auth-guard.service';
+import {AdminComponent} from './admin/admin.component';
 
 const appRoute: Routes = [
-  {path: '', redirectTo: 'welcome', pathMatch: 'full'},
-  {path: 'welcome', component: WelcomePageComponent},
-  {
-    path: 'user-dashboard',
-    component: DashboardComponent,
-    canActivate: [NotSignedInGuardsService],
-    canActivateChild: [NotSignedInGuardsService]
-  },
-  {path: 'signup', component: SignupComponent, canActivate: [SignedInAuthGuardService]},
-  {path: 'signin', component: SigninComponent, canActivate: [SignedInAuthGuardService]},
+    {path: '', redirectTo: 'welcome', pathMatch: 'full'},
+    {path: 'welcome', component: WelcomePageComponent},
+    {
+        path: 'user-dashboard',
+        component: DashboardComponent,
+        canActivate: [NotSignedInGuardsService],
+        canActivateChild: [NotSignedInGuardsService]
+    },
+    {path: 'signup', component: SignupComponent, canActivate: [SignedInAuthGuardService]},
+    {path: 'signin', component: SigninComponent, canActivate: [SignedInAuthGuardService]},
 
-  {path: 'data-view', component: DataViewComponent},
-  {path: 'scanner', component: ScannerPageComponent}
+    {path: 'data-view', component: DataViewComponent},
+    {path: 'scanner', component: ScannerPageComponent},
+    {path: 'admin', component: AdminComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoute)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(appRoute)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule {
 
