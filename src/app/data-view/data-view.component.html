@@ -1,14 +1,14 @@
 
 
-<h1 style="text-align:center">All the Positions</h1>
+<h1 style="text-align:center">All the ids</h1>
 <div class="button-column">
 
 
   <button md-raised-button md-button  (click)="SelectData1()" class="raised-button"> President</button>
   
-  <button md-raised-button class="raised-button" color="primary">vice-President</button>
+  <button md-raised-button (click)="SelectData2()" class="raised-button" color="primary">vice-President</button>
 
-  <button md-raised-button class="raised-button" color="accent">Governor</button>
+  <button md-raised-button (click)="SelectData3()" class="raised-button" color="accent">Governor</button>
     
   <button md-raised-button class="raised-button" disabled>Nobody</button>
 
@@ -21,28 +21,28 @@
  <md-tab label="Total">
 <div class="example-container mat-elevation-z8">
   <md-table #table [dataSource]="dataSource">
-   <!-- Position Column -->
-    <ng-container mdColumnDef="position">
+   <!-- id Column -->
+    <ng-container mdColumnDef="id">
       <md-header-cell *mdHeaderCellDef> No. </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.position}} </md-cell>
+      <md-cell *mdCellDef="let Candidate"> {{Candidate.id}} </md-cell>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container mdColumnDef="name">
       <md-header-cell *mdHeaderCellDef> Name </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.name}} </md-cell>
+      <md-cell *mdCellDef="let Candidate"> {{Candidate.name}} </md-cell>
     </ng-container>
 
     <!-- votes Column -->
     <ng-container mdColumnDef="votes">
       <md-header-cell *mdHeaderCellDef> Votes </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.votes}} </md-cell>
+      <md-cell *mdCellDef="let Candidate"> {{Candidate.countsTotal}} </md-cell>
     </ng-container>
 
     <!-- rate Column -->
     <ng-container mdColumnDef="rate">
       <md-header-cell *mdHeaderCellDef> Rate </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.rate}} </md-cell>
+      <md-cell *mdCellDef="let Candidate"> {{Candidate.rateTotal}} </md-cell>
     </ng-container>
 
     <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
@@ -54,28 +54,28 @@
  <md-tab label="For Sure">
  <div class="example-container mat-elevation-z8">
   <md-table #table [dataSource]="dataSource">
-    <!-- Position Column -->
-    <ng-container mdColumnDef="position">
+    <!-- id Column -->
+    <ng-container mdColumnDef="id">
       <md-header-cell *mdHeaderCellDef> No. </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.position}} </md-cell>
+      <md-cell *mdCellDef="let Candidate"> {{Candidate.id}} </md-cell>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container mdColumnDef="name">
       <md-header-cell *mdHeaderCellDef> Name </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.name}} </md-cell>
+      <md-cell *mdCellDef="let Candidate"> {{Candidate.name}} </md-cell>
     </ng-container>
 
     <!-- votes Column -->
     <ng-container mdColumnDef="votes">
       <md-header-cell *mdHeaderCellDef> Votes </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.votes}} </md-cell>
+      <md-cell *mdCellDef="let Candidate"> {{Candidate.countsSound}} </md-cell>
     </ng-container>
 
     <!-- rate Column -->
     <ng-container mdColumnDef="rate">
       <md-header-cell *mdHeaderCellDef> Rate </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.rate}} </md-cell>
+      <md-cell *mdCellDef="let Candidate"> {{Candidate.rateSound}} </md-cell>
     </ng-container>
 
     <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
@@ -89,28 +89,28 @@
   <md-table #table [dataSource]="dataSource">
 
    
-    <!-- Position Column -->
-    <ng-container mdColumnDef="position">
+    <!-- id Column -->
+    <ng-container mdColumnDef="id">
       <md-header-cell *mdHeaderCellDef> No. </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.position}} </md-cell>
+      <md-cell *mdCellDef="let Candidate"> {{Candidate.id}} </md-cell>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container mdColumnDef="name">
       <md-header-cell *mdHeaderCellDef> Name </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.name}} </md-cell>
+      <md-cell *mdCellDef="let Candidate"> {{Candidate.name}} </md-cell>
     </ng-container>
 
     <!-- votes Column -->
     <ng-container mdColumnDef="votes">
       <md-header-cell *mdHeaderCellDef> Votes </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.votes}} </md-cell>
+      <md-cell *mdCellDef="let Candidate"> {{Candidate.countsUnsure}} </md-cell>
     </ng-container>
 
     <!-- rate Column -->
     <ng-container mdColumnDef="rate">
       <md-header-cell *mdHeaderCellDef> Rate </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.rate}} </md-cell>
+      <md-cell *mdCellDef="let Candidate"> {{Candidate.rateUnsure}} </md-cell>
     </ng-container>
 
     <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
