@@ -3,7 +3,7 @@ import {DataSource} from '@angular/cdk/collections';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { MdTableModule, MdButtonModule, MdListModule, MatTabsModule } from '@angular/material';
-import { candidatesP, candidatesVP, candidatesGr} from '../ballot-check/mock-votesdata';
+import { candidatesP, candidatesVP, candidatesGR} from '../ballot-check/mock-votesdata';
 import { Candidate} from '../ballot-check/candidate';
 
 
@@ -57,7 +57,7 @@ export class DataSampleGr extends DataSource<any> {
   /** Connect function called by the table to retrieve one stream containing the data to render. */
       
   connect(): Observable<Candidate[]> {
-    return Observable.of(candidatesGr);
+    return Observable.of(candidatesGR);
   }
 
   disconnect() {}
