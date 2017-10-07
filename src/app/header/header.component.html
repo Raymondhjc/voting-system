@@ -9,7 +9,7 @@
     <button md-menu-item routerLink = "/user-dashboard"> User Dashboard</button>
     <button md-menu-item (click)="onHeaderSignOut()"> Sign out</button>
   </md-menu>
-  <button md-button [mdMenuTriggerFor] = "appMenu" *ngIf = "signInStatus">
+  <button md-button class = "lverg-username" [mdMenuTriggerFor] = "appMenu" *ngIf = "signInStatus">
     Hello, {{this.username}}! <md-icon class = "material-icons">list</md-icon>
   </button>
 

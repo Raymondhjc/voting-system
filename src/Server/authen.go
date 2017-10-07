@@ -7,6 +7,7 @@ import (
 )
 
 func createToken(username string) string {
+	// You have to change the secret frequently.
 	var privateKey=[]byte("jmy2Lem12VOlq33RunwWFbeSYb22GZDdLFKjIWuTUxB8d8K9B6Qxx3ADrSG0POia")
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"username": username,
