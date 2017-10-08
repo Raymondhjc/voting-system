@@ -6,19 +6,19 @@ import { AdminComponent } from './admin.component';
 import { newElectionComponent } from './new-election/new-election.component'
 
 import {
-    MdInputModule,
-    MdSortModule,
-    MdButtonModule,
-    MdCardModule,
-    MdPaginatorModule,
-    MdTableModule,
-    MdTabsModule,
-    MdStepperModule,
-    MdNativeDateModule,
+    MatInputModule,
+    MatSortModule,
+    MatButtonModule,
+    MatCardModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatTabsModule,
+    MatStepperModule,
+    MatNativeDateModule,
     MatDatepickerModule,
     MatListModule,
     MatExpansionModule,
-    MdRadioModule
+    MatRadioModule
 } from '@angular/material';
 
 @NgModule({
@@ -29,29 +29,29 @@ import {
     imports: [
         BrowserModule,
         FormsModule,
-        MdInputModule,
-        MdButtonModule,
-        MdCardModule,
+        MatInputModule,
+        MatButtonModule,
+        MatCardModule,
         /** Election table modules */
-        MdTabsModule,
-        MdTableModule,
-        MdSortModule,
-        MdTabsModule,
-        MdPaginatorModule,
+        MatTabsModule,
+        MatTableModule,
+        MatSortModule,
+        MatTabsModule,
+        MatPaginatorModule,
         /** Create new election modules */
-        MdStepperModule,
+        MatStepperModule,
         ReactiveFormsModule,
-        MdNativeDateModule,
+        MatNativeDateModule,
         MatDatepickerModule,
         MatListModule,
         MatExpansionModule,
-        MdRadioModule
+        MatRadioModule
         
     ],
     exports:[
         AdminComponent,
         /** Election table modules */
-        MdTableModule,
+        MatTableModule,
     ],
     providers: [],
     bootstrap: [AdminComponent]

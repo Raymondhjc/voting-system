@@ -10,7 +10,7 @@
     </md-form-field>
   </p>
   <div style="text-align: center;">
-    <button md-raised-button [md-dialog-close] = "this.authenInfo" [disabled] = "!signInForm.valid" color = "primary">Sign In
+    <button md-raised-button [md-dialog-close] = "this.serverInteract.sendSignin(this.authenInfo)" [disabled] = "!signInForm.valid" color = "primary">Sign In
     </button>
     <button md-raised-button (click) = "onCancelClick()" color = "warn">Cancel</button>
   </div>

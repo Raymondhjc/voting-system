@@ -10,18 +10,24 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
     styleUrls: ['./new-election.component.css']
 })
 export class newElectionComponent {
-  isLinear = false;
+  //isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  startDate = new Date(2017, 1, 1);
 
   constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      checkEmpty: ['', Validators.required],
+      checkDate:['',Validators.compose(
+        [Validators.required,
+        ]
+      )]
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      checkEmpty: ['', Validators.required]
     });
   }
+
 }

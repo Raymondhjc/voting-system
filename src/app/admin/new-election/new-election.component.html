@@ -1,4 +1,4 @@
-<md-horizontal-stepper [linear]="isLinear">
+<md-horizontal-stepper linear>
     <md-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup">
             <ng-template mdStepLabel>Election Configuration</ng-template>
@@ -6,20 +6,20 @@
                 <h2 mdSubheader>Create a New Election</h2>
                 <md-list-item>
                     <md-form-field>
-                        <input mdInput placeholder="Election Name" formControlName="firstCtrl" required>
+                        <input mdInput placeholder="Election Name" formControlName="checkEmpty" required>
                     </md-form-field>
                 </md-list-item>
                 <md-divider></md-divider>
                 <md-list-item>
                     <md-form-field>
-                        <input mdInput [mdDatepicker]="start-date" placeholder="Start at MM/DD/YYYY">
-                        <md-datepicker-toggle mdSuffix [for]="start-date"></md-datepicker-toggle>
-                        <md-datepicker #picker></md-datepicker>
+                        <input mdInput [mdDatepicker]="startDate" placeholder="startDate at MM/DD/YYYY" formControlName="checkDate" required>
+                        <md-datepicker-toggle mdSuffix [for]="startDate"></md-datepicker-toggle>
+                        <md-datepicker #startDate></md-datepicker>
                     </md-form-field>
                     <md-form-field>
-                        <input mdInput [mdDatepicker]="end-date" placeholder="End at MM/DD/YYYY">
-                        <md-datepicker-toggle mdSuffix [for]="end-date"></md-datepicker-toggle>
-                        <md-datepicker #picker></md-datepicker>
+                        <input mdInput [mdDatepicker]="endDate" placeholder="endDate at MM/DD/YYYY" formControlName="checkDate" required>
+                        <md-datepicker-toggle mdSuffix [for]="endDate"></md-datepicker-toggle>
+                        <md-datepicker #endDate></md-datepicker>
                     </md-form-field>
                 </md-list-item>
                 <md-divider></md-divider>

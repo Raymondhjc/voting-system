@@ -1,5 +1,4 @@
-import {AnthenticationInfoModel} from '../common/anthentication-info.model';
-import {MdDialog} from '@angular/material';
+import {MdDialog, MdSnackBar} from '@angular/material';
 import {SigninComponent} from './signin/signin.component';
 import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs/Subject';
@@ -8,60 +7,67 @@ import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthenticationService {
-  authenInfoChanged = new Subject<AnthenticationInfoModel>();
-  private authenInfo = new AnthenticationInfoModel('Guest', '');
-  private signedIn = false;
+    private username = 'Guest';
+    usernameChanged = new Subject<string>();
+    private signedIn = false;
 
-  constructor(public dialog: MdDialog,
-              private router: Router) {
-  }
+    constructor(public dialog: MdDialog,
+                private router: Router,
+                public snackBar: MdSnackBar) {
+    }
 
-  getUsername() {
-    return this.authenInfo.username;
-  }
+    getUsername() {
+        return this.username;
+    }
 
-  getPassword() {
-    return this.authenInfo.password;
-  }
+    isSignedIn() {
+        return this.signedIn;
+    }
 
-  isSignedIn() {
-    return this.signedIn;
-  }
+    onSignIn(): void {
+        const dialogRef = this.dialog.open(SigninComponent, {
+            width: '250px',
+        });
 
-  onSignIn(): void {
-    const dialogRef = this.dialog.open(SigninComponent, {
-      width: '250px',
-    });
+        dialogRef.afterClosed().subscribe(result => {
+            if (!isUndefined(result)) {
+                result.subscribe(
+                    (response) => {
+                        const r = JSON.parse(response.text());
+                        this.username = r.Username;
+                        localStorage.setItem('currentUser', response.text());
+                        console.log(localStorage.getItem('currentUser'));
+                        this.signedIn = true;
+                        this.usernameChanged.next(this.username);
+                        this.router.navigate(['/user-dashboard']);
+                    },
+                    (error) => {
+                        console.log(error);
+                        this.onSignIn();
+                        this.snackBar.open('Signin Faliure!', 'close', {duration: 2000});
+                    }
+                );
+            }
+        });
+    }
 
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log('The dialog was closed');
-      if (!isUndefined(result)) {
-        this.authenInfo = result;
-        this.signedIn = true;
-        this.router.navigate(['/user-dashboard']);
-      }
-      this.authenInfoChanged.next(this.authenInfo);
-    });
-  }
+    onSignOut(): void {
+        this.username = 'Guest';
+        this.signedIn = false;
+        this.usernameChanged.next(this.username);
+        this.router.navigate(['/welcome']);
+    }
 
-  onSignOut(): void {
-    this.authenInfo.username = 'Guest';
-    this.authenInfo.password = '';
-    this.signedIn = false;
-    this.authenInfoChanged.next(this.authenInfo);
-    this.router.navigate(['/welcome']);
-  }
-
-  isAuthenticated() {
-    const promise = new Promise(
-      (resolve, reject) => {
-        // setTimeout(() => {
-        //   resolve(this.signedIn);
-        // }, 800);
-        resolve(this.signedIn);
-      }
-    );
-    return promise;
-  }
+    // isAuthenticated() {
+    //     const promise = new Promise(
+    //         (resolve, reject) => {
+    //             // setTimeout(() => {
+    //             //   resolve(this.signedIn);
+    //             // }, 800);
+    //             resolve(this.signedIn);
+    //         }
+    //     );
+    //     return promise;
+    // }
 
 }

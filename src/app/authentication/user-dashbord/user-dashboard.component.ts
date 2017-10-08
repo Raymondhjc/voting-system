@@ -6,31 +6,31 @@ import {AuthenticationService} from '../authentication.service';
 import {Subscription} from 'rxjs/Subscription';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './user-dashboard.component.html',
-  styleUrls: ['./user-dashboard.component.css']
+    selector: 'app-dashboard',
+    templateUrl: './user-dashboard.component.html',
+    styleUrls: ['./user-dashboard.component.css']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-  signInStatus: boolean;
-  authenInfo: AnthenticationInfoModel;
-  private subscription: Subscription;
+    username: string;
+    signInStatus: boolean;
+    private subscription: Subscription;
 
-  constructor(private authenService: AuthenticationService) {
-  }
+    constructor(private authenService: AuthenticationService) {
+    }
 
-  ngOnInit() {
-    this.signInStatus = this.authenService.isSignedIn();
-    this.authenInfo = new AnthenticationInfoModel(this.authenService.getUsername(), this.authenService.getPassword());
-    this.subscription = this.authenService.authenInfoChanged.subscribe(
-      (authenInfo: AnthenticationInfoModel) => {
-        this.authenInfo = authenInfo;
+    ngOnInit() {
         this.signInStatus = this.authenService.isSignedIn();
-      }
-    );
-  }
+        this.username = this.authenService.getUsername();
+        this.subscription = this.authenService.usernameChanged.subscribe(
+            (username: string) => {
+                this.username = username;
+                this.signInStatus = this.authenService.isSignedIn();
+            }
+        );
+    }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
+    }
 
 }
