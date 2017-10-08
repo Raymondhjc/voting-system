@@ -17,6 +17,9 @@ type requestAuth struct{
 func main() {
 	fmt.Println("Running ...")
 
+	connectDB()
+	defer disconnectDB()
+
 	// mux:
 	h := http.NewServeMux()
 	h.HandleFunc("/signup", signupHandler)

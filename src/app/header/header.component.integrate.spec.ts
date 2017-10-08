@@ -4,6 +4,8 @@ import {By} from '@angular/platform-browser';
 import {MdMenuModule} from '@angular/material';
 import {AuthenticationService} from '../authentication/authentication.service';
 import {Subject} from 'rxjs/Subject';
+import {RouterTestingModule} from '@angular/router/testing';
+import {Router} from '@angular/router';
 
 class AuthenticationServiceStub {
     set loginStatus(value: boolean) {
@@ -32,14 +34,15 @@ class AuthenticationServiceStub {
 }
 
 
-describe('HeaderComponent', () => {
+describe('lvergergsk:HeaderComponent', () => {
 
     let component: HeaderComponent;
     let fixture: ComponentFixture<HeaderComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [MdMenuModule],
+            imports: [MdMenuModule,
+                RouterTestingModule],
             providers: [
                 {provide: AuthenticationService, useClass: AuthenticationServiceStub}
             ],
@@ -51,6 +54,48 @@ describe('HeaderComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(HeaderComponent);
         component = fixture.componentInstance;
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
+
+    it('should show logo and click will redirect to welcome page', () => {
+        const authenService = TestBed.get(AuthenticationService);
+        authenService.loginStatus = false;
+        fixture.detectChanges();
+
+        const router = TestBed.get(Router);
+        const spy = spyOn(router, 'navigate');
+
+        const button = fixture.debugElement.query(By.css('.lverg-logo'));
+        expect(button).toBeTruthy();
+
+        button.triggerEventHandler('click', null);
+
+        expect(spy).toHaveBeenCalledWith(['/']);
+    });
+
+    it('should display signin button if not logged in', () => {
+        const authenService = TestBed.get(AuthenticationService);
+        authenService.loginStatus = false;
+        fixture.detectChanges();
+
+        const de = fixture.debugElement.query(By.css('.lverg-signin'));
+        expect(de).toBeTruthy();
+        const el: HTMLElement = de.nativeElement;
+        expect(el.innerText).toContain('Sign in');
+    });
+
+    it('should display register button if not logged in', () => {
+        const authenService = TestBed.get(AuthenticationService);
+        authenService.loginStatus = false;
+        fixture.detectChanges();
+
+        const de = fixture.debugElement.query(By.css('.lverg-signup'));
+        expect(de).toBeTruthy();
+        const el: HTMLElement = de.nativeElement;
+        expect(el.innerText).toContain('Register');
     });
 
     it('should display correct name after logged in', () => {

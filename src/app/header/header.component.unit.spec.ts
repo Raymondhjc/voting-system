@@ -2,16 +2,17 @@ import {AuthenticationService} from '../authentication/authentication.service';
 import {HeaderComponent} from './header.component';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
+import {Router} from '@angular/router';
 
-describe('HeaderComponent', () => {
+describe('lvergergsk:HeaderComponent', () => {
     let authenService: AuthenticationService;
     let component: HeaderComponent;
     beforeEach(() => {
         authenService = new AuthenticationService(null, null, null);
-        component = new HeaderComponent(authenService);
+        component = new HeaderComponent(authenService, null);
     });
 
-    it('lvergergsk: Should never have null username', () => {
+    it('Should never have null username', () => {
         const username = 'username';
         spyOn(authenService, 'getUsername').and.callFake(() => {
             return username;
