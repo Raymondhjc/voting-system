@@ -34,7 +34,7 @@ class AuthenticationServiceStub {
 }
 
 
-describe('lvergergsk:HeaderComponent', () => {
+describe('lverg:HeaderComponent', () => {
 
     let component: HeaderComponent;
     let fixture: ComponentFixture<HeaderComponent>;

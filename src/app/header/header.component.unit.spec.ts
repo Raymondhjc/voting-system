@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import {Router} from '@angular/router';
 
-describe('lvergergsk:HeaderComponent', () => {
+describe('lverg:HeaderComponent', () => {
     let authenService: AuthenticationService;
     let component: HeaderComponent;
     beforeEach(() => {
