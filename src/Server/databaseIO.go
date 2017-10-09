@@ -57,32 +57,43 @@ func printTables() {
 	fmt.Print(s)
 }
 
-func userIsUnique() bool {
+func getUser(username string) string {
+	hash := "";
+	var s = fmt.Sprintf(
+		`SELECT passwordHash FROM votingsystem.users WHERE username = "%s";`, username)
+	rows, err := db.Query(s)
+	check(err)
+	if rows.Next() {
+		err = rows.Scan(&hash)
+		check(err)
+	}
+
+	return hash
+}
+
+func insertUserCredential() bool {
 	return true
 }
 
-func insertUserCredential() bool{
-	return true
-}
-
-func insertUserInfo() bool{
+func insertUserInfo() bool {
 	return true
 }
 
 func registrate(Info RegistrationInfo) bool {
 
-	//if !userIsUnique() {
-	//	return false
-	//}
+	if getUser(Info.Username) != "" {
+		return false
+	}
 
 	hash, err := HashPassword(Info.Password)
 	check(err)
 	if verbose {
-		fmt.Println("Username: %s\nHash: %s", Info.Username, hash)
+		fmt.Sprintln("Username: %s\nHash: %s", Info.Username, hash)
 	}
 
-	var s = fmt.Sprintf(`INSERT INTO votingsystem.users (username, passwordHash, lastSignin)
-    VALUE ('%s','%s',now());`, Info.Username, hash)
+	var s = fmt.Sprintf(
+		`INSERT INTO votingsystem.users (username, passwordHash, lastSignin) VALUE ('%s', '%s', now());`,
+		Info.Username, hash)
 
 	stmt, err := db.Prepare(s)
 	check(err)
@@ -93,10 +104,8 @@ func registrate(Info RegistrationInfo) bool {
 	n, err := r.RowsAffected()
 
 	if verbose {
-		fmt.Println("INSERT RECORD, ", n)
+		fmt.Println("User crediential inserted. Row affected: ", n)
 	}
-
-
 
 	return true;
 }

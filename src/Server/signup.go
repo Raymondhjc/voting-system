@@ -26,7 +26,10 @@ func signupHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if registrate(t){
-		fmt.Fprintf(w, "successful!")
+		w.Write([]byte("Successful!"))
+	}else {
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("This username has been taken!"))
 	}
 
 }
