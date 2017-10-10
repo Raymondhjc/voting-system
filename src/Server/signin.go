@@ -6,15 +6,14 @@ import (
 	"fmt"
 )
 
-
 type SigninInfo struct {
 	Username string
 	Password string
 }
 
-type SigninResponse struct{
+type SigninResponse struct {
 	Username string
-	JWT string
+	JWT      string
 }
 
 func signinHandler(w http.ResponseWriter, r *http.Request) {
@@ -22,10 +21,15 @@ func signinHandler(w http.ResponseWriter, r *http.Request) {
 	var t SigninInfo
 	json.Unmarshal(file, &t)
 
-	fmt.Printf("SIGNIN:\nUsername: %v\nPassword: %v\n", t.Username, t.Password)
+	if verbose {
+		fmt.Printf("SIGNIN:\nUsername: %v\nPassword: %v\n", t.Username, t.Password)
+	}
 
-	if t.Username == "lvergergsk" && t.Password == "frozenFrog" {
-		response:=SigninResponse{t.Username, createToken(t.Username)}
+	hash := getUserHash(t.Username)
+	match := CheckPasswordHash(t.Password, hash);
+
+	if match {
+		response := SigninResponse{t.Username, createToken(t.Username)}
 		js, err := json.Marshal(response)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)

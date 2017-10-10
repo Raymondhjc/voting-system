@@ -7,16 +7,18 @@ import (
 	"net/http"
 )
 
-
 //should included in all request e.g. put get ...
-type requestAuth struct{
+type requestAuth struct {
 	JWT string
 }
 
 // main
 func main() {
-	fmt.Println("Running ...")
-
+	if verbose {
+		fmt.Println("Running under verbose mode ...")
+	}else{
+		fmt.Println("Running ...")
+	}
 	connectDB()
 	defer disconnectDB()
 

@@ -57,7 +57,7 @@ func printTables() {
 	fmt.Print(s)
 }
 
-func getUser(username string) string {
+func getUserHash(username string) string {
 	hash := "";
 	var s = fmt.Sprintf(
 		`SELECT passwordHash FROM votingsystem.users WHERE username = "%s";`, username)
@@ -81,7 +81,7 @@ func insertUserInfo() bool {
 
 func registrate(Info RegistrationInfo) bool {
 
-	if getUser(Info.Username) != "" {
+	if getUserHash(Info.Username) != "" {
 		return false
 	}
 
