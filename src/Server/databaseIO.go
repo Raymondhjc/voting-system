@@ -71,27 +71,8 @@ func getUserHash(username string) string {
 	return hash
 }
 
-func insertUserCredential() bool {
-	return true
-}
-
-func insertUserInfo() bool {
-	return true
-}
-
-func registrate(Info RegistrationInfo) bool {
-
-	if getUserHash(Info.Username) != "" {
-		return false
-	}
-
-	hash, err := HashPassword(Info.Password)
-	check(err)
-	if verbose {
-		fmt.Sprintln("Username: %s\nHash: %s", Info.Username, hash)
-	}
-
-	var s = fmt.Sprintf(
+func insertUserCredential(Info RegistrationInfo, hash string) bool {
+	s := fmt.Sprintf(
 		`INSERT INTO votingsystem.users (username, passwordHash, lastSignin) VALUE ('%s', '%s', now());`,
 		Info.Username, hash)
 
@@ -106,6 +87,44 @@ func registrate(Info RegistrationInfo) bool {
 	if verbose {
 		fmt.Println("User crediential inserted. Row affected: ", n)
 	}
+	return true
+}
+
+func insertUserInfo(Info RegistrationInfo) bool {
+	var s = fmt.Sprintf(
+		`INSERT INTO votingsystem.userinfo (username, firstname, lastname, email, UFID, administrator)
+VALUE ('%s','%s','%s','%s',%s,FALSE);`,
+		Info.Username, Info.FirstName, Info.LastName, Info.Email, Info.Ufid)
+
+	stmt, err := db.Prepare(s)
+	check(err)
+
+	r, err := stmt.Exec();
+	check(err)
+
+	n, err := r.RowsAffected()
+
+	if verbose {
+		fmt.Println("User information inserted. Row affected: ", n)
+	}
+	return true
+}
+
+func registrate(Info RegistrationInfo) bool {
+
+	if getUserHash(Info.Username) != "" {
+		return false
+	}
+
+	hash, err := HashPassword(Info.Password)
+	check(err)
+
+	if verbose {
+		fmt.Sprintln("Username: %s\nHash: %s", Info.Username, hash)
+	}
+
+	insertUserCredential(Info, hash)
+	insertUserInfo(Info)
 
 	return true;
 }
