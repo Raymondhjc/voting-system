@@ -67,7 +67,6 @@ func getUserHash(username string) string {
 		err = rows.Scan(&hash)
 		check(err)
 	}
-
 	return hash
 }
 

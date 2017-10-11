@@ -44,3 +44,8 @@ md-toolbar-row {
   right: 20px;
   color: white;
 }
+
+.lverg-errors{
+  text-align: left;
+  color: red;
+}

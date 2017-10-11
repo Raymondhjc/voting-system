@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"encoding/json"
 	"fmt"
+	"github.com/gorilla/mux"
 )
 
 type RegistrationInfo struct {
@@ -25,11 +26,28 @@ func signupHandler(w http.ResponseWriter, r *http.Request) {
 			t.FirstName, t.LastName, t.Username, "?", t.Email, t.Ufid)
 	}
 
-	if registrate(t){
+	if registrate(t) {
 		w.Write([]byte("Successful!"))
-	}else {
+	} else {
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("This username has been taken!"))
 	}
 
+}
+
+func userExistHandler(w http.ResponseWriter, r *http.Request) {
+	username := mux.Vars(r)["username"]
+	q := fmt.Sprintf(`SELECT username FROM votingsystem.users WHERE username = '%s';`, username)
+	rows, err := db.Query(q)
+	check(err)
+
+	exist := rows.Next()
+
+	if verbose {
+		fmt.Println("User exist query:", exist)
+	}
+
+	enc := json.NewEncoder(w)
+	d := map[string]bool{"exist": exist}
+	enc.Encode(d)
 }

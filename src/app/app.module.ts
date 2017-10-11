@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppComponent} from './app.component';
 /** For the Admin Module */
 import {AdminModule} from './admin/admin.module';
@@ -19,7 +19,8 @@ import {
     MdTabsModule,
     MdExpansionModule,
     MatSnackBarModule,
-    MatListModule
+    MatListModule,
+    MatTooltipModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SignupComponent} from './authentication/signup/signup.component';
@@ -52,6 +53,7 @@ import {HttpModule} from '@angular/http';
         BrowserModule,
         BrowserAnimationsModule,
         FormsModule,
+        ReactiveFormsModule,
         AppRoutingModule,
         MdButtonModule,
         MdCheckboxModule,
@@ -67,6 +69,7 @@ import {HttpModule} from '@angular/http';
         HttpModule,
         MatSnackBarModule,
         MatListModule,
+        MatTooltipModule,
         /** Admin module*/
         AdminModule
     ],

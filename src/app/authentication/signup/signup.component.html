@@ -1,52 +1,126 @@
 <md-card class = "lverg-md-card">
-  <md-toolbar color = "primary">
-    <span>Register</span>
-  </md-toolbar>
-  <form (ngSubmit) = "onRegiserSubmit(registerForm)" #registerForm = "ngForm">
-    <table class = "lverg-full-width" cellspacing = "0">
-      <tr>
-        <td>
-          <md-form-field class = "lverg-full-width">
-            <input mdInput placeholder = "First Name" ngModel required name = "firstName">
-          </md-form-field>
-        </td>
+    <md-toolbar color = "primary">
+        <span>Register</span>
+    </md-toolbar>
+    <form [formGroup] = "signupForm" (ngSubmit) = "onSubmit()">
+        <table class = "lverg-full-width" cellspacing = "0">
+            <tr>
+                <td>
+                    <md-form-field class = "lverg-full-width">
+                        <input mdInput placeholder = "First Name" formControlName = "firstname">
+                    </md-form-field>
+                </td>
+                <td>
+                    <md-form-field class = "lverg-full-width">
+                        <input mdInput placeholder = "Last Name" formControlName = "lastname">
+                    </md-form-field>
+                </td>
+            </tr>
+        </table>
+        <div class = "lverg-errors" *ngIf = "signupForm.get('firstname').errors!==null">
+            <div *ngIf = "signupForm.get('firstname').errors['required'] &&
+                    signupForm.get('firstname').touched">
+                First name is required.
+            </div>
+            <div *ngIf = "signupForm.get('firstname').errors['maxlength'] &&
+                    signupForm.get('firstname').touched">
+                First name must be less than 20 characters.
+            </div>
+        </div>
+        <div class = "lverg-errors" *ngIf = "signupForm.get('lastname').errors!==null">
+            <div *ngIf = "signupForm.get('lastname').errors['required'] &&
+                    signupForm.get('lastname').touched">
+                Last name is required.
+            </div>
+            <div *ngIf = "signupForm.get('lastname').errors['maxlength'] &&
+                    signupForm.get('lastname').touched">
+                Last name must be less than 20 characters.
+            </div>
+        </div>
 
-        <td>
-          <md-form-field class = "lverg-full-width">
-            <input mdInput placeholder = "Last Name" ngModel required name = "lastName">
-          </md-form-field>
-        </td>
-      </tr>
-    </table>
-    <md-form-field class = "lverg-full-width">
-      <input mdInput placeholder = "Email" ngModel required email name = "email">
-    </md-form-field>
-    <md-form-field class = "lverg-full-width">
-      <input mdInput placeholder = "Username" ngModel required name = "username">
-    </md-form-field>
-    <md-form-field class = "lverg-full-width">
-      <input mdInput placeholder = "Password" ngModel required #password = "ngModel"
-             name = "password" type = "password">
-    </md-form-field>
-    <md-form-field class = "lverg-full-width">
-      <input mdInput placeholder = "Repeat your password" ngModel required
-             validateEqual = "password" #confirmPassword = "ngModel" name = "passwordRep" type = "password"
-      >
-    </md-form-field>
-    <md-form-field class = "lverg-full-width">
-      <input mdInput placeholder = "UFID" ngModel required name = "ufid">
-    </md-form-field>
 
+        <md-form-field class = "lverg-full-width">
+            <input mdInput placeholder = "Email" formControlName = "email">
+        </md-form-field>
+        <div class = "lverg-errors" *ngIf = "signupForm.get('email').errors!==null">
+            <div *ngIf = "signupForm.get('email').errors['required'] &&
+                    signupForm.get('email').touched">
+                Email is required.
+            </div>
+            <div *ngIf = "signupForm.get('email').errors['email'] &&
+                    signupForm.get('email').touched">
+                Email format is not correct.
+            </div>
+            <div *ngIf = "signupForm.get('email').errors['maxlength'] &&
+                    signupForm.get('email').touched">
+                Username must be less than 255 characters.
+            </div>
+        </div>
+        <md-form-field class = "lverg-full-width">
+            <input mdInput placeholder = "Username" formControlName = "username">
+        </md-form-field>
+        <div class = "lverg-errors" *ngIf = "signupForm.get('username').errors!==null">
+            <div *ngIf = "signupForm.get('username').errors['required'] &&
+                    signupForm.get('username').touched">
+                Username is required.
+            </div>
+            <div *ngIf = "signupForm.get('username').errors['minlength'] &&
+                    signupForm.get('username').touched">
+                Username must be more than 6 characters.
+            </div>
+            <div *ngIf = "signupForm.get('username').errors['maxlength'] &&
+                    signupForm.get('username').touched">
+                Username must be less than 20 characters.
+            </div>
+            <div *ngIf = "signupForm.get('username').errors['usernameExist'] &&
+                    signupForm.get('username').touched">
+                This username is used.
+            </div>
+        </div>
 
-    <div>
-      <button md-fab [disabled] = "!registerForm.valid" color = "primary" type = "submit">
-        <md-icon class = "material-icons">done</md-icon>
-      </button>
-      <button md-fab color = "warn" (click) = "onClearClick()">
-        <md-icon class = "material-icons">clear</md-icon>
-      </button>
-    </div>
-  </form>
+        <md-form-field class = "lverg-full-width">
+            <input mdInput placeholder = "Password" formControlName = "password"
+                   type = "password">
+        </md-form-field>
+        <div class = "lverg-errors" *ngIf = "signupForm.get('password').errors!==null">
+            <div *ngIf = "signupForm.get('password').errors['required'] &&
+                    signupForm.get('password').touched">
+                Username is required.
+            </div>
+            <div *ngIf = "signupForm.get('password').errors['minlength'] &&
+                    signupForm.get('password').touched">
+                Username must be more than 6 characters.
+            </div>
+        </div>
+        <md-form-field class = "lverg-full-width">
+            <input mdInput placeholder = "Repeat your password" formControlName = "repeatPassword" type = "password">
+        </md-form-field>
+        <div class = "lverg-errors" *ngIf = "signupForm.get('repeatPassword').errors!==null">
+            <div *ngIf = "signupForm.get('repeatPassword').errors['equalTo'] &&
+                    signupForm.get('repeatPassword').touched">
+                Repeated password not equal to the original one.
+            </div>
+        </div>
+        <md-form-field class = "lverg-full-width">
+            <input mdInput placeholder = "UFID" formControlName = "ufid">
+        </md-form-field>
+        <div class = "lverg-errors" *ngIf = "signupForm.get('ufid').errors!==null">
+            <div *ngIf = "signupForm.get('ufid').errors['pattern'] &&
+                    signupForm.get('ufid').touched">
+                UFID must be 8 digit number.
+            </div>
+        </div>
+
+        <div>
+            <button md-fab color = "primary" [disabled] = "!signupForm.valid" type = "submit">
+                <md-icon class = "material-icons">done</md-icon>
+            </button>
+            <button md-fab color = "warn" (click) = "onClearClick()">
+                <md-icon class = "material-icons">clear</md-icon>
+            </button>
+        </div>
+    </form>
 
 </md-card>
-
+<!--pattern-->
+<!--[disabled] = "!signupForm.valid"-->

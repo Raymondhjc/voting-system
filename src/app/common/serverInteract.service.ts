@@ -21,4 +21,11 @@ export class ServerInteractService {
         const body = JSON.stringify(signinInfo);
         return this.http.post(this.serverURL + 'signin', body);
     }
+
+    userExist(user: string) {
+
+        const s = 'exists/' + user;
+
+        return this.http.post(this.serverURL + s, null);
+    }
 }
