@@ -4,26 +4,73 @@
   </title>
 
 </head>
-
 <body>
-  <div id = "header">
-    <h1>Start counting for your new vote!</h1>   
+  <div id = "start">
+    <p>Start counting for your new vote!</p>   
   </div>
+
   <div id = "navbar">
+    
       <button md-button [mdMenuTriggerFor]="votingType">Select the voting type</button>
       <md-menu #votingType="mdMenu">
         <button md-menu-item>students' favoriate dinner</button>
         <button md-menu-item>students' favoriate professor</button>
       </md-menu>
   </div>
-  <div class = "rightSideBar">
-    <h2>Find the larger view of the Image you want</h2>
+
+  <div class = "leftSideBar">
+    <md-card >
+      <md-card-header>
+        <h2>Find the larger view of the Image you want</h2>
+      </md-card-header>
       <form class="SearchLargeImage">
-        <md-form-field class="SearcheLargeImage">
-          <input mdInput placeholder="Name of Image you want a large view" value="Image1">
-        </md-form-field>
+              <md-form-field class="SearcheLargeImage">
+                <input mdInput placeholder="Name of Image you want a large view" value="Image1">
+              </md-form-field>
       </form>
     <button md-button color = "primary">Search</button>
+    </md-card>
+  </div>
+
+  <div class = "countNum">
+    <md-card >
+        <md-card-header>
+          <md-card-title>Counting the total number </md-card-title>
+        </md-card-header>
+        <p #count>3</p>
+
+      <md-card-actions>
+        <button #Count md-button>Count</button>
+        <button #Cancel md-button>Cancel</button>
+      </md-card-actions>
+    </md-card>
+  </div>
+
+  <div class = "LargeImage">
+    <md-card class="LargeImage">
+      <md-card-header>
+        <div md-card-avatar class="image"></div>
+        <md-card-title>Voting Type: food</md-card-title>
+        <br>
+        <md-card-subtitle>Name of image: Image1</md-card-subtitle>
+      </md-card-header>
+      <br>
+      <img #image width = "300" height = "200" id="md-card-image" src="assets/votingImage1.jpg">
+      <br>
+    
+      <md-card-actions>
+        <button #previousButton [disabled] = "true" (click)="previousPage(image, previousButton, nextButton)" md-button>Previous</button>
+        <button #nextButton [disabled] = "false" (click)="nextPage(image, previousButton, nextButton)" md-button>Next</button>
+      </md-card-actions>
+    </md-card>
+  </div>
+
+  <div id = "footer">
+      <ul>
+        <li><a href = "">About Counting-system</a></li>
+        <li><a href = "">Help</a></li>
+        <li><a href = "">Contact Us</a></li>
+      </ul>
   </div>
   
 </body>
