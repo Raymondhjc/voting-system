@@ -33,8 +33,12 @@
     </md-step>
     <md-step [stepControl]="secondFormGroup">
         <ng-template mdStepLabel>Election Content</ng-template>
+        <ballot-section>
+            <!-- new section here -->
+        </ballot-section>
         <md-expansion-panel>
             <md-expansion-panel-header>
+                <i class="material-icons" mdPreffix>add</i>
                 <md-panel-title>Add a new section</md-panel-title>
                 <md-panel-description>Click to select the type of the section</md-panel-description>
             </md-expansion-panel-header>
@@ -43,7 +47,10 @@
                 <md-radio-button value="2">Multiple Choices</md-radio-button>
             </md-radio-group>
             <div>
-                <button md-button>Add</button>
+                <button md-button color="primary">
+                    <i class="material-icons" mdPreffix>add</i>
+                    add
+                </button>
             </div>
         </md-expansion-panel>
         <div>

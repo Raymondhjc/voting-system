@@ -1,0 +1,22 @@
+<form [formGroup]="secondFormGroup">
+    <md-card class="section-card">
+        <md-card-header>
+            <md-card-title>
+                <div class="form-group">
+                    <label for="sectionName">Section Name</label>
+                    <input mdInput type="text" id="sectionName" formControlName="sectionName" class="form-control">
+                </div>
+            </md-card-title>
+        </md-card-header>
+        <hr>
+        <md-card-content>
+            <label for="options">Options</label>
+            <div id="options">
+                <div>
+                    <input type="radio" formControlName="options">
+                </div>
+            </div>
+        </md-card-content>
+
+    </md-card>
+</form>

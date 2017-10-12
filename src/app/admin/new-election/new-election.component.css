@@ -1,13 +1,20 @@
+.section-card{
+  max-width: 80%;
+  margin: 2em auto;
+}
 .admin-table-container {
   display: flex;
   flex-direction: column;
   max-height: 500px;
   min-width: 300px;
+  max-width: 80%;
+  margin: 2em auto;
 }
 
-.mat-table {
-  overflow: auto;
+.admin-table-card {
   max-height: 500px;
+  max-width: 300px;
+  margin: 2em auto;
 }
 
 .search-header {

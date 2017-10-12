@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 /**
@@ -9,11 +9,11 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
     templateUrl: './new-election.component.html',
     styleUrls: ['./new-election.component.css']
 })
-export class newElectionComponent {
+export class newElectionComponent implements OnInit{
   //isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-  startDate = new Date(2017, 1, 1);
+  //startDate = new Date(2017, 1, 1);
 
   constructor(private _formBuilder: FormBuilder) { }
 

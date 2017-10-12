@@ -3,7 +3,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { AdminComponent } from './admin.component';
-import { newElectionComponent } from './new-election/new-election.component'
+import { newElectionComponent } from './new-election/new-election.component';
+import { sectionComponent } from './new-election/section.component';
 
 import {
     MatInputModule,
@@ -24,7 +25,8 @@ import {
 @NgModule({
     declarations: [
         AdminComponent,
-        newElectionComponent
+        newElectionComponent,
+        sectionComponent
     ],
     imports: [
         BrowserModule,
