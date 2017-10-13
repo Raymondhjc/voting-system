@@ -42,3 +42,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+/src/Server/Server.exe
+/src/Server/coverage.out
+/src/Server/count.out

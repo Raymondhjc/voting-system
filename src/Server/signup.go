@@ -26,7 +26,10 @@ func signupHandler(w http.ResponseWriter, r *http.Request) {
 			t.FirstName, t.LastName, t.Username, "?", t.Email, t.Ufid)
 	}
 
-	if registrate(t) {
+	success, err := registrate(t)
+	check(err)
+
+	if success {
 		w.Write([]byte("Successful!"))
 	} else {
 		w.WriteHeader(http.StatusBadRequest)
@@ -37,13 +40,8 @@ func signupHandler(w http.ResponseWriter, r *http.Request) {
 
 func userExistHandler(w http.ResponseWriter, r *http.Request) {
 	username := mux.Vars(r)["username"]
-	q := fmt.Sprintf(`SELECT username FROM votingsystem.users WHERE username = '%s';`, username)
-	rows, err := db.Query(q)
+	exist, err := db.userCredentialIsExist(username)
 	check(err)
-
-	exist := rows.Next()
-
-
 
 	enc := json.NewEncoder(w)
 	d := map[string]bool{"exist": exist}

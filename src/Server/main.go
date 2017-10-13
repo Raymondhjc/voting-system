@@ -17,12 +17,19 @@ type requestAuth struct {
 func main() {
 	if verbose {
 		fmt.Println("Running under verbose mode ...")
-	}else{
+	} else {
 		fmt.Println("Running ...")
 	}
 
-	connectDB()
-	defer disconnectDB()
+	var username = "ufse"
+	var password = "voting-system"
+	var address = "127.0.0.1:3306"
+	var dbName = "votingsystem"
+
+	err=db.connectDB(username, password, address, dbName)
+	check(err)
+
+	defer db.disconnectDB()
 
 	// mux:
 	r := mux.NewRouter()
@@ -31,5 +38,3 @@ func main() {
 	r.HandleFunc("/exists/{username}", userExistHandler)
 	http.ListenAndServe(":4500", r)
 }
-
-

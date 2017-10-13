@@ -25,9 +25,9 @@ func signinHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("SIGNIN:\nUsername: %v\nPassword: %v\n", t.Username, t.Password)
 	}
 
-	hash := getUserHash(t.Username)
+	hash, err := db.getUserHash(t.Username)
+	check(err)
 	match := CheckPasswordHash(t.Password, hash);
-
 	if match {
 		response := SigninResponse{t.Username, createToken(t.Username)}
 		js, err := json.Marshal(response)
