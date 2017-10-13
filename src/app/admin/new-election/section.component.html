@@ -4,16 +4,28 @@
             <md-card-title>
                 <div class="form-group">
                     <label for="sectionName">Section Name</label>
-                    <input mdInput type="text" id="sectionName" formControlName="sectionName" class="form-control">
+                    <md-form-field>
+                        <input mdInput type="text" id="sectionName" formControlName="sectionName" class="form-control">
+                    </md-form-field>
                 </div>
             </md-card-title>
         </md-card-header>
-        <hr>
         <md-card-content>
             <label for="options">Options</label>
-            <div id="options">
+            <div id="options" formArrayName="options">
                 <div>
-                    <input type="radio" formControlName="options">
+                    <div *ngFor="let optionControl of secondFormGroup.get('options').controls; let i = index">
+                        <!-- <input id="option" type="radio" [formControlName]="i">
+                        <input mdInput type="text" [formControlName]="i"> -->
+                        <md-radio-group>
+                            <md-radio-button value="i">
+                                <md-form-field>
+                                    <input mdInput type="text" [formControlName]="i">
+                                </md-form-field>
+                            </md-radio-button>
+                        </md-radio-group>
+                    </div>
+                    <button md-button (click)="onAddOption()"><i class="material-icons" mdPreffix>add</i>add option</button>
                 </div>
             </div>
         </md-card-content>

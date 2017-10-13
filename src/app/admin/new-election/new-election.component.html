@@ -33,9 +33,48 @@
     </md-step>
     <md-step [stepControl]="secondFormGroup">
         <ng-template mdStepLabel>Election Content</ng-template>
-        <ballot-section>
-            <!-- new section here -->
-        </ballot-section>
+        <!-- <ballot-section>
+        </ballot-section> -->
+
+        <!-- new section here -->
+        <form [formGroup]="secondFormGroup">
+            <div id="sections" formArrayName="sections">
+                <div *ngFor="let sectionCtrl of secondFormGroup.get('sections').controls; let i = index" [formControlName]="i">
+                    <md-card class="section-card">
+                        <md-card-header>
+                            <md-card-title>
+                                <div class="form-group">
+                                    <label for="sectionName">Section Name</label>
+                                    <md-form-field>
+                                        <input mdInput type="text" id="sectionName">
+                                    </md-form-field>
+                                </div>
+                            </md-card-title>
+                        </md-card-header>
+                        <md-card-content>
+                            <label for="options">Options</label>
+                            <div id="options" formArrayName="options">
+                                <div>
+                                    <div *ngFor="let optionCtrl of secondFormGroup.get('sections[i].options').controls; let j = index">
+                                        <!-- <input id="option" type="radio" [formControlName]="i">
+                                                        <input mdInput type="text" [formControlName]="i"> -->
+                                        <md-radio-group>
+                                            <md-radio-button value="j">
+                                                <md-form-field>
+                                                    <input mdInput type="text" [formControlName]="j">
+                                                </md-form-field>
+                                            </md-radio-button>
+                                        </md-radio-group>
+                                    </div>
+                                    <button md-button (click)="onAddOption(i)"><i class="material-icons" mdPreffix>add</i>add option</button>
+                                </div>
+                            </div>
+                        </md-card-content>
+                    </md-card>
+                </div>
+            </div>
+
+        </form>
         <md-expansion-panel>
             <md-expansion-panel-header>
                 <i class="material-icons" mdPreffix>add</i>
@@ -46,10 +85,11 @@
                 <md-radio-button value="1">Single Choice</md-radio-button>
                 <md-radio-button value="2">Multiple Choices</md-radio-button>
             </md-radio-group>
+
             <div>
-                <button md-button color="primary">
+                <button md-button color="primary" (click)="onAddSection()">
                     <i class="material-icons" mdPreffix>add</i>
-                    add
+                    add option
                 </button>
             </div>
         </md-expansion-panel>

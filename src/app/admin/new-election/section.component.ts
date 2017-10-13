@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 
 @Component({
     selector: 'ballot-section',
@@ -11,8 +11,12 @@ export class sectionComponent implements OnInit {
     secondFormGroup: FormGroup;
     ngOnInit() {
         this.secondFormGroup = new FormGroup({
-            'sectionName': new FormControl(null),
-            'options': new FormControl(null),
+            'sectionName': new FormControl(null, Validators.required),
+            'options': new FormArray([]),
         });
+    }
+    onAddOption(){
+        const control = new FormControl(null, Validators.required);
+        (<FormArray>this.secondFormGroup.get('options')).push(control);
     }
 }
