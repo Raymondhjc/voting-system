@@ -25,7 +25,6 @@ export class ServerInteractService {
     userExist(user: string) {
 
         const s = 'exists/' + user;
-
-        return this.http.post(this.serverURL + s, null);
+        return this.http.get(this.serverURL + s, '');
     }
 }

@@ -1,17 +1,17 @@
-<form #signInForm = "ngForm" class="signinForm">
+<form [formGroup] = "signinForm" class="signinForm">
     <p>
         <md-form-field class = "full-width username">
             <input mdInput [(ngModel)] = "this.authenInfo.username" type = "text"
-                   name = "Username" placeholder = "Username" required>
+                   name = "Username" placeholder = "Username" formControlName = "username">
         </md-form-field>
         <md-form-field class = "full-width password">
             <input mdInput [(ngModel)] = "this.authenInfo.password" type = "password"
-                   name = "Password" placeholder = "Password" required>
+                   name = "Password" placeholder = "Password" formControlName = "password">
         </md-form-field>
     </p>
     <div style = "text-align: center;">
         <button md-raised-button [md-dialog-close] = "this.serverInteract.sendSignin(this.authenInfo)"
-                [disabled] = "!signInForm.valid" color = "primary" class="signinButton">
+                [disabled] = "!signinForm.valid" color = "primary" class="signinButton">
             Sign In
         </button>
         <button md-raised-button (click) = "onCancelClick()" color = "warn">Cancel</button>

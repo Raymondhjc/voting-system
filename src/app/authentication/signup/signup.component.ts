@@ -67,33 +67,39 @@ export class SignupComponent implements OnInit {
 
 
     usernameDupCheck(control: FormControl): Promise<any> | Observable<any> {
-        const promise = new Promise<any>((resolve, reject) => {
-            this.serverInteract.userExist(control.value).subscribe(
-                (response) => {
-                    const r = JSON.parse(response.text());
-                    if (r.exist) {
-                        resolve({'usernameExist': true});
-                    } else {
-                        resolve(null);
-                    }
-
-                },
-                (error) => {
-                    console.log(error);
+        return this.serverInteract.userExist(control.value).map(
+            (response) => {
+                const r = response.json();
+                if (r.exist) {
+                    return {'usernameExist': true};
+                } else {
+                    return;
                 }
-            );
-
-        });
-        return promise;
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
     }
 
-    // get firstnameTip():string {
-    //     if (this.signupForm.get('firstname').errors['required']) {
-    //         return 'First name is required';
-    //     } else if (this.signupForm.get('firstname').errors['tooLong']) {
-    //         return 'First name should not exceed 20 characters';
-    //     } else {
-    //         return 'OK';
-    //     }
+    // usernameDupCheck(control: FormControl): Promise<any> | Observable<any> {
+    //     const promise = new Promise<any>((resolve, reject) => {
+    //         this.serverInteract.userExist(control.value).subscribe(
+    //             (response) => {
+    //                 const r = JSON.parse(response.text());
+    //                 if (r.exist) {
+    //                     resolve({'usernameExist': true});
+    //                 } else {
+    //                     resolve(null);
+    //                 }
+    //
+    //             },
+    //             (error) => {
+    //                 console.log(error);
+    //             }
+    //         );
+    //
+    //     });
+    //     return promise;
     // }
 }

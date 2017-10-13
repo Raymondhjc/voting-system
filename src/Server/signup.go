@@ -43,11 +43,14 @@ func userExistHandler(w http.ResponseWriter, r *http.Request) {
 
 	exist := rows.Next()
 
-	if verbose {
-		fmt.Println("User exist query:", exist)
-	}
+
 
 	enc := json.NewEncoder(w)
 	d := map[string]bool{"exist": exist}
+
+	if verbose {
+		fmt.Println("User exist query:", d)
+	}
+
 	enc.Encode(d)
 }

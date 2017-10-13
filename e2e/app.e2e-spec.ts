@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-xdescribe('voting-system App', () => {
+describe('voting-system App', () => {
   let page: AppPage;
 
   beforeEach(() => {
