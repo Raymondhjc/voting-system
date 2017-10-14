@@ -22,21 +22,39 @@ export class newElectionComponent implements OnInit {
         ]
       )]
     });
-    this.secondFormGroup = this._formBuilder.group({
+    this.secondFormGroup = new FormGroup({
       'sections': new FormArray([]),
     });
   }
+  // onAddSection(optionCount: number) {
+  //   const options = new FormArray([]);
+  //   for (let i = 0; i < optionCount; i++) {
+  //     options.push(new FormControl(null, Validators.required));
+  //   }
+  //   (<FormArray>this.secondFormGroup.get('sections')).push(new FormGroup({
+  //     'sectionName': new FormControl("NAME", Validators.required),
+  //     'options': options
+  //   }));
+
+  // }
   onAddSection() {
-    (<FormArray>this.secondFormGroup.get('sections')).push(
-      new FormGroup({
-        'sectionName': new FormControl("NAME", Validators.required),
-        'options': new FormArray([]),
-      })
-    );
+    const options = new FormArray([]);
+    (<FormArray>this.secondFormGroup.get('sections')).push(new FormGroup({
+      'sectionName': new FormControl(null, Validators.required),
+      'options': options
+    }));
+
   }
+
   onAddOption(index: number) {
     const control = new FormControl("option", Validators.required);
-    (<FormArray>this.secondFormGroup.get([index,'options'])).push(control);
+    const sections = (<FormArray>this.secondFormGroup.get('sections'));
+    (<FormArray>sections.controls[index].get('options')).push(control);
+  }
+
+  onSubmit(): void {
+    console.log(this.firstFormGroup.value);
+    console.log(this.secondFormGroup.value);
   }
 
 }
