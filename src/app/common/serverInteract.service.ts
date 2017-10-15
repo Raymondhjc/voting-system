@@ -7,6 +7,9 @@ import {AnthenticationInfoModel} from './anthentication-info.model';
 export class ServerInteractService {
     serverURL = 'http://localhost:4500/';
 
+    // Postman
+    // serverURL = 'http://localhost:5555/';
+
     constructor(private http: Http) {
     }
 

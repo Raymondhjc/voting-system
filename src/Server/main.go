@@ -1,4 +1,5 @@
-//For reference: https://godoc.org/net/http
+//github.com/urfave/negroni
+//github.com/dgrijalva/jwt-go
 
 package main
 

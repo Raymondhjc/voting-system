@@ -85,17 +85,21 @@
         <div class = "lverg-errors" *ngIf = "signupForm.get('password').errors!==null">
             <div *ngIf = "signupForm.get('password').errors['required'] &&
                     signupForm.get('password').touched">
-                Username is required.
+                Password is required.
             </div>
             <div *ngIf = "signupForm.get('password').errors['minlength'] &&
                     signupForm.get('password').touched">
-                Username must be more than 6 characters.
+                Password must be more than 6 characters.
             </div>
         </div>
         <md-form-field class = "lverg-full-width">
             <input mdInput placeholder = "Repeat your password" formControlName = "repeatPassword" type = "password">
         </md-form-field>
         <div class = "lverg-errors" *ngIf = "signupForm.get('repeatPassword').errors!==null">
+            <div *ngIf = "signupForm.get('repeatPassword').errors['required'] &&
+                    signupForm.get('repeatPassword').touched">
+                Repeating password is required.
+            </div>
             <div *ngIf = "signupForm.get('repeatPassword').errors['equalTo'] &&
                     signupForm.get('repeatPassword').touched">
                 Repeated password not equal to the original one.
@@ -105,6 +109,10 @@
             <input mdInput placeholder = "UFID" formControlName = "ufid">
         </md-form-field>
         <div class = "lverg-errors" *ngIf = "signupForm.get('ufid').errors!==null">
+            <div *ngIf = "signupForm.get('ufid').errors['required'] &&
+                    signupForm.get('ufid').touched">
+                UFID is required.
+            </div>
             <div *ngIf = "signupForm.get('ufid').errors['pattern'] &&
                     signupForm.get('ufid').touched">
                 UFID must be 8 digit number.
@@ -115,12 +123,10 @@
             <button md-fab color = "primary" [disabled] = "!signupForm.valid" type = "submit">
                 <md-icon class = "material-icons">done</md-icon>
             </button>
-            <button md-fab color = "warn" (click) = "onClearClick()">
+            <button md-fab color = "warn" (click) = "onClearClick()" type="button   ">
                 <md-icon class = "material-icons">clear</md-icon>
             </button>
         </div>
     </form>
 
 </md-card>
-<!--pattern-->
-<!--[disabled] = "!signupForm.valid"-->

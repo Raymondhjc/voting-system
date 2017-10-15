@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit {
 
     ngOnInit() {
         const password = new FormControl('', [Validators.required, Validators.minLength(6)]);
-        const repeatPassword = new FormControl('', CustomValidators.equalTo(password));
+        const repeatPassword = new FormControl('', [Validators.required, CustomValidators.equalTo(password)]);
 
         this.signupForm = new FormGroup({
                 'firstname': new FormControl(null, [Validators.required, Validators.maxLength(20)]),
@@ -30,7 +30,7 @@ export class SignupComponent implements OnInit {
                     Validators.maxLength(20)], [this.usernameDupCheck.bind(this)]),
                 'password': password,
                 'repeatPassword': repeatPassword,
-                'ufid': new FormControl(null, [Validators.pattern('[0-9]{8}')])
+                'ufid': new FormControl(null, [Validators.required, Validators.pattern('[0-9]{8}')])
             }
         );
     }

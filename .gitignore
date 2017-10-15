@@ -45,3 +45,6 @@ Thumbs.db
 /src/Server/Server.exe
 /src/Server/coverage.out
 /src/Server/count.out
+/coverage/
+/src/Server/rsa.private
+/src/Server/rsa.public

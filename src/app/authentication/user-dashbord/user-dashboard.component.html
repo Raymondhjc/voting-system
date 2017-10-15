@@ -1,74 +1,61 @@
-<md-card class="lverg-md-card">
+<md-card class = "lverg-md-card" *ngIf = "signInStatus">
 
-  <md-tab-group>
-    <md-tab label = "Manage Account">
-      <md-toolbar color = "primary">
+    <md-toolbar color = "primary">
         <i>You are logged in as</i>:&nbsp;<b>{{this.username}}</b>
-      </md-toolbar>
-      <md-expansion-panel>
+    </md-toolbar>
+    <md-expansion-panel>
         <md-expansion-panel-header>
-          <md-panel-title> password:</md-panel-title>
-          <md-panel-description>******</md-panel-description>
+            <md-panel-title> password:</md-panel-title>
+            <md-panel-description>******</md-panel-description>
         </md-expansion-panel-header>
 
         <form #changePassword = "ngForm">
-          <md-form-field class = "full-width">
-            <input mdInput placeholder = "Previous password" required ngModel name="previousPassword" type="password">
-          </md-form-field>
-          <md-form-field class = "full-width">
-            <input mdInput placeholder = "New password" name = "password" ngModel required type="password">
-          </md-form-field>
-          <md-form-field class = "full-width">
-            <input mdInput placeholder = "Confirm new password" validateEqual = "password" ngModel
-                   name = "confirmPassword" required type="password">
-          </md-form-field>
+            <md-form-field class = "full-width">
+                <input mdInput placeholder = "Previous password" required ngModel name = "previousPassword"
+                       type = "password">
+            </md-form-field>
+            <md-form-field class = "full-width">
+                <input mdInput placeholder = "New password" name = "password" ngModel required type = "password">
+            </md-form-field>
+            <md-form-field class = "full-width">
+                <input mdInput placeholder = "Confirm new password" validateEqual = "password" ngModel
+                       name = "confirmPassword" required type = "password">
+            </md-form-field>
 
-          <div style = "  text-align: right;">
-            <button md-button color = "primary" [disabled] = "!changePassword.valid">
-              Modify
-            </button>
-            <button md-button color = "warn">
-              Clear
-            </button>
-          </div>
+            <div style = "  text-align: right;">
+                <button md-button color = "primary" [disabled] = "!changePassword.valid">
+                    Modify
+                </button>
+                <button md-button color = "warn">
+                    Clear
+                </button>
+            </div>
 
         </form>
-      </md-expansion-panel>
+    </md-expansion-panel>
 
-      <md-expansion-panel>
+    <md-expansion-panel>
         <md-expansion-panel-header>
-          <md-panel-title> Email:</md-panel-title>
-          <md-panel-description>TODO: email should be show here using 1-way-binding</md-panel-description>
+            <md-panel-title> Email:</md-panel-title>
+            <md-panel-description>TODO: email should be show here using 1-way-binding</md-panel-description>
         </md-expansion-panel-header>
 
         <form #changeEmail = "ngForm">
-          <md-form-field class = "full-width">
-            <input mdInput placeholder = "New Email address:" email required ngModel name = "email">
-          </md-form-field>
+            <md-form-field class = "full-width">
+                <input mdInput placeholder = "New Email address:" email required ngModel name = "email">
+            </md-form-field>
 
-          <div style = "  text-align: right;">
-            <button md-button color = "primary" [disabled] = "!changeEmail.valid">
-              Modify
-            </button>
-            <button md-button color = "warn">
-              Clear
-            </button>
-          </div>
+            <div style = "  text-align: right;">
+                <button md-button color = "primary" [disabled] = "!changeEmail.valid">
+                    Modify
+                </button>
+                <button md-button color = "warn">
+                    Clear
+                </button>
+            </div>
         </form>
-      </md-expansion-panel>
-
-    </md-tab>
-    <md-tab label = "Tasks">
-
-
-      <admin-app></admin-app>
-
-
-    </md-tab>
-  </md-tab-group>
-
-
-  <p *ngIf = "!signInStatus">You are a guest!</p>
-
-
+    </md-expansion-panel>
 </md-card>
+
+
+<p *ngIf = "!signInStatus">You are a guest!</p>

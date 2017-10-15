@@ -12,6 +12,7 @@ type SigninInfo struct {
 }
 
 type SigninResponse struct {
+	Success  bool
 	Username string
 	JWT      string
 }
@@ -22,14 +23,14 @@ func signinHandler(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(file, &t)
 
 	if verbose {
-		fmt.Printf("SIGNIN:\nUsername: %v\nPassword: %v\n", t.Username, t.Password)
+		fmt.Printf("SIGNIN:\nUsername: %v\nPassword: ??\n", t.Username)
 	}
 
 	hash, err := db.getUserHash(t.Username)
 	check(err)
 	match := CheckPasswordHash(t.Password, hash);
 	if match {
-		response := SigninResponse{t.Username, createToken(t.Username)}
+		response := SigninResponse{true, t.Username, createToken(t.Username)}
 		js, err := json.Marshal(response)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -39,8 +40,15 @@ func signinHandler(w http.ResponseWriter, r *http.Request) {
 		w.Write(js)
 
 	} else {
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("Username and Password combination does not exist"))
-	}
+		//w.WriteHeader(http.StatusBadRequest)
+
+		response := SigninResponse{false, "", ""}
+		js, err := json.Marshal(response)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		w.Header().Set("Content-Type", "application/json")
+		w.Write(js)	}
 
 }
