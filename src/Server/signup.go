@@ -7,14 +7,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-type RegistrationInfo struct {
-	FirstName string
-	LastName  string
-	Username  string
-	Password  string
-	Email     string
-	Ufid      string
-}
+
 
 func signupHandler(w http.ResponseWriter, r *http.Request) {
 	file := readBytes(r)
@@ -30,6 +23,7 @@ func signupHandler(w http.ResponseWriter, r *http.Request) {
 	check(err)
 
 	if success {
+		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("Successful!"))
 	} else {
 		w.WriteHeader(http.StatusBadRequest)
@@ -43,6 +37,7 @@ func userExistHandler(w http.ResponseWriter, r *http.Request) {
 	exist, err := db.userCredentialIsExist(username)
 	check(err)
 
+	w.WriteHeader(http.StatusOK)
 	enc := json.NewEncoder(w)
 	d := map[string]bool{"exist": exist}
 

@@ -6,16 +6,6 @@ import (
 	"fmt"
 )
 
-type SigninInfo struct {
-	Username string
-	Password string
-}
-
-type SigninResponse struct {
-	Success  bool
-	Username string
-	JWT      string
-}
 
 func signinHandler(w http.ResponseWriter, r *http.Request) {
 	file := readBytes(r)
@@ -30,7 +20,7 @@ func signinHandler(w http.ResponseWriter, r *http.Request) {
 	check(err)
 	match := CheckPasswordHash(t.Password, hash);
 	if match {
-		response := SigninResponse{true, t.Username, createToken(t.Username)}
+		response := SigninResponse{true, t.Username, jstAssigner(t.Username)}
 		js, err := json.Marshal(response)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)

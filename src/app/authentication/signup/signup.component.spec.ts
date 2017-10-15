@@ -1,32 +1,38 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, inject, TestBed} from '@angular/core/testing';
 
 import {SignupComponent} from './signup.component';
 import {MdToolbarModule} from '@angular/material';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {ServerInteractService} from '../../common/serverInteract.service';
-import {HttpModule, ResponseOptions} from '@angular/http';
+import {HttpModule, ResponseOptions, XHRBackend} from '@angular/http';
 import {Subject} from 'rxjs/Subject';
 import {Observable} from 'rxjs/Observable';
+import {MockBackend} from '@angular/http/testing';
 
 class ServerInteractServiceStub {
     private subject = new Subject();
+    notExist = {exist: false};
+    exist = {exist: true};
 
+    emitNotExist() {
+        const response = new Response(new ResponseOptions({
+            body: JSON.stringify(this.notExist)
+        }));
+        this.subject.next(response);
+    }
 
-    // push(value) {
-    //     console.log(JSON.stringify(this.itNotExist));
-    //     const response = new Response(JSON.stringify(this.itNotExist));
-    //
-    //
-    //     this.subject.next(response);
-    // }
+    emitExist() {
+        const response = new Response(new ResponseOptions({
+            body: JSON.stringify(this.exist)
+        }));
+        this.subject.next(response);
+    }
 
     userExist(s: string): Observable<Response> {
-        const notExist = {exist: false};
 
         const response = new Response(new ResponseOptions({
-            body: JSON.stringify(notExist)
+            body: JSON.stringify(this.notExist)
         }));
-
         this.subject.next(response);
 
         return this.subject.asObservable();
@@ -45,7 +51,8 @@ describe('lverg:SignupComponent', () => {
                 ReactiveFormsModule,
                 HttpModule],
             providers: [
-                {provide: ServerInteractService, useClass: ServerInteractServiceStub}
+                {provide: ServerInteractService, useClass: ServerInteractServiceStub},
+                {provide: XHRBackend, useClass: MockBackend}
             ],
             declarations: [SignupComponent]
         })
@@ -75,20 +82,39 @@ describe('lverg:SignupComponent', () => {
     });
 
     it('should be valid if all field is properly filled', async(() => {
-        const serverInteract = TestBed.get(ServerInteractService);
-        // serverInteract.push(`{"exist":false}`);
-        fixture.detectChanges();
+        inject([XHRBackend], (mockBackend) => {
+            fixture.detectChanges();
 
-        fixture.whenStable().then(() => {
-            expect(component.signupForm.get('firstname').valid).toBe(true);
-            expect(component.signupForm.get('lastname').valid).toBe(true);
-            expect(component.signupForm.get('email').valid).toBe(true);
-            expect(component.signupForm.get('password').valid).toBe(true);
-            expect(component.signupForm.get('repeatPassword').valid).toBe(true);
-            expect(component.signupForm.get('ufid').valid).toBe(true);
-            // expect(component.signupForm.get('username').valid).toBe(true);
+            const mockResponse = {
+                exist: false
+            };
+
+            mockBackend.connections.subscribe((connection) => {
+                connection.mockRespond(new Response(new ResponseOptions({
+                    body: JSON.stringify(mockResponse)
+                })));
+            });
+
+            fixture.whenStable().then(() => {
+                expect(component.signupForm.valid).toBe(true);
+            });
         });
     }));
+
+    it('should return null if username is valid', () => {
+        inject([XHRBackend], (mockBackend) => {
+            const interact = TestBed.get(ServerInteractService);
+            const username = new FormControl();
+
+            const valid = component.usernameDupCheck(username);
+
+            interact.emitNotExist();
+            expect(valid).toBeNull();
+
+            interact.emitExist();
+            expect(valid).not.toBeNull();
+        });
+    });
 
     it('should be invalid if first name is empty', () => {
         component.signupForm.patchValue({

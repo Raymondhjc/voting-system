@@ -16,6 +16,8 @@ type requestAuth struct {
 
 // main
 func main() {
+	initKeys()
+
 	if verbose {
 		fmt.Println("Running under verbose mode ...")
 	} else {
