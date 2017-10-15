@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed,async } from '@angular/core/testing';
 import { By }              from '@angular/platform-browser';
 import { DebugElement }    from '@angular/core';
-
+import { MatRadioModule} from '@angular/material';
 import { BallotCheckComponent } from './ballot-check.component';
-
+import { FormsModule } from '@angular/forms';
+import { candidatesP,candidatesVP,candidatesGR} from'./mock-votesdata';
 
 describe('BallotCheckComponent', () => {
 		let component: BallotCheckComponent;
@@ -12,6 +13,10 @@ describe('BallotCheckComponent', () => {
 
   beforeEach(async(() => {
   TestBed.configureTestingModule({
+    imports:[
+      MatRadioModule,
+      FormsModule
+    ],
     declarations: [ BallotCheckComponent ], // declare the test component
   })
   .compileComponents();  // compile template and css
@@ -27,17 +32,17 @@ describe('BallotCheckComponent', () => {
     expect(component).toBeTruthy();
   });
   it('submitted should be false',() =>{
-     expect(this.submitted).toBe(false);
+     expect(component.submitted).toBe(false);
     });
   it('submitted should be true if it is clicked',() =>{ 
-      this.onSubmit();
-     expect(this.submitted).toBe(true);
+      component.onSubmit();
+     expect(component.submitted).toBe(true);
     });
   it('should receive data from server',() =>{ 
       
-     expect(this.cds1.valid).toBe(true);
-     expect(this.cds2.valid).toBe(true);
-     expect(this.cds3.valid).toBe(true);
+     expect(component.cds1).toBe(candidatesP);
+     expect(component.cds2).toBe(candidatesVP);
+     expect(component.cds3).toBe(candidatesGR);
     });
   
 
