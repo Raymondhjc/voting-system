@@ -2,29 +2,6 @@
   max-width: 80%;
   margin: 2em auto;
 }
-.admin-table-container {
-  display: flex;
-  flex-direction: column;
-  max-height: 500px;
-  min-width: 300px;
-  max-width: 80%;
-  margin: 2em auto;
-}
-
-.admin-table-card {
-  max-height: 500px;
-  max-width: 300px;
-  margin: 2em auto;
-}
-
-.search-header {
-  min-height: 64px;
-  display: flex;
-  align-items: baseline;
-  padding: 8px 24px 0;
-  font-size: 20px;
-  justify-content: space-between;
-}
 
 .mat-form-field {
   font-size: 14px;

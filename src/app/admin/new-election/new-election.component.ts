@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray, Validators, AbstractControl } from '@angular/forms';
 
+import { ElectionForm } from './election-form'
 @Component({
   selector: 'new-election',
   templateUrl: './new-election.component.html',
@@ -11,6 +12,8 @@ export class newElectionComponent implements OnInit {
   secondFormGroup: FormGroup;
   choiceType: number = 1;
   addFinished = false;
+  electionStartDate: string;
+  electionEndDate: string;
 
   constructor(private _formBuilder: FormBuilder) { }
 
@@ -29,6 +32,7 @@ export class newElectionComponent implements OnInit {
     const options = new FormArray([]);
     (<FormArray>this.secondFormGroup.get('sections')).push(new FormGroup({
       'sectionName': new FormControl(null, Validators.required),
+      'choiceType': new FormControl(this.choiceType),
       'options': options
     }));
   }
@@ -46,11 +50,6 @@ export class newElectionComponent implements OnInit {
     (<FormArray>sections.controls[sectionIndex].get('options')).removeAt(optionIndex);
   }
 
-  onSubmit(): void {
-    console.log(this.firstFormGroup.value);
-    console.log(this.secondFormGroup.value);
-  }
-
   isDateValid(control: AbstractControl) {
     if (control.get('startDate').value != null && control.get('endDate').value != null) {
       let sDate = control.get('startDate').value,
@@ -62,8 +61,10 @@ export class newElectionComponent implements OnInit {
         eMonth = eDate.getMonth() + 1,
         eYear = eDate.getFullYear();
 
+      this.electionStartDate = sMonth + '/' + sDay + '/' + sYear;
+      this.electionEndDate = eMonth + '/' + eDay + '/' + eYear;
+
       if (sYear == eYear) {
-        console.log(sMonth + "/" + sDay + "/" + sYear);
         if (sMonth == eMonth) {
           if (sDay <= eDay) {
             return null;
@@ -88,4 +89,25 @@ export class newElectionComponent implements OnInit {
     return { invalidForm: true };
   }
 
+  // onCreateForm(): void {
+  //   let form = new ElectionForm,
+  //   fg = this.firstFormGroup.value,
+  //   sg = this.secondFormGroup.value;
+  //   form.name = fg.electionName;
+  //   form.startDate = fg.startDate;
+  //   form.endDate = fg.endDate;
+  //   for(let s in fg){
+  //     let section = new Section;
+  //     section.choiceType = (<any>s).choiceType;
+  //     section.sectionName = (<any>s).sectionName;
+  //     section.options = (<any>s).sectionName;
+  //     form.sections.push(section);
+  //   }
+  //   form.sections = this.firstFormGroup.value.electionName;
+  //   form.name = this.firstFormGroup.value.electionName;
+  //   form.name = this.firstFormGroup.value.electionName;
+
+  //   console.log(this.firstFormGroup.value);
+  //   console.log(this.secondFormGroup.value);
+  // }
 }

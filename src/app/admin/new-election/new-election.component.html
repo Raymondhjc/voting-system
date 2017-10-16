@@ -28,7 +28,7 @@
             </md-list>
 
             <div>
-                <button type="submit" md-button mdStepperNext (click)="onSubmit()">Next</button>
+                <button type="button" md-button mdStepperNext>Next</button>
             </div>
         </form>
     </md-step>
@@ -92,12 +92,85 @@
         </md-expansion-panel>
         <div>
             <button type="button" md-button mdStepperPrevious>Back</button>
-            <button type="submit" md-button mdStepperNext (click)="onSubmit()">Next</button>
+            <button type="submit" md-button mdStepperNext>Next</button>
         </div>
     </md-step>
     <md-step>
-        <ng-template mdStepLabel>Done</ng-template>
-        You are now done.
+        <ng-template mdStepLabel>Election Template</ng-template>
+        <form [formGroup]="firstFormGroup">
+            <md-list>
+                <h2 md-subheader>{{firstFormGroup.value.electionName}}</h2>
+                <md-list-item>
+                    <h4 md-line>Start Date</h4>
+                    <p md-line> {{electionStartDate}} </p>
+                </md-list-item>
+                <md-list-item>
+                    <h4 md-line>End Date</h4>
+                    <p md-line> {{electionEndDate}} </p>
+                </md-list-item>
+                <md-divider></md-divider>
+            </md-list>
+        </form>
+        <!-- <form [formGroup]="secondFormGroup">
+            <md-list>
+                <h3 md-subheader>Questions</h3>
+                <md-list-item *ngFor="let sectionCtrl of secondFormGroup.get('sections').controls; let i = index" [formGroupName]="i">
+                    <md-list-item>
+                        <h4 md-line>Question {{i+1}}</h4>
+                    </md-list-item>
+                    <md-list-item>
+                        <div id="options" formArrayName="options">
+                            <md-list>
+                                <md-list-item *ngFor="let optionCtrl of secondFormGroup.get('sections').controls[i].get('options').controls; let j = index">
+                                    <p md-line> {{secondFormGroup.value.endDate}} </p>
+                                </md-list-item>
+                            </md-list>
+                        </div>
+                    </md-list-item>
+                </md-list-item>
+            </md-list>
+        </form> -->
+
+        <!-- <form [formGroup]="finalFormGroup">
+                <md-list formGroupName="firstFormGroup">
+                    <md-list-item>
+                        <md-form-field>
+                            <input mdInput type="text" formControlName="electionName" [(ngModel)]="electionName">
+                        </md-form-field>
+                    </md-list-item>
+                    <md-list-item>
+                        <md-form-field>
+                            <input mdInput formControlName="startDate">
+                        </md-form-field>
+                        <md-form-field>
+                            <input mdInput formControlName="endDate">
+                        </md-form-field>
+                    </md-list-item>
+                </md-list>
+                <md-list formGroupName="secondFormGroup">
+                    <div id="sections" formArrayName="sections">
+                        <div *ngFor="let sectionCtrl of secondFormGroup.get('sections').controls; let i = index" [formGroupName]="i">
+                            <md-list-item>
+                                <label for="sectionName">Question {{i+1}}</label>
+                                <md-form-field>
+                                    <input mdInput type="text" id="sectionName" formControlName="sectionName">
+                                </md-form-field>
+                            </md-list-item>
+                            <md-list-item>
+                                <div id="options" formArrayName="options">
+                                    <md-list>
+                                        <md-list-item *ngFor="let optionCtrl of secondFormGroup.get('sections').controls[i].get('options').controls; let j = index">
+                                            <md-form-field>
+                                                <input mdInput type="text" [formControlName]="j">
+                                            </md-form-field>
+                                        </md-list-item>
+                                    </md-list>
+                                </div>
+                            </md-list-item>
+                        </div>
+                    </div>
+                </md-list>
+            </form> -->
         <div>
             <button md-button mdStepperPrevious>Back</button>
         </div>
