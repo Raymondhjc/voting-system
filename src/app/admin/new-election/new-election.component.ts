@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, FormArray, Validators, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'new-election',
@@ -7,32 +7,28 @@ import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@ang
   styleUrls: ['./new-election.component.css']
 })
 export class newElectionComponent implements OnInit {
-  //isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   choiceType: number = 1;
   addFinished = false;
-  //startDate = new Date(2017, 1, 1);
 
   constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      checkEmpty: ['', Validators.required],
-      checkDate: ['', Validators.compose(
-        [Validators.required,
-        ]
-      )]
-    });
+    this.firstFormGroup = new FormGroup({
+      'electionName': new FormControl(null, Validators.required),
+      'startDate': new FormControl(null, Validators.required),
+      'endDate': new FormControl(null, Validators.required, )
+    }, this.isDateValid);
     this.secondFormGroup = new FormGroup({
-      'sections': new FormArray([]),
+      'sections': new FormArray([], this.isSecondFormValid)
     });
   }
   onAddSection() {
     this.addFinished = false;
     const options = new FormArray([]);
     (<FormArray>this.secondFormGroup.get('sections')).push(new FormGroup({
-      'sectionName': new FormControl(this.choiceType, Validators.required),
+      'sectionName': new FormControl(null, Validators.required),
       'options': options
     }));
   }
@@ -41,7 +37,7 @@ export class newElectionComponent implements OnInit {
   }
 
   onAddOption(index: number) {
-    const control = new FormControl("option " + index, Validators.required);
+    const control = new FormControl(null, Validators.required);
     const sections = (<FormArray>this.secondFormGroup.get('sections'));
     (<FormArray>sections.controls[index].get('options')).push(control);
   }
@@ -53,6 +49,43 @@ export class newElectionComponent implements OnInit {
   onSubmit(): void {
     console.log(this.firstFormGroup.value);
     console.log(this.secondFormGroup.value);
+  }
+
+  isDateValid(control: AbstractControl) {
+    if (control.get('startDate').value != null && control.get('endDate').value != null) {
+      let sDate = control.get('startDate').value,
+        eDate = control.get('endDate').value,
+        sDay = sDate.getDate(),
+        sMonth = sDate.getMonth() + 1,
+        sYear = sDate.getFullYear(),
+        eDay = eDate.getDate(),
+        eMonth = eDate.getMonth() + 1,
+        eYear = eDate.getFullYear();
+
+      if (sYear == eYear) {
+        console.log(sMonth + "/" + sDay + "/" + sYear);
+        if (sMonth == eMonth) {
+          if (sDay <= eDay) {
+            return null;
+          }
+        } else if (sMonth < eMonth) {
+          return null;
+        }
+      } else if (sYear < eYear) {
+        return null;
+      }
+    }
+    return { invalidForm: true };
+  }
+  isSecondFormValid(control: AbstractControl) {
+    if ((<FormArray>control).length > 0) {
+      if ((<FormArray>(<FormArray>control).controls[0].get('options')).length > 0) {
+        return null;
+      }
+      return { invalidForm: true };
+    }
+
+    return { invalidForm: true };
   }
 
 }
