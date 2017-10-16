@@ -10,6 +10,7 @@ import {
     MatInputModule,
     MatSortModule,
     MatButtonModule,
+    MatCheckboxModule,
     MatCardModule,
     MatPaginatorModule,
     MatTableModule,
@@ -34,6 +35,7 @@ import {
         FormsModule,
         MatInputModule,
         MatButtonModule,
+        MatCheckboxModule,
         MatCardModule,
         /** Election table modules */
         MatTabsModule,

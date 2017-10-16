@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, FormArray, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, Validators, AbstractControl } from '@angular/forms';
 
 import { ElectionForm } from './election-form'
 @Component({
@@ -15,7 +15,7 @@ export class newElectionComponent implements OnInit {
   electionStartDate: string;
   electionEndDate: string;
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor() { }
 
   ngOnInit() {
     this.firstFormGroup = new FormGroup({
@@ -26,6 +26,19 @@ export class newElectionComponent implements OnInit {
     this.secondFormGroup = new FormGroup({
       'sections': new FormArray([], this.isSecondFormValid)
     });
+    this.firstFormGroup.get('startDate').valueChanges.subscribe((date) => {
+      let day = date.getDate(),
+        month = date.getMonth() + 1,
+        year = date.getFullYear();
+      this.electionStartDate = day + '/' + month + '/' + year;
+    });
+    this.firstFormGroup.get('endDate').valueChanges.subscribe((date) => {
+      let day = date.getDate(),
+        month = date.getMonth() + 1,
+        year = date.getFullYear();
+      this.electionEndDate = day + '/' + month + '/' + year;
+    });
+
   }
   onAddSection() {
     this.addFinished = false;
@@ -51,6 +64,7 @@ export class newElectionComponent implements OnInit {
   }
 
   isDateValid(control: AbstractControl) {
+    console.log();
     if (control.get('startDate').value != null && control.get('endDate').value != null) {
       let sDate = control.get('startDate').value,
         eDate = control.get('endDate').value,
@@ -60,9 +74,6 @@ export class newElectionComponent implements OnInit {
         eDay = eDate.getDate(),
         eMonth = eDate.getMonth() + 1,
         eYear = eDate.getFullYear();
-
-      this.electionStartDate = sMonth + '/' + sDay + '/' + sYear;
-      this.electionEndDate = eMonth + '/' + eDay + '/' + eYear;
 
       if (sYear == eYear) {
         if (sMonth == eMonth) {

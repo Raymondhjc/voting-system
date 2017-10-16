@@ -1,74 +1,74 @@
-<md-card class="lverg-md-card">
+<mat-card class="lverg-mat-card">
 
-  <md-tab-group>
-    <md-tab label = "Manage Account">
-      <md-toolbar color = "primary">
+  <mat-tab-group>
+    <mat-tab label = "Manage Account">
+      <mat-toolbar color = "primary">
         <i>You are logged in as</i>:&nbsp;<b>{{this.username}}</b>
-      </md-toolbar>
-      <md-expansion-panel>
-        <md-expansion-panel-header>
-          <md-panel-title> password:</md-panel-title>
-          <md-panel-description>******</md-panel-description>
-        </md-expansion-panel-header>
+      </mat-toolbar>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> password:</mat-panel-title>
+          <mat-panel-description>******</mat-panel-description>
+        </mat-expansion-panel-header>
 
         <form #changePassword = "ngForm">
-          <md-form-field class = "full-width">
-            <input mdInput placeholder = "Previous password" required ngModel name="previousPassword" type="password">
-          </md-form-field>
-          <md-form-field class = "full-width">
-            <input mdInput placeholder = "New password" name = "password" ngModel required type="password">
-          </md-form-field>
-          <md-form-field class = "full-width">
-            <input mdInput placeholder = "Confirm new password" validateEqual = "password" ngModel
+          <mat-form-field class = "full-width">
+            <input matInput placeholder = "Previous password" required ngModel name="previousPassword" type="password">
+          </mat-form-field>
+          <mat-form-field class = "full-width">
+            <input matInput placeholder = "New password" name = "password" ngModel required type="password">
+          </mat-form-field>
+          <mat-form-field class = "full-width">
+            <input matInput placeholder = "Confirm new password" validateEqual = "password" ngModel
                    name = "confirmPassword" required type="password">
-          </md-form-field>
+          </mat-form-field>
 
           <div style = "  text-align: right;">
-            <button md-button color = "primary" [disabled] = "!changePassword.valid">
+            <button mat-button color = "primary" [disabled] = "!changePassword.valid">
               Modify
             </button>
-            <button md-button color = "warn">
+            <button mat-button color = "warn">
               Clear
             </button>
           </div>
 
         </form>
-      </md-expansion-panel>
+      </mat-expansion-panel>
 
-      <md-expansion-panel>
-        <md-expansion-panel-header>
-          <md-panel-title> Email:</md-panel-title>
-          <md-panel-description>TODO: email should be show here using 1-way-binding</md-panel-description>
-        </md-expansion-panel-header>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Email:</mat-panel-title>
+          <mat-panel-description>TODO: email should be show here using 1-way-binding</mat-panel-description>
+        </mat-expansion-panel-header>
 
         <form #changeEmail = "ngForm">
-          <md-form-field class = "full-width">
-            <input mdInput placeholder = "New Email address:" email required ngModel name = "email">
-          </md-form-field>
+          <mat-form-field class = "full-width">
+            <input matInput placeholder = "New Email address:" email required ngModel name = "email">
+          </mat-form-field>
 
           <div style = "  text-align: right;">
-            <button md-button color = "primary" [disabled] = "!changeEmail.valid">
+            <button mat-button color = "primary" [disabled] = "!changeEmail.valid">
               Modify
             </button>
-            <button md-button color = "warn">
+            <button mat-button color = "warn">
               Clear
             </button>
           </div>
         </form>
-      </md-expansion-panel>
+      </mat-expansion-panel>
 
-    </md-tab>
-    <md-tab label = "Tasks">
+    </mat-tab>
+    <mat-tab label = "Tasks">
 
 
       <admin-app></admin-app>
 
 
-    </md-tab>
-  </md-tab-group>
+    </mat-tab>
+  </mat-tab-group>
 
 
   <p *ngIf = "!signInStatus">You are a guest!</p>
 
 
-</md-card>
+</mat-card>

@@ -6,7 +6,7 @@
   flex: 1 1 auto;
 }
 
-.lverg-md-card {
+.lverg-mat-card {
   max-width: 80%;
   margin: 2em auto;
   text-align: center;
@@ -28,13 +28,13 @@
   flex: 1 1 auto;
 }
 
-md-card {
+mat-card {
   max-width: 80%;
   margin: 2em auto;
   text-align: center;
 }
 
-md-toolbar-row {
+mat-toolbar-row {
   justify-content: space-between;
 }
 

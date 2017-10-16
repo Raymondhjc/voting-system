@@ -10,20 +10,20 @@
     <h1>Start counting for your new vote!</h1>   
   </div>
   <div id = "navbar">
-      <button md-button [mdMenuTriggerFor]="votingType">Select the voting type</button>
-      <md-menu #votingType="mdMenu">
-        <button md-menu-item>students' favoriate dinner</button>
-        <button md-menu-item>students' favoriate professor</button>
-      </md-menu>
+      <button mat-button [matMenuTriggerFor]="votingType">Select the voting type</button>
+      <mat-menu #votingType="matMenu">
+        <button mat-menu-item>students' favoriate dinner</button>
+        <button mat-menu-item>students' favoriate professor</button>
+      </mat-menu>
   </div>
   <div class = "rightSideBar">
     <h2>Find the larger view of the Image you want</h2>
       <form class="SearchLargeImage">
-        <md-form-field class="SearcheLargeImage">
-          <input mdInput placeholder="Name of Image you want a large view" value="Image1">
-        </md-form-field>
+        <mat-form-field class="SearcheLargeImage">
+          <input matInput placeholder="Name of Image you want a large view" value="Image1">
+        </mat-form-field>
       </form>
-    <button md-button color = "primary">Search</button>
+    <button mat-button color = "primary">Search</button>
   </div>
   
 </body>
