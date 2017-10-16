@@ -27,7 +27,7 @@ describe('lverg:Landing page', () => {
         const signinButton = page.getSigninButton();
         expect(signinButton).toBeTruthy();
         expect(signinButton.getText()).toEqual('Sign in');
-        const dialog = element(by.css('md-dialog-container'));
+        const dialog = element(by.css('mat-dialog-container'));
         expect(dialog).toBeTruthy();
     });
 

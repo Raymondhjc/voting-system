@@ -1,19 +1,19 @@
-<md-card class = "lverg-md-card">
-    <md-toolbar color = "primary">
+<mat-card class = "lverg-mat-card">
+    <mat-toolbar color = "primary">
         <span>Register</span>
-    </md-toolbar>
+    </mat-toolbar>
     <form [formGroup] = "signupForm" (ngSubmit) = "onSubmit()">
         <table class = "lverg-full-width" cellspacing = "0">
             <tr>
                 <td>
-                    <md-form-field class = "lverg-full-width">
-                        <input mdInput placeholder = "First Name" formControlName = "firstname">
-                    </md-form-field>
+                    <mat-form-field class = "lverg-full-width">
+                        <input matInput placeholder = "First Name" formControlName = "firstname">
+                    </mat-form-field>
                 </td>
                 <td>
-                    <md-form-field class = "lverg-full-width">
-                        <input mdInput placeholder = "Last Name" formControlName = "lastname">
-                    </md-form-field>
+                    <mat-form-field class = "lverg-full-width">
+                        <input matInput placeholder = "Last Name" formControlName = "lastname">
+                    </mat-form-field>
                 </td>
             </tr>
         </table>
@@ -39,9 +39,9 @@
         </div>
 
 
-        <md-form-field class = "lverg-full-width">
-            <input mdInput placeholder = "Email" formControlName = "email">
-        </md-form-field>
+        <mat-form-field class = "lverg-full-width">
+            <input matInput placeholder = "Email" formControlName = "email">
+        </mat-form-field>
         <div class = "lverg-errors" *ngIf = "signupForm.get('email').errors!==null">
             <div *ngIf = "signupForm.get('email').errors['required'] &&
                     signupForm.get('email').touched">
@@ -56,9 +56,9 @@
                 Username must be less than 255 characters.
             </div>
         </div>
-        <md-form-field class = "lverg-full-width">
-            <input mdInput placeholder = "Username" formControlName = "username">
-        </md-form-field>
+        <mat-form-field class = "lverg-full-width">
+            <input matInput placeholder = "Username" formControlName = "username">
+        </mat-form-field>
         <div class = "lverg-errors" *ngIf = "signupForm.get('username').errors!==null">
             <div *ngIf = "signupForm.get('username').errors['required'] &&
                     signupForm.get('username').touched">
@@ -78,10 +78,10 @@
             </div>
         </div>
 
-        <md-form-field class = "lverg-full-width">
-            <input mdInput placeholder = "Password" formControlName = "password"
+        <mat-form-field class = "lverg-full-width">
+            <input matInput placeholder = "Password" formControlName = "password"
                    type = "password">
-        </md-form-field>
+        </mat-form-field>
         <div class = "lverg-errors" *ngIf = "signupForm.get('password').errors!==null">
             <div *ngIf = "signupForm.get('password').errors['required'] &&
                     signupForm.get('password').touched">
@@ -92,9 +92,9 @@
                 Password must be more than 6 characters.
             </div>
         </div>
-        <md-form-field class = "lverg-full-width">
-            <input mdInput placeholder = "Repeat your password" formControlName = "repeatPassword" type = "password">
-        </md-form-field>
+        <mat-form-field class = "lverg-full-width">
+            <input matInput placeholder = "Repeat your password" formControlName = "repeatPassword" type = "password">
+        </mat-form-field>
         <div class = "lverg-errors" *ngIf = "signupForm.get('repeatPassword').errors!==null">
             <div *ngIf = "signupForm.get('repeatPassword').errors['required'] &&
                     signupForm.get('repeatPassword').touched">
@@ -105,9 +105,9 @@
                 Repeated password not equal to the original one.
             </div>
         </div>
-        <md-form-field class = "lverg-full-width">
-            <input mdInput placeholder = "UFID" formControlName = "ufid">
-        </md-form-field>
+        <mat-form-field class = "lverg-full-width">
+            <input matInput placeholder = "UFID" formControlName = "ufid">
+        </mat-form-field>
         <div class = "lverg-errors" *ngIf = "signupForm.get('ufid').errors!==null">
             <div *ngIf = "signupForm.get('ufid').errors['required'] &&
                     signupForm.get('ufid').touched">
@@ -120,13 +120,13 @@
         </div>
 
         <div>
-            <button md-fab color = "primary" [disabled] = "!signupForm.valid" type = "submit">
-                <md-icon class = "material-icons">done</md-icon>
+            <button mat-fab color = "primary" [disabled] = "!signupForm.valid" type = "submit">
+                <mat-icon class = "material-icons">done</mat-icon>
             </button>
-            <button md-fab color = "warn" (click) = "onClearClick()" type="button   ">
-                <md-icon class = "material-icons">clear</md-icon>
+            <button mat-fab color = "warn" (click) = "onClearClick()" type="button   ">
+                <mat-icon class = "material-icons">clear</mat-icon>
             </button>
         </div>
     </form>
 
-</md-card>
+</mat-card>

@@ -1,4 +1,4 @@
-import {MdDialog, MdSnackBar} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {SigninComponent} from './signin/signin.component';
 import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs/Subject';
@@ -11,9 +11,9 @@ export class AuthenticationService {
     usernameChanged = new Subject<string>();
     private signedIn = false;
 
-    constructor(public dialog: MdDialog,
+    constructor(public dialog: MatDialog,
                 private router: Router,
-                public snackBar: MdSnackBar) {
+                public snackBar: MatSnackBar) {
     }
 
     getUsername() {

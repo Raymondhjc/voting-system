@@ -1,56 +1,56 @@
-<md-card>
+<mat-card>
     <h1>{{chartTitle}}</h1>
-    <md-tab-group>
-        <md-tab label = "All Elections">
+    <mat-tab-group>
+        <mat-tab label = "All Elections">
             <div class = "search-header">
-                <md-icon>search</md-icon>
-                <md-form-field floatPlaceholder = "">
-                    <input mdInput #filter placeholder = "Search by Election Name">
-                </md-form-field>
+                <mat-icon>search</mat-icon>
+                <mat-form-field floatPlaceholder = "">
+                    <input matInput #filter placeholder = "Search by Election Name">
+                </mat-form-field>
             </div>
             <div class = "admin-table-container mat-elevation-z8">
-                <md-table #table [dataSource] = "elecTable" mdSort>
+                <mat-table #table [dataSource] = "elecTable" matSort>
                     <!-- ID Column -->
-                    <ng-container mdColumnDef = "id">
-                        <md-header-cell *mdHeaderCellDef md-sort-header> ID</md-header-cell>
-                        <md-cell *mdCellDef = "let row"> {{row.id}}</md-cell>
+                    <ng-container matColumnDef = "id">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> ID</mat-header-cell>
+                        <mat-cell *matCellDef = "let row"> {{row.id}}</mat-cell>
                     </ng-container>
 
                     <!-- Election Column -->
-                    <ng-container mdColumnDef = "name">
-                        <md-header-cell *mdHeaderCellDef md-sort-header> Election</md-header-cell>
-                        <md-cell *mdCellDef = "let row"> {{row.name}}</md-cell>
+                    <ng-container matColumnDef = "name">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Election</mat-header-cell>
+                        <mat-cell *matCellDef = "let row"> {{row.name}}</mat-cell>
                     </ng-container>
 
                     <!-- Count Column -->
-                    <ng-container mdColumnDef = "count">
-                        <md-header-cell *mdHeaderCellDef md-sort-header> Ballot Count</md-header-cell>
-                        <md-cell *mdCellDef = "let row"> {{row.count}}</md-cell>
+                    <ng-container matColumnDef = "count">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Ballot Count</mat-header-cell>
+                        <mat-cell *matCellDef = "let row"> {{row.count}}</mat-cell>
                     </ng-container>
 
                     <!-- Status Column -->
-                    <ng-container mdColumnDef = "status">
-                        <md-header-cell *mdHeaderCellDef md-sort-header> Election Status</md-header-cell>
-                        <md-cell *mdCellDef = "let row"> {{row.status}}</md-cell>
+                    <ng-container matColumnDef = "status">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Election Status</mat-header-cell>
+                        <mat-cell *matCellDef = "let row"> {{row.status}}</mat-cell>
                     </ng-container>
 
-                    <md-header-row *mdHeaderRowDef = "displayedColumns"></md-header-row>
-                    <md-row *mdRowDef = "let row; columns: displayedColumns;"></md-row>
-                </md-table>
+                    <mat-header-row *matHeaderRowDef = "displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef = "let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
 
-                <md-paginator #paginator [length] = "adminService.data.length" [pageIndex] = "0" [pageSize] = "4"
+                <mat-paginator #paginator [length] = "adminService.data.length" [pageIndex] = "0" [pageSize] = "4"
                               [pageSizeOptions] = "[2, 4, 6, 8]">
-                </md-paginator>
+                </mat-paginator>
 
             </div>
-        </md-tab>
-        <md-tab label = "Proceeding Elections">
+        </mat-tab>
+        <mat-tab label = "Proceeding Elections">
 
             <new-election></new-election>
 
-        </md-tab>
-        <md-tab label = "Closed Elections">
+        </mat-tab>
+        <mat-tab label = "Closed Elections">
             content 3
-        </md-tab>
-    </md-tab-group>
-</md-card>
+        </mat-tab>
+    </mat-tab-group>
+</mat-card>

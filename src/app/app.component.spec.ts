@@ -1,7 +1,7 @@
 import {TestBed, async} from '@angular/core/testing';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
-import {MdMenuModule, MdSidenavModule} from '@angular/material';
+import {MatMenuModule, MatSidenavModule} from '@angular/material';
 import {RouterTestingModule} from '@angular/router/testing';
 import {AuthenticationService} from './authentication/authentication.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -21,9 +21,9 @@ describe('lverg:AppComponent', () => {
                 {provide: AuthenticationService, useClass: AuthenticationServiceStub}
             ],
             imports: [
-                MdSidenavModule,
+                MatSidenavModule,
                 RouterTestingModule,
-                MdMenuModule,
+                MatMenuModule,
                 BrowserAnimationsModule
             ]
         }).compileComponents();

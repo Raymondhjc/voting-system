@@ -1,7 +1,7 @@
 import {HeaderComponent} from './header.component';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
-import {MdMenuModule} from '@angular/material';
+import {MatMenuModule} from '@angular/material';
 import {AuthenticationService} from '../authentication/authentication.service';
 import {Subject} from 'rxjs/Subject';
 import {RouterTestingModule} from '@angular/router/testing';
@@ -41,7 +41,7 @@ describe('lverg:HeaderComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [MdMenuModule,
+            imports: [MatMenuModule,
                 RouterTestingModule],
             providers: [
                 {provide: AuthenticationService, useClass: AuthenticationServiceStub}

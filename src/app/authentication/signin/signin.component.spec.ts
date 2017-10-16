@@ -2,7 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SigninComponent} from './signin.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatInputModule, MD_DIALOG_DATA, MdDialogRef} from '@angular/material';
+import {MatInputModule, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {MatDialogModule} from '@angular/material';
 import {ServerInteractService} from '../../common/serverInteract.service';
 import {Observable} from 'rxjs/Observable';
@@ -31,8 +31,8 @@ describe('lverg:SigninComponent', () => {
                 BrowserAnimationsModule],
             declarations: [SigninComponent],
             providers: [
-                {provide: MD_DIALOG_DATA, useValue: {}},
-                {provide: MdDialogRef, useValue: {}},
+                {provide: MAT_DIALOG_DATA, useValue: {}},
+                {provide: MatDialogRef, useValue: {}},
                 {provide: ServerInteractService, useClass: ServerInteractServiceStub}
             ]
         })

@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {DashboardComponent} from './user-dashboard.component';
-import {MdToolbarModule, MatExpansionModule} from '@angular/material';
+import {MatToolbarModule, MatExpansionModule} from '@angular/material';
 import {FormsModule} from '@angular/forms';
 import {AuthenticationService} from '../authentication.service';
 import {Observable} from 'rxjs/Observable';
@@ -27,7 +27,7 @@ describe('lverg:DashboardComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [MdToolbarModule,
+            imports: [MatToolbarModule,
                 MatExpansionModule,
                 FormsModule,
                 BrowserAnimationsModule],

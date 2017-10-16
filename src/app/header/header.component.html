@@ -1,18 +1,18 @@
-<md-toolbar color = "primary" class="lverg-header">
-    <button md-button class = "lverg-logo" (click)="toWelcome()">Voting System</button>
+<mat-toolbar color = "primary" class="lverg-header">
+    <button mat-button class = "lverg-logo" (click)="toWelcome()">Voting System</button>
     <span class = "lverg-spacer"></span>
-    <button md-button class = "lverg-signin" (click) = "onHeaderSignIn()" *ngIf = "!signInStatus">Sign in</button>
-    <button md-button class = "lverg-signup" routerLink = "/signup" *ngIf = "!signInStatus">Register</button>
+    <button mat-button class = "lverg-signin" (click) = "onHeaderSignIn()" *ngIf = "!signInStatus">Sign in</button>
+    <button mat-button class = "lverg-signup" routerLink = "/signup" *ngIf = "!signInStatus">Register</button>
 
 
-    <md-menu #appMenu = "mdMenu">
-        <button md-menu-item routerLink = "/user-dashboard"> User Dashboard</button>
-        <button md-menu-item (click) = "onHeaderSignOut()"> Sign out</button>
-    </md-menu>
-    <button md-button class = "lverg-username" [mdMenuTriggerFor] = "appMenu" *ngIf = "signInStatus">
+    <mat-menu #appMenu = "matMenu">
+        <button mat-menu-item routerLink = "/user-dashboard"> User Dashboard</button>
+        <button mat-menu-item (click) = "onHeaderSignOut()"> Sign out</button>
+    </mat-menu>
+    <button mat-button class = "lverg-username" [matMenuTriggerFor] = "appMenu" *ngIf = "signInStatus">
         Hello, {{this.username}}!
-        <md-icon class = "material-icons">list</md-icon>
+        <mat-icon class = "material-icons">list</mat-icon>
     </button>
 
-</md-toolbar>
+</mat-toolbar>
 

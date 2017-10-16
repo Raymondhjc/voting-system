@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {WelcomePageComponent} from './welcome-page.component';
-import {MdCardModule} from '@angular/material';
+import {MatCardModule} from '@angular/material';
 
 describe('lverg:WelcomePageComponent', () => {
     let component: WelcomePageComponent;
@@ -9,7 +9,7 @@ describe('lverg:WelcomePageComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [MdCardModule],
+            imports: [MatCardModule],
             declarations: [WelcomePageComponent]
         })
             .compileComponents();

@@ -10,24 +10,24 @@ export class SigninPage {
     }
 
     getSigninDialog() {
-        return element(by.css('md-dialog-container'));
+        return element(by.css('mat-dialog-container'));
     }
 
     getUsernameInput() {
-        return element(by.css('#md-input-0'));
+        return element(by.css('#mat-input-0'));
     }
 
     getPasswordInput() {
-        return element(by.css('#md-input-1'));
+        return element(by.css('#mat-input-1'));
     }
 
     getSigninButton() {
-        return element(by.css('#cdk-overlay-0 > md-dialog-container > app-signin > form > ' +
+        return element(by.css('#cdk-overlay-0 > mat-dialog-container > app-signin > form > ' +
             'div > button.signinButton.mat-raised-button.mat-primary'));
     }
 
     getCancelButton() {
-        return element(by.css('#cdk-overlay-0 > md-dialog-container > app-signin > form > ' +
+        return element(by.css('#cdk-overlay-0 > mat-dialog-container > app-signin > form > ' +
             'div > button.cancelButton.mat-raised-button.mat-warn'));
     }
 }

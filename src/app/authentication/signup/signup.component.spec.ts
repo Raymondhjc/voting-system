@@ -1,7 +1,7 @@
 import {async, ComponentFixture, inject, TestBed} from '@angular/core/testing';
 
 import {SignupComponent} from './signup.component';
-import {MdToolbarModule} from '@angular/material';
+import {MatToolbarModule} from '@angular/material';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {ServerInteractService} from '../../common/serverInteract.service';
 import {HttpModule, ResponseOptions, XHRBackend} from '@angular/http';
@@ -47,7 +47,7 @@ describe('lverg:SignupComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
-                MdToolbarModule,
+                MatToolbarModule,
                 ReactiveFormsModule,
                 HttpModule],
             providers: [
