@@ -47,7 +47,8 @@ import {HttpModule} from '@angular/http';
         WelcomePageComponent,
         DataViewComponent,
         ScannerPageComponent,
-        EqualValidatorDirective
+        EqualValidatorDirective,
+BallotCheckComponent
     ],
     imports: [
         BrowserModule,
