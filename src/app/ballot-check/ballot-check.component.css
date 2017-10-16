@@ -1,37 +1,37 @@
-.ballot-view{
-		margin : 0px 0px 0px 50px;
-		
-		float:left;
+.ballot-view {
+    margin: 0px 0px 0px 50px;
+    float: left;
 }
-.PreNex{
-		display: flex ;
-		margin-top: 30px;
 
+.PreNex {
+    display: flex;
+    margin-top: 30px;
 }
-.raised-button{
-		margin-right: 30px;
+
+.raised-button {
+    margin-right: 30px;
 }
-.check{
-	
-	margin : 0px 0px 0px 50px;
-	float:left;
+
+.check {
+    margin: 0px 0px 0px 50px;
+    float: left;
 }
-.submit{
-	
-	
-	margin : 65px 0px 0px 0px;
+
+.submit {
+
+    margin: 65px 0px 0px 0px;
 
 }
 
 .example-radio-group {
-  display: inline;/* to show the button in one line*/
-  flex-direction: column;
+    display: inline; /* to show the button in one line*/
+    flex-direction: column;
 }
 
 .example-radio-button {
-  margin: 5px;
+    margin: 5px;
 }
 
 .example-selected-value {
-  margin: 15px 0;
+    margin: 15px 0;
 }

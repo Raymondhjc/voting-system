@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DataSource} from '@angular/cdk/collections';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-import { MdTableModule, MdButtonModule, MdListModule, MdTabsModule } from '@angular/material';
+import { MatTableModule, MatButtonModule, MatListModule, MatTabsModule } from '@angular/material';
 import { candidatesP, candidatesVP, candidatesGR} from '../ballot-check/mock-votesdata';
 import { Candidate} from '../ballot-check/candidate';
 

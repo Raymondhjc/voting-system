@@ -1,5 +1,7 @@
 export class DataSubmit {
-	ballot : string;
-	result : string[];
-	constructor(ballot,result){	}
+    ballot: string;
+    result: string[];
+
+    constructor(ballot, result) {
+    }
 }

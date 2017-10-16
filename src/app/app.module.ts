@@ -20,7 +20,8 @@ import {
     MatExpansionModule,
     MatSnackBarModule,
     MatListModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatRadioModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SignupComponent} from './authentication/signup/signup.component';
@@ -36,6 +37,7 @@ import {SignedInAuthGuardService} from './common/signed-in-auth-guard.service';
 import {EqualValidatorDirective} from './common/equal-validator.directive';
 import {ServerInteractService} from './common/serverInteract.service';
 import {HttpModule} from '@angular/http';
+import {BallotCheckComponent} from './ballot-check/ballot-check.component';
 
 @NgModule({
     declarations: [
@@ -48,7 +50,7 @@ import {HttpModule} from '@angular/http';
         DataViewComponent,
         ScannerPageComponent,
         EqualValidatorDirective,
-BallotCheckComponent
+        BallotCheckComponent
     ],
     imports: [
         BrowserModule,
@@ -71,6 +73,7 @@ BallotCheckComponent
         MatSnackBarModule,
         MatListModule,
         MatTooltipModule,
+        MatRadioModule,
         /** Admin module*/
         AdminModule
     ],

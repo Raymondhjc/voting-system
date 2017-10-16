@@ -1,124 +1,123 @@
+<h1 style = "text-align:center">All the ids</h1>
+<div class = "button-column">
 
 
-<h1 style="text-align:center">All the ids</h1>
-<div class="button-column">
+    <button mat-raised-button mat-button (click) = "SelectData1()" class = "raised-button"> President</button>
 
+    <button mat-raised-button (click) = "SelectData2()" class = "raised-button" color = "primary">vice-President
+    </button>
 
-  <button md-raised-button md-button  (click)="SelectData1()" class="raised-button"> President</button>
-  
-  <button md-raised-button (click)="SelectData2()" class="raised-button" color="primary">vice-President</button>
+    <button mat-raised-button (click) = "SelectData3()" class = "raised-button" color = "accent">Governor</button>
 
-  <button md-raised-button (click)="SelectData3()" class="raised-button" color="accent">Governor</button>
-    
-  <button md-raised-button class="raised-button" disabled>Nobody</button>
+    <button mat-raised-button class = "raised-button" disabled>Nobody</button>
 
 
 </div>
 <div>
-<md-tab-group>
+    <mat-tab-group>
 
-<!--the first table shows the total votes -->
- <md-tab label="Total">
-<div class="example-container mat-elevation-z8">
-  <md-table #table [dataSource]="dataSource">
-   <!-- id Column -->
-    <ng-container mdColumnDef="id">
-      <md-header-cell *mdHeaderCellDef> No. </md-header-cell>
-      <md-cell *mdCellDef="let Candidate"> {{Candidate.id}} </md-cell>
-    </ng-container>
+        <!--the first table shows the total votes -->
+        <mat-tab label = "Total">
+            <div class = "example-container mat-elevation-z8">
+                <mat-table #table [dataSource] = "dataSource">
+                    <!-- id Column -->
+                    <ng-container matColumnDef = "id">
+                        <mat-header-cell *matHeaderCellDef> No.</mat-header-cell>
+                        <mat-cell *matCellDef = "let Candidate"> {{Candidate.id}}</mat-cell>
+                    </ng-container>
 
-    <!-- Name Column -->
-    <ng-container mdColumnDef="name">
-      <md-header-cell *mdHeaderCellDef> Name </md-header-cell>
-      <md-cell *mdCellDef="let Candidate"> {{Candidate.name}} </md-cell>
-    </ng-container>
+                    <!-- Name Column -->
+                    <ng-container matColumnDef = "name">
+                        <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
+                        <mat-cell *matCellDef = "let Candidate"> {{Candidate.name}}</mat-cell>
+                    </ng-container>
 
-    <!-- votes Column -->
-    <ng-container mdColumnDef="votes">
-      <md-header-cell *mdHeaderCellDef> Votes </md-header-cell>
-      <md-cell *mdCellDef="let Candidate"> {{Candidate.countsTotal}} </md-cell>
-    </ng-container>
+                    <!-- votes Column -->
+                    <ng-container matColumnDef = "votes">
+                        <mat-header-cell *matHeaderCellDef> Votes</mat-header-cell>
+                        <mat-cell *matCellDef = "let Candidate"> {{Candidate.countsTotal}}</mat-cell>
+                    </ng-container>
 
-    <!-- rate Column -->
-    <ng-container mdColumnDef="rate">
-      <md-header-cell *mdHeaderCellDef> Rate </md-header-cell>
-      <md-cell *mdCellDef="let Candidate"> {{Candidate.rateTotal}} </md-cell>
-    </ng-container>
+                    <!-- rate Column -->
+                    <ng-container matColumnDef = "rate">
+                        <mat-header-cell *matHeaderCellDef> Rate</mat-header-cell>
+                        <mat-cell *matCellDef = "let Candidate"> {{Candidate.rateTotal}}</mat-cell>
+                    </ng-container>
 
-    <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
-    <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
-  </md-table>
+                    <mat-header-row *matHeaderRowDef = "displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef = "let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
+            </div>
+        </mat-tab>
+        <!--the second table shows the votes we are confident about  -->
+        <mat-tab label = "For Sure">
+            <div class = "example-container mat-elevation-z8">
+                <mat-table #table [dataSource] = "dataSource">
+                    <!-- id Column -->
+                    <ng-container matColumnDef = "id">
+                        <mat-header-cell *matHeaderCellDef> No.</mat-header-cell>
+                        <mat-cell *matCellDef = "let Candidate"> {{Candidate.id}}</mat-cell>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef = "name">
+                        <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
+                        <mat-cell *matCellDef = "let Candidate"> {{Candidate.name}}</mat-cell>
+                    </ng-container>
+
+                    <!-- votes Column -->
+                    <ng-container matColumnDef = "votes">
+                        <mat-header-cell *matHeaderCellDef> Votes</mat-header-cell>
+                        <mat-cell *matCellDef = "let Candidate"> {{Candidate.countsSound}}</mat-cell>
+                    </ng-container>
+
+                    <!-- rate Column -->
+                    <ng-container matColumnDef = "rate">
+                        <mat-header-cell *matHeaderCellDef> Rate</mat-header-cell>
+                        <mat-cell *matCellDef = "let Candidate"> {{Candidate.rateSound}}</mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef = "displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef = "let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
+            </div>
+        </mat-tab>
+        <!--the third table shows the uncertain votes -->
+        <mat-tab label = "Uncertain">
+            <div class = "container-mat-elevation-z8">
+                <mat-table #table [dataSource] = "dataSource">
+
+
+                    <!-- id Column -->
+                    <ng-container matColumnDef = "id">
+                        <mat-header-cell *matHeaderCellDef> No.</mat-header-cell>
+                        <mat-cell *matCellDef = "let Candidate"> {{Candidate.id}}</mat-cell>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef = "name">
+                        <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
+                        <mat-cell *matCellDef = "let Candidate"> {{Candidate.name}}</mat-cell>
+                    </ng-container>
+
+                    <!-- votes Column -->
+                    <ng-container matColumnDef = "votes">
+                        <mat-header-cell *matHeaderCellDef> Votes</mat-header-cell>
+                        <mat-cell *matCellDef = "let Candidate"> {{Candidate.countsUnsure}}</mat-cell>
+                    </ng-container>
+
+                    <!-- rate Column -->
+                    <ng-container matColumnDef = "rate">
+                        <mat-header-cell *matHeaderCellDef> Rate</mat-header-cell>
+                        <mat-cell *matCellDef = "let Candidate"> {{Candidate.rateUnsure}}</mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef = "displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef = "let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
 </div>
-</md-tab>
-<!--the second table shows the votes we are confident about  -->
- <md-tab label="For Sure">
- <div class="example-container mat-elevation-z8">
-  <md-table #table [dataSource]="dataSource">
-    <!-- id Column -->
-    <ng-container mdColumnDef="id">
-      <md-header-cell *mdHeaderCellDef> No. </md-header-cell>
-      <md-cell *mdCellDef="let Candidate"> {{Candidate.id}} </md-cell>
-    </ng-container>
 
-    <!-- Name Column -->
-    <ng-container mdColumnDef="name">
-      <md-header-cell *mdHeaderCellDef> Name </md-header-cell>
-      <md-cell *mdCellDef="let Candidate"> {{Candidate.name}} </md-cell>
-    </ng-container>
-
-    <!-- votes Column -->
-    <ng-container mdColumnDef="votes">
-      <md-header-cell *mdHeaderCellDef> Votes </md-header-cell>
-      <md-cell *mdCellDef="let Candidate"> {{Candidate.countsSound}} </md-cell>
-    </ng-container>
-
-    <!-- rate Column -->
-    <ng-container mdColumnDef="rate">
-      <md-header-cell *mdHeaderCellDef> Rate </md-header-cell>
-      <md-cell *mdCellDef="let Candidate"> {{Candidate.rateSound}} </md-cell>
-    </ng-container>
-
-    <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
-    <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
-  </md-table>
-</div>
-</md-tab>
-<!--the third table shows the uncertain votes -->
- <md-tab label="Uncertain">
- <div class="container-mat-elevation-z8">
-  <md-table #table [dataSource]="dataSource">
-
-   
-    <!-- id Column -->
-    <ng-container mdColumnDef="id">
-      <md-header-cell *mdHeaderCellDef> No. </md-header-cell>
-      <md-cell *mdCellDef="let Candidate"> {{Candidate.id}} </md-cell>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container mdColumnDef="name">
-      <md-header-cell *mdHeaderCellDef> Name </md-header-cell>
-      <md-cell *mdCellDef="let Candidate"> {{Candidate.name}} </md-cell>
-    </ng-container>
-
-    <!-- votes Column -->
-    <ng-container mdColumnDef="votes">
-      <md-header-cell *mdHeaderCellDef> Votes </md-header-cell>
-      <md-cell *mdCellDef="let Candidate"> {{Candidate.countsUnsure}} </md-cell>
-    </ng-container>
-
-    <!-- rate Column -->
-    <ng-container mdColumnDef="rate">
-      <md-header-cell *mdHeaderCellDef> Rate </md-header-cell>
-      <md-cell *mdCellDef="let Candidate"> {{Candidate.rateUnsure}} </md-cell>
-    </ng-container>
-
-    <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
-    <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
-  </md-table>
-</div>
-</md-tab>
-</md-tab-group>
-</div>
-
-<button md-raised-button routerLink = "/ballot-check" class="check-button" color="primary">Check Ballots</button>
+<button mat-raised-button routerLink = "/ballot-check" class = "check-button" color = "primary">Check Ballots</button>
