@@ -91,10 +91,14 @@ export class newElectionComponent implements OnInit {
   }
   isSecondFormValid(control: AbstractControl) {
     if ((<FormArray>control).length > 0) {
-      if ((<FormArray>(<FormArray>control).controls[0].get('options')).length > 0) {
-        return null;
+      let _iF = false;
+      for (let i = 0; <FormArray>(<FormArray>control).controls[i] != undefined; i++) {
+        if ((<FormArray>(<FormArray>control).controls[i].get('options')).length == 0) {
+          _iF = true;
+          break;
+        }
       }
-      return { invalidForm: true };
+      return _iF == true ? { invalidForm: true } : null;
     }
 
     return { invalidForm: true };
