@@ -37,62 +37,66 @@
             <div id="sections" formArrayName="sections">
                 <div *ngFor="let sectionCtrl of secondFormGroup.get('sections').controls; let i = index" [formGroupName]="i">
                     <md-card class="section-card">
-                        <md-card-header>
-                            <md-card-title>
-                                <div class="form-group">
-                                    <label for="sectionName">Section Name</label>
-                                    <md-form-field>
-                                        <input mdInput type="text" id="sectionName">
-                                    </md-form-field>
-                                </div>
-                            </md-card-title>
-                        </md-card-header>
+                        <md-grid-list cols="15" rowHeight="100px">
+                            <md-grid-tile colspan="14">
+                                <md-card-header>
+                                    <md-card-title>
+                                        <div class="form-group">
+                                            <label for="sectionName">Section Name</label>
+                                            <md-form-field>
+                                                <input mdInput type="text" id="sectionName">
+                                            </md-form-field>
+                                        </div>
+                                    </md-card-title>
+                                </md-card-header>
+                            </md-grid-tile>
+                            <md-grid-tile>
+                                <button md-button (click)="onDeleteSection(i)"><i class="material-icons">delete</i></button>
+                            </md-grid-tile>
+                        </md-grid-list>
+
                         <md-card-content>
                             <label for="options">Options</label>
                             <div id="options" formArrayName="options">
-                                <div>
-                                    <div *ngFor="let optionCtrl of secondFormGroup.get('sections').controls[i].get('options').controls; let j = index">
-                                        <!-- <input id="option" type="radio" [formControlName]="i">
-                                                        <input mdInput type="text" [formControlName]="i"> -->
-                                        <md-radio-group>
-                                            <md-radio-button value="j">
-                                                <md-form-field>
-                                                    <input mdInput type="text" [formControlName]="j">
-                                                </md-form-field>
-                                            </md-radio-button>
-                                        </md-radio-group>
-                                    </div>
-                                    <button type="button" md-button (click)="onAddOption(i)"><i class="material-icons" mdPreffix>add</i>add option</button>
+                                <div *ngFor="let optionCtrl of secondFormGroup.get('sections').controls[i].get('options').controls; let j = index" [formGroupName]="j">
+                                    <md-radio-group>
+                                        <md-radio-button value="j">
+                                            <md-form-field>
+                                                <input mdInput type="text">
+                                            </md-form-field>
+                                            <i class="material-icons" mdSuffix (click)="onDeleteOption(i,j)">delete_forever</i>
+                                        </md-radio-button>
+                                    </md-radio-group>
                                 </div>
+                                <button type="button" md-button (click)="onAddOption(i)"><i class="material-icons" mdPreffix>add</i>add option</button>
                             </div>
                         </md-card-content>
                     </md-card>
                 </div>
             </div>
+        </form>
 
-            <md-expansion-panel>
-                <md-expansion-panel-header>
-                    <i class="material-icons" mdPreffix>add</i>
-                    <md-panel-title>Add a new section</md-panel-title>
-                    <md-panel-description>Click to select the type of the section</md-panel-description>
-                </md-expansion-panel-header>
-                <md-radio-group>
-                    <md-radio-button value="1">Single Choice</md-radio-button>
-                    <md-radio-button value="2">Multiple Choices</md-radio-button>
-                </md-radio-group>
-                <!-- <input [(ngModel)]="optionCount" mdInput type="number" required> -->
-                <div>
-                    <button type="button" md-button color="primary" (click)="onAddSection()">
+        <md-expansion-panel [expanded]="addFinished" (opened)="addFinished = true">
+            <md-expansion-panel-header>
+                <i class="material-icons" mdPreffix>add</i>
+                <md-panel-title>Add a new section</md-panel-title>
+                <md-panel-description>Click to select the type of the section</md-panel-description>
+            </md-expansion-panel-header>
+            <md-radio-group [(ngModel)]="choiceType">
+                <md-radio-button [value]="1">Single Choice</md-radio-button>
+                <md-radio-button [value]="2">Multiple Choices</md-radio-button>
+            </md-radio-group>
+            <div>
+                <button type="button" md-button color="primary" (click)="onAddSection()">
                         <i class="material-icons" mdPreffix>add</i>
                         Add Section
                     </button>
-                </div>
-            </md-expansion-panel>
-            <div>
-                <button type="button" md-button mdStepperPrevious>Back</button>
-                <button type="submit" md-button mdStepperNext (click)="onSubmit()">Next</button>
             </div>
-        </form>
+        </md-expansion-panel>
+        <div>
+            <button type="button" md-button mdStepperPrevious>Back</button>
+            <button type="submit" md-button mdStepperNext (click)="onSubmit()">Next</button>
+        </div>
     </md-step>
     <md-step>
         <ng-template mdStepLabel>Done</ng-template>

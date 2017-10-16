@@ -10,6 +10,8 @@ export class newElectionComponent implements OnInit {
   //isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  choiceType: number = 1;
+  addFinished = false;
   //startDate = new Date(2017, 1, 1);
 
   constructor(private _formBuilder: FormBuilder) { }
@@ -26,30 +28,26 @@ export class newElectionComponent implements OnInit {
       'sections': new FormArray([]),
     });
   }
-  // onAddSection(optionCount: number) {
-  //   const options = new FormArray([]);
-  //   for (let i = 0; i < optionCount; i++) {
-  //     options.push(new FormControl(null, Validators.required));
-  //   }
-  //   (<FormArray>this.secondFormGroup.get('sections')).push(new FormGroup({
-  //     'sectionName': new FormControl("NAME", Validators.required),
-  //     'options': options
-  //   }));
-
-  // }
   onAddSection() {
+    this.addFinished = false;
     const options = new FormArray([]);
     (<FormArray>this.secondFormGroup.get('sections')).push(new FormGroup({
-      'sectionName': new FormControl(null, Validators.required),
+      'sectionName': new FormControl(this.choiceType, Validators.required),
       'options': options
     }));
-
+  }
+  onDeleteSection(index: number) {
+    (<FormArray>this.secondFormGroup.get('sections')).removeAt(index);
   }
 
   onAddOption(index: number) {
-    const control = new FormControl("option", Validators.required);
+    const control = new FormControl("option " + index, Validators.required);
     const sections = (<FormArray>this.secondFormGroup.get('sections'));
     (<FormArray>sections.controls[index].get('options')).push(control);
+  }
+  onDeleteOption(sectionIndex: number, optionIndex: number) {
+    const sections = (<FormArray>this.secondFormGroup.get('sections'));
+    (<FormArray>sections.controls[sectionIndex].get('options')).removeAt(optionIndex);
   }
 
   onSubmit(): void {

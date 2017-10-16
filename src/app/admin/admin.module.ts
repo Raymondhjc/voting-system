@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { AdminComponent } from './admin.component';
 import { newElectionComponent } from './new-election/new-election.component';
-import { sectionComponent } from './new-election/section.component';
 
 import {
     MatInputModule,
@@ -19,17 +19,18 @@ import {
     MatDatepickerModule,
     MatListModule,
     MatExpansionModule,
-    MatRadioModule
+    MatRadioModule,
+    MatGridListModule
 } from '@angular/material';
 
 @NgModule({
     declarations: [
         AdminComponent,
-        newElectionComponent,
-        sectionComponent
+        newElectionComponent
     ],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         FormsModule,
         MatInputModule,
         MatButtonModule,
@@ -47,10 +48,11 @@ import {
         MatDatepickerModule,
         MatListModule,
         MatExpansionModule,
-        MatRadioModule
-        
+        MatRadioModule,
+        MatGridListModule
+
     ],
-    exports:[
+    exports: [
         AdminComponent,
         /** Election table modules */
         MatTableModule,
