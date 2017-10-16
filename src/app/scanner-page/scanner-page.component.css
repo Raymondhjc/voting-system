@@ -23,11 +23,9 @@ body{
     margin-bottom:0px;
     margin-right:5px;
     padding : 1px;
-    border-top-left-radius:0px;
-    border-top-right-radius:0px;
-    border-bottom-right-radius:5px;
-    border-bottom-left-radius:5px;
+    border-radius:5px;
     width: 170px;
+    height: auto;
 }
 .leftSideBar{
     text-align:left; 
@@ -35,11 +33,12 @@ body{
     border-radius: 5px;
     padding:20px;
     font-size:105%;
-    width:auto;
+    width:260px;
     float: left;
 }
 .countNum{
     margin:10px;
+    padding:20px;
     text-align: center;
     float:left;
     border-radius: 5px;
@@ -51,6 +50,7 @@ body{
     font-size: 110%;
 }
 .LargeImage{
+    padding:20px;
     margin:10px;
     text-align: center;
     float:left;
