@@ -1,3 +1,4 @@
+import { fakeAsync } from '@angular/core/testing/src/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By }              from '@angular/platform-browser';
 import { DebugElement }    from '@angular/core';
@@ -11,6 +12,7 @@ describe('ScannerPageComponent', () => {
   let fixture: ComponentFixture<ScannerPageComponent>;
   let comp:    ScannerPageComponent;
   let de:      DebugElement;
+  let de2:      DebugElement;
   let el:      HTMLElement;
   let elb:     HTMLButtonElement;
   let eli:     HTMLInputElement;
@@ -71,11 +73,32 @@ describe('ScannerPageComponent', () => {
     
   })
 
-  it('should be able nextPage button at begin', () =>{
+  it('should enable nextPage button at begin', () =>{
     de = fixture.debugElement.query(By.css('#nextButton'));
     elb = de.nativeElement;
-    expect(elb).toBeTruthy("nextPage button is able");
+    expect(elb).toBeTruthy("nextPage button is enabled");
   })
+
+  it('nextButton should be disabled when reach the last image', () =>{
+    de = fixture.debugElement.query(By.css('#nextButton'));
+    elb = de.nativeElement;
+
+    de2 = fixture.debugElement.query(By.css('#count'));
+    el = de2.nativeElement;
+
+    // get the number of images
+    let imageCount = parseInt(el.textContent, 10);
+
+    // simulate click of next page button multiple times
+    for(var i = 0; i < imageCount; i++) {
+      de.triggerEventHandler('click', null);
+    }
+
+    // when it reaches the last image, it should disable the nextButton
+    expect(elb.disabled ).toBeTruthy("nextPage button is disabled");
+
+  })
+  
 
   //testing leftside bar
   it('should display head2', () =>{
@@ -85,13 +108,6 @@ describe('ScannerPageComponent', () => {
     expect(el.textContent).toContain('Find the larger view of the Image you want');
   })
 
-  it('should display input placeHolder', () =>{
-    de = fixture.debugElement.query(By.css('#placeholder'));
-    eli = de.nativeElement;
-    fixture.detectChanges();
-    expect(eli.placeholder).toEqual('Name of Image you want a large view');
-  })
-
   it('should display input value', () =>{
     de = fixture.debugElement.query(By.css('#placeholder'));
     eli = de.nativeElement;
@@ -99,10 +115,10 @@ describe('ScannerPageComponent', () => {
     expect(eli.value).toEqual('Image1');
   })
  
-  it('should be able search button at begin', () =>{
+  it('should enable search button at begin', () =>{
     de = fixture.debugElement.query(By.css('#searchButton'));
     elb = de.nativeElement;
-    expect(elb).toBeTruthy("search button is able");
+    expect(elb).toBeTruthy("search button is enabled");
   })
 
   //testing count part
@@ -113,23 +129,23 @@ describe('ScannerPageComponent', () => {
     expect(el.textContent).toContain('Counting the total number');
   })
 
-  it('should be able count button at begin', () =>{
+  it('should enable count button at begin', () =>{
     de = fixture.debugElement.query(By.css('#countButton'));
     elb = de.nativeElement;
-    expect(elb).toBeTruthy("count button is able");
+    expect(elb).toBeTruthy("count button is enabled");
   })
 
-  it('should be able cancel button at begin', () =>{
-    de = fixture.debugElement.query(By.css('#cancelButton'));
+  it('should enable reset button at begin', () =>{
+    de = fixture.debugElement.query(By.css('#resetButton1'));
     elb = de.nativeElement;
-    expect(elb).toBeTruthy("cancel button is able");
+    expect(elb).toBeTruthy("reset button is enabled");
   })
 
   //testing navbar
-  it('should be able selectType button at begin', () =>{
+  it('should enable selectType button at begin', () =>{
     de = fixture.debugElement.query(By.css('#votingType'));
     elb = de.nativeElement;
-    expect(elb).toBeTruthy("votingType button is able");
+    expect(elb).toBeTruthy("votingType button is enabled");
   })
 
  

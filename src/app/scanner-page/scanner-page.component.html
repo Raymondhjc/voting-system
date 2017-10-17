@@ -23,12 +23,14 @@
       <md-card-header>
         <h2>Find the larger view of the Image you want</h2>
       </md-card-header>
-      <form class="SearchLargeImage">
-              <md-form-field class="SearcheLargeImage">
-                <input id = "placeholder" mdInput placeholder="Name of Image you want a large view" value="Image1">
-              </md-form-field>
+      <form>
+            <md-form-field>
+              <p id = "placeHolderHint" >Name of Image you want a large view </p>
+              <input id = "placeholder" #placeholder mdInput value="Image1">
+            </md-form-field>
       </form>
     <button id = "searchButton" md-button color = "primary">Search</button>
+    <button id = "resetButton1" (click)="resetInput(placeholder)" md-button color = "primary">Reset</button>
     </md-card>
   </div>
 
@@ -37,11 +39,13 @@
         <md-card-header>
           <md-card-title id="mdCardTitle1" >Counting the total number </md-card-title>
         </md-card-header>
-        <p #count>3</p>
+        <div ng-app="">
+          <p id="count" #count> {{countNumber}} </p>
+        </div>
 
       <md-card-actions>
-        <button id="countButton" #Count md-button>Count</button>
-        <button id="cancelButton" #Cancel md-button>Cancel</button>
+        <button id="countButton" #countButton (click)="countImageNumber()" md-button color = "primary">Count</button>
+        <button id="resetButton2" #resetButton (click)="resetImageNumber()" md-button color = "primary">Reset</button>
       </md-card-actions>
     </md-card>
   </div>
@@ -59,8 +63,8 @@
       <br>
     
       <md-card-actions>
-        <button id = "previousButton" #previousButton [disabled] = "true" (click)="previousPage(image, previousButton, nextButton)" md-button>Previous</button>
-        <button id = "nextButton" #nextButton [disabled] = "false" (click)="nextPage(image, previousButton, nextButton)" md-button>Next</button>
+        <button id = "previousButton" #previousButton [disabled] = "true" (click)="previousPage(image, previousButton, nextButton)" md-button color = "primary">Previous</button>
+        <button id = "nextButton" #nextButton [disabled] = "false" (click)="nextPage(image, previousButton, nextButton)" md-button color = "primary">Next</button>
       </md-card-actions>
     </md-card>
   </div>
