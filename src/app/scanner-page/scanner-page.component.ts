@@ -24,7 +24,7 @@ export class ScannerPageComponent implements OnInit {
       this.imageIndex = this.imageIndex - 1;
       image.src = this.imageArray[this.imageIndex]
     }
-    if (this.imageIndex == 0){
+    if (this.imageIndex === 0){
       previousButton.disabled = true 
     }
     nextButton.disabled = false;
@@ -35,7 +35,7 @@ export class ScannerPageComponent implements OnInit {
       this.imageIndex = this.imageIndex + 1;
       image.src = this.imageArray[this.imageIndex]
     }
-    if (this.imageIndex == this.imageArray.length - 1){
+    if (this.imageIndex === this.imageArray.length - 1){
       nextButton.disabled = true
     }
     previousButton.disabled = false;

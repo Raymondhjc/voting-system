@@ -7,7 +7,7 @@ import {MdCardModule} from '@angular/material';
 import {MatMenuModule} from '@angular/material';
 import {MdMenuModule} from '@angular/material';
 
-describe('ScannerPageComponent', () => {
+describe('TG：ScannerPageComponent', () => {
   let component: ScannerPageComponent;
   let fixture: ComponentFixture<ScannerPageComponent>;
   let comp:    ScannerPageComponent;
