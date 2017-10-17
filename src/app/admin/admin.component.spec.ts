@@ -1,27 +1,32 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AdminComponent } from './admin.component';
-xdescribe('AdminComponent', () => {
+import { AdminService } from './admin.service';
+import { newElectionComponent } from './new-election/new-election.component';
+import { AdminModule } from './admin.module';
+
+fdescribe('AdminComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        AdminComponent
+      imports: [
+        AdminModule
       ],
+      declarations: [
+      ],
+      providers: [
+        AdminService
+      ]
     }).compileComponents();
   }));
-  it('should create the app', async(() => {
+  it('should create the admin table app', async(() => {
     const fixture = TestBed.createComponent(AdminComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
-  it(`should have as title 'app'`, async(() => {
+  it(`should import the data from admin component service`, async(() => {
     const fixture = TestBed.createComponent(AdminComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app');
-  }));
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AdminComponent);
+    let adminService = fixture.debugElement.injector.get(AdminService);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to app!');
+    expect(adminService.data).toEqual(app.elecTable.rawData);
   }));
 });

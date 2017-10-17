@@ -1,14 +1,16 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {NgModule} from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 
-import {AdminComponent} from './admin.component';
-import {newElectionComponent} from './new-election/new-election.component';
+import { AdminComponent } from './admin.component';
+import { newElectionComponent } from './new-election/new-election.component';
 
 import {
     MatInputModule,
     MatSortModule,
     MatButtonModule,
+    MatCheckboxModule,
     MatCardModule,
     MatPaginatorModule,
     MatTableModule,
@@ -18,7 +20,8 @@ import {
     MatDatepickerModule,
     MatListModule,
     MatExpansionModule,
-    MatRadioModule
+    MatRadioModule,
+    MatGridListModule
 } from '@angular/material';
 
 @NgModule({
@@ -28,9 +31,11 @@ import {
     ],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         FormsModule,
         MatInputModule,
         MatButtonModule,
+        MatCheckboxModule,
         MatCardModule,
         /** Election table modules */
         MatTabsModule,
@@ -45,7 +50,8 @@ import {
         MatDatepickerModule,
         MatListModule,
         MatExpansionModule,
-        MatRadioModule
+        MatRadioModule,
+        MatGridListModule
 
     ],
     exports: [

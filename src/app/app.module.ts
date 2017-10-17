@@ -75,7 +75,7 @@ import {BallotCheckComponent} from './ballot-check/ballot-check.component';
         MatTooltipModule,
         MatRadioModule,
         /** Admin module*/
-        AdminModule
+        AdminModule,
     ],
     providers: [AuthenticationService, NotSignedInGuardsService, SignedInAuthGuardService, ServerInteractService],
     bootstrap: [AppComponent]

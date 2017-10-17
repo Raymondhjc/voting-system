@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { ElectionDetails } from './election-details'
 import { electionList } from './mock-elections'
+import { ElectionForm } from './new-election/election-form'
 
 @Injectable()
 export class AdminService {
@@ -22,6 +23,13 @@ export class AdminService {
     }
     constructor() {
         this.fetchData();
+    }
+}
+export class NewElectionService {
+    submitForm(form): void {
+        console.log(form.value);
+    };
+    constructor() {
     }
 
 }
