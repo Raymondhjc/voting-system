@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators, AbstractControl } from '@angular/forms';
 
-import { ElectionForm } from './election-form'
+// services required
+import { NewElectionService } from './../admin.service';
+
 @Component({
   selector: 'new-election',
   templateUrl: './new-election.component.html',
-  styleUrls: ['./new-election.component.css']
+  styleUrls: ['./new-election.component.css'],
+  providers: [NewElectionService]
 })
 export class newElectionComponent implements OnInit {
   firstFormGroup: FormGroup;
@@ -15,7 +18,7 @@ export class newElectionComponent implements OnInit {
   electionStartDate: string;
   electionEndDate: string;
 
-  constructor() { }
+  constructor(private newElectionService: NewElectionService) { }
 
   ngOnInit() {
     this.firstFormGroup = new FormGroup({
@@ -104,25 +107,13 @@ export class newElectionComponent implements OnInit {
     return { invalidForm: true };
   }
 
-  // onCreateForm(): void {
-  //   let form = new ElectionForm,
-  //   fg = this.firstFormGroup.value,
-  //   sg = this.secondFormGroup.value;
-  //   form.name = fg.electionName;
-  //   form.startDate = fg.startDate;
-  //   form.endDate = fg.endDate;
-  //   for(let s in fg){
-  //     let section = new Section;
-  //     section.choiceType = (<any>s).choiceType;
-  //     section.sectionName = (<any>s).sectionName;
-  //     section.options = (<any>s).sectionName;
-  //     form.sections.push(section);
-  //   }
-  //   form.sections = this.firstFormGroup.value.electionName;
-  //   form.name = this.firstFormGroup.value.electionName;
-  //   form.name = this.firstFormGroup.value.electionName;
+  /**Handeling forms here */
+  onSubmit() {
+    let finalForm = new FormGroup({
+      'meta': this.firstFormGroup,
+      'content':this.secondFormGroup
+    });
+    this.newElectionService.submitForm(finalForm);
+  }
 
-  //   console.log(this.firstFormGroup.value);
-  //   console.log(this.secondFormGroup.value);
-  // }
 }

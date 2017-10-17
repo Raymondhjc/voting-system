@@ -26,7 +26,9 @@ export class AdminService {
     }
 }
 export class NewElectionService {
-
+    submitForm(form): void {
+        console.log(form.value);
+    };
     constructor() {
     }
 
