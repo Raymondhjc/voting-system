@@ -1,24 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { AdminComponent } from './admin.component';
-import { newElectionComponent } from './new-election/new-election.component'
+import { newElectionComponent } from './new-election/new-election.component';
 
 import {
-    MdInputModule,
-    MdSortModule,
-    MdButtonModule,
-    MdCardModule,
-    MdPaginatorModule,
-    MdTableModule,
-    MdTabsModule,
-    MdStepperModule,
-    MdNativeDateModule,
+    MatInputModule,
+    MatSortModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatCardModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatTabsModule,
+    MatStepperModule,
+    MatNativeDateModule,
     MatDatepickerModule,
     MatListModule,
     MatExpansionModule,
-    MdRadioModule
+    MatRadioModule,
+    MatGridListModule
 } from '@angular/material';
 
 @NgModule({
@@ -28,30 +31,33 @@ import {
     ],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         FormsModule,
-        MdInputModule,
-        MdButtonModule,
-        MdCardModule,
+        MatInputModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatCardModule,
         /** Election table modules */
-        MdTabsModule,
-        MdTableModule,
-        MdSortModule,
-        MdTabsModule,
-        MdPaginatorModule,
+        MatTabsModule,
+        MatTableModule,
+        MatSortModule,
+        MatTabsModule,
+        MatPaginatorModule,
         /** Create new election modules */
-        MdStepperModule,
+        MatStepperModule,
         ReactiveFormsModule,
-        MdNativeDateModule,
+        MatNativeDateModule,
         MatDatepickerModule,
         MatListModule,
         MatExpansionModule,
-        MdRadioModule
-        
+        MatRadioModule,
+        MatGridListModule
+
     ],
-    exports:[
+    exports: [
         AdminComponent,
         /** Election table modules */
-        MdTableModule,
+        MatTableModule,
     ],
     providers: [],
     bootstrap: [AdminComponent]

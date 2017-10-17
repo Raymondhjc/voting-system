@@ -1,52 +1,52 @@
-<md-card class = "lverg-md-card">
-  <md-toolbar color = "primary">
+<mat-card class = "lverg-mat-card">
+  <mat-toolbar color = "primary">
     <span>Register</span>
-  </md-toolbar>
+  </mat-toolbar>
   <form (ngSubmit) = "onRegiserSubmit(registerForm)" #registerForm = "ngForm">
     <table class = "lverg-full-width" cellspacing = "0">
       <tr>
         <td>
-          <md-form-field class = "lverg-full-width">
-            <input mdInput placeholder = "First Name" ngModel required name = "firstName">
-          </md-form-field>
+          <mat-form-field class = "lverg-full-width">
+            <input matInput placeholder = "First Name" ngModel required name = "firstName">
+          </mat-form-field>
         </td>
 
         <td>
-          <md-form-field class = "lverg-full-width">
-            <input mdInput placeholder = "Last Name" ngModel required name = "lastName">
-          </md-form-field>
+          <mat-form-field class = "lverg-full-width">
+            <input matInput placeholder = "Last Name" ngModel required name = "lastName">
+          </mat-form-field>
         </td>
       </tr>
     </table>
-    <md-form-field class = "lverg-full-width">
-      <input mdInput placeholder = "Email" ngModel required email name = "email">
-    </md-form-field>
-    <md-form-field class = "lverg-full-width">
-      <input mdInput placeholder = "Username" ngModel required name = "username">
-    </md-form-field>
-    <md-form-field class = "lverg-full-width">
-      <input mdInput placeholder = "Password" ngModel required #password = "ngModel"
+    <mat-form-field class = "lverg-full-width">
+      <input matInput placeholder = "Email" ngModel required email name = "email">
+    </mat-form-field>
+    <mat-form-field class = "lverg-full-width">
+      <input matInput placeholder = "Username" ngModel required name = "username">
+    </mat-form-field>
+    <mat-form-field class = "lverg-full-width">
+      <input matInput placeholder = "Password" ngModel required #password = "ngModel"
              name = "password" type = "password">
-    </md-form-field>
-    <md-form-field class = "lverg-full-width">
-      <input mdInput placeholder = "Repeat your password" ngModel required
+    </mat-form-field>
+    <mat-form-field class = "lverg-full-width">
+      <input matInput placeholder = "Repeat your password" ngModel required
              validateEqual = "password" #confirmPassword = "ngModel" name = "passwordRep" type = "password"
       >
-    </md-form-field>
-    <md-form-field class = "lverg-full-width">
-      <input mdInput placeholder = "UFID" ngModel required name = "ufid">
-    </md-form-field>
+    </mat-form-field>
+    <mat-form-field class = "lverg-full-width">
+      <input matInput placeholder = "UFID" ngModel required name = "ufid">
+    </mat-form-field>
 
 
     <div>
-      <button md-fab [disabled] = "!registerForm.valid" color = "primary" type = "submit">
-        <md-icon class = "material-icons">done</md-icon>
+      <button mat-fab [disabled] = "!registerForm.valid" color = "primary" type = "submit">
+        <mat-icon class = "material-icons">done</mat-icon>
       </button>
-      <button md-fab color = "warn" (click) = "onClearClick()">
-        <md-icon class = "material-icons">clear</md-icon>
+      <button mat-fab color = "warn" (click) = "onClearClick()">
+        <mat-icon class = "material-icons">clear</mat-icon>
       </button>
     </div>
   </form>
 
-</md-card>
+</mat-card>
 

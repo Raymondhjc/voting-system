@@ -1,13 +1,11 @@
-.admin-table-container {
+/* .admin-table-container {
   display: flex;
   flex-direction: column;
-  max-height: 500px;
   min-width: 300px;
 }
 
 .mat-table {
   overflow: auto;
-  max-height: 500px;
 }
 
 .search-header {
@@ -23,4 +21,4 @@
   font-size: 14px;
   flex-grow: 1;
   margin-left: 32px;
-}
+}  */

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 // for tables
-import { MdPaginator, MdSort } from '@angular/material';
+import { MatPaginator, MatSort } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/startWith';
@@ -31,8 +31,8 @@ export class AdminComponent implements OnInit {
   displayedColumns = ['id', 'name', 'count', 'status'];
   elecTable: elecTableDataSource | null;
 
-  @ViewChild(MdPaginator) paginator: MdPaginator;
-  @ViewChild(MdSort) sort: MdSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
 
   ngOnInit() {
@@ -52,8 +52,8 @@ export class AdminComponent implements OnInit {
 
 export class elecTableDataSource extends DataSource<any> {
   constructor(private adminService: AdminService,
-    private _paginator: MdPaginator,
-    private _sort: MdSort) {
+    private _paginator: MatPaginator,
+    private _sort: MatSort) {
 
     super();
   }

@@ -1,28 +1,28 @@
 <div class = "lverg-dim-screen">
     <app-header></app-header>
 
-    <md-sidenav-container class = "lverg-body-content">
-        <md-sidenav #sidenav mode = "side" opened = "true" class = "lverg-sidenav">
-            <button md-button class = "lverg-sidenav-button" routerLink = "/admin">
+    <mat-sidenav-container class = "lverg-body-content">
+        <mat-sidenav #sidenav mode = "side" opened = "true" class = "lverg-sidenav">
+            <button mat-button class = "lverg-sidenav-button" routerLink = "/admin">
                 View Elections
             </button>
             <br>
-            <button md-button class = "lverg-sidenav-button" routerLink = "/admin/new-election">
+            <button mat-button class = "lverg-sidenav-button" routerLink = "/admin/new-election">
                 Add Election
             </button>
             <br>
-            <button md-button routerLink = "/data-view">Details</button>
+            <button mat-button routerLink = "/data-view">Details</button>
 
 
-        </md-sidenav>
+        </mat-sidenav>
         <router-outlet></router-outlet>
-    </md-sidenav-container>
+    </mat-sidenav-container>
 </div>
 
 <span class = "fixed-button">
-  <button md-fab (click) = "sidenav.toggle()" color = "primary">
-    <md-icon class = "material-icons" *ngIf = "!sidenav.opened">add</md-icon>
-    <md-icon class = "material-icons" *ngIf = "sidenav.opened">remove</md-icon>
+  <button mat-fab (click) = "sidenav.toggle()" color = "primary">
+    <mat-icon class = "material-icons" *ngIf = "!sidenav.opened">add</mat-icon>
+    <mat-icon class = "material-icons" *ngIf = "sidenav.opened">remove</mat-icon>
   </button>
 </span>
 

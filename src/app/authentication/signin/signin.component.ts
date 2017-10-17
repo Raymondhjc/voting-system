@@ -1,5 +1,5 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
-import {MD_DIALOG_DATA, MdDialogRef} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {AnthenticationInfoModel} from '../../common/anthentication-info.model';
 import {ServerInteractService} from '../../common/serverInteract.service';
 
@@ -12,8 +12,8 @@ export class SigninComponent implements OnInit, OnDestroy {
     authenInfo: AnthenticationInfoModel = new AnthenticationInfoModel('', '');
 
 
-    constructor(public dialogRef: MdDialogRef<SigninComponent>,
-                @Inject(MD_DIALOG_DATA) public data: any,
+    constructor(public dialogRef: MatDialogRef<SigninComponent>,
+                @Inject(MAT_DIALOG_DATA) public data: any,
                 public serverInteract: ServerInteractService) {
     }
 
