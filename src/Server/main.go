@@ -1,5 +1,7 @@
 //github.com/urfave/negroni
 //github.com/dgrijalva/jwt-go
+//go get -u github.com/gorilla/mux
+
 
 package main
 
