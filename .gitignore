@@ -10,6 +10,7 @@
 
 # IDEs and editorsgi
 /.idea
+/src/Server/.idea
 *.orig
 *.stackdump
 .project
@@ -18,7 +19,6 @@
 *.launch
 .settings/
 *.sublime-workspace
-/src/Server/.idea
 
 # IDE - VSCode
 .vscode/*
@@ -43,9 +43,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-/src/Server/Server.exe
 /src/Server/coverage.out
 /src/Server/count.out
 /coverage/
-/src/Server/jwtRS256.key
-/src/Server/jwtRS256.key.pub

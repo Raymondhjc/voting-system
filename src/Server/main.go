@@ -41,5 +41,6 @@ func main() {
 	r.HandleFunc("/signup", signupHandler)
 	r.HandleFunc("/signin", signinHandler)
 	r.HandleFunc("/exists/{username}", userExistHandler)
+  r.HandleFunc("/whoami", authorize(whoami)).Methods("GET")
 	http.ListenAndServe(":4500", r)
 }

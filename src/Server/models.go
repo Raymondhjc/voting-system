@@ -21,8 +21,12 @@ type RegistrationInfo struct {
 }
 
 type JwtClaims struct {
-	iss string
-	usr string
-	exp int64
-	rol string
+	Iss string
+	Usr string
+	Exp int64
+	Rol string
+}
+
+type Exception struct {
+  Message string `json:"message"`
 }

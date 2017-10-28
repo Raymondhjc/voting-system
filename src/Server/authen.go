@@ -1,12 +1,17 @@
 package main
 
 import (
-	"github.com/dgrijalva/jwt-go"
 	"time"
 	"fmt"
 	"log"
 	"io/ioutil"
 	"crypto/rsa"
+  "net/http"
+  "strings"
+  "encoding/json"
+  "github.com/dgrijalva/jwt-go"
+  "github.com/gorilla/context"
+  "github.com/mitchellh/mapstructure"
 )
 
 var publicKey *rsa.PublicKey
@@ -55,7 +60,7 @@ func jstAssigner(username string) string {
 		time.Second*time.Duration(0))
 
 	token := jwt.NewWithClaims(jwt.SigningMethodRS256, jwt.MapClaims{
-		"iss": "admin",
+		"iss": "voting-system",
 		"usr": username,
 		"exp": exp.Unix(),
 		"rol": "user",
@@ -67,27 +72,41 @@ func jstAssigner(username string) string {
 	if err != nil {
 		log.Printf("Error signing token: %v\n", err)
 	}
-	return tokenString;
+	return tokenString
 }
 
-//func jwtValidator(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
-//
-//	//validate token
-//	token, err := request.ParseFromRequest(r, request.AuthorizationHeaderExtractor, func(token *jwt.Token) (interface{}, error) {
-//		return publicKey, nil
-//	})
-//
-//	if err == nil {
-//
-//		if token.Valid {
-//			next(w, r)
-//		} else {
-//			w.WriteHeader(http.StatusUnauthorized)
-//			fmt.Fprint(w, "Token is not valid")
-//		}
-//	} else {
-//		w.WriteHeader(http.StatusUnauthorized)
-//		fmt.Fprint(w, "Unauthorised access to this resource")
-//	}
-//
-//}
+func authorize(next http.HandlerFunc) http.HandlerFunc {
+  return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
+    authorizationHeader := req.Header.Get("authorization")
+    if authorizationHeader != "" {
+      bearerToken := strings.Split(authorizationHeader, " ")
+      if len(bearerToken) == 2 {
+        token, error := jwt.Parse(bearerToken[1], func(token *jwt.Token) (interface{}, error) {
+          if _, ok := token.Method.(*jwt.SigningMethodRSA); !ok {
+            return nil, fmt.Errorf("There was an error")
+          }
+          return publicKey, nil
+        })
+        if error != nil {
+          json.NewEncoder(w).Encode(Exception{Message: error.Error()})
+          return
+        }
+        if token.Valid {
+          context.Set(req, "jwtContent", token.Claims)
+          next(w, req)
+        } else {
+          json.NewEncoder(w).Encode(Exception{Message: "Invalid authorization token"})
+        }
+      }
+    } else {
+      json.NewEncoder(w).Encode(Exception{Message: "An authorization header is required"})
+    }
+  })
+}
+
+func whoami(w http.ResponseWriter, req *http.Request) {
+  jwtContent := context.Get(req, "jwtContent")
+  var claims JwtClaims
+  mapstructure.Decode(jwtContent.(jwt.MapClaims), &claims)
+  json.NewEncoder(w).Encode(claims)
+}
