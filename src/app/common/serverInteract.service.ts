@@ -2,32 +2,51 @@ import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import {RegistrationInfoModel} from './user-info.model';
 import {AnthenticationInfoModel} from './anthentication-info.model';
+import {ChangePasswordRequestModel} from './change-password-request.model';
+import {Headers} from '@angular/http';
 
 @Injectable()
 export class ServerInteractService {
-    serverURL = 'http://localhost:4500/';
+  get token(): string {
+    return this._token;
+  }
 
-    // Postman
-    // serverURL = 'http://localhost:5555/';
+  set token(value: string) {
+    this._token = value;
+  }
 
-    constructor(private http: Http) {
-    }
+  serverURL = 'http://localhost:4500/';
+  private _token: string = null;
+  // Postman
+  // serverURL = 'http://localhost:5555/';
 
-    sendSignup(regInfo: RegistrationInfoModel) {
+  constructor(private http: Http) {
+  }
 
-        const body = JSON.stringify(regInfo);
-        return this.http.post(this.serverURL + 'signup', body);
-    }
+  sendSignup(regInfo: RegistrationInfoModel) {
 
-    sendSignin(signinInfo: AnthenticationInfoModel) {
+    const body = JSON.stringify(regInfo);
+    return this.http.post(this.serverURL + 'signup', body);
+  }
 
-        const body = JSON.stringify(signinInfo);
-        return this.http.post(this.serverURL + 'signin', body);
-    }
+  sendSignin(signinInfo: AnthenticationInfoModel) {
 
-    userExist(user: string) {
+    const body = JSON.stringify(signinInfo);
+    return this.http.post(this.serverURL + 'signin', body);
+  }
 
-        const s = 'exists/' + user;
-        return this.http.get(this.serverURL + s, '');
-    }
+  userExist(user: string) {
+
+    const s = 'exists/' + user;
+    return this.http.get(this.serverURL + s, '');
+  }
+
+  sendChangePassword(request: ChangePasswordRequestModel) {
+    const body = JSON.stringify(request);
+    // const headers = new Headers();
+    // headers.append('Authorization', 'Basic ' + this._token);
+    const headers = new Headers({'content-type': 'text/plain'});
+    headers.append('Authorization', 'Basic ' + this._token);
+    return this.http.post(this.serverURL + 'changePassword', body, {headers: headers});
+  }
 }

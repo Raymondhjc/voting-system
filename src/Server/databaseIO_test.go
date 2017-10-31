@@ -20,14 +20,10 @@ func TestHashPassword(t *testing.T) {
 }
 
 func TestCheckPasswordHash(t *testing.T) {
-	hash, err := HashPassword("the correct password")
-	if err != nil {
-		t.Error("Error when hashing password")
-	}
-	if !CheckPasswordHash("the correct password", hash) {
+	if !CheckPasswordHash("testUsername", "testPassword") {
 		t.Error("The correct password does not passed the test.")
 	}
-	if CheckPasswordHash("the wrong password", hash) {
+  if !CheckPasswordHash("testUsername", "wrongPassword") {
 		t.Error("a wrong password passed the test.")
 	}
 }

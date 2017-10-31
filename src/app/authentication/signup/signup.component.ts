@@ -48,8 +48,6 @@ export class SignupComponent implements OnInit {
     // }
 
     onSubmit() {
-        console.log(this.signupForm);
-
         const regInfo = new RegistrationInfoModel(
             this.signupForm.value.firstname,
             this.signupForm.value.lastname,

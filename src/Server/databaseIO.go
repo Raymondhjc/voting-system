@@ -1,215 +1,207 @@
 package main
 
 import (
-	"database/sql"
-	"fmt"
-	_ "github.com/go-sql-driver/mysql"
-	"golang.org/x/crypto/bcrypt"
+  "database/sql"
+  "fmt"
+  _ "github.com/go-sql-driver/mysql"
 )
-
-var db MyDB
-var err error
-
-type MyDB struct {
-	*sql.DB
-}
-
-func HashPassword(password string) (string, error) {
-	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
-	return string(bytes), err
-}
-
-func CheckPasswordHash(password, hash string) bool {
-	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
-	return err == nil
-}
 
 func (db *MyDB) connectDB(username string, password string, address string, dbName string) error {
 
-	var dataSourceName = fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8", username, password, address, dbName)
-	db.DB, err = sql.Open("mysql", dataSourceName)
+  var dataSourceName = fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8", username, password, address, dbName)
+  db.DB, err = sql.Open("mysql", dataSourceName)
 
-	if err != nil {
-		return err
-	}
+  if err != nil {
+    return err
+  }
 
-	err = db.Ping()
+  err = db.Ping()
 
-	if err != nil {
-		return err
-	}
+  if err != nil {
+    return err
+  }
 
-	if verbose {
-		fmt.Println("Database server connected!")
-		err = db.printTables()
-		if err != nil {
-			return err
-		}
-	}
+  if verbose {
+    fmt.Println("Database server connected!")
+    err = db.printTables()
+    if err != nil {
+      return err
+    }
+  }
 
-	return nil
+  return nil
 }
 
 func (db *MyDB) printTables() error {
-	rows, err := db.Query(`SHOW tables`)
-	if err != nil {
-		return err
-	}
-	var s, name string
-	s = "Printing tables:\n"
-	for rows.Next() {
-		err = rows.Scan(&name)
-		if err != nil {
-			return err
-		}
-		s += name + "\n"
-	}
-	s += "----------END\n"
-	fmt.Print(s)
-	return nil
+  rows, err := db.Query(`SHOW tables`)
+  if err != nil {
+    return err
+  }
+  var s, name string
+  s = "Printing tables:\n"
+  for rows.Next() {
+    err = rows.Scan(&name)
+    if err != nil {
+      return err
+    }
+    s += name + "\n"
+  }
+  s += "----------END\n"
+  fmt.Print(s)
+  return nil
 }
 
 func (db *MyDB) getUserHash(username string) (string, error) {
-	var hash string
-	var s = fmt.Sprintf(
-		`SELECT passwordHash FROM votingsystem.users WHERE username = "%s";`, username)
-	rows, err := db.Query(s)
-	if err != nil {
-		return "", err
-	}
+  var hash string
+  var s = fmt.Sprintf(
+    `SELECT passwordHash FROM votingsystem.users WHERE username = "%s";`, username)
+  rows, err := db.Query(s)
+  if err != nil {
+    return "", err
+  }
 
-	if rows.Next() {
-		err = rows.Scan(&hash)
-		if err != nil {
-			return "", err
-		}
-		return hash, nil
+  if rows.Next() {
+    err = rows.Scan(&hash)
+    if err != nil {
+      return "", err
+    }
+    return hash, nil
 
-	} else {
-		return "", nil
-	}
+  } else {
+    return "", nil
+  }
 }
 
 func (db *MyDB) insertUserCredential(Info RegistrationInfo) error {
-	hash, err := HashPassword(Info.Password)
-	if err != nil {
-		return err
-	}
+  hash, err := HashPassword(Info.Password)
+  if err != nil {
+    return err
+  }
 
-	s := fmt.Sprintf(
-		`INSERT INTO votingsystem.users (username, passwordHash, lastSignin) VALUE ('%s', '%s', now());`,
-		Info.Username, hash)
+  s := fmt.Sprintf(
+    `INSERT INTO votingsystem.users (username, passwordHash, lastSignin) VALUE ('%s', '%s', now());`,
+    Info.Username, hash)
 
-	stmt, err := db.Prepare(s)
-	if err != nil {
-		return err
-	}
+  stmt, err := db.Prepare(s)
+  if err != nil {
+    return err
+  }
 
-	_, err = stmt.Exec();
-	if err != nil {
-		return err
-	}
+  _, err = stmt.Exec();
+  if err != nil {
+    return err
+  }
 
-	if verbose {
-		fmt.Println("User crediential inserted.")
-	}
-	return nil
+  if verbose {
+    fmt.Println("User crediential inserted.")
+  }
+  return nil
 }
 
 func (db *MyDB) insertUserInfo(Info RegistrationInfo) error {
-	var s = fmt.Sprintf(
-		`INSERT INTO votingsystem.userinfo (username, firstname, lastname, email, UFID, administrator)
+  var s = fmt.Sprintf(
+    `INSERT INTO votingsystem.userinfo (username, firstname, lastname, email, UFID, administrator)
 VALUE ('%s','%s','%s','%s',%s,FALSE);`,
-		Info.Username, Info.FirstName, Info.LastName, Info.Email, Info.Ufid)
+    Info.Username, Info.FirstName, Info.LastName, Info.Email, Info.Ufid)
 
-	stmt, err := db.Prepare(s)
-	if err != nil {
-		return err
-	}
+  stmt, err := db.Prepare(s)
+  if err != nil {
+    return err
+  }
 
-	_, err = stmt.Exec();
-	if err != nil {
-		return err
-	}
+  _, err = stmt.Exec();
+  if err != nil {
+    return err
+  }
 
-	if verbose {
-		fmt.Println("User information inserted.")
-	}
-	return nil
+  if verbose {
+    fmt.Println("User information inserted.")
+  }
+  return nil
 }
 
 func registrate(Info RegistrationInfo) (bool, error) {
 
-	hash, err := db.getUserHash(Info.Username)
-	if err != nil {
-		return false, err
-	}
-	if hash != "" {
-		return false, nil
-	}
+  hash, err := db.getUserHash(Info.Username)
+  if err != nil {
+    return false, err
+  }
+  if hash != "" {
+    return false, nil
+  }
 
-	err = db.insertUserCredential(Info)
-	if err != nil {
-		return false, err
-	}
+  err = db.insertUserCredential(Info)
+  if err != nil {
+    return false, err
+  }
 
-	err = db.insertUserInfo(Info)
-	if err != nil {
-		return false, err
-	}
+  err = db.insertUserInfo(Info)
+  if err != nil {
+    return false, err
+  }
 
-	return true, nil;
+  return true, nil;
 }
 
 func (db MyDB) ifExistDeleteUser(username string) (bool, error) {
 
-	credentialExist, err := db.userCredentialIsExist(username)
-	if err != nil {
-		return false, err
-	}
-	infoExist, err := db.userInfoIsExist(username)
+  credentialExist, err := db.userCredentialIsExist(username)
+  if err != nil {
+    return false, err
+  }
+  infoExist, err := db.userInfoIsExist(username)
 
-	if !credentialExist && !infoExist {
-		return false, nil
-	}
+  if !credentialExist && !infoExist {
+    return false, nil
+  }
 
-	if credentialExist {
-		q := fmt.Sprintf(`DELETE FROM votingsystem.users WHERE username = '%s';`, username)
-		_, err = db.Query(q)
-		if err != nil {
-			return false, err
-		}
-	}
+  if credentialExist {
+    q := fmt.Sprintf(`DELETE FROM votingsystem.users WHERE username = '%s';`, username)
+    _, err = db.Query(q)
+    if err != nil {
+      return false, err
+    }
+  }
 
-	if infoExist {
-		q := fmt.Sprintf(`DELETE FROM votingsystem.userinfo WHERE username = '%s';`, username)
-		_, err = db.Query(q)
-		if err != nil {
-			return false, err
-		}
-	}
+  if infoExist {
+    q := fmt.Sprintf(`DELETE FROM votingsystem.userinfo WHERE username = '%s';`, username)
+    _, err = db.Query(q)
+    if err != nil {
+      return false, err
+    }
+  }
 
-	return true, nil
+  return true, nil
 }
 
 func (db MyDB) userCredentialIsExist(username string) (bool, error) {
-	q := fmt.Sprintf(`SELECT username FROM votingsystem.users WHERE username = '%s';`, username)
-	rows, err := db.Query(q)
-	if err != nil {
-		return false, err
-	}
-	return rows.Next(), nil
+  q := fmt.Sprintf(`SELECT username FROM votingsystem.users WHERE username = '%s';`, username)
+  rows, err := db.Query(q)
+  if err != nil {
+    return false, err
+  }
+  return rows.Next(), nil
 }
 
 func (db MyDB) userInfoIsExist(username string) (bool, error) {
-	q := fmt.Sprintf(`SELECT username FROM votingsystem.userinfo WHERE username = '%s';`, username)
-	rows, err := db.Query(q)
-	if err != nil {
-		return false, err
-	}
-	return rows.Next(), nil
+  q := fmt.Sprintf(`SELECT username FROM votingsystem.userinfo WHERE username = '%s';`, username)
+  rows, err := db.Query(q)
+  if err != nil {
+    return false, err
+  }
+  return rows.Next(), nil
+}
+
+func (db MyDB) updatePasswordHash(username string, hash string) (bool, error) {
+  q := fmt.Sprintf(`UPDATE votingsystem.users SET passwordHash = "%s" WHERE username = "%s";`, hash, username)
+  _, err := db.Query(q)
+  if err != nil {
+    return false, err
+  }
+  return true, nil
+
 }
 
 func (db MyDB) disconnectDB() error {
-	return db.Close()
+  return db.Close()
 }

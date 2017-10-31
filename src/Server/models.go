@@ -30,3 +30,8 @@ type JwtClaims struct {
 type Exception struct {
   Message string `json:"message"`
 }
+
+type ModifyPasswordRequest struct{
+  Password string `json:"password"`
+  NewPassword string `json:"newPassword"`
+}

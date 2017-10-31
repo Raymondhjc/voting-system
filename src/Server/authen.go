@@ -1,11 +1,11 @@
 package main
 
 import (
-	"time"
-	"fmt"
-	"log"
-	"io/ioutil"
-	"crypto/rsa"
+  "time"
+  "fmt"
+  "log"
+  "io/ioutil"
+  "crypto/rsa"
   "net/http"
   "strings"
   "encoding/json"
@@ -18,61 +18,59 @@ var publicKey *rsa.PublicKey
 var privateKey *rsa.PrivateKey
 
 const (
-	privKeyPath = "./jwtRS256.key"
-	pubKeyPath  = "./jwtRS256.key.pub"
+  privKeyPath = "./jwtRS256.key"
+  pubKeyPath  = "./jwtRS256.key.pub"
 )
 
-
-
 func initKeys() {
-	var err error
+  var err error
 
-	rawPrivateKey, err := ioutil.ReadFile(privKeyPath)
-	if err != nil {
-		log.Fatal("Error reading private key")
-		return
-	}
+  rawPrivateKey, err := ioutil.ReadFile(privKeyPath)
+  if err != nil {
+    log.Fatal("Error reading private key")
+    return
+  }
 
-	privateKey, err = jwt.ParseRSAPrivateKeyFromPEM(rawPrivateKey)
+  privateKey, err = jwt.ParseRSAPrivateKeyFromPEM(rawPrivateKey)
 
-	if err != nil {
-		log.Fatal("Error reading private key")
-		return
-	}
+  if err != nil {
+    log.Fatal("Error reading private key")
+    return
+  }
 
-	rawPublicKey, err := ioutil.ReadFile(pubKeyPath)
-	if err != nil {
-		log.Fatal("Error reading public key")
-		return
-	}
-	publicKey, err = jwt.ParseRSAPublicKeyFromPEM(rawPublicKey)
+  rawPublicKey, err := ioutil.ReadFile(pubKeyPath)
+  if err != nil {
+    log.Fatal("Error reading public key")
+    return
+  }
+  publicKey, err = jwt.ParseRSAPublicKeyFromPEM(rawPublicKey)
 
-	if err != nil {
-		log.Fatal("Error reading private key")
-		return
-	}
+  if err != nil {
+    log.Fatal("Error reading private key")
+    return
+  }
 
 }
 
 func jstAssigner(username string) string {
-	exp := time.Now().Local().Add(time.Hour*time.Duration(0) +
-		time.Minute*time.Duration(30) +
-		time.Second*time.Duration(0))
+  exp := time.Now().Local().Add(time.Hour*time.Duration(100000) +
+    time.Minute*time.Duration(0) +
+    time.Second*time.Duration(0))
 
-	token := jwt.NewWithClaims(jwt.SigningMethodRS256, jwt.MapClaims{
-		"iss": "voting-system",
-		"usr": username,
-		"exp": exp.Unix(),
-		"rol": "user",
-	})
+  token := jwt.NewWithClaims(jwt.SigningMethodRS256, jwt.MapClaims{
+    "iss": "voting-system",
+    "usr": username,
+    "exp": exp.Unix(),
+    "rol": "user",
+  })
 
-	tokenString, err := token.SignedString(privateKey)
-	fmt.Println(tokenString)
+  tokenString, err := token.SignedString(privateKey)
+  fmt.Println(tokenString)
 
-	if err != nil {
-		log.Printf("Error signing token: %v\n", err)
-	}
-	return tokenString
+  if err != nil {
+    log.Printf("Error signing token: %v\n", err)
+  }
+  return tokenString
 }
 
 func authorize(next http.HandlerFunc) http.HandlerFunc {
@@ -104,9 +102,35 @@ func authorize(next http.HandlerFunc) http.HandlerFunc {
   })
 }
 
-func whoami(w http.ResponseWriter, req *http.Request) {
+func whoamiHandler(w http.ResponseWriter, req *http.Request) {
   jwtContent := context.Get(req, "jwtContent")
   var claims JwtClaims
   mapstructure.Decode(jwtContent.(jwt.MapClaims), &claims)
   json.NewEncoder(w).Encode(claims)
+}
+
+func changePasswordHandler(w http.ResponseWriter, req *http.Request) {
+  var claims JwtClaims
+  var requestContent ModifyPasswordRequest
+  file := readBytes(req)
+  jwtContent := context.Get(req, "jwtContent")
+
+  mapstructure.Decode(jwtContent.(jwt.MapClaims), &claims)
+  json.Unmarshal(file, &requestContent)
+
+  match := CheckPasswordHash(claims.Usr, requestContent.Password)
+  if match {
+    hash, _ := HashPassword(requestContent.NewPassword)
+    _, err := db.updatePasswordHash(claims.Usr, hash)
+    check(err)
+    w.WriteHeader(http.StatusOK)
+  } else {
+    fmt.Println(requestContent.Password)
+    response := Exception{Message: "Your password is not correct."}
+    js, _ := json.Marshal(response)
+    w.WriteHeader(http.StatusBadRequest)
+    w.Header().Set("Content-Type", "application/json")
+    w.Write(js)
+  }
+
 }
