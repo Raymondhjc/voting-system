@@ -1,7 +1,7 @@
-<mat-card class="lverg-mat-card" *ngIf="signInStatus">
+<mat-card class="lverg-mat-card" *ngIf="this.userStatus!=null">
 
   <mat-toolbar color="primary">
-    <i>You are logged in as</i>:&nbsp;<b>{{this.username}}</b>
+    <i>You are logged in as</i>:&nbsp;<b>{{this.userStatus.username}}</b>
   </mat-toolbar>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
@@ -9,9 +9,9 @@
       <mat-panel-description>******</mat-panel-description>
     </mat-expansion-panel-header>
 
-    <form [formGroup]="changePassword" (ngSubmit)="onChangePasswordSubmit()">
+    <form [formGroup]="changePassword" (ngSubmit)="onChangePasswordSubmit()" id="changePasswordForm">
       <mat-form-field class="full-width">
-        <input matInput placeholder="Previous password" formControlName="previousPassword">
+        <input matInput placeholder="Previous password" formControlName="previousPassword" type="password">
       </mat-form-field>
       <mat-form-field class="full-width">
         <input matInput placeholder="New password" formControlName="newPassword" type="password">
@@ -21,10 +21,10 @@
       </mat-form-field>
 
       <div style="  text-align: right;">
-        <button mat-button color="primary" [disabled]="!changePassword.valid">
+        <button mat-button color="primary" [disabled]="!changePassword.valid" type="submit">
           Modify
         </button>
-        <button mat-button color="warn">
+        <button mat-button color="warn" type="reset">
           Clear
         </button>
       </div>
@@ -35,7 +35,7 @@
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title> Email:</mat-panel-title>
-      <mat-panel-description>TODO: email should be show here using 1-way-binding</mat-panel-description>
+      <mat-panel-description>{{this.userStatus.email}}</mat-panel-description>
     </mat-expansion-panel-header>
 
     <form #changeEmail="ngForm">
@@ -44,10 +44,10 @@
       </mat-form-field>
 
       <div style="  text-align: right;">
-        <button mat-button color="primary" [disabled]="!changeEmail.valid">
+        <button mat-button color="primary" [disabled]="!changeEmail.valid" type="submit">
           Modify
         </button>
-        <button mat-button color="warn">
+        <button mat-button color="warn" type="reset">
           Clear
         </button>
       </div>
@@ -56,4 +56,4 @@
 </mat-card>
 
 
-<p *ngIf="!signInStatus">You are a guest!</p>
+<p *ngIf="this.userStatus==null">You are a guest!</p>

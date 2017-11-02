@@ -1,3 +1,4 @@
+///<reference path="../../../node_modules/@angular/router/src/router.d.ts"/>
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {SigninComponent} from './signin/signin.component';
 import {Injectable} from '@angular/core';
@@ -5,25 +6,40 @@ import {Subject} from 'rxjs/Subject';
 import {isUndefined} from 'util';
 import {Router} from '@angular/router';
 import {ServerInteractService} from '../common/serverInteract.service';
+import {UserStatusModel} from '../common/user-status.model';
+
+// AuthenticationService class holds user Information.
+// It initiate sign in and sign out process.
+// It also keep track of whether the user is logged in.
+
 
 @Injectable()
 export class AuthenticationService {
-  private username = 'Guest';
-  usernameChanged = new Subject<string>();
-  private signedIn = false;
+  get userStatus(): UserStatusModel {
+    return this._userStatus;
+  }
+
+  private _userStatus: UserStatusModel;
+
+  userStatusChanged = new Subject<UserStatusModel>();
 
   constructor(public dialog: MatDialog,
               private router: Router,
               public snackBar: MatSnackBar,
               private serverInteract: ServerInteractService) {
+    this._userStatus = null;
   }
 
   getUsername() {
-    return this.username;
+    if (this._userStatus == null) {
+      return '';
+    } else {
+      return this._userStatus.username;
+    }
   }
 
   isSignedIn() {
-    return this.signedIn;
+    return this._userStatus != null;
   }
 
   onSignIn(): void {
@@ -35,19 +51,31 @@ export class AuthenticationService {
       if (!isUndefined(result)) {
         result.subscribe(
           (response) => {
+            // After Signin, Server return JWT.
             const r = JSON.parse(response.text());
-            this.username = r.Username;
-            localStorage.setItem('currentUser', response.text());
-            console.log(localStorage.getItem('currentUser'));
-            this.signedIn = true;
-            this.usernameChanged.next(this.username);
             this.serverInteract.token = r.JWT;
-            this.router.navigate(['/user-dashboard']);
+
+            // Another request send for get user information.
+            this.serverInteract.getWhoAmI().subscribe(
+              (whoami) => {
+                const info = JSON.parse(whoami.text());
+                // user name is no longer null, it indicate user signed in.
+                this._userStatus = new UserStatusModel(info.FirstName, info.LastName, info.Username, info.Email, info.Ufid, 'user');
+                this.userStatusChanged.next(this._userStatus);
+                this.router.navigate(['/user-dashboard']);
+              },
+              (error) => {
+                console.log(error);
+              }
+            );
+            // TODO
+            // localStorage.setItem('currentUser', response.text());
+            // console.log(localStorage.getItem('currentUser'));
           },
           (error) => {
             const r = JSON.parse(error.text());
-            this.onSignIn();
             this.snackBar.open(r.message, 'close', {duration: 2000});
+            this.onSignIn();
           }
         );
       }
@@ -55,9 +83,8 @@ export class AuthenticationService {
   }
 
   onSignOut(): void {
-    this.username = 'Guest';
-    this.signedIn = false;
-    this.usernameChanged.next(this.username);
+    this._userStatus = null;
+    this.userStatusChanged.next(this._userStatus);
     this.router.navigate(['/welcome']);
   }
 

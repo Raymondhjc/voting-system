@@ -8,6 +8,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CustomValidators} from 'ng2-validation';
 import {ChangePasswordRequestModel} from '../../common/change-password-request.model';
 import {ServerInteractService} from '../../common/serverInteract.service';
+import {MatSnackBar} from '@angular/material';
+import {UserStatusModel} from '../../common/user-status.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,27 +17,28 @@ import {ServerInteractService} from '../../common/serverInteract.service';
   styleUrls: ['./user-dashboard.component.css']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-  username: string;
+  userStatus: UserStatusModel;
+
   signInStatus: boolean;
   private subscription: Subscription;
   changePassword: FormGroup;
 
   constructor(private authenService: AuthenticationService,
-              private serverInteract: ServerInteractService) {
+              private serverInteract: ServerInteractService,
+              public snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
     this.signInStatus = this.authenService.isSignedIn();
-    this.username = this.authenService.getUsername();
-    this.subscription = this.authenService.usernameChanged.subscribe(
-      (username: string) => {
-        this.username = username;
-        this.signInStatus = this.authenService.isSignedIn();
+    this.userStatus = this.authenService.userStatus;
+    this.subscription = this.authenService.userStatusChanged.subscribe(
+      (userStatus: UserStatusModel) => {
+        this.userStatus = userStatus;
       }
     );
 
-    const password = new FormControl('', [Validators.required, Validators.minLength(6)]);
-    const repeatPassword = new FormControl('', [Validators.required, CustomValidators.equalTo(password)]);
+    const password = new FormControl(null, [Validators.required, Validators.minLength(6)]);
+    const repeatPassword = new FormControl(null, [Validators.required, CustomValidators.equalTo(password)]);
     this.changePassword = new FormGroup({
         'previousPassword': new FormControl(null, [Validators.required, Validators.minLength(6)]),
         'newPassword': password,
@@ -54,9 +57,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.changePassword.value.newPassword,
     );
 
-    this.serverInteract.sendChangePassword(changePasswordRequestBody).subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error)
+    this.serverInteract.postChangePassword(changePasswordRequestBody).subscribe(
+      () => {
+        this.snackBar.open('You have modified your password.', 'close', {duration: 4000});
+        (<HTMLFormElement>document.getElementById('changePasswordForm')).reset();
+      },
+      (error) => {
+        const r = JSON.parse(error.text());
+        this.snackBar.open(r.message, 'close', {duration: 4000});
+      }
     );
   }
 }

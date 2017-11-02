@@ -10,7 +10,7 @@
         </mat-form-field>
     </p>
     <div style = "text-align: center;">
-        <button class="signinButton" mat-raised-button [mat-dialog-close] = "this.serverInteract.sendSignin(this.authenInfo)"
+        <button class="signinButton" mat-raised-button [mat-dialog-close] = "this.serverInteract.postSignin(this.authenInfo)"
                 [disabled] = "!signinForm.valid" color = "primary" >
             Sign In
         </button>
