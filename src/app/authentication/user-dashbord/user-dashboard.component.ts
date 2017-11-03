@@ -10,6 +10,7 @@ import {ChangePasswordRequestModel} from '../../common/change-password-request.m
 import {ServerInteractService} from '../../common/serverInteract.service';
 import {MatSnackBar} from '@angular/material';
 import {UserStatusModel} from '../../common/user-status.model';
+import {ChangeEmailRequestModel} from '../../common/change-email-request.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,6 +23,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   signInStatus: boolean;
   private subscription: Subscription;
   changePassword: FormGroup;
+  changeEmail: FormGroup;
 
   constructor(private authenService: AuthenticationService,
               private serverInteract: ServerInteractService,
@@ -45,6 +47,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
         'repeatNewPassword': repeatPassword,
       }
     );
+
+    this.changeEmail = new FormGroup({
+      'newEmail': new FormControl(null, [Validators.required, Validators.email])
+    });
   }
 
   ngOnDestroy() {
@@ -52,20 +58,48 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   onChangePasswordSubmit() {
+    // Create request body.
     const changePasswordRequestBody = new ChangePasswordRequestModel(
       this.changePassword.value.previousPassword,
       this.changePassword.value.newPassword,
     );
 
+    // Sending the request
     this.serverInteract.postChangePassword(changePasswordRequestBody).subscribe(
       () => {
+        // If success, tell user the password is modified.
         this.snackBar.open('You have modified your password.', 'close', {duration: 4000});
+        // Reset the form.
         (<HTMLFormElement>document.getElementById('changePasswordForm')).reset();
       },
       (error) => {
+        // If error occur, show the error.
         const r = JSON.parse(error.text());
         this.snackBar.open(r.message, 'close', {duration: 4000});
       }
     );
   }
+
+  onChangeEmail() {
+    const changeEmailRequestBody = new ChangeEmailRequestModel(
+      this.changeEmail.value.newEmail
+    );
+
+    // Sending the request
+    this.serverInteract.postChangeEmail(changeEmailRequestBody).subscribe(
+      () => {
+        // If success, tell user the email is modified.
+        this.snackBar.open('You have modified your email.', 'close', {duration: 4000});
+        // Reset the form.
+        (<HTMLFormElement>document.getElementById('changeEmail')).reset();
+        this.authenService.updateUserStatus();
+      },
+      (error) => {
+        // If error occur, show the error.
+        const r = JSON.parse(error.text());
+        this.snackBar.open(r.message, 'close', {duration: 4000});
+      }
+    );
+  }
+
 }

@@ -6,6 +6,7 @@ import {Headers} from '@angular/http';
 import {RegistrationInfoModel} from './registration-info.model';
 import {AnthenticationInfoModel} from './anthentication-info.model';
 import {ChangePasswordRequestModel} from './change-password-request.model';
+import {ChangeEmailRequestModel} from './change-email-request.model';
 
 // ServerInteractService should be the only place use the server API.
 // Easier for management.
@@ -56,6 +57,15 @@ export class ServerInteractService {
     const headers = new Headers({'content-type': 'text/plain'});
     headers.append('Authorization', 'Basic ' + this._token);
     return this.http.post(this.serverURL + 'changePassword', body, {headers: headers});
+  }
+
+  postChangeEmail(request: ChangeEmailRequestModel) {
+    const body = JSON.stringify(request);
+    // const headers = new Headers();
+    // headers.append('Authorization', 'Basic ' + this._token);
+    const headers = new Headers({'content-type': 'text/plain'});
+    headers.append('Authorization', 'Basic ' + this._token);
+    return this.http.post(this.serverURL + 'changeEmail', body, {headers: headers});
   }
 
   // This request get current user information from server.

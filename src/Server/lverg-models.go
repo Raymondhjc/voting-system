@@ -45,5 +45,5 @@ type ModifyPasswordRequest struct {
 }
 
 type ModifyEmailRequest struct {
-  NewEmail string `json:"email"`
+  NewEmail string `json:"newEmail"`
 }

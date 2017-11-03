@@ -1,10 +1,10 @@
 export class ChangePasswordRequestModel {
   public password: string;
-  public NewPassword: string;
+  public newPassword: string;
 
-  constructor(previousPassword: string, NewPassword: string) {
+  constructor(previousPassword: string, newPassword: string) {
     this.password = previousPassword;
-    this.NewPassword = NewPassword;
+    this.newPassword = newPassword;
   }
 
 }

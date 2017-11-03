@@ -30,6 +30,22 @@ export class AuthenticationService {
     this._userStatus = null;
   }
 
+  updateUserStatus() {
+    this.serverInteract.getWhoAmI().subscribe(
+      (whoami) => {
+        const info = JSON.parse(whoami.text());
+        // user name is no longer null, it indicate user signed in.
+        this._userStatus = new UserStatusModel(info.FirstName, info.LastName, info.Username, info.Email, info.Ufid, 'user');
+        this.userStatusChanged.next(this._userStatus);
+        this.router.navigate(['/user-dashboard']);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+  }
+
   getUsername() {
     if (this._userStatus == null) {
       return '';
@@ -56,18 +72,7 @@ export class AuthenticationService {
             this.serverInteract.token = r.JWT;
 
             // Another request send for get user information.
-            this.serverInteract.getWhoAmI().subscribe(
-              (whoami) => {
-                const info = JSON.parse(whoami.text());
-                // user name is no longer null, it indicate user signed in.
-                this._userStatus = new UserStatusModel(info.FirstName, info.LastName, info.Username, info.Email, info.Ufid, 'user');
-                this.userStatusChanged.next(this._userStatus);
-                this.router.navigate(['/user-dashboard']);
-              },
-              (error) => {
-                console.log(error);
-              }
-            );
+            this.updateUserStatus();
             // TODO
             // localStorage.setItem('currentUser', response.text());
             // console.log(localStorage.getItem('currentUser'));

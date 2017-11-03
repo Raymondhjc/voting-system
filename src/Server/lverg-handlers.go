@@ -126,11 +126,14 @@ func changeEmailHandler(w http.ResponseWriter, req *http.Request) {
   file := readBytes(req)
   jwtContent := context.Get(req, "jwtContent")
 
+  fmt.Println(req.Body)
+
   mapstructure.Decode(jwtContent.(jwt.MapClaims), &claims)
   json.Unmarshal(file, &requestContent)
 
+  fmt.Println(claims.Usr)
+  fmt.Println(requestContent.NewEmail)
   _, err := db.updateEmail(claims.Usr, requestContent.NewEmail)
   check(err)
   w.WriteHeader(http.StatusOK)
 }
-

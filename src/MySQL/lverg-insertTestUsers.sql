@@ -11,11 +11,10 @@ INSERT INTO votingsystem.userInfo (username, firstname, lastname, email, UFID, a
   VALUE ('testUsername', 'testFirstname', 'testLastname', 'test@email.com', 12345678, FALSE);
 
 SELECT *
-FROM votingsystem.userInfo;
-
-SELECT *
 FROM votingsystem.users;
 
+SELECT *
+FROM votingsystem.userInfo;
 
 UPDATE votingsystem.userInfo
 SET email = "lvergergsk@outlook.com"

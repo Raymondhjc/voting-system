@@ -3,6 +3,7 @@
   <mat-toolbar color="primary">
     <i>You are logged in as</i>:&nbsp;<b>{{this.userStatus.username}}</b>
   </mat-toolbar>
+  <mat-accordion class="example-headers-align">
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title> password:</mat-panel-title>
@@ -38,9 +39,9 @@
       <mat-panel-description>{{this.userStatus.email}}</mat-panel-description>
     </mat-expansion-panel-header>
 
-    <form #changeEmail="ngForm">
+    <form [formGroup]="changeEmail" (ngSubmit)="onChangeEmail()" id="changeEmail">
       <mat-form-field class="full-width">
-        <input matInput placeholder="New Email address:" email required ngModel name="email">
+        <input matInput placeholder="New Email address:" formControlName="newEmail">
       </mat-form-field>
 
       <div style="  text-align: right;">
@@ -53,6 +54,7 @@
       </div>
     </form>
   </mat-expansion-panel>
+  </mat-accordion>
 </mat-card>
 
 
