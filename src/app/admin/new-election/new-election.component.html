@@ -36,8 +36,8 @@
         <ng-template matStepLabel>Election Content</ng-template>
         <form id="secondFormGroup" [formGroup]="secondFormGroup">
             <div id="sections" formArrayName="sections">
-                <div *ngFor="let sectionCtrl of secondFormGroup.get('sections').controls; let i = index" [formGroupName]="i">
-                    <mat-card class="section-card">
+                <div class="section-card" *ngFor="let sectionCtrl of secondFormGroup.get('sections').controls; let i = index" [formGroupName]="i">
+                    <mat-card>
                         <mat-grid-list cols="15" rowHeight="100px">
                             <mat-grid-tile colspan="14">
                                 <mat-card-header>
@@ -52,20 +52,23 @@
                                 </mat-card-header>
                             </mat-grid-tile>
                             <mat-grid-tile>
-                                <button mat-button (click)="onDeleteSection(i)"><i class="material-icons">delete</i></button>
+                                <button mat-button (click)="onDeleteSection(i)">
+                                    <i class="material-icons">delete</i>
+                                </button>
                             </mat-grid-tile>
                         </mat-grid-list>
 
                         <mat-card-content>
                             <label for="options">Options</label>
                             <div id="options" formArrayName="options">
-                                <div *ngFor="let optionCtrl of secondFormGroup.get('sections').controls[i].get('options').controls; let j = index">
+                                <div class="option-label-container" *ngFor="let optionCtrl of secondFormGroup.get('sections').controls[i].get('options').controls; let j = index">
                                     <mat-form-field>
                                         <input matInput type="text" [formControlName]="j" placeholder="option">
                                     </mat-form-field>
                                     <i class="material-icons" matSuffix (click)="onDeleteOption(i,j)">delete_forever</i>
                                 </div>
-                                <button type="button" mat-button (click)="onAddOption(i)"><i class="material-icons" matPreffix>add</i>add option</button>
+                                <button id="addOptionBtn" type="button" mat-button (click)="onAddOption(i)">
+                                    <i class="material-icons" matPreffix>add</i>add option</button>
                             </div>
                         </mat-card-content>
                     </mat-card>
@@ -85,9 +88,9 @@
             </mat-radio-group>
             <div>
                 <button type="button" mat-button color="primary" (click)="onAddSection()">
-                        <i class="material-icons" matPreffix>add</i>
-                        Add Section
-                    </button>
+                    <i class="material-icons" matPreffix>add</i>
+                    Add Section
+                </button>
             </div>
         </mat-expansion-panel>
         <div>
