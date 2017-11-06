@@ -1,6 +1,7 @@
 import { AdminPage } from './admin.po';
+import { browser } from 'protractor'
 
-describe('hjc-voting-system App', () => {
+fdescribe('hjc-voting-system App', () => {
   let page: AdminPage;
 
   beforeEach(() => {
@@ -23,13 +24,17 @@ describe('hjc-voting-system App', () => {
     page.navigateTo();
     const firstForm = page.getFirstForm();
     expect(firstForm.getAttribute('class')).toContain('ng-invalid');
-    // page.getElectionNameInput().sendKeys('test election name');
-    // page.selectStartDateCalendar().click();
-    // //page.getstartDate().click();
-    // page.selectEndDateCalendar().click();
-    // //page.getendDate().click();
-    // expect(firstForm.getAttribute('class')).toContain('ng-valid');
+    page.getElectionNameInput().sendKeys('test election name');
+    page.selectStartDateCalendar().click();
+    page.getstartDate().click();
+    browser.sleep(1000);
+
+    page.selectEndDateCalendar().click();
+    page.getendDate().click();
+    browser.sleep(1000);
+    expect(firstForm.getAttribute('class')).toContain('ng-valid');
   });
+  
   it('should block invalid input of second form', () => {
     page.navigateTo();
     const firstForm = page.getSecondForm();

@@ -21,15 +21,19 @@ export class AdminPage {
 
 
     selectStartDateCalendar() {
-        return element(by.css('#startDateToggle > button'));
+        return element(by.css('#startDateToggle'));
     }
     selectEndDateCalendar() {
-        return element(by.css('#endDateToggle > button'));
+        return element(by.css('#endDateToggle'));
     }
     getstartDate() {
-        return element(by.css('td:aria-label(October 1, 2017)'));
+        return element(by.css('td:nth-child(5)'));
     }
     getendDate() {
-        return element(by.css('td:aria-label(October 2, 2017)'));
+        return element(by.css('td:last-child'));
+    }
+
+    backDrop(){
+        return element(by.css('.cdk-overlay-backdrop'));
     }
 }
