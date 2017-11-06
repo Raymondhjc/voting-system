@@ -1,11 +1,10 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
-//for table
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+// for table
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
-import { ElectionDetails } from './election-details'
-import { electionList } from './mock-elections'
-import { ElectionForm } from './new-election/election-form'
+import {ElectionDetails} from './election-details';
+import {electionList} from './mock-elections';
 
 @Injectable()
 export class AdminService {
@@ -17,18 +16,21 @@ export class AdminService {
     }
 
     get data(): ElectionDetails[] {
-        //first handle the fetched data
-        //then output the processed data
+        // first handle the fetched data
+        // then output the processed data
         return this.dataChange.value;
     }
+
     constructor() {
         this.fetchData();
     }
 }
+
 export class NewElectionService {
     submitForm(form): void {
         console.log(form.value);
-    };
+    }
+
     constructor() {
     }
 

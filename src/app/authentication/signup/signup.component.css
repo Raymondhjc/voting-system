@@ -28,12 +28,6 @@
   flex: 1 1 auto;
 }
 
-mat-card {
-  max-width: 80%;
-  margin: 2em auto;
-  text-align: center;
-}
-
 mat-toolbar-row {
   justify-content: space-between;
 }
@@ -43,4 +37,9 @@ mat-toolbar-row {
   bottom: 20px;
   right: 20px;
   color: white;
+}
+
+.lverg-errors{
+  text-align: left;
+  color: red;
 }

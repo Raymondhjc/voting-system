@@ -1,7 +1,7 @@
 import {AuthenticationService} from './authentication.service';
 
 
-describe('AuthenticationService', () => {
+describe('lverg:AuthenticationService', () => {
     let authenService: AuthenticationService;
     beforeEach(() => {
         authenService = new AuthenticationService(null, null, null);

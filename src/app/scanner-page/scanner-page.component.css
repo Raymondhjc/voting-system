@@ -4,20 +4,10 @@ body{
     font-size : 14px;
 }
 
-#header{
-    background-color:#5C6BC0;
-    color: white;
-    margin-top: 0px;
-    margin-left:5px;
-    margin-bottom:0px;
-    margin-right:5px;
-    border-top-left-radius:5px;
-    border-top-right-radius:5px;
-    border-bottom-right-radius:0px;
-    border-bottom-left-radius:0px;
-    height: 60px;
-    font-family:Verdana, Georgia, serif;
-    font-size : 2px,5px,0px,5px; 
+#start{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
 }
 
 .SearchLargeImage {
@@ -33,18 +23,76 @@ body{
     margin-bottom:0px;
     margin-right:5px;
     padding : 1px;
-    border-top-left-radius:0px;
-    border-top-right-radius:0px;
-    border-bottom-right-radius:5px;
-    border-bottom-left-radius:5px;
+    border-radius:5px;
+    width: 170px;
+    height: auto;
 }
-.rightSideBar{
-    background-color:#e5e4d7;
+.leftSideBar{
+    text-align:left; 
     margin:10px;
     border-radius: 5px;
     padding:20px;
     font-size:105%;
-    float: right;
     width:260px;
-
+    float: left;
 }
+.countNum{
+    margin:10px;
+    padding:20px;
+    text-align: center;
+    float:left;
+    border-radius: 5px;
+    width: auto;
+    font-size: 20px;
+}
+#count{
+    margin: auto;
+    font-size: 110%;
+}
+.LargeImage{
+    padding:20px;
+    margin:10px;
+    text-align: center;
+    float:left;
+    border-radius: 5px;
+    width: auto;
+}
+.image{
+    display: inline;
+    margin: auto;
+    background-size: cover;
+}
+
+#footer{
+    color:#fff;
+    background-color:#3F51B5;
+    margin:10px;
+    padding:10px;
+    height: 60px;
+    clear: both; 
+    border-radius: 5px;
+    text-align: center;
+    font-size:90%;
+  }
+  #footer ul{
+    padding: 5px;
+    list-style-type: none;
+    text-align: center;
+    margin: 10px;
+    border-radius: 5px;
+  }
+  #footer ul li{
+    display: inline;
+  }
+  #footer ul li a {
+    text-decoration: none;
+    font-family: Arial;
+    padding: .2em lem;
+    color: #fff;
+    background-color: #3F51B5;
+  }
+  #footer ul li a:hover{
+    color:#000;
+    background-color: #fff;
+  }
+  

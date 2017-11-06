@@ -1,74 +1,61 @@
-<mat-card class="lverg-mat-card">
+<mat-card class = "lverg-mat-card" *ngIf = "signInStatus">
 
-  <mat-tab-group>
-    <mat-tab label = "Manage Account">
-      <mat-toolbar color = "primary">
+    <mat-toolbar color = "primary">
         <i>You are logged in as</i>:&nbsp;<b>{{this.username}}</b>
-      </mat-toolbar>
-      <mat-expansion-panel>
+    </mat-toolbar>
+    <mat-expansion-panel>
         <mat-expansion-panel-header>
-          <mat-panel-title> password:</mat-panel-title>
-          <mat-panel-description>******</mat-panel-description>
+            <mat-panel-title> password:</mat-panel-title>
+            <mat-panel-description>******</mat-panel-description>
         </mat-expansion-panel-header>
 
         <form #changePassword = "ngForm">
-          <mat-form-field class = "full-width">
-            <input matInput placeholder = "Previous password" required ngModel name="previousPassword" type="password">
-          </mat-form-field>
-          <mat-form-field class = "full-width">
-            <input matInput placeholder = "New password" name = "password" ngModel required type="password">
-          </mat-form-field>
-          <mat-form-field class = "full-width">
-            <input matInput placeholder = "Confirm new password" validateEqual = "password" ngModel
-                   name = "confirmPassword" required type="password">
-          </mat-form-field>
+            <mat-form-field class = "full-width">
+                <input matInput placeholder = "Previous password" required ngModel name = "previousPassword"
+                       type = "password">
+            </mat-form-field>
+            <mat-form-field class = "full-width">
+                <input matInput placeholder = "New password" name = "password" ngModel required type = "password">
+            </mat-form-field>
+            <mat-form-field class = "full-width">
+                <input matInput placeholder = "Confirm new password" validateEqual = "password" ngModel
+                       name = "confirmPassword" required type = "password">
+            </mat-form-field>
 
-          <div style = "  text-align: right;">
-            <button mat-button color = "primary" [disabled] = "!changePassword.valid">
-              Modify
-            </button>
-            <button mat-button color = "warn">
-              Clear
-            </button>
-          </div>
+            <div style = "  text-align: right;">
+                <button mat-button color = "primary" [disabled] = "!changePassword.valid">
+                    Modify
+                </button>
+                <button mat-button color = "warn">
+                    Clear
+                </button>
+            </div>
 
         </form>
-      </mat-expansion-panel>
+    </mat-expansion-panel>
 
-      <mat-expansion-panel>
+    <mat-expansion-panel>
         <mat-expansion-panel-header>
-          <mat-panel-title> Email:</mat-panel-title>
-          <mat-panel-description>TODO: email should be show here using 1-way-binding</mat-panel-description>
+            <mat-panel-title> Email:</mat-panel-title>
+            <mat-panel-description>TODO: email should be show here using 1-way-binding</mat-panel-description>
         </mat-expansion-panel-header>
 
         <form #changeEmail = "ngForm">
-          <mat-form-field class = "full-width">
-            <input matInput placeholder = "New Email address:" email required ngModel name = "email">
-          </mat-form-field>
+            <mat-form-field class = "full-width">
+                <input matInput placeholder = "New Email address:" email required ngModel name = "email">
+            </mat-form-field>
 
-          <div style = "  text-align: right;">
-            <button mat-button color = "primary" [disabled] = "!changeEmail.valid">
-              Modify
-            </button>
-            <button mat-button color = "warn">
-              Clear
-            </button>
-          </div>
+            <div style = "  text-align: right;">
+                <button mat-button color = "primary" [disabled] = "!changeEmail.valid">
+                    Modify
+                </button>
+                <button mat-button color = "warn">
+                    Clear
+                </button>
+            </div>
         </form>
-      </mat-expansion-panel>
-
-    </mat-tab>
-    <mat-tab label = "Tasks">
-
-
-      <admin-app></admin-app>
-
-
-    </mat-tab>
-  </mat-tab-group>
-
-
-  <p *ngIf = "!signInStatus">You are a guest!</p>
-
-
+    </mat-expansion-panel>
 </mat-card>
+
+
+<p *ngIf = "!signInStatus">You are a guest!</p>

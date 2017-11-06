@@ -11,6 +11,12 @@
 	 height:40px;
 
 }
+.check-button{
+  width:240px; 
+  height:40px;
+
+  margin-top: 30px;
+  left:70%;}
 
 .example-container {
   display: flex;
@@ -21,4 +27,6 @@
 
 .mat-table {
   overflow: auto;
+
 }
+

@@ -1,29 +1,79 @@
-
 <head>
-  <title>
-  </title>
+    <title>
+    </title>
 
 </head>
-
 <body>
-  <div id = "header">
-    <h1>Start counting for your new vote!</h1>   
-  </div>
-  <div id = "navbar">
-      <button mat-button [matMenuTriggerFor]="votingType">Select the voting type</button>
-      <mat-menu #votingType="matMenu">
-        <button mat-menu-item>students' favoriate dinner</button>
-        <button mat-menu-item>students' favoriate professor</button>
-      </mat-menu>
-  </div>
-  <div class = "rightSideBar">
-    <h2>Find the larger view of the Image you want</h2>
-      <form class="SearchLargeImage">
-        <mat-form-field class="SearcheLargeImage">
-          <input matInput placeholder="Name of Image you want a large view" value="Image1">
-        </mat-form-field>
-      </form>
-    <button mat-button color = "primary">Search</button>
-  </div>
-  
+<div id = "start">
+    <h1>Start counting for your new vote!</h1>
+</div>
+
+<div id = "navbar">
+
+    <button id = "votingType" mat-button [matMenuTriggerFor] = "votingType">Select the voting type</button>
+    <mat-menu #votingType = "matMenu">
+        <button id = "menuItem1" mat-menu-item>students' favoriate dinner</button>
+        <button id = "menuItem2" mat-menu-item>students' favoriate snack</button>
+    </mat-menu>
+</div>
+
+<div class = "leftSideBar">
+    <mat-card>
+        <mat-card-header>
+            <h2>Find the larger view of the Image you want</h2>
+        </mat-card-header>
+        <form class = "SearchLargeImage">
+            <mat-form-field class = "SearcheLargeImage">
+                <input id = "placeholder" matInput placeholder = "Name of Image you want a large view" value = "Image1">
+            </mat-form-field>
+        </form>
+        <button id = "searchButton" mat-button color = "primary">Search</button>
+    </mat-card>
+</div>
+
+<div class = "countNum">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title id = "mdCardTitle1">Counting the total number</mat-card-title>
+        </mat-card-header>
+        <p #count>3</p>
+
+        <mat-card-actions>
+            <button id = "countButton" #Count mat-button>Count</button>
+            <button id = "cancelButton" #Cancel mat-button>Cancel</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<div class = "LargeImage">
+    <mat-card>
+        <mat-card-header>
+            <div mat-card-avatar class = "image"></div>
+            <mat-card-title id = "mdCardTitle2">Voting Type: food</mat-card-title>
+            <br>
+            <mat-card-subtitle id = "mdCardsubTitle">Name of image: Image1</mat-card-subtitle>
+        </mat-card-header>
+        <br>
+        <img #image width = "300" height = "200" id = "mat-card-image" src = "assets/votingImage1.jpg">
+        <br>
+
+        <mat-card-actions>
+            <button id = "previousButton" #previousButton [disabled] = "true"
+                    (click) = "previousPage(image, previousButton, nextButton)" mat-button>Previous
+            </button>
+            <button id = "nextButton" #nextButton [disabled] = "false"
+                    (click) = "nextPage(image, previousButton, nextButton)" mat-button>Next
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<div id = "footer">
+    <ul>
+        <li><a href = "">About Counting-system</a></li>
+        <li><a href = "">Help</a></li>
+        <li><a href = "">Contact Us</a></li>
+    </ul>
+</div>
+
 </body>

@@ -7,6 +7,9 @@ import {AnthenticationInfoModel} from './anthentication-info.model';
 export class ServerInteractService {
     serverURL = 'http://localhost:4500/';
 
+    // Postman
+    // serverURL = 'http://localhost:5555/';
+
     constructor(private http: Http) {
     }
 
@@ -20,5 +23,11 @@ export class ServerInteractService {
 
         const body = JSON.stringify(signinInfo);
         return this.http.post(this.serverURL + 'signin', body);
+    }
+
+    userExist(user: string) {
+
+        const s = 'exists/' + user;
+        return this.http.get(this.serverURL + s, '');
     }
 }

@@ -13,13 +13,13 @@
                     <mat-form-field>
                         <input readonly="readonly" matInput [matDatepicker]="startDate" placeholder="startDate at MM/DD/YYYY" formControlName="startDate"
                             required>
-                        <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+                        <mat-datepicker-toggle id="startDateToggle" matSuffix [for]="startDate"></mat-datepicker-toggle>
                         <mat-datepicker #startDate></mat-datepicker>
                     </mat-form-field>
                     <mat-form-field>
                         <input readonly="readonly" matInput [matDatepicker]="endDate" placeholder="endDate at MM/DD/YYYY" formControlName="endDate"
                             required>
-                        <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                        <mat-datepicker-toggle id="endDateToggle" matSuffix [for]="endDate"></mat-datepicker-toggle>
                         <mat-datepicker #endDate></mat-datepicker>
                     </mat-form-field>
                 </mat-list-item>
@@ -34,7 +34,7 @@
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
         <ng-template matStepLabel>Election Content</ng-template>
-        <form [formGroup]="secondFormGroup">
+        <form id="secondFormGroup" [formGroup]="secondFormGroup">
             <div id="sections" formArrayName="sections">
                 <div *ngFor="let sectionCtrl of secondFormGroup.get('sections').controls; let i = index" [formGroupName]="i">
                     <mat-card class="section-card">

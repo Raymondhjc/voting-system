@@ -2,6 +2,7 @@ import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {AnthenticationInfoModel} from '../../common/anthentication-info.model';
 import {ServerInteractService} from '../../common/serverInteract.service';
+import {FormGroup, Validators, FormControl} from '@angular/forms';
 
 @Component({
     selector: 'app-signin',
@@ -10,6 +11,7 @@ import {ServerInteractService} from '../../common/serverInteract.service';
 })
 export class SigninComponent implements OnInit, OnDestroy {
     authenInfo: AnthenticationInfoModel = new AnthenticationInfoModel('', '');
+    signinForm: FormGroup;
 
 
     constructor(public dialogRef: MatDialogRef<SigninComponent>,
@@ -22,7 +24,11 @@ export class SigninComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-
+        this.signinForm = new FormGroup({
+                'username': new FormControl(null, [Validators.required]),
+                'password': new FormControl(null, [Validators.required]),
+            }
+        );
     }
 
     ngOnDestroy() {

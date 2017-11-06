@@ -1,19 +1,21 @@
-<form #signInForm="ngForm">
-  <p>
-    <mat-form-field class = "full-width">
-      <input matInput [(ngModel)] = "this.authenInfo.username" type="text"
-             name="Username" placeholder = "Username" required>
-    </mat-form-field>
-    <mat-form-field class = "full-width">
-      <input matInput [(ngModel)] = "this.authenInfo.password" type="password"
-             name="Password" placeholder = "Password" required>
-    </mat-form-field>
-  </p>
-  <div style="text-align: center;">
-    <button mat-raised-button [mat-dialog-close] = "this.serverInteract.sendSignin(this.authenInfo)" [disabled] = "!signInForm.valid" color = "primary">Sign In
-    </button>
-    <button mat-raised-button (click) = "onCancelClick()" color = "warn">Cancel</button>
-  </div>
+<form [formGroup] = "signinForm" class="signinForm">
+    <p>
+        <mat-form-field class = "full-width">
+            <input class="username" matInput [(ngModel)] = "this.authenInfo.username" type = "text"
+                   name = "Username" placeholder = "Username" formControlName = "username">
+        </mat-form-field>
+        <mat-form-field class = "full-width">
+            <input class="password" matInput [(ngModel)] = "this.authenInfo.password" type = "password"
+                   name = "Password" placeholder = "Password" formControlName = "password">
+        </mat-form-field>
+    </p>
+    <div style = "text-align: center;">
+        <button class="signinButton" mat-raised-button [mat-dialog-close] = "this.serverInteract.sendSignin(this.authenInfo)"
+                [disabled] = "!signinForm.valid" color = "primary" >
+            Sign In
+        </button>
+        <button class="cancelButton" mat-raised-button (click) = "onCancelClick()" color = "warn" >Cancel</button>
+    </div>
 </form>
 
 

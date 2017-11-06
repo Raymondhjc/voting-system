@@ -5,7 +5,16 @@ import (
 	"io/ioutil"
 	"fmt"
 	"os"
+	"log"
 )
+
+var verbose = true
+
+func check(err error) {
+	if err != nil {
+		log.Fatal(err)
+	}
+}
 
 func readBytes(r *http.Request) []byte {
 	file, e := ioutil.ReadAll(r.Body)
