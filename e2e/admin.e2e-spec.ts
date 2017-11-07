@@ -8,32 +8,32 @@ fdescribe('hjc-voting-system App', () => {
     page = new AdminPage();
   });
 
-  // it('should have the first form', () => {
-  //   page.navigateTo();
-  //   const firstForm = page.getFirstForm();
-  //   expect(firstForm).toBeTruthy();
-  // });
+  it('should have the first form', () => {
+    page.navigateTo();
+    const firstForm = page.getFirstForm();
+    expect(firstForm).toBeTruthy();
+  });
 
-  // it('should block invalid input of first form', () => {
-  //   page.navigateTo();
-  //   const firstForm = page.getFirstForm();
-  //   expect(firstForm.getAttribute('class')).toContain('ng-invalid');
-  //   page.getElectionNameInput().sendKeys('test election name');
-  //   page.selectStartDateCalendar().click();
-  //   page.getstartDate().click();
-  //   browser.sleep(1000);
+  it('should block invalid input of first form', () => {
+    page.navigateTo();
+    const firstForm = page.getFirstForm();
+    expect(firstForm.getAttribute('class')).toContain('ng-invalid');
+    page.getElectionNameInput().sendKeys('test election name');
+    page.startDateCalendar().click();
+    page.getstartDate().click();
+    browser.sleep(1000);
 
-  //   page.selectEndDateCalendar().click();
-  //   page.getendDate().click();
-  //   browser.sleep(1000);
-  //   expect(firstForm.getAttribute('class')).toContain('ng-valid');
-  // });
+    page.endDateCalendar().click();
+    page.getendDate().click();
+    browser.sleep(1000);
+    expect(firstForm.getAttribute('class')).toContain('ng-valid');
+  });
 
-  // it('should block invalid input of second form', () => {
-  //   page.navigateTo();
-  //   const firstForm = page.getSecondForm();
-  //   expect(firstForm.getAttribute('class')).toContain('ng-invalid');
-  // });
+  it('should block invalid input of second form', () => {
+    page.navigateTo();
+    const firstForm = page.getSecondForm();
+    expect(firstForm.getAttribute('class')).toContain('ng-invalid');
+  });
 
   it('should generate a new election after valid inputs', () => {
     page.navigateTo();
@@ -79,5 +79,8 @@ fdescribe('hjc-voting-system App', () => {
     page.optionLabel(2,2).sendKeys('Sample option 2');
     browser.sleep(2000);
 
+    //navigate to the third step
+    page.stepperButton(2).click();
+    browser.sleep(8000);
   });
 });
