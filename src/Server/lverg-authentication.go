@@ -79,16 +79,16 @@ func authorize(next http.HandlerFunc) http.HandlerFunc {
     if authorizationHeader != "" {
       bearerToken := strings.Split(authorizationHeader, " ")
       if len(bearerToken) == 2 {
-        token, _ := jwt.Parse(bearerToken[1], func(token *jwt.Token) (interface{}, error) {
+        token, error := jwt.Parse(bearerToken[1], func(token *jwt.Token) (interface{}, error) {
           if _, ok := token.Method.(*jwt.SigningMethodRSA); !ok {
             return nil, fmt.Errorf("There was an error")
           }
           return publicKey, nil
         })
-        //if error != nil {
-        //  json.NewEncoder(w).Encode(Exception{Message: error.Error()})
-        //  return
-        //}
+        if error != nil {
+          json.NewEncoder(w).Encode(Exception{Message: error.Error()})
+          return
+        }
         if token.Valid {
           context.Set(req, "jwtContent", token.Claims)
           next(w, req)

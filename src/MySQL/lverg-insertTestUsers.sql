@@ -15,15 +15,3 @@ FROM votingsystem.users;
 
 SELECT *
 FROM votingsystem.userInfo;
-
-UPDATE votingsystem.userInfo
-SET email = "lvergergsk@outlook.com"
-WHERE username = "testUsername";
-
-SELECT
-  firstname,
-  lastname,
-  email,
-  ufid
-FROM votingsystem.userInfo
-WHERE username = 'testUsername'

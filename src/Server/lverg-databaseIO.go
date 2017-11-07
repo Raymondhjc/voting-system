@@ -72,7 +72,6 @@ func (db *MyDB) getUserHash(username string) (string, error) {
       return "", err
     }
     return hash, nil
-
   } else {
     return "", nil
   }

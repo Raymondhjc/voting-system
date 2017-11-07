@@ -6,8 +6,6 @@ type SigninInfo struct {
 }
 
 type SigninResponse struct {
-  Success  bool
-  Username string
   JWT      string
 }
 
