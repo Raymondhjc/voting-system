@@ -34,10 +34,10 @@ import {DataViewComponent} from './data-view/data-view.component';
 import {ScannerPageComponent} from './scanner-page/scanner-page.component';
 import {NotSignedInGuardsService} from './common/not-signed-in-guards.service';
 import {SignedInAuthGuardService} from './common/signed-in-auth-guard.service';
-import {EqualValidatorDirective} from './common/equal-validator.directive';
 import {ServerInteractService} from './common/serverInteract.service';
 import {HttpModule} from '@angular/http';
 import {BallotCheckComponent} from './ballot-check/ballot-check.component';
+//import { UploadPageComponent } from './upload-page/upload-page.component';
 
 @NgModule({
     declarations: [
@@ -49,8 +49,8 @@ import {BallotCheckComponent} from './ballot-check/ballot-check.component';
         WelcomePageComponent,
         DataViewComponent,
         ScannerPageComponent,
-        EqualValidatorDirective,
-        BallotCheckComponent
+        BallotCheckComponent,
+        //UploadPageComponent
     ],
     imports: [
         BrowserModule,

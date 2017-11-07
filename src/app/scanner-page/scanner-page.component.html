@@ -1,79 +1,80 @@
 <head>
     <title>
     </title>
-
-</head>
-<body>
-<div id = "start">
-    <h1>Start counting for your new vote!</h1>
-</div>
-
-<div id = "navbar">
-
-    <button id = "votingType" mat-button [matMenuTriggerFor] = "votingType">Select the voting type</button>
-    <mat-menu #votingType = "matMenu">
-        <button id = "menuItem1" mat-menu-item>students' favoriate dinner</button>
-        <button id = "menuItem2" mat-menu-item>students' favoriate snack</button>
-    </mat-menu>
-</div>
-
-<div class = "leftSideBar">
-    <mat-card>
+  
+  </head>
+  <body>
+    <div >
+      <h1 id = "start">Start counting for your new vote!</h1>   
+    </div>
+  
+    <div id = "navbar">
+      
+        <button id="votingType" mat-button [matMenuTriggerFor]="votingType">Select the voting type</button>
+        <mat-menu #votingType="matMenu">
+          <button id="menuItem1"mat-menu-item>students' favoriate dinner</button>
+          <button id="menuItem2"mat-menu-item>students' favoriate snack</button>
+        </mat-menu>
+    </div>
+  
+    <div class = "leftSideBar">
+      <mat-card >
         <mat-card-header>
-            <h2>Find the larger view of the Image you want</h2>
+          <h2>Find the larger view of the Image you want</h2>
         </mat-card-header>
-        <form class = "SearchLargeImage">
-            <mat-form-field class = "SearcheLargeImage">
-                <input id = "placeholder" matInput placeholder = "Name of Image you want a large view" value = "Image1">
-            </mat-form-field>
+        <form>
+              <mat-form-field>
+                <p id = "placeHolderHint" >Name of Image you want a large view </p>
+                <input id = "placeholder" #placeholder matInput value="">
+              </mat-form-field>
         </form>
-        <button id = "searchButton" mat-button color = "primary">Search</button>
-    </mat-card>
-</div>
-
-<div class = "countNum">
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title id = "mdCardTitle1">Counting the total number</mat-card-title>
-        </mat-card-header>
-        <p #count>3</p>
-
+      <button id = "searchButton" (click)="searchImage(placeholder, image)" mat-button color = "primary">Search</button>
+      <button id = "resetButton1" (click)="resetInput(placeholder,image)" mat-button color = "primary">Reset</button>
+      </mat-card>
+    </div>
+  
+    <div class = "countNum">
+      <mat-card >
+          <mat-card-header>
+            <mat-card-title id="matCardTitle1" >Counting the total number </mat-card-title>
+          </mat-card-header>
+          <div ng-app="">
+            <p id="count" #count> {{countNumber}} </p>
+          </div>
+  
         <mat-card-actions>
-            <button id = "countButton" #Count mat-button>Count</button>
-            <button id = "cancelButton" #Cancel mat-button>Cancel</button>
+          <button id="countButton" #countButton (click)="countImageNumber()" mat-button color = "primary">Count</button>
+          <button id="resetButton2" #resetButton (click)="resetImageNumber(image)" mat-button color = "primary">Reset</button>
         </mat-card-actions>
-    </mat-card>
-</div>
-
-<div class = "LargeImage">
-    <mat-card>
+      </mat-card>
+    </div>
+  
+    <div class = "LargeImage">
+      <mat-card>
         <mat-card-header>
-            <div mat-card-avatar class = "image"></div>
-            <mat-card-title id = "mdCardTitle2">Voting Type: food</mat-card-title>
-            <br>
-            <mat-card-subtitle id = "mdCardsubTitle">Name of image: Image1</mat-card-subtitle>
+          <div mat-card-avatar class="image"></div>
+          <mat-card-title id="matCardTitle2">Voting Type: food</mat-card-title>
+          <br>
+          <mat-card-subtitle id="matCardsubTitle">Name of image: {{ImageName}}</mat-card-subtitle>
         </mat-card-header>
         <br>
-        <img #image width = "300" height = "200" id = "mat-card-image" src = "assets/votingImage1.jpg">
+        <img #image width = "300" height = "200" id="mat-card-image" src="{{ImageSrc}}">
         <br>
-
+      
         <mat-card-actions>
-            <button id = "previousButton" #previousButton [disabled] = "true"
-                    (click) = "previousPage(image, previousButton, nextButton)" mat-button>Previous
-            </button>
-            <button id = "nextButton" #nextButton [disabled] = "false"
-                    (click) = "nextPage(image, previousButton, nextButton)" mat-button>Next
-            </button>
+          <button id = "previousButton" #previousButton [disabled] = "true" (click)="previousPage(image, previousButton, nextButton)" mat-button color = "primary">Previous</button>
+          <button id = "nextButton" #nextButton [disabled] = "false" (click)="nextPage(image, previousButton, nextButton)" mat-button color = "primary">Next</button>
         </mat-card-actions>
-    </mat-card>
-</div>
-
-<div id = "footer">
-    <ul>
-        <li><a href = "">About Counting-system</a></li>
-        <li><a href = "">Help</a></li>
-        <li><a href = "">Contact Us</a></li>
-    </ul>
-</div>
-
-</body>
+      </mat-card>
+    </div>
+  
+    <div id = "footer">
+        <ul>
+          <li><a href = "">About Counting-system</a></li>
+          <li><a href = "">Help</a></li>
+          <li><a href = "">Contact Us</a></li>
+        </ul>
+    </div>
+    
+  </body>
+  
