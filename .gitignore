@@ -10,6 +10,7 @@
 
 # IDEs and editorsgi
 /.idea
+/src/Server/.idea
 *.orig
 *.stackdump
 .project
@@ -42,9 +43,15 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+<<<<<<< HEAD
 /src/Server/Server.exe
 /src/Server/coverage.out
 /src/Server/count.out
 /coverage/
 /src/Server/jwtRS256.key
 /src/Server/jwtRS256.key.pub
+=======
+/src/Server/coverage.out
+/src/Server/count.out
+/coverage/
+>>>>>>> 6b01937a4481c3bafcb1f1b5ca9755dcf355460f

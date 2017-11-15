@@ -28,7 +28,11 @@ class ServerInteractServiceStub {
         this.subject.next(response);
     }
 
+<<<<<<< HEAD
     userExist(s: string): Observable<Response> {
+=======
+    getUserExist(s: string): Observable<Response> {
+>>>>>>> 6b01937a4481c3bafcb1f1b5ca9755dcf355460f
 
         const response = new Response(new ResponseOptions({
             body: JSON.stringify(this.notExist)

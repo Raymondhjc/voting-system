@@ -8,7 +8,13 @@ import {Component, OnInit} from '@angular/core';
 export class ScannerPageComponent implements OnInit {
 
     imageIndex = 0;
+<<<<<<< HEAD
     imageArray: string[] = ['assets/votingImage1.jpg', 'assets/votingImage2.jpg', 'assets/votingImage3.jpg'];
+=======
+    originalImageArray: string[] = ['assets/votingImage1.jpg', 'assets/votingImage2.jpg', 'assets/votingImage3.jpg'];
+    imageArray: string[] = ['assets/votingImage1.jpg', 'assets/votingImage2.jpg', 'assets/votingImage3.jpg'];
+    resultImageArray: string[] = new Array();
+>>>>>>> 6b01937a4481c3bafcb1f1b5ca9755dcf355460f
 
     constructor() {
     }
@@ -16,6 +22,13 @@ export class ScannerPageComponent implements OnInit {
     ngOnInit() {
     }
 
+<<<<<<< HEAD
+=======
+    countNumber = this.getImageCount();
+    ImageName = this.showImageName(this.imageIndex);
+    ImageSrc = this.imageArray[this.imageIndex];
+
+>>>>>>> 6b01937a4481c3bafcb1f1b5ca9755dcf355460f
     previousPage(image: any, previousButton: any, nextButton: any) {
         if (this.imageIndex > 0) {
             this.imageIndex = this.imageIndex - 1;
@@ -25,6 +38,10 @@ export class ScannerPageComponent implements OnInit {
             previousButton.disabled = true;
         }
         nextButton.disabled = false;
+<<<<<<< HEAD
+=======
+        this.ImageName = this.showImageName(this.imageIndex);
+>>>>>>> 6b01937a4481c3bafcb1f1b5ca9755dcf355460f
     }
 
     nextPage(image: any, previousButton: any, nextButton: any) {
@@ -36,5 +53,70 @@ export class ScannerPageComponent implements OnInit {
             nextButton.disabled = true;
         }
         previousButton.disabled = false;
+<<<<<<< HEAD
+=======
+        this.ImageName = this.showImageName(this.imageIndex);
+    }
+
+    getImageCount(){
+        return this.imageArray.length;
+    }
+    
+    countImageNumber(){
+        
+        this.countNumber = this.getImageCount();
+    }
+    
+    resetImageNumber(image: any){
+        this.countNumber = 0;
+        this.ImageName = this.showImageName(0);
+        this.imageArray = this.originalImageArray;
+        image.src = this.imageArray[0];
+    }
+    
+    resetInput(placeholder: any, image: any){
+        placeholder.value = "";
+        this.ImageName = this.showImageName(0);
+        image.src = this.imageArray[0];
+        this.resultImageArray = new Array();
+        this.imageArray = this.originalImageArray;
+    }
+
+    searchImage(placeholder: any, image: any){
+        var searchValue = placeholder.value;
+        this.resultImageArray = new Array();
+        var iCount = 0;
+        //console.log("searchValue = "+searchValue);        
+        if(searchValue != "") {
+            for(var i =0;i<this.imageArray.length; i++) {
+                if(this.imageArray[i].indexOf(searchValue) >= 0) {
+                    this.resultImageArray[iCount] =this.imageArray[i];
+                    iCount++;
+                }
+            }
+            this.imageArray = this.resultImageArray;
+            if(iCount == 0) {
+                placeholder.value = "Image not Found!"
+            }
+        } else {
+            this.imageArray = this.originalImageArray;
+        }
+
+        this.ImageName = this.showImageName(0);
+        image.src = this.imageArray[0]; 
+    }
+
+    showImageName(imageIndex: any){
+        //console.log(this.imageArray);        
+        var imgName = this.imageArray[imageIndex];
+
+
+        // example: assests/image1.jpg
+        var startIndex= imgName.lastIndexOf("/");
+        var endIndex =imgName.lastIndexOf(".");
+        var realName = imgName.substring(startIndex +1, endIndex);
+
+        return realName;
+>>>>>>> 6b01937a4481c3bafcb1f1b5ca9755dcf355460f
     }
 }

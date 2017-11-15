@@ -8,7 +8,11 @@ import {DataViewComponent} from './data-view/data-view.component';
 import {ScannerPageComponent} from './scanner-page/scanner-page.component';
 import {NotSignedInGuardsService} from './common/not-signed-in-guards.service';
 import {SignedInAuthGuardService} from './common/signed-in-auth-guard.service';
+<<<<<<< HEAD
 
+=======
+//import {UploadPageComponent} from './upload-page/upload-page.component';
+>>>>>>> 6b01937a4481c3bafcb1f1b5ca9755dcf355460f
 import {BallotCheckComponent} from './ballot-check/ballot-check.component';
 import {AdminComponent} from './admin/admin.component';
 import {newElectionComponent} from './admin/new-election/new-election.component';
@@ -28,6 +32,7 @@ const appRoute: Routes = [
   {path: 'ballot-check', component: BallotCheckComponent},
     {path: 'data-view', component: DataViewComponent},
     {path: 'scanner', component: ScannerPageComponent},
+    //{path: 'upload', component: UploadPageComponent},
     {path: 'admin', component: AdminComponent},
     {path: 'admin/new-election', component: newElectionComponent}
 ];
