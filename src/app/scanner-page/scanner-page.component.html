@@ -4,35 +4,50 @@
   
   </head>
   <body>
-    <div >
-      <h1 id = "start">Start counting for your new vote!</h1>   
-    </div>
-  
-    <div id = "navbar">
+      <mat-card class="searchcard">
+        <h1>Search Images</h1>
+        <mat-tab-group>
+          <mat-tab label = "Exist Image">
+              <div class = "searchImage">
+                  <i class="material-icons" matPreffix>search</i>
+                  <mat-form-field floatPlaceholder = ""> 
+                      <input id = "placeholder" #placeholder matInput value="">   
+                  </mat-form-field>
+            
+                  <button id = "searchButton" (click)="searchImage(placeholder, image)" mat-button color = "primary">Search</button>
+                  <button id = "resetButton1" (click)="resetInput(placeholder,image)" mat-button color = "primary">Reset</button>
+                </div>
+
+            <div class = "admin-table-container mat-elevation-z8">
+            <mat-table #table [dataSource] = "imageDetails" matSort>
+              <!-- ID Column -->
+              <ng-container matColumnDef = "id">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> ID</mat-header-cell>
+                  <mat-cell *matCellDef = "let picture"> {{picture.id}}</mat-cell>
+              </ng-container>
+
+              <!-- ImageName Column -->
+              <ng-container matColumnDef = "name">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Image Name</mat-header-cell>
+                  <mat-cell *matCellDef = "let picture"> {{picture.name}}</mat-cell>
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef = "displayedColumns"></mat-header-row>
+              <mat-row *matRowDef = "let row; columns: displayedColumns;"></mat-row>
+            
+           </mat-table>
+        </div>
+    </mat-tab>
       
-        <button id="votingType" mat-button [matMenuTriggerFor]="votingType">Select the voting type</button>
-        <mat-menu #votingType="matMenu">
-          <button id="menuItem1"mat-menu-item>students' favoriate dinner</button>
-          <button id="menuItem2"mat-menu-item>students' favoriate snack</button>
-        </mat-menu>
-    </div>
-  
-    <div class = "leftSideBar">
-      <mat-card >
-        <mat-card-header>
-          <h2>Find the larger view of the Image you want</h2>
-        </mat-card-header>
-        <form>
-              <mat-form-field>
-                <p id = "placeHolderHint" >Name of Image you want a large view </p>
-                <input id = "placeholder" #placeholder matInput value="">
-              </mat-form-field>
-        </form>
-      <button id = "searchButton" (click)="searchImage(placeholder, image)" mat-button color = "primary">Search</button>
-      <button id = "resetButton1" (click)="resetInput(placeholder,image)" mat-button color = "primary">Reset</button>
-      </mat-card>
-    </div>
-  
+      <!--<mat-paginator #paginator
+      [length]="imageDetails.data.length"
+      [pageIndex]="0"
+      [pageSize]="25"
+      [pageSizeOptions]="[5, 10, 25, 100]">
+      </mat-paginator> -->
+        </mat-tab-group>
+    </mat-card>
+    
     <div class = "countNum">
       <mat-card >
           <mat-card-header>

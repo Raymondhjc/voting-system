@@ -1,0 +1,13 @@
+h1{
+    text-align: left;
+    font-size: 20px;
+}
+img{
+    margin: 5px;
+}
+.uploadcard{
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    text-align: center;
+}

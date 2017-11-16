@@ -1,0 +1,15 @@
+<h1>Upload Images</h1>
+
+<div class="uploadcard">
+    
+    <img #image width = "300" height = "200" id="mat-card-image" src="assets/upload.png">
+    <form type = "multipart/form-data" action="http://127.0.0.1:4500/upload" method="POST">
+        <input type = "file" name = "Choose file to Upload"/>
+        <br>
+        <button type = "submit" class= "uploadImageButton" mat-button color = "primary"> Upload File </button>
+    </form>
+
+  
+</div>
+
+  

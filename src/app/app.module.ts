@@ -37,7 +37,8 @@ import {SignedInAuthGuardService} from './common/signed-in-auth-guard.service';
 import {ServerInteractService} from './common/serverInteract.service';
 import {HttpModule} from '@angular/http';
 import {BallotCheckComponent} from './ballot-check/ballot-check.component';
-//import { UploadPageComponent } from './upload-page/upload-page.component';
+import { UploadPageComponent } from './upload-page/upload-page.component';
+
 
 @NgModule({
     declarations: [
@@ -50,7 +51,8 @@ import {BallotCheckComponent} from './ballot-check/ballot-check.component';
         DataViewComponent,
         ScannerPageComponent,
         BallotCheckComponent,
-        //UploadPageComponent
+        UploadPageComponent,
+        
     ],
     imports: [
         BrowserModule,
