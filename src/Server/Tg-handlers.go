@@ -1,8 +1,8 @@
 package main
 
-//"fmt"
+"fmt"
 
-/*func getImage(w http.ResponseWriter, r *http.Request) {
+func getImage(w http.ResponseWriter, r *http.Request) {
 	imageId := mux.Vars(r)["imageId"]
 	exist, err := db.userCredentialIsExist(imageId)
 
@@ -27,4 +27,4 @@ package main
 	}
 
 }
-*/
+

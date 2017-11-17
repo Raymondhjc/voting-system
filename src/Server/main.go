@@ -13,50 +13,49 @@
 package main
 
 import (
-  "fmt"
-  "net/http"
-  "github.com/gorilla/mux"
-  "github.com/gorilla/handlers"
+	"fmt"
+	"github.com/gorilla/handlers"
+	"github.com/gorilla/mux"
+	"net/http"
 )
 
 func main() {
-  // Reading RSA keys for creating JWT, name is fixed.
-  // jwtRS256.key for private key. jwtRS256.key.pub for public key
-  initKeys()
+	// Reading RSA keys for creating JWT, name is fixed.
+	// jwtRS256.key for private key. jwtRS256.key.pub for public key
+	initKeys()
 
-  // Provide some debug Information
-  if verbose {
-    fmt.Println("Running under verbose mode ...")
-  } else {
-    fmt.Println("Running ...")
-  }
+	// Provide some debug Information
+	if verbose {
+		fmt.Println("Running under verbose mode ...")
+	} else {
+		fmt.Println("Running ...")
+	}
 
-  // Database Credential
-  var username = "ufse"
-  var password = "voting-system"
-  var address = "127.0.0.1:3306"
-  var dbName = "votingsystem"
+	// Database Credential
+	var username = "ufse"
+	var password = "voting-system"
+	var address = "127.0.0.1:3306"
+	var dbName = "votingsystem"
 
-  // Open and close Database
-  err = db.connectDB(username, password, address, dbName)
-  check(err)
-  defer db.disconnectDB()
+	// Open and close Database
+	err = db.connectDB(username, password, address, dbName)
+	check(err)
+	defer db.disconnectDB()
 
-  // Multiplexer.
-  r := mux.NewRouter()
-  //Handlers
-  r.HandleFunc("/signup", signupHandler).Methods("POST")
-  r.HandleFunc("/signin", signinHandler).Methods("POST")
-  r.HandleFunc("/exists/{username}", userExistHandler).Methods("GET")
-  r.HandleFunc("/whoami", authorize(whoamiHandler)).Methods("GET")
-  r.HandleFunc("/changePassword", authorize(changePasswordHandler)).Methods("POST")
-  r.HandleFunc("/changeEmail",authorize(changeEmailHandler)).Methods("POST")
+	// Multiplexer.
+	r := mux.NewRouter()
+	//Handlers
+	r.HandleFunc("/signup", signupHandler).Methods("POST")
+	r.HandleFunc("/signin", signinHandler).Methods("POST")
+	r.HandleFunc("/exists/{username}", userExistHandler).Methods("GET")
+	r.HandleFunc("/whoami", authorize(whoamiHandler)).Methods("GET")
+	r.HandleFunc("/changePassword", authorize(changePasswordHandler)).Methods("POST")
+	r.HandleFunc("/changeEmail", authorize(changeEmailHandler)).Methods("POST")
 
-  // Allow Cross Origin Resource Sharing with CORS middleware.
-  headersOk := handlers.AllowedHeaders([]string{"Authorization"})
-  originsOk := handlers.AllowedOrigins([]string{"*"})
+	// Allow Cross Origin Resource Sharing with CORS middleware.
+	headersOk := handlers.AllowedHeaders([]string{"Authorization"})
+	originsOk := handlers.AllowedOrigins([]string{"*"})
 
-  // Start Listening.
-  http.ListenAndServe(":4500", handlers.CORS(headersOk,originsOk)(r))
+	// Start Listening.
+	http.ListenAndServe(":4500", handlers.CORS(headersOk, originsOk)(r))
 }
-
