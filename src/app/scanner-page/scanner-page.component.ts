@@ -8,13 +8,9 @@ import {Component, OnInit} from '@angular/core';
 export class ScannerPageComponent implements OnInit {
 
     imageIndex = 0;
-<<<<<<< HEAD
-    imageArray: string[] = ['assets/votingImage1.jpg', 'assets/votingImage2.jpg', 'assets/votingImage3.jpg'];
-=======
     originalImageArray: string[] = ['assets/votingImage1.jpg', 'assets/votingImage2.jpg', 'assets/votingImage3.jpg'];
     imageArray: string[] = ['assets/votingImage1.jpg', 'assets/votingImage2.jpg', 'assets/votingImage3.jpg'];
     resultImageArray: string[] = new Array();
->>>>>>> 6b01937a4481c3bafcb1f1b5ca9755dcf355460f
 
     constructor() {
     }
@@ -22,13 +18,10 @@ export class ScannerPageComponent implements OnInit {
     ngOnInit() {
     }
 
-<<<<<<< HEAD
-=======
     countNumber = this.getImageCount();
     ImageName = this.showImageName(this.imageIndex);
     ImageSrc = this.imageArray[this.imageIndex];
 
->>>>>>> 6b01937a4481c3bafcb1f1b5ca9755dcf355460f
     previousPage(image: any, previousButton: any, nextButton: any) {
         if (this.imageIndex > 0) {
             this.imageIndex = this.imageIndex - 1;
@@ -38,10 +31,7 @@ export class ScannerPageComponent implements OnInit {
             previousButton.disabled = true;
         }
         nextButton.disabled = false;
-<<<<<<< HEAD
-=======
         this.ImageName = this.showImageName(this.imageIndex);
->>>>>>> 6b01937a4481c3bafcb1f1b5ca9755dcf355460f
     }
 
     nextPage(image: any, previousButton: any, nextButton: any) {
@@ -53,8 +43,6 @@ export class ScannerPageComponent implements OnInit {
             nextButton.disabled = true;
         }
         previousButton.disabled = false;
-<<<<<<< HEAD
-=======
         this.ImageName = this.showImageName(this.imageIndex);
     }
 
@@ -117,6 +105,5 @@ export class ScannerPageComponent implements OnInit {
         var realName = imgName.substring(startIndex +1, endIndex);
 
         return realName;
->>>>>>> 6b01937a4481c3bafcb1f1b5ca9755dcf355460f
     }
 }

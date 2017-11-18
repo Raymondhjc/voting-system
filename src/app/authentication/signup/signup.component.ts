@@ -1,10 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
-<<<<<<< HEAD
-import {RegistrationInfoModel} from '../../common/user-info.model';
-=======
 import {RegistrationInfoModel} from '../../common/registration-info.model';
->>>>>>> 6b01937a4481c3bafcb1f1b5ca9755dcf355460f
 import {ServerInteractService} from '../../common/serverInteract.service';
 import {CustomValidators} from 'ng2-validation';
 import {Observable} from 'rxjs/Observable';
@@ -52,11 +48,6 @@ export class SignupComponent implements OnInit {
     // }
 
     onSubmit() {
-<<<<<<< HEAD
-        console.log(this.signupForm);
-
-=======
->>>>>>> 6b01937a4481c3bafcb1f1b5ca9755dcf355460f
         const regInfo = new RegistrationInfoModel(
             this.signupForm.value.firstname,
             this.signupForm.value.lastname,
@@ -66,11 +57,7 @@ export class SignupComponent implements OnInit {
             this.signupForm.value.ufid
         );
 
-<<<<<<< HEAD
-        this.serverInteract.sendSignup(regInfo).subscribe(
-=======
         this.serverInteract.postSignup(regInfo).subscribe(
->>>>>>> 6b01937a4481c3bafcb1f1b5ca9755dcf355460f
             (response) => console.log(response),
             (error) => console.log(error)
         );
@@ -78,11 +65,7 @@ export class SignupComponent implements OnInit {
 
 
     usernameDupCheck(control: FormControl): Promise<any> | Observable<any> {
-<<<<<<< HEAD
-        return this.serverInteract.userExist(control.value).map(
-=======
         return this.serverInteract.getUserExist(control.value).map(
->>>>>>> 6b01937a4481c3bafcb1f1b5ca9755dcf355460f
             (response) => {
                 const r = response.json();
                 if (r.exist) {
@@ -99,11 +82,7 @@ export class SignupComponent implements OnInit {
 
     // usernameDupCheck(control: FormControl): Promise<any> | Observable<any> {
     //     const promise = new Promise<any>((resolve, reject) => {
-<<<<<<< HEAD
-    //         this.serverInteract.userExist(control.value).subscribe(
-=======
     //         this.serverInteract.getUserExist(control.value).subscribe(
->>>>>>> 6b01937a4481c3bafcb1f1b5ca9755dcf355460f
     //             (response) => {
     //                 const r = JSON.parse(response.text());
     //                 if (r.exist) {

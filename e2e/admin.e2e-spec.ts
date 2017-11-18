@@ -28,6 +28,7 @@ describe('hjc-voting-system App', () => {
     browser.sleep(1000);
     expect(firstForm.getAttribute('class')).toContain('ng-valid');
   });
+
   it('should block invalid input of second form', () => {
     page.navigateTo();
     const firstForm = page.getSecondForm();

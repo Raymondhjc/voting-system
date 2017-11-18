@@ -43,19 +43,11 @@ export class ServerInteractService {
     return this.http.post(this.serverURL + 'signin', body);
   }
 
-<<<<<<< HEAD
-    // Postman
-    // serverURL = 'http://localhost:5555/';
-
-    constructor(private http: Http) {
-    }
-=======
   // This request test whether a specific username is occupied.
   getUserExist(user: string) {
     const s = 'exists/' + user;
     return this.http.get(this.serverURL + s, '');
   }
->>>>>>> 6b01937a4481c3bafcb1f1b5ca9755dcf355460f
 
   // This request changes user password.
   postChangePassword(request: ChangePasswordRequestModel) {
@@ -83,16 +75,4 @@ export class ServerInteractService {
     return this.http.get(this.serverURL + 'whoami', {headers: headers});
   }
 
-<<<<<<< HEAD
-        const body = JSON.stringify(signinInfo);
-        return this.http.post(this.serverURL + 'signin', body);
-    }
-
-    userExist(user: string) {
-
-        const s = 'exists/' + user;
-        return this.http.get(this.serverURL + s, '');
-    }
-=======
->>>>>>> 6b01937a4481c3bafcb1f1b5ca9755dcf355460f
 }

@@ -48,10 +48,6 @@ import {BallotCheckComponent} from './ballot-check/ballot-check.component';
         WelcomePageComponent,
         DataViewComponent,
         ScannerPageComponent,
-<<<<<<< HEAD
-        EqualValidatorDirective,
-=======
->>>>>>> 6b01937a4481c3bafcb1f1b5ca9755dcf355460f
         BallotCheckComponent
     ],
     imports: [

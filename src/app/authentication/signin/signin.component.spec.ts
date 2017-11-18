@@ -12,11 +12,7 @@ import {By} from '@angular/platform-browser';
 class ServerInteractServiceStub {
     response = new Observable<Response>();
 
-<<<<<<< HEAD
-    sendSignin() {
-=======
   postSignin() {
->>>>>>> 6b01937a4481c3bafcb1f1b5ca9755dcf355460f
         return this.response;
     }
 

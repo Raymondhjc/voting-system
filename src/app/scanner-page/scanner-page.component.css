@@ -29,10 +29,7 @@ body{
     height: auto;
 }
 .leftSideBar{
-<<<<<<< HEAD
-=======
     display:flex;
->>>>>>> 6b01937a4481c3bafcb1f1b5ca9755dcf355460f
     text-align:left; 
     margin:10px;
     border-radius: 5px;
@@ -41,16 +38,12 @@ body{
     width:260px;
     float: left;
 }
-<<<<<<< HEAD
-.countNum{
-=======
 #placeHolderHint{
     text-align:left; 
     font-size: 70%;
 }
 .countNum{
     display:flex;
->>>>>>> 6b01937a4481c3bafcb1f1b5ca9755dcf355460f
     margin:10px;
     padding:20px;
     text-align: center;
@@ -64,10 +57,7 @@ body{
     font-size: 110%;
 }
 .LargeImage{
-<<<<<<< HEAD
-=======
     display:flex;
->>>>>>> 6b01937a4481c3bafcb1f1b5ca9755dcf355460f
     padding:20px;
     margin:10px;
     text-align: center;
