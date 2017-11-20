@@ -52,6 +52,7 @@ func main() {
 	r.HandleFunc("/whoami", authorize(whoamiHandler)).Methods("GET")
 	r.HandleFunc("/changePassword", authorize(changePasswordHandler)).Methods("POST")
 	r.HandleFunc("/changeEmail", authorize(changeEmailHandler)).Methods("POST")
+	r.HandleFunc("/getElectionList", authorize(getElectionListHandler)).Methods("POST")
 
 	// Allow Cross Origin Resource Sharing with CORS middleware.
 	headersOk := handlers.AllowedHeaders([]string{"Authorization"})
