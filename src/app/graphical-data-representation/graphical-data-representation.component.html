@@ -1,1 +1,12 @@
-<chart [type]="type" [data]="data" [options]="options"></chart>
+<mat-card class = "lverg-mat-card">
+
+<div style="display: block">
+<canvas baseChart
+  class="chart"
+  [datasets]="datasets"
+  [labels]="labels"
+  [options]="options"
+  [chartType]="'line'">
+</canvas>
+</div>
+</mat-card>

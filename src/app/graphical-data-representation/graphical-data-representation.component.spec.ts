@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GraphicalDataRepresentationComponent } from './graphical-data-representation.component';
 
-describe('GraphicalDataRepresentationComponent', () => {
+xdescribe('GraphicalDataRepresentationComponent', () => {
   let component: GraphicalDataRepresentationComponent;
   let fixture: ComponentFixture<GraphicalDataRepresentationComponent>;
 

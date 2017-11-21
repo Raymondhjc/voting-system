@@ -37,7 +37,7 @@ import {SignedInAuthGuardService} from './common/signed-in-auth-guard.service';
 import {ServerInteractService} from './common/serverInteract.service';
 import {HttpModule} from '@angular/http';
 import {BallotCheckComponent} from './ballot-check/ballot-check.component';
-import {ChartModule} from 'angular2-chartjs';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 import {GraphicalDataRepresentationComponent} from './graphical-data-representation/graphical-data-representation.component';
 
 @NgModule({
@@ -75,7 +75,7 @@ import {GraphicalDataRepresentationComponent} from './graphical-data-representat
     MatListModule,
     MatTooltipModule,
     MatRadioModule,
-    ChartModule,
+    ChartsModule,
     /** Admin module*/
     AdminModule,
   ],

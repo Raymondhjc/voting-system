@@ -13,19 +13,23 @@ export class GraphicalDataRepresentationComponent implements OnInit {
   ngOnInit() {
   }
 
-  type = 'line';
-  data = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [
-      {
-        label: 'My First dataset',
-        data: [65, 59, 80, 81, 56, 55, 40]
-      }
-    ]
-  };
+  datasets = [
+    {
+      label: "# of Votes",
+      data: [12, 19, 3, 5, 2, 3]
+    }
+  ];
+
+  labels = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'];
+
   options = {
-    responsive: true,
-    maintainAspectRatio: false
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
   };
 
 }
