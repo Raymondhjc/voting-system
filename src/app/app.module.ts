@@ -7,21 +7,21 @@ import {AdminModule} from './admin/admin.module';
 
 import {HeaderComponent} from './header/header.component';
 import {
-    MatButtonModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatDialogModule,
-    MatGridListModule,
-    MatInputModule,
-    MatMenuModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatTabsModule,
-    MatExpansionModule,
-    MatSnackBarModule,
-    MatListModule,
-    MatTooltipModule,
-    MatRadioModule
+  MatButtonModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatDialogModule,
+  MatGridListModule,
+  MatInputModule,
+  MatMenuModule,
+  MatSidenavModule,
+  MatToolbarModule,
+  MatTabsModule,
+  MatExpansionModule,
+  MatSnackBarModule,
+  MatListModule,
+  MatTooltipModule,
+  MatRadioModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SignupComponent} from './authentication/signup/signup.component';
@@ -37,46 +37,50 @@ import {SignedInAuthGuardService} from './common/signed-in-auth-guard.service';
 import {ServerInteractService} from './common/serverInteract.service';
 import {HttpModule} from '@angular/http';
 import {BallotCheckComponent} from './ballot-check/ballot-check.component';
+import {ChartModule} from 'angular2-chartjs';
+import {GraphicalDataRepresentationComponent} from './graphical-data-representation/graphical-data-representation.component';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HeaderComponent,
-        SignupComponent,
-        SigninComponent,
-        DashboardComponent,
-        WelcomePageComponent,
-        DataViewComponent,
-        ScannerPageComponent,
-        BallotCheckComponent
-    ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        FormsModule,
-        ReactiveFormsModule,
-        AppRoutingModule,
-        MatButtonModule,
-        MatCheckboxModule,
-        MatMenuModule,
-        MatGridListModule,
-        MatToolbarModule,
-        MatInputModule,
-        MatDialogModule,
-        MatSidenavModule,
-        MatTabsModule,
-        MatCardModule,
-        MatExpansionModule,
-        HttpModule,
-        MatSnackBarModule,
-        MatListModule,
-        MatTooltipModule,
-        MatRadioModule,
-        /** Admin module*/
-        AdminModule,
-    ],
-    providers: [AuthenticationService, NotSignedInGuardsService, SignedInAuthGuardService, ServerInteractService],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    SignupComponent,
+    SigninComponent,
+    DashboardComponent,
+    WelcomePageComponent,
+    DataViewComponent,
+    ScannerPageComponent,
+    BallotCheckComponent,
+    GraphicalDataRepresentationComponent
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatMenuModule,
+    MatGridListModule,
+    MatToolbarModule,
+    MatInputModule,
+    MatDialogModule,
+    MatSidenavModule,
+    MatTabsModule,
+    MatCardModule,
+    MatExpansionModule,
+    HttpModule,
+    MatSnackBarModule,
+    MatListModule,
+    MatTooltipModule,
+    MatRadioModule,
+    ChartModule,
+    /** Admin module*/
+    AdminModule,
+  ],
+  providers: [AuthenticationService, NotSignedInGuardsService, SignedInAuthGuardService, ServerInteractService],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

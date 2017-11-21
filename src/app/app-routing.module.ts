@@ -12,30 +12,32 @@ import {SignedInAuthGuardService} from './common/signed-in-auth-guard.service';
 import {BallotCheckComponent} from './ballot-check/ballot-check.component';
 import {AdminComponent} from './admin/admin.component';
 import {newElectionComponent} from './admin/new-election/new-election.component';
+import {GraphicalDataRepresentationComponent} from './graphical-data-representation/graphical-data-representation.component';
 
 const appRoute: Routes = [
-    {path: '', redirectTo: 'welcome', pathMatch: 'full'},
-    {path: 'welcome', component: WelcomePageComponent},
-    {
-        path: 'user-dashboard',
-        component: DashboardComponent,
-        canActivate: [NotSignedInGuardsService],
-        canActivateChild: [NotSignedInGuardsService]
-    },
-    {path: 'signup', component: SignupComponent, canActivate: [SignedInAuthGuardService]},
-    {path: 'signin', component: SigninComponent, canActivate: [SignedInAuthGuardService]},
+  {path: '', redirectTo: 'welcome', pathMatch: 'full'},
+  {path: 'welcome', component: WelcomePageComponent},
+  {
+    path: 'user-dashboard',
+    component: DashboardComponent,
+    canActivate: [NotSignedInGuardsService],
+    canActivateChild: [NotSignedInGuardsService]
+  },
+  {path: 'signup', component: SignupComponent, canActivate: [SignedInAuthGuardService]},
+  {path: 'signin', component: SigninComponent, canActivate: [SignedInAuthGuardService]},
 
   {path: 'ballot-check', component: BallotCheckComponent},
-    {path: 'data-view', component: DataViewComponent},
-    {path: 'scanner', component: ScannerPageComponent},
-    //{path: 'upload', component: UploadPageComponent},
-    {path: 'admin', component: AdminComponent},
-    {path: 'admin/new-election', component: newElectionComponent}
+  {path: 'data-view', component: DataViewComponent},
+  {path: 'scanner', component: ScannerPageComponent},
+  //{path: 'upload', component: UploadPageComponent},
+  {path: 'admin', component: AdminComponent},
+  {path: 'admin/new-election', component: newElectionComponent},
+  {path: 'visual', component: GraphicalDataRepresentationComponent}
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(appRoute)],
-    exports: [RouterModule]
+  imports: [RouterModule.forRoot(appRoute)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {
 
