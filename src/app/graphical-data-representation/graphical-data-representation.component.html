@@ -1,12 +1,21 @@
-<mat-card class = "lverg-mat-card">
-
-<div style="display: block">
-<canvas baseChart
-  class="chart"
-  [datasets]="datasets"
-  [labels]="labels"
-  [options]="options"
-  [chartType]="'line'">
-</canvas>
-</div>
+<mat-card class="lverg-mat-card">
+  <div style="display: block">
+    <canvas baseChart
+            [data]="pieChartData"
+            [labels]="pieChartLabels"
+            [colors]="palette"
+            [chartType]="pieChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+  </div>
+  <form [formGroup]="visualize" (ngSubmit)="onClickGet()">
+    <mat-form-field>
+      <input matInput placeholder="Question number." formControlName="questionNumber">
+    </mat-form-field>
+    <button mat-raised-button="" color="primary" [disabled]="!visualize.valid" type="submit">
+      <mat-icon class="material-icons">done</mat-icon>
+    </button>
+  </form>
 </mat-card>
+
+
