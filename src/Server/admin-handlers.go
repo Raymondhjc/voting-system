@@ -12,5 +12,6 @@ func getElectionListHandler(w http.ResponseWriter, r *http.Request) {
 	check(err)
 
 	// reply.
+	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(list)
 }
