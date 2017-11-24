@@ -5,6 +5,8 @@ import { NgModule } from '@angular/core';
 
 import { AdminComponent } from './admin.component';
 import { newElectionComponent } from './new-election/new-election.component';
+// Import HttpClientModule from @angular/common/http
+import {HttpClientModule} from '@angular/common/http';
 
 import {
     MatInputModule,
@@ -51,8 +53,9 @@ import {
         MatListModule,
         MatExpansionModule,
         MatRadioModule,
-        MatGridListModule
-
+        MatGridListModule,
+        //http module
+        HttpClientModule,
     ],
     exports: [
         AdminComponent,

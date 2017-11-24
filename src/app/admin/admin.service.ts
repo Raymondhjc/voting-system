@@ -5,17 +5,21 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { ElectionDetails } from './election-details';
 import { electionList } from './mock-elections';
+import { HttpClient } from '@angular/common/http';
 
-// server
-import { Http, Headers } from '@angular/http';
 
 @Injectable()
 export class AdminService {
+    serverURL = 'http://localhost:4500/';
     /** Stream that emits whenever the data has been modified. */
     dataChange: BehaviorSubject<ElectionDetails[]> = new BehaviorSubject<ElectionDetails[]>([]);
 
-    fetchData() {
-        this.dataChange.next(electionList);
+    fetchData(http: HttpClient) {
+        this.http.get(this.serverURL + '/getElectionList').subscribe(data => {
+            // Read the result field from the JSON response.
+            this.dataChange.next(data[0]['admin']);
+        });
+        //this.dataChange.next(electionList);
     }
 
     get data(): ElectionDetails[] {
@@ -24,8 +28,8 @@ export class AdminService {
         return this.dataChange.value;
     }
 
-    constructor() {
-        this.fetchData();
+    constructor(private http: HttpClient) {
+        this.fetchData(http);
     }
 }
 

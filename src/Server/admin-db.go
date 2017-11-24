@@ -9,27 +9,28 @@ import (
 func (db *MyDB) getElectionList(admin string) ([]election, error) {
 	// Declaration
 	var electionList []election
-	
-	  // prepare SQL statement.
-	  var s = fmt.Sprintf(`SELECT * FROM votingsystem.elections WHERE admin = %s`, admin)
-	
-	  rows, err := db.Query(s)
-	  if err != nil {
+
+	// prepare SQL statement.
+	var s = fmt.Sprintf(`SELECT * FROM votingsystem.elections WHERE admin = %s`, admin)
+
+	rows, err := db.Query(s)
+	if err != nil {
 		return electionList, err
-	  }
-	  for i := 0; rows.Next(); i++ {
+	}
+	for i := 0; rows.Next(); i++ {
 		// Fill the response here.
 		election := electionList[i]
 		election.admin = admin
+		//election.electionName = admin
 		err = rows.Scan(&election.electionName, &election.startDate, &election.endDate, &election.scanner, &election.inspector)
-	
+
 		// Error handling
 		if err != nil {
-		  return electionList, err
+			return electionList, err
 		}
-	
-	  }
-	
-	  // If no error, return user info.
-	  return electionList, nil
+
+	}
+
+	// If no error, return user info.
+	return electionList, nil
 }
