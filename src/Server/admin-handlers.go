@@ -10,16 +10,19 @@ import (
 
 func getElectionListHandler(w http.ResponseWriter, r *http.Request) {
 	username := mux.Vars(r)["username"]
-	exist, err := db.userCredentialIsExist(username)
+	rows, err := db.getElectionList(userName)
 	check(err)
+	defer rows.Close()
 
-	w.WriteHeader(http.StatusOK)
-	enc := json.NewEncoder(w)
-	d := map[string]bool{"exist": exist}
+	// data to be used in query
+	var s, name string
+	s = "RETRIEVED RECORDS:\n"
 
-	if verbose {
-		fmt.Println("User exist query:", d)
+	// query
+	for rows.Next() {
+		err = rows.Scan(&name)
+		check(err)
+		s += name + "\n"
 	}
-
-	enc.Encode(d)
+	fmt.Fprintln(w, s)
 }

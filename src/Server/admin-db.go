@@ -2,34 +2,34 @@ package main
 
 import (
 	"fmt"
-
+	//"database/sql"
 	_ "github.com/go-sql-driver/mysql"
 )
 
-func (db *MyDB) getUserInfo(username string) (UserInfo, error) {
+func (db *MyDB) getElectionList(admin string) ([]election, error) {
 	// Declaration
-	var userInfo UserInfo
-
-	// prepare SQL statement.
-	var s = fmt.Sprintf(
-		`SELECT firstname, lastname, email, ufid FROM votingsystem.userInfo WHERE username = '%s'`, username)
-
-	rows, err := db.Query(s)
-	if err != nil {
-		return userInfo, err
-	}
-	if rows.Next() {
+	var electionList []election
+	
+	  // prepare SQL statement.
+	  var s = fmt.Sprintf(`SELECT * FROM votingsystem.elections WHERE admin = %s`, admin)
+	
+	  rows, err := db.Query(s)
+	  if err != nil {
+		return electionList, err
+	  }
+	  for i := 0; rows.Next(); i++ {
 		// Fill the response here.
-		userInfo.Username = username
-		err = rows.Scan(&userInfo.FirstName, &userInfo.LastName, &userInfo.Email, &userInfo.Ufid)
-
+		election := electionList[i]
+		election.admin = admin
+		err = rows.Scan(&election.electionName, &election.startDate, &election.endDate, &election.scanner, &election.inspector)
+	
 		// Error handling
 		if err != nil {
-			return userInfo, err
+		  return electionList, err
 		}
-
-	}
-
-	// If no error, return user info.
-	return userInfo, nil
+	
+	  }
+	
+	  // If no error, return user info.
+	  return electionList, nil
 }

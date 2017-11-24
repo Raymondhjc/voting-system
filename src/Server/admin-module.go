@@ -1,17 +1,23 @@
 package main
-type RegistrationInfo struct {
+type election struct {
     electionName string
     startDate string
     endDate string
-    sections: [
-        {
-            id: 0000100,
-            name: sample_question_1,
-            choiceType: multi,
-            options: [
-                option_A,
-                option_B
-            ]
-        }
-    ]
+    sections []section
+    admin string
+    scanner string
+    inspector string
+}
+
+type section struct{
+    sectionId string
+    sectionName string
+    choiceType int
+    options []option
+}
+
+type option struct{
+    optionId string
+    label string
+    count int
 }
