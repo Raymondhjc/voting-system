@@ -5,6 +5,8 @@ import (
 	"net/http"
 )
 
+
+
 func getElectionListHandler(w http.ResponseWriter, r *http.Request) {
 	//username := mux.Vars(r)["username"]
 	admin := "111111"
@@ -12,6 +14,7 @@ func getElectionListHandler(w http.ResponseWriter, r *http.Request) {
 	check(err)
 
 	// reply.
+	
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(list)
 }

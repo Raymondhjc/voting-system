@@ -17,11 +17,23 @@ export class AdminService {
     dataChange: BehaviorSubject<ElectionDetails[]> = new BehaviorSubject<ElectionDetails[]>([]);
 
     fetchData() {
-        const headers = new Headers({'content-type': 'text/plain'});
+        const headers = new Headers({ 'content-type': 'text/plain' });
         headers.append('Authorization', 'Basic ' + this.sis.token);
-        this.http.get(this.serverURL + '/getElectionList', {headers: headers}).subscribe(data => {
+        this.http.get(this.serverURL + '/getElectionList', { headers: headers }).subscribe(data => {
             // Read the result field from the JSON response.
-            this.dataChange.next(data[0]['admin']);
+            const electionList = JSON.parse(data.text());
+            var list= new Array<ElectionDetails>();
+            for (let line of electionList) {
+                let status: string;
+                if (line.Status == 1) {
+                    status = "open"
+                }else{
+                    status ="closed"
+                }
+                console.log(list);
+                list.push(new ElectionDetails(line.ElectionID, line.ElectionName, line.Count, status));
+            }
+            this.dataChange.next(list);
         });
         //this.dataChange.next(electionList);
     }

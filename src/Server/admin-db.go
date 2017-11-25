@@ -35,21 +35,22 @@ import (
 // 	// If no error, return user info.
 // 	return electionList, nil
 // }
-func (db *MyDB) getElectionList(admin string) ([]election, error) {
+func (db *MyDB) getElectionList(admin string) ([]Election, error) {
 	// Declaration
-	var electionList []election
+	var electionList []Election
 
 	// prepare SQL statement.
-	var s = fmt.Sprintf(`SELECT name FROM votingsystem.elections WHERE admin = %s`, admin)
+	var s = fmt.Sprintf(`SELECT id, name, startDate, endDate, count, status FROM votingsystem.elections WHERE admin = %s`, admin)
 
 	rows, err := db.Query(s)
 	if err != nil {
 		return electionList, err
 	}
 	for i := 0; rows.Next(); i++ {
-		var ele election
-		err = rows.Scan(&ele.electionName) //, &election.startDate, &election.endDate, &election.scanner, &election.inspector
+		var ele Election
+		err = rows.Scan(&ele.ElectionID, &ele.ElectionName, &ele.StartDate, &ele.EndDate, &ele.Count, &ele.Status)
 		electionList = append(electionList, ele)
+		fmt.Print(electionList)
 		// Error handling
 		if err != nil {
 			return electionList, err

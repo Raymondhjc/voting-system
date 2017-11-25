@@ -1,24 +1,27 @@
 package main
 
-type election struct {
-	electionName string
-	startDate    string
-	endDate      string
-	sections     []section
-	admin        string
-	scanner      string
-	inspector    string
+type Election struct {
+	ElectionID   string
+	ElectionName string
+	StartDate    string
+	EndDate      string
+	Count        int
+	Status       int
+	Sections     []Section
+	Admin        string
+	Scanner      string
+	Inspector    string
 }
 
-type section struct {
-	sectionID   string
-	sectionName string
-	choiceType  int
-	options     []option
+type Section struct {
+	SectionID   string
+	SectionName string
+	ChoiceType  int
+	Options     []Option
 }
 
-type option struct {
-	optionID string
-	label    string
-	count    int
+type Option struct {
+	OptionID string
+	Label    string
+	Count    int
 }
