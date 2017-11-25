@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormArray, Validators, AbstractControl } from '
 
 // services required
 import { NewElectionService } from './../admin.service';
+import { ElectionDetails } from '../election-details';
 
 @Component({
   selector: 'new-election',
@@ -114,6 +115,8 @@ export class newElectionComponent implements OnInit {
       'content':this.secondFormGroup
     });
     this.newElectionService.submitForm(finalForm);
+    console.log(finalForm);
+    //const newElection = new ElectionDetails();
   }
 
 }

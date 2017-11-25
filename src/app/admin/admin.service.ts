@@ -22,20 +22,28 @@ export class AdminService {
         this.http.get(this.serverURL + '/getElectionList', { headers: headers }).subscribe(data => {
             // Read the result field from the JSON response.
             const electionList = JSON.parse(data.text());
-            var list= new Array<ElectionDetails>();
+            var list = new Array<ElectionDetails>();
             for (let line of electionList) {
                 let status: string;
                 if (line.Status == 1) {
                     status = "open"
-                }else{
-                    status ="closed"
+                } else {
+                    status = "closed"
                 }
-                console.log(list);
-                list.push(new ElectionDetails(line.ElectionID, line.ElectionName, line.Count, status));
+                list.push(new ElectionDetails(
+                    line.ElectionID,
+                    line.ElectionName,
+                    line.StartDate,
+                    line.endDate,
+                    line.Count,
+                    status,
+                    line.Admin,
+                    line.Inspector,
+                    line.Scanner,
+                    line.Questions));
             }
             this.dataChange.next(list);
         });
-        //this.dataChange.next(electionList);
     }
 
     get data(): ElectionDetails[] {

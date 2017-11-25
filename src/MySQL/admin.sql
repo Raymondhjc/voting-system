@@ -19,15 +19,15 @@ CREATE TABLE votingsystem.elections (
 CREATE TABLE votingsystem.questions (
   id          VARCHAR(20)  NOT NULL PRIMARY KEY,
   name        VARCHAR(255)  NOT NULL,
-  electionId  VARCHAR(10)  NOT NULL,
+  electionID  VARCHAR(10)  NOT NULL,
   optionType  INT  NOT NULL,
-  FOREIGN KEY (electionId) REFERENCES elections(id)
+  FOREIGN KEY (electionID) REFERENCES elections(id)
 );
 
 CREATE TABLE votingsystem.options (
   id          VARCHAR(20)  NOT NULL PRIMARY KEY,
-  questionId  VARCHAR(10)  NOT NULL,
+  questionID  VARCHAR(10)  NOT NULL,
   label       VARCHAR(255)  NOT NULL,
   count       INT  NOT NULL,
-  FOREIGN KEY (questionId) REFERENCES questions(id)
+  FOREIGN KEY (questionID) REFERENCES questions(id)
 );

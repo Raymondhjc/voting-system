@@ -1,5 +1,9 @@
 package main
 
+import (
+	"database/sql"
+)
+
 type Election struct {
 	ElectionID   string
 	ElectionName string
@@ -7,17 +11,17 @@ type Election struct {
 	EndDate      string
 	Count        int
 	Status       int
-	Sections     []Section
+	Questions    []Question
 	Admin        string
-	Scanner      string
-	Inspector    string
+	Scanner      sql.NullString
+	Inspector    sql.NullString
 }
 
-type Section struct {
-	SectionID   string
-	SectionName string
-	ChoiceType  int
-	Options     []Option
+type Question struct {
+	QuestionID   string
+	QuestionName string
+	ChoiceType   int
+	Options      []Option
 }
 
 type Option struct {
