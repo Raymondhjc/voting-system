@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { ElectionDetails } from './election-details';
-import { electionList } from './mock-elections';
 import { Http, Headers } from '@angular/http';
 
 import { ServerInteractService } from '../common/serverInteract.service'
@@ -52,17 +51,33 @@ export class AdminService {
         return this.dataChange.value;
     }
 
+    submitForm(form): void {
+        console.log(form.value);
+        const body = JSON.stringify(form);
+        this.http.post(this.serverURL + 'signup', body).subscribe(
+            (response) => console.log(response),
+            (error) => console.log(error)
+        );
+    }
+
     constructor(private http: Http, private sis: ServerInteractService) {
         this.fetchData();
     }
 }
 
-export class NewElectionService {
-    submitForm(form): void {
-        console.log(form.value);
-    }
+// export class NewElectionService {
+//     serverURL = 'http://localhost:4500/';
+//     submitForm(form): void {
+//         console.log(form.value);
+//         const body = JSON.stringify(form);
+//         this.http.post(this.serverURL + 'signup', body);
+//         this.serverInteract.postSignup(form).subscribe(
+//             (response) => console.log(response),
+//             (error) => console.log(error)
+//         );
+//     }
 
-    constructor() {
-    }
+//     constructor(private http: Http, private sis: ServerInteractService) {
+//     }
 
-}
+// }

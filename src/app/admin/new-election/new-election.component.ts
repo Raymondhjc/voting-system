@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators, AbstractControl } from '@angular/forms';
 
 // services required
-import { NewElectionService } from './../admin.service';
+import { AdminService } from './../admin.service';
 import { ElectionDetails } from '../election-details';
 
 @Component({
   selector: 'new-election',
   templateUrl: './new-election.component.html',
   styleUrls: ['./new-election.component.css'],
-  providers: [NewElectionService]
+  providers: [AdminService]
 })
 export class newElectionComponent implements OnInit {
   firstFormGroup: FormGroup;
@@ -19,7 +19,7 @@ export class newElectionComponent implements OnInit {
   electionStartDate: string;
   electionEndDate: string;
 
-  constructor(private newElectionService: NewElectionService) { }
+  constructor(private adminService: AdminService) { }
 
   ngOnInit() {
     this.firstFormGroup = new FormGroup({
@@ -114,9 +114,7 @@ export class newElectionComponent implements OnInit {
       'meta': this.firstFormGroup,
       'content':this.secondFormGroup
     });
-    this.newElectionService.submitForm(finalForm);
-    console.log(finalForm);
-    //const newElection = new ElectionDetails();
+    this.adminService.submitForm(finalForm);
   }
 
 }
