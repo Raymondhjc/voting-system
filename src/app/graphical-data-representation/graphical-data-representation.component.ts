@@ -33,7 +33,8 @@ export class GraphicalDataRepresentationComponent implements OnInit {
       (pieChart) => {
         this.pieChartLabels = pieChart.label;
         this.pieChartData = pieChart.data;
-        this.chart.chart.config.data.labels = this.pieChartLabels;
+        if (this.chart.chart != null)
+          this.chart.chart.config.data.labels = this.pieChartLabels;
       }
     );
 

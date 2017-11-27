@@ -76,4 +76,7 @@ export class ServerInteractService {
     return this.http.get(this.serverURL + 'whoami', {headers: headers});
   }
 
+  get token(){
+    return this._token
+  }
 }

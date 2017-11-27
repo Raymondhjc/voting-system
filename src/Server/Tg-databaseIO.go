@@ -1,5 +1,5 @@
 package main
-
+/*
 import (
 	"fmt"
 	"strconv"
@@ -56,3 +56,4 @@ func (db MyDB) imageIdIsExist(username string) (bool, error) {
 	}
 	return rows.Next(), nil
   }
+*/

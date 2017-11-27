@@ -24,6 +24,13 @@
                     </mat-form-field>
                 </mat-list-item>
                 <mat-divider></mat-divider>
+                <mat-list-item>
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Total Count" formControlName="count" min="1">
+                        <mat-error *ngIf="firstFormGroup.get('count').invalid">Please input a valid number</mat-error>
+                    </mat-form-field>
+                </mat-list-item>
+                <mat-divider></mat-divider>
                 <mat-list-item>(Other Configurations)</mat-list-item>
             </mat-list>
 
