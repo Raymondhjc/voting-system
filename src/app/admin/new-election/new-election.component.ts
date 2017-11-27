@@ -25,7 +25,8 @@ export class newElectionComponent implements OnInit {
     this.firstFormGroup = new FormGroup({
       'electionName': new FormControl(null, Validators.required),
       'startDate': new FormControl(null, Validators.required),
-      'endDate': new FormControl(null, Validators.required, )
+      'endDate': new FormControl(null, Validators.required, ),
+      'count': new FormControl(null, [Validators.min(1),Validators.required])
     }, this.isDateValid);
     this.secondFormGroup = new FormGroup({
       'sections': new FormArray([], this.isSecondFormValid)
@@ -34,13 +35,13 @@ export class newElectionComponent implements OnInit {
       let day = date.getDate(),
         month = date.getMonth() + 1,
         year = date.getFullYear();
-      this.electionStartDate = day + '/' + month + '/' + year;
+      this.electionStartDate = month + '/' + day + '/' + year;
     });
     this.firstFormGroup.get('endDate').valueChanges.subscribe((date) => {
       let day = date.getDate(),
         month = date.getMonth() + 1,
         year = date.getFullYear();
-      this.electionEndDate = day + '/' + month + '/' + year;
+      this.electionEndDate = month + '/' + day + '/' + year;
     });
 
   }
@@ -110,11 +111,17 @@ export class newElectionComponent implements OnInit {
 
   /**Handeling forms here */
   onSubmit() {
+    this.firstFormGroup.addControl("admin",new FormControl("111111"));
+    // this.firstFormGroup.removeControl("startDate");
+    // this.firstFormGroup.addControl("startDate",new FormControl(this.electionStartDate));
+    // this.firstFormGroup.removeControl("endDate");
+    // this.firstFormGroup.addControl("endDate",new FormControl(this.electionEndDate));
+    // console.log(this.electionStartDate);
     let finalForm = new FormGroup({
       'meta': this.firstFormGroup,
       'content':this.secondFormGroup
     });
-    this.adminService.submitForm(finalForm);
+    this.adminService.submitForm(finalForm.value);
   }
 
 }

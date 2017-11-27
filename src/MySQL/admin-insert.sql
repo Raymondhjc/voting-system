@@ -1,26 +1,28 @@
+DELETE FROM votingsystem.elections WHERE id = "1";
+DELETE FROM votingsystem.elections WHERE id = "2";
 INSERT INTO votingsystem.elections (id, name, startDate, endDate, count, status, admin)
-  VALUE ('A001','initial-election','11/01/2017','12/05/2017',1000,1,'111111');
+  VALUE ('1','initial-election','11/01/2017','12/05/2017',1000,"open",'111111');
 INSERT INTO votingsystem.questions (id, name, electionID, optionType)
-  VALUES ('001','Question 1','A001',0),
-  ('002','Question 2','A001',1);
+  VALUES ('1','Question 1','1',0),
+  ('2','Question 2','1',1);
 
 INSERT INTO votingsystem.options (id, questionID, label, count)
-  VALUES ('0001','001','option A',0),
-  ('0002','001','option B',0),
-  ('0003','001','option C',0),
-  ('0004','002','option A',0),
-  ('0005','002','option B',0);
+  VALUES ('1','1','option A',0),
+  ('2','1','option B',0),
+  ('3','1','option C',0),
+  ('4','2','option A',0),
+  ('5','2','option B',0);
 
 INSERT INTO votingsystem.elections (id, name, startDate, endDate, count, status, admin)
-  VALUE ('A002','Sample election 2','10/01/2017','11/15/2017',500,0,'111111');
+  VALUE ('2','Sample election 2','10/01/2017','11/15/2017',500,"closed",'111111');
 INSERT INTO votingsystem.questions (id, name, electionID, optionType)
-  VALUES ('003','Question 1','A002',0),
-  ('004','Question 2','A002',1);
+  VALUES ('3','Question 1','2',0),
+  ('4','Question 2','2',1);
 
 INSERT INTO votingsystem.options (id, questionID, label, count)
-  VALUES ('0006','003','option A',0),
-  ('0007','003','option B',0),
-  ('0008','003','option C',0),
-  ('0009','004','option A',0),
-  ('0010','004','option B',0),
-  ('0011','004','option C',0);
+  VALUES ('6','3','option A',0),
+  ('7','3','option B',0),
+  ('8','3','option C',0),
+  ('9','4','option A',0),
+  ('10','4','option B',0),
+  ('11','4','option C',0);

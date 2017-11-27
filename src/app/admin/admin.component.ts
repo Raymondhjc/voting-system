@@ -28,7 +28,7 @@ export class AdminComponent implements OnInit {
 
   }
 
-  displayedColumns = ['id', 'name', 'count', 'status'];
+  displayedColumns = ['electionID', 'electionName', 'count', 'status'];
   elecTable: elecTableDataSource | null;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -88,7 +88,7 @@ export class elecTableDataSource extends DataSource<any> {
         // 1.Filter Data
         this.filteredData = this.rawData.filter((item: any) => {
           // Set Filter Type
-          const searchStr = (item.id + item.name).toLowerCase();
+          const searchStr = (item.electionID + item.electionName).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
 
@@ -115,11 +115,11 @@ export class elecTableDataSource extends DataSource<any> {
       let propertyB: number | string = '';
 
       switch (this._sort.active) {
-        case 'id':
-          [propertyA, propertyB] = [a.id, b.id];
+        case 'electionID':
+          [propertyA, propertyB] = [a.electionID, b.electionID];
           break;
-        case 'name':
-          [propertyA, propertyB] = [a.name, b.name];
+        case 'electionName':
+          [propertyA, propertyB] = [a.electionName, b.electionName];
           break;
         case 'count':
           [propertyA, propertyB] = [a.count, b.count];

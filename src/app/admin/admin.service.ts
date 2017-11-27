@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Http, Headers } from '@angular/http';
 
 // for table
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import { ElectionDetails } from './election-details';
-import { Http, Headers } from '@angular/http';
-
+import { ElectionDetails, Question, Option} from './election-details';
 import { ServerInteractService } from '../common/serverInteract.service'
 
 
@@ -23,19 +22,13 @@ export class AdminService {
             const electionList = JSON.parse(data.text());
             var list = new Array<ElectionDetails>();
             for (let line of electionList) {
-                let status: string;
-                if (line.Status == 1) {
-                    status = "open"
-                } else {
-                    status = "closed"
-                }
                 list.push(new ElectionDetails(
                     line.ElectionID,
                     line.ElectionName,
                     line.StartDate,
                     line.endDate,
                     line.Count,
-                    status,
+                    line.Status,
                     line.Admin,
                     line.Inspector,
                     line.Scanner,
@@ -52,12 +45,54 @@ export class AdminService {
     }
 
     submitForm(form): void {
-        console.log(form.value);
-        const body = JSON.stringify(form);
-        this.http.post(this.serverURL + 'signup', body).subscribe(
+        let ele = new ElectionDetails(
+            "",
+            form.meta.electionName,
+            this.getDate(form.meta.startDate),
+            this.getDate(form.meta.endDate),
+            form.meta.count,
+            "open",
+            "111111",
+            "",
+            "",
+            this.getContent(form.content.sections),
+            true
+        )
+        console.log(ele);
+        const body = JSON.stringify(ele);
+        const headers = new Headers({ 'content-type': 'text/plain' });
+        headers.append('Authorization', 'Basic ' + this.sis.token);
+        this.http.post(this.serverURL + 'addElection', body, { headers: headers }).subscribe(
             (response) => console.log(response),
             (error) => console.log(error)
         );
+    }
+
+    getDate(date): string {
+        let day = date.getDate(),
+            month = date.getMonth() + 1,
+            year = date.getFullYear();
+        return month + '/' + day + '/' + year;
+    }
+
+    getContent(questions: Array<any>): Array<Question>{
+        let json = new Array<Question>();
+        for(let q of questions){
+            let newS = new Question();
+            newS.questionID = "";
+            newS.questionName = q.sectionName;
+            newS.choiceType = q.choiceType;
+            newS.options = new Array<Option>();
+            for (let o of q.options) {
+              let newO = new Option();
+              newO.optionID = "";
+              newO.label = o;
+              newO.count = 0;
+              newS.options.push(newO);
+            }
+            json.push(newS)
+        }
+        return json;
     }
 
     constructor(private http: Http, private sis: ServerInteractService) {

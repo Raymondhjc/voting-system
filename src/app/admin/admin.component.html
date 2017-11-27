@@ -11,15 +11,15 @@
                 <div class = "admin-table-container mat-elevation-z8">
                     <mat-table #table [dataSource] = "elecTable" matSort>
                         <!-- ID Column -->
-                        <ng-container matColumnDef = "id">
+                        <ng-container matColumnDef = "electionID">
                             <mat-header-cell *matHeaderCellDef mat-sort-header> ID</mat-header-cell>
-                            <mat-cell *matCellDef = "let row"> {{row.id}}</mat-cell>
+                            <mat-cell *matCellDef = "let row"> {{row.electionID}}</mat-cell>
                         </ng-container>
     
                         <!-- Election Column -->
-                        <ng-container matColumnDef = "name">
+                        <ng-container matColumnDef = "electionName">
                             <mat-header-cell *matHeaderCellDef mat-sort-header> Election</mat-header-cell>
-                            <mat-cell *matCellDef = "let row"> {{row.name}}</mat-cell>
+                            <mat-cell *matCellDef = "let row"> {{row.electionName}}</mat-cell>
                         </ng-container>
     
                         <!-- Count Column -->

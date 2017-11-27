@@ -10,11 +10,24 @@ type Election struct {
 	StartDate    string
 	EndDate      string
 	Count        int
-	Status       int
+	Status       string
 	Questions    []Question
 	Admin        string
 	Scanner      sql.NullString
 	Inspector    sql.NullString
+}
+
+type NewElection struct {
+	ElectionID   string
+	ElectionName string
+	StartDate    string
+	EndDate      string
+	Count        int
+	Status       string
+	Questions    []Question
+	Admin        string
+	Scanner      string
+	Inspector    string
 }
 
 type Question struct {

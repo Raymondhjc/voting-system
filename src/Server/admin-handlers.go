@@ -17,23 +17,31 @@ func getElectionListHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func addElectionHandler(w http.ResponseWriter, r *http.Request) {
-	file := readBytes(r)
-	var t Election
-	json.Unmarshal(file, &t)
-
-	if verbose {
-		fmt.Printf("SIGNUP:\nFirst Name: %v\n,Last Name: %v\nUsername: %v\nPassword: %v\nEmail: %v\nUFID: %v\n",
-			t.FirstName, t.LastName, t.Username, "?", t.Email, t.Ufid)
+	request := readBytes(r)
+	var ele NewElection
+	err := json.Unmarshal(request, &ele)
+	if err != nil {
+		fmt.Println("JSON ERROR:", err)
 	}
-
-	success, err := registrate(t)
-	check(err)
-
-	if success {
-		w.WriteHeader(http.StatusOK)
+	dberr := db.insertElection(ele)
+	if dberr != nil {
+		fmt.Println("db error:", dberr)
 	} else {
-		w.WriteHeader(http.StatusBadRequest)
-		json.NewEncoder(w).Encode(Exception{Message: "This username has been taken!"})
+		w.WriteHeader(http.StatusOK)
 	}
+	// if verbose {
+	// 	fmt.Printf("SIGNUP:\nFirst Name: %v\n,Last Name: %v\nUsername: %v\nPassword: %v\nEmail: %v\nUFID: %v\n",
+	// 		t.FirstName, t.LastName, t.Username, "?", t.Email, t.Ufid)
+	// }
+
+	// success, err := registrate(t)
+	// check(err)
+
+	// if success {
+	// 	w.WriteHeader(http.StatusOK)
+	// } else {
+	// 	w.WriteHeader(http.StatusBadRequest)
+	// 	json.NewEncoder(w).Encode(Exception{Message: "This username has been taken!"})
+	// }
 
 }
