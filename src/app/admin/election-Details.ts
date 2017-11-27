@@ -1,5 +1,5 @@
 export class ElectionDetails {
-    electionID: string;
+    electionID: number;
     electionName: string;
     startDate: string;
     endDate: string;
@@ -10,7 +10,7 @@ export class ElectionDetails {
     inspector: string;
     scanner: string;
   
-    constructor(id: string, name: string, start: string, end: string, count: number,
+    constructor(id: number, name: string, start: string, end: string, count: number,
       status: string, admin: string, inspector: string, scanner: string, questions: Array<any>, isNew ?: boolean) {
         
           this.electionID = id;
@@ -46,14 +46,14 @@ export class ElectionDetails {
     }
   
   export class Question {
-    questionID: string;
+    questionID: number;
     questionName: string;
     choiceType: number;
     options: Array<Option>;
   }
   
   export class Option {
-    optionID: string;
+    optionID: number;
     label: string;
     count: number;
   }

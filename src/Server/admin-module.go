@@ -5,7 +5,7 @@ import (
 )
 
 type Election struct {
-	ElectionID   string
+	ElectionID   int
 	ElectionName string
 	StartDate    string
 	EndDate      string
@@ -18,7 +18,7 @@ type Election struct {
 }
 
 type NewElection struct {
-	ElectionID   string
+	ElectionID   int
 	ElectionName string
 	StartDate    string
 	EndDate      string
@@ -31,14 +31,14 @@ type NewElection struct {
 }
 
 type Question struct {
-	QuestionID   string
+	QuestionID   int
 	QuestionName string
 	ChoiceType   int
 	Options      []Option
 }
 
 type Option struct {
-	OptionID string
+	OptionID int
 	Label    string
 	Count    int
 }

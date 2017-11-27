@@ -46,7 +46,7 @@ export class AdminService {
 
     submitForm(form): void {
         let ele = new ElectionDetails(
-            "",
+            -1,
             form.meta.electionName,
             this.getDate(form.meta.startDate),
             this.getDate(form.meta.endDate),
@@ -79,13 +79,13 @@ export class AdminService {
         let json = new Array<Question>();
         for(let q of questions){
             let newS = new Question();
-            newS.questionID = "";
+            newS.questionID = -1;
             newS.questionName = q.sectionName;
             newS.choiceType = q.choiceType;
             newS.options = new Array<Option>();
             for (let o of q.options) {
               let newO = new Option();
-              newO.optionID = "";
+              newO.optionID = -1;
               newO.label = o;
               newO.count = 0;
               newS.options.push(newO);

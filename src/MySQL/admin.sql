@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS `votingsystem`.`options`;
 DROP TABLE IF EXISTS `votingsystem`.`questions`;
 DROP TABLE IF EXISTS `votingsystem`.`elections`;
 CREATE TABLE votingsystem.elections (
-  id          VARCHAR(10)  NOT NULL PRIMARY KEY,
+  id          INT  NOT NULL PRIMARY KEY,
   name        VARCHAR(255)  NOT NULL,
   startDate   VARCHAR(10)  NOT NULL,
   endDate     VARCHAR(10)  NOT NULL,
@@ -17,16 +17,16 @@ CREATE TABLE votingsystem.elections (
 );
 
 CREATE TABLE votingsystem.questions (
-  id          VARCHAR(10)  NOT NULL PRIMARY KEY,
+  id          INT  NOT NULL PRIMARY KEY,
   name        VARCHAR(255)  NOT NULL,
-  electionID  VARCHAR(10)  NOT NULL,
+  electionID  INT  NOT NULL,
   optionType  INT  NOT NULL,
   FOREIGN KEY (electionID) REFERENCES elections(id)
 );
 
 CREATE TABLE votingsystem.options (
-  id          VARCHAR(20)  NOT NULL PRIMARY KEY,
-  questionID  VARCHAR(10)  NOT NULL,
+  id          INT  NOT NULL PRIMARY KEY,
+  questionID  INT  NOT NULL,
   label       VARCHAR(255)  NOT NULL,
   count       INT  NOT NULL,
   FOREIGN KEY (questionID) REFERENCES questions(id)
