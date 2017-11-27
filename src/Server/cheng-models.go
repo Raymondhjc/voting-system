@@ -11,11 +11,15 @@ type DataOfQuestion struct {
 	Votes : [3]int//total , sure, unsure
 }
 type Answer struct {
-	questionID : int
-	answerID : []int
+	QuestionID : int
+	AnswerID : []int
 }
 type DataChange struct {
 	ElectionID : int
 	BallotID : int 
 	Answers :[]Answer
+}
+type ElectionID struct {
+	ElectionID : int
+	
 }

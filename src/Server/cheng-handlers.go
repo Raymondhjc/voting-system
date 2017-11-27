@@ -22,10 +22,23 @@ func dataviewHandler(w http.ResponseWriter, r *http.Request) {
 	//get the correct data from the database
 	var t DataRequestInfo
 	json.Unmarshal(data, &t)
+	//results := []DataOfQuestion
 	results, err := getQusetionResult(t.ElectionID, t.QuestionID)
 	check(err)
 	//return the right data to the front-end
 	json.NewEncoder(w).Encode(results)
+}
+
+//get the questions under every election
+func getQestionsHandler(w http.ResponseWriter, r *http.Request) {
+	data := readBytes(r)
+	var t ElectionID
+	json.Unmarshal(data, &t)
+
+	result, err := getQusetions(t)
+	check(err)
+	//return the right data to the front-end
+	json.NewEncoder(w).Encode(result)
 }
 
 //handle the data-change things

@@ -3,6 +3,7 @@ import {MatRadioModule} from '@angular/material';
 import {DataSubmit} from './DataSubmit';
 import {candidatesP, candidatesVP, candidatesGR} from './mock-votesdata';
 import {FormsModule} from '@angular/forms';
+import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 
 @Component({
     selector: 'app-ballot-check',
@@ -16,6 +17,7 @@ export class BallotCheckComponent implements OnInit {
     // going to be submitted
     // dataBallot = new DataSubmit('',['','','']);
     // not submitted
+    dataChange : FormGroup;
     cds1 = candidatesP;
     cds2 = candidatesVP;
     cds3 = candidatesGR;
@@ -27,6 +29,18 @@ export class BallotCheckComponent implements OnInit {
     submitted = false;
 
     ngOnInit() {
+            const resultdata1 = new FormControl('');
+            const resultdata2 = new FormControl('');
+            const resultdata3 = new FormControl('');
+            this.dataChange = new FormGroup({
+                 'ElectionID': new FormControl(null),
+                 'BallotID': new FormControl(),
+                 'resultdata1': new FormControl(null),
+                 'resultdata2': new FormControl(null),
+                 'resultdata3': new FormControl(null),
+
+                });
+
     }
 
     // change the status

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {DataSource} from '@angular/cdk/collections';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-import { MatTableModule, MatButtonModule, MatListModule, MatTabsModule } from '@angular/material';
-import { candidatesP, candidatesVP, candidatesGR} from '../ballot-check/mock-votesdata';
+import { MatSelectModule, MatTableModule, MatButtonModule, MatListModule, MatTabsModule } from '@angular/material';
+import { candidatesP, candidatesVP, candidatesGR, questions} from '../ballot-check/mock-votesdata';
 import { Candidate} from '../ballot-check/candidate';
 
 
@@ -19,7 +19,9 @@ export class DataViewComponent implements OnInit {
 
   ngOnInit() {
   }
-   displayedColumns = ['id', 'name', 'votes', 'rate'];
+    questions = questions;
+    selected = " ";
+    displayedColumns = ['id', 'name', 'votes', 'rate'];
     dataSource = new DataSample();
 
     SelectData1(){

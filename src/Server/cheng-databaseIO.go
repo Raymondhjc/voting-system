@@ -37,6 +37,28 @@ func (db *MyDB) getQuestionResult(questionID int, electionID int) ( []DataOfQues
 	}
 	return results , nil 
 }
+
+
+//get questions of the election
+func (db *MyDB) getQuestions(electionID int)([]string, error){
+		var results []string
+		q1 = fmt.Sprintf(`SELECT name FROM votingsystem.questions WHERE  electionID = %d;`, electionID)
+		rows, err := db.Query(q)
+		if rows.Next(){
+			var result string
+			err = rows.Scan(&result)
+			results =append(resluts, result)
+		return results , nil 
+
+
+		}
+
+
+
+
+
+
+}
 //done
 //get the data of the ballot the whole row answer to the question and the correct probability 
 func (db *MyDB) getBallotData(questionID int, ballot int) ([]int, int , error) {
@@ -66,6 +88,9 @@ func (db *MyDB) getBallotData(questionID int, ballot int) ([]int, int , error) {
   	return answer, rateOfRight, nil
 
 }
+
+
+
 
 //change the data of the answer to the result
 func (db *MyDB) addCountValue(counttype string, optionID int, electionID int) {

@@ -3,8 +3,7 @@
 import {Candidate} from './candidate';
 // presient vice president etc
 
-export const titles: String[] = ['President', 'VicePresident', 'Governor'];
-
+export const questions: String[] = ['President', 'VicePresident', 'Governor'];
 
 // the candidates under each positon
 // we could change this to an shuzu  candidates[3]
