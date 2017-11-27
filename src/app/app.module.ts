@@ -38,6 +38,7 @@ import {SignedInAuthGuardService} from './common/signed-in-auth-guard.service';
 import {ServerInteractService} from './common/serverInteract.service';
 import {HttpModule} from '@angular/http';
 import {BallotCheckComponent} from './ballot-check/ballot-check.component';
+import {ballotcheckService} from './ballot-check/ballot-check.service'
 
 @NgModule({
     declarations: [
@@ -77,7 +78,7 @@ import {BallotCheckComponent} from './ballot-check/ballot-check.component';
         /** Admin module*/
         AdminModule,
     ],
-    providers: [AuthenticationService, NotSignedInGuardsService, SignedInAuthGuardService, ServerInteractService],
+    providers: [AuthenticationService, NotSignedInGuardsService, SignedInAuthGuardService, ServerInteractService, ballotcheckService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -6,20 +6,19 @@ type DataRequestInfo struct {
 }
 
 type DataOfQuestion struct {
-	ID : int
-	Name : string
-	Votes : [3]int//total , sure, unsure
+	ID    int
+	Name  string
+	Votes [3]int //total , sure, unsure
 }
 type Answer struct {
-	QuestionID : int
-	AnswerID : []int
+	QuestionID int
+	AnswerID   []int
 }
 type DataChange struct {
-	ElectionID : int
-	BallotID : int 
-	Answers :[]Answer
+	BallotID   int
+	ElectionID int
+	Answers    []string
 }
 type ElectionID struct {
-	ElectionID : int
-	
+	ElectionID int
 }

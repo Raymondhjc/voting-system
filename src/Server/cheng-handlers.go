@@ -2,11 +2,7 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
-	"github.com/dgrijalva/jwt-go"
-	"github.com/gorilla/context"
-	"github.com/gorilla/mux"
-	"github.com/mitchellh/mapstructure"
+	"log"
 	"net/http"
 )
 
@@ -23,50 +19,47 @@ func dataviewHandler(w http.ResponseWriter, r *http.Request) {
 	var t DataRequestInfo
 	json.Unmarshal(data, &t)
 	//results := []DataOfQuestion
-	results, err := getQusetionResult(t.ElectionID, t.QuestionID)
+	results, err := db.getQuestionResult(t.ElectionID, t.QuestionID)
 	check(err)
 	//return the right data to the front-end
 	json.NewEncoder(w).Encode(results)
 }
 
 //get the questions under every election
-func getQestionsHandler(w http.ResponseWriter, r *http.Request) {
+func getQuestionsHandler(w http.ResponseWriter, r *http.Request) {
 	data := readBytes(r)
 	var t ElectionID
 	json.Unmarshal(data, &t)
 
-	result, err := getQusetions(t)
+	result, err := db.getQuestions(t.ElectionID)
 	check(err)
 	//return the right data to the front-end
 	json.NewEncoder(w).Encode(result)
 }
 
 //handle the data-change things
-// receive { "ElectionID": int ,"BallotID": int , "Answers" :[{"question" : "int ","answer" : "context"}]}
+// receive { "BallotID": int , " ElectionID" : int , Answers" :[{"question" : "int ","answer" : "context"}]}
 func ballotcheckHandler(w http.ResponseWriter, r *http.Request) {
 	data := readBytes(r)
 	var t DataChange
 	json.Unmarshal(data, &t)
 	//for each answer, if it changes then change the number
-	for i := 0; i < len(t.Answer); i++ {
+	for i := 0; i < len(t.Answers); i++ {
 		//[]int the ID of the options
-		answerUnchanged, rate, err := getBallotData(t.Answers[i].question, t.BallotID)
-		if answerUnchanged != t.Answers[i].answer {
-			// -1 : the number that has been changed
-			if len(answerUnchanged) > 0 {
-				for j := 0; j < len(answerUnchanged); j++ {
-					minusCountValue("unsurevotes", answerUnchanged[j], t.ElectionID)
-					minusCountValue("totalvotes", answerUnchanged[j], t.ElectionID)
-				}
-			}
-			// +1 : the number that has been changed
-			if len(t.Answers[i].answer) > 0 {
-				for j := 0; j < len(t.Answers[i].answer); j++ {
-					addCountValue("soundvotes", t.Answers[i].answer[j], t.ElectionID)
-					addCountValue("totalvotes", t.Answers[i].answer[j], t.ElectionID)
-				}
-			}
+		answerUnchanged, rate, err := db.getBallotData(i, t.BallotID)
+		rate++
+		if err != nil {
+			log.Fatal(err)
 		}
+		if answerUnchanged != t.Answers[i] {
+			// -1 : the number that has been changed
+			db.minusCountValue("unsurevotes", answerUnchanged, t.ElectionID)
+			db.minusCountValue("totalvotes", answerUnchanged, t.ElectionID)
 
+			// +1 : the number that has been changed
+
+			db.addCountValue("soundvotes", t.Answers[i], t.ElectionID)
+			db.addCountValue("totalvotes", t.Answers[i], t.ElectionID)
+		}
 	}
 }
