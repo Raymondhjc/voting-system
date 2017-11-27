@@ -33,12 +33,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.signInStatus = this.authenService.isSignedIn();
     this.userStatus = this.authenService.userStatus;
+    console.log(this.getRole());
     this.subscription = this.authenService.userStatusChanged.subscribe(
       (userStatus: UserStatusModel) => {
         this.userStatus = userStatus;
       }
     );
-
     const password = new FormControl(null, [Validators.required, Validators.minLength(6)]);
     const repeatPassword = new FormControl(null, [Validators.required, CustomValidators.equalTo(password)]);
     this.changePassword = new FormGroup({
@@ -55,6 +55,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  getRole() {
+    if (this.userStatus == null) {
+      return '';
+    } else {
+      return this.userStatus.role;
+    }
   }
 
   onChangePasswordSubmit() {

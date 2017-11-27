@@ -1,3 +1,5 @@
+-- This script will create the required table to hold user credential and user information.
+
 DROP TABLE votingsystem.users;
 DROP TABLE votingsystem.userInfo;
 

@@ -59,6 +59,7 @@ export class ServerInteractService {
     return this.http.post(this.serverURL + 'changePassword', body, {headers: headers});
   }
 
+  // This request change email address.
   postChangeEmail(request: ChangeEmailRequestModel) {
     const body = JSON.stringify(request);
     // const headers = new Headers();

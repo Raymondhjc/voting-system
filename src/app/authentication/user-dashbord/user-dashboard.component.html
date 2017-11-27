@@ -1,61 +1,78 @@
-<mat-card class="lverg-mat-card" *ngIf="this.userStatus!=null">
+<div class="page-layout">
+  <p *ngIf="this.userStatus==null">You are a guest!</p>
 
-  <mat-toolbar color="primary">
-    <i>You are logged in as</i>:&nbsp;<b>{{this.userStatus.username}}</b>
-  </mat-toolbar>
-  <mat-accordion class="example-headers-align">
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title> password:</mat-panel-title>
-      <mat-panel-description>******</mat-panel-description>
-    </mat-expansion-panel-header>
+  <div class="lverg-left-column">
+    <mat-toolbar color="primary">
+      <i>You are logged in as</i>:&nbsp;<b>{{this.userStatus.username}}</b>
+    </mat-toolbar>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Password:</mat-panel-title>
+          <mat-panel-description style="text-align: center;">******</mat-panel-description>
+        </mat-expansion-panel-header>
 
-    <form [formGroup]="changePassword" (ngSubmit)="onChangePasswordSubmit()" id="changePasswordForm">
-      <mat-form-field class="full-width">
-        <input matInput placeholder="Previous password" formControlName="previousPassword" type="password">
-      </mat-form-field>
-      <mat-form-field class="full-width">
-        <input matInput placeholder="New password" formControlName="newPassword" type="password">
-      </mat-form-field>
-      <mat-form-field class="full-width">
-        <input matInput placeholder="Confirm new password" formControlName="repeatNewPassword" type="password">
-      </mat-form-field>
+        <form [formGroup]="changePassword" (ngSubmit)="onChangePasswordSubmit()" id="changePasswordForm">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Previous password" formControlName="previousPassword" type="password">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="New password" formControlName="newPassword" type="password">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Confirm new password" formControlName="repeatNewPassword" type="password">
+          </mat-form-field>
 
-      <div style="  text-align: right;">
-        <button mat-button color="primary" [disabled]="!changePassword.valid" type="submit">
-          Modify
-        </button>
-        <button mat-button color="warn" type="reset">
-          Clear
-        </button>
-      </div>
+          <div style="  text-align: right;">
+            <button mat-button color="primary" [disabled]="!changePassword.valid" type="submit">
+              Modify
+            </button>
+            <button mat-button color="warn" type="reset">
+              Clear
+            </button>
+          </div>
 
-    </form>
-  </mat-expansion-panel>
+        </form>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Email:</mat-panel-title>
+          <mat-panel-description style="text-align: center;">{{this.userStatus.email}}</mat-panel-description>
+        </mat-expansion-panel-header>
 
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title> Email:</mat-panel-title>
-      <mat-panel-description>{{this.userStatus.email}}</mat-panel-description>
-    </mat-expansion-panel-header>
+        <form [formGroup]="changeEmail" (ngSubmit)="onChangeEmail()" id="changeEmail">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="New Email address:" formControlName="newEmail">
+          </mat-form-field>
 
-    <form [formGroup]="changeEmail" (ngSubmit)="onChangeEmail()" id="changeEmail">
-      <mat-form-field class="full-width">
-        <input matInput placeholder="New Email address:" formControlName="newEmail">
-      </mat-form-field>
+          <div style="  text-align: right;">
+            <button mat-button color="primary" [disabled]="!changeEmail.valid" type="submit">
+              Modify
+            </button>
+            <button mat-button color="warn" type="reset">
+              Clear
+            </button>
+          </div>
+        </form>
+      </mat-expansion-panel>
+    </mat-accordion>
 
-      <div style="  text-align: right;">
-        <button mat-button color="primary" [disabled]="!changeEmail.valid" type="submit">
-          Modify
-        </button>
-        <button mat-button color="warn" type="reset">
-          Clear
-        </button>
-      </div>
-    </form>
-  </mat-expansion-panel>
-  </mat-accordion>
-</mat-card>
+  </div>
 
 
-<p *ngIf="this.userStatus==null">You are a guest!</p>
+  <div class="lverg-right-column">
+    <button mat-raised-button="" class="lverg-button" color="primary" routerLink="/admin" *ngIf="getRole()==='admin'">
+      View Elections
+    </button>
+    <button mat-raised-button="" class="lverg-button" color="primary" routerLink="/admin/new-election"
+            *ngIf="getRole()==='admin'">
+      Add Election
+    </button>
+    <button mat-raised-button="" class="lverg-button" color="primary" routerLink="/data-view"
+            *ngIf="getRole()==='user'">
+      Details
+    </button>
+  </div>
+  <span class="clear"></span>
+</div>
+

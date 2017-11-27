@@ -58,7 +58,6 @@ func signupHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-
 // This handler ask whether a specific username exist in database.
 // This handler return a boolean.
 func userExistHandler(w http.ResponseWriter, r *http.Request) {
@@ -93,9 +92,12 @@ func whoamiHandler(w http.ResponseWriter, req *http.Request) {
   // Get data from database.
   userInfo, err := db.getUserInfo(claims.Usr)
 
+  userInfo.Role = claims.Rol
+
   // Error Handling/
   check(err)
 
+  //fmt.Println(userInfo)
   // reply.
   json.NewEncoder(w).Encode(userInfo)
 }

@@ -1,3 +1,6 @@
+// If not signed in, several component is not able to access.
+// Guard is used in router.
+
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot} from '@angular/router';
 import {AuthenticationService} from '../authentication/authentication.service';
@@ -17,7 +20,6 @@ export class NotSignedInGuardsService implements CanActivate, CanActivateChild {
     } else {
       this.router.navigate(['/']);
       this.authenService.onSignIn();
-      // TODO: give information say "YOU ARE NOT SIGNED IN"
       return false;
     }
 

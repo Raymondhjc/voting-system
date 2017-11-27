@@ -1,3 +1,7 @@
+// This component keep track of sign in status, sign in,
+// sign out, and give information to all other component about
+// user information.
+
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {SigninComponent} from './signin/signin.component';
 import {Injectable} from '@angular/core';
@@ -46,7 +50,7 @@ export class AuthenticationService {
       (whoami) => {
         const info = JSON.parse(whoami.text());
         // user name is no longer null, it indicate user signed in.
-        this._userStatus = new UserStatusModel(info.FirstName, info.LastName, info.Username, info.Email, info.Ufid, 'user');
+        this._userStatus = new UserStatusModel(info.FirstName, info.LastName, info.Username, info.Email, info.Ufid, info.Role);
         this.userStatusChanged.next(this._userStatus);
         this.router.navigate(['/user-dashboard']);
       },
@@ -64,6 +68,14 @@ export class AuthenticationService {
       return '';
     } else {
       return this._userStatus.username;
+    }
+  }
+
+  getRole() {
+    if (this._userStatus == null) {
+      return '';
+    } else {
+      return this._userStatus.role;
     }
   }
 

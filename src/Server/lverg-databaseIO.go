@@ -1,3 +1,5 @@
+// This file implement database input output
+
 package main
 
 import (
@@ -6,12 +8,15 @@ import (
   _ "github.com/go-sql-driver/mysql"
 )
 
+// database structure.
 type MyDB struct {
   *sql.DB
 }
 
+// The actual database.
 var db MyDB
 
+// Connect database.
 func (db *MyDB) connectDB(username string, password string, address string, dbName string) error {
 
   var dataSourceName = fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8", username, password, address, dbName)
@@ -38,6 +43,7 @@ func (db *MyDB) connectDB(username string, password string, address string, dbNa
   return nil
 }
 
+//
 func (db *MyDB) printTables() error {
   rows, err := db.Query(`SHOW tables`)
   if err != nil {
@@ -108,6 +114,8 @@ func (db *MyDB) insertUserInfo(Info RegistrationInfo) error {
     `INSERT INTO votingsystem.userinfo (username, firstname, lastname, email, UFID, administrator)
 VALUE ('%s','%s','%s','%s',%s,FALSE);`,
     Info.Username, Info.FirstName, Info.LastName, Info.Email, Info.Ufid)
+
+
 
   stmt, err := db.Prepare(s)
   if err != nil {

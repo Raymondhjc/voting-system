@@ -16,20 +16,9 @@ export class SignedInAuthGuardService implements CanActivate, CanActivateChild {
       return true;
     } else {
       this.router.navigate(['/user-dashboard']);
-      // TODO: give information say "You are ready signed in!"
+
       return false;
     }
-    // There is no need to check with server for page guard
-    // return this.authenService.isAuthenticated().then(
-    //   (authenticated: boolean) => {
-    //     if (!authenticated) {
-    //       return true;
-    //     } else {
-    //       this.router.navigate(['/user-dashboard']);
-    //     }
-    //   }
-    // );
-
   }
 
   canActivateChild(route: ActivatedRouteSnapshot,

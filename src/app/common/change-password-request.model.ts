@@ -1,3 +1,5 @@
+// This is what be sent when change password is requested.
+
 export class ChangePasswordRequestModel {
   public password: string;
   public newPassword: string;

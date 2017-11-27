@@ -1,7 +1,11 @@
+// This component is to visualize one question as a pie chart.
+
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {BaseChartDirective} from 'ng2-charts/ng2-charts';
 import {Color} from 'ng2-charts';
+import {DataViewService} from '../common/data-view.service';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-graphical-data-representation',
@@ -11,10 +15,12 @@ import {Color} from 'ng2-charts';
 export class GraphicalDataRepresentationComponent implements OnInit {
   visualize: FormGroup;
   @ViewChild(BaseChartDirective) chart: BaseChartDirective;
+  private subscription: Subscription;
 
-  constructor() {
+  constructor(private dvService: DataViewService) {
   }
 
+  // When initialize, initialize the formgroup.
   ngOnInit() {
     this.visualize = new FormGroup({
         'questionNumber': new FormControl(null,
@@ -23,9 +29,18 @@ export class GraphicalDataRepresentationComponent implements OnInit {
             Validators.max(this.getTotalNumberOfQuestions())]),
       }
     );
+    this.subscription = this.dvService.pieChartDataChanged.subscribe(
+      (pieChart) => {
+        this.pieChartLabels = pieChart.label;
+        this.pieChartData = pieChart.data;
+        this.chart.chart.config.data.labels = this.pieChartLabels;
+      }
+    );
+
   }
 
 
+  // These fields is used to hold chart properties.
   public pieChartType: string = 'pie';
   private pieChart: { label: string[], data: number[] } = this.getPieChart(1);
   public pieChartLabels: string[] = this.pieChart.label;
@@ -35,6 +50,7 @@ export class GraphicalDataRepresentationComponent implements OnInit {
       , '#66BB6A', '#9CCC65', '#D4E157', '#FFEE58', '#FFCA28', '#FFA726', '#FF7043', '#8D6E63', '#BDBDBD', '#78909C']
   }];
 
+  // This function is used to update the pie chart.
   onClickGet() {
     this.pieChart = this.getPieChart(this.visualize.value.questionNumber);
     this.pieChartLabels = this.pieChart.label;
@@ -42,12 +58,14 @@ export class GraphicalDataRepresentationComponent implements OnInit {
     this.chart.chart.config.data.labels = this.pieChartLabels;
   }
 
+  // Execute when pie chart is clicked.
   public chartClicked(e: any): void {
-    console.log(e);
+    // console.log(e);
   }
 
+  // Execute when pie chart is hovered.
   public chartHovered(e: any): void {
-    console.log(e);
+    // console.log(e);
   }
 
   // This method is a mock API for get total number of questions in a single election.

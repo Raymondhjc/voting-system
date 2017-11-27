@@ -1,3 +1,8 @@
+.lverg-page-layout {
+  width: 90%;
+  margin: 0px auto 0 auto;
+}
+
 .ballot-view {
     margin: 0px 0px 0px 50px;
     float: left;

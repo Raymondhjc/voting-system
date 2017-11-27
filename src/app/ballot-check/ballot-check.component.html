@@ -1,39 +1,42 @@
-<h1>ballot-check</h1>
-<div class="ballot-view" >
-<div>
-<img src="assets/ballot.gif" alt="Ballot Sample"/>
-</div>
-<div class="PreNex">
-<button mat-raised-button class="raised-button" >Previous</button>
-<button mat-raised-button class="raised-button" >Next</button>
-</div>
-</div>
-<div class="check">
-<form (ngSubmit)="onSubmit()" #resultForm="ngForm">
-<div class="sec">
-<div class="example-selected-value">President: {{result1}}</div>
-<mat-radio-group class="example-radio-group" [(ngModel)]="result1" name="cds1" >
-  <mat-radio-button class="example-radio-button" *ngFor="let cd1 of cds1" [value]="cd1.name">
-    {{cd1.name}}
-  </mat-radio-button>
-</mat-radio-group>
-</div>
-<div class="sec">
-<div class="example-selected-value">Vice-President: {{result2}}</div>
-<mat-radio-group class="example-radio-group" [(ngModel)]="result2" name="cds2">
-  <mat-radio-button class="example-radio-button" *ngFor="let cd2 of cds2" [value]="cd2.name">
-    {{cd2.name}}
-  </mat-radio-button>
-</mat-radio-group>
-</div>
-<div class="sec">
-<div class="example-selected-value">Vice-President: {{result3}}</div>
-<mat-radio-group class="example-radio-group" [(ngModel)]="result3" name="cds3">
-  <mat-radio-button class="example-radio-button" *ngFor="let cd3 of cds3" [value]="cd3.name">
-    {{cd3.name}}
-  </mat-radio-button>
-</mat-radio-group>
-</div>
-<button mat-raised-button type="submit" class="submit" (click)="resultForm.reset()">Submit</button>
-</form>
+<div class="lverg-page-layout">
+
+  <h1>ballot-check</h1>
+  <div class="ballot-view">
+    <div>
+      <img src="assets/ballot.gif" alt="Ballot Sample"/>
+    </div>
+    <div class="PreNex">
+      <button mat-raised-button class="raised-button">Previous</button>
+      <button mat-raised-button class="raised-button">Next</button>
+    </div>
+  </div>
+  <div class="check">
+    <form (ngSubmit)="onSubmit()" #resultForm="ngForm">
+      <div class="sec">
+        <div class="example-selected-value">President: {{result1}}</div>
+        <mat-radio-group class="example-radio-group" [(ngModel)]="result1" name="cds1">
+          <mat-radio-button class="example-radio-button" *ngFor="let cd1 of cds1" [value]="cd1.name">
+            {{cd1.name}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="sec">
+        <div class="example-selected-value">Vice-President: {{result2}}</div>
+        <mat-radio-group class="example-radio-group" [(ngModel)]="result2" name="cds2">
+          <mat-radio-button class="example-radio-button" *ngFor="let cd2 of cds2" [value]="cd2.name">
+            {{cd2.name}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="sec">
+        <div class="example-selected-value">Vice-President: {{result3}}</div>
+        <mat-radio-group class="example-radio-group" [(ngModel)]="result3" name="cds3">
+          <mat-radio-button class="example-radio-button" *ngFor="let cd3 of cds3" [value]="cd3.name">
+            {{cd3.name}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <button mat-raised-button type="submit" class="submit" (click)="resultForm.reset()">Submit</button>
+    </form>
+  </div>
 </div>

@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DataSource} from '@angular/cdk/collections';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-import { MatTableModule, MatButtonModule, MatListModule, MatTabsModule } from '@angular/material';
-import { candidatesP, candidatesVP, candidatesGR} from '../ballot-check/mock-votesdata';
-import { Candidate} from '../ballot-check/candidate';
-
+import {candidatesP, candidatesVP, candidatesGR} from '../ballot-check/mock-votesdata';
+import {Candidate} from '../ballot-check/candidate';
+import {DataViewService} from '../common/data-view.service';
 
 
 @Component({
@@ -15,52 +14,79 @@ import { Candidate} from '../ballot-check/candidate';
 })
 export class DataViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dvService: DataViewService) {
+  }
 
   ngOnInit() {
   }
-   displayedColumns = ['id', 'name', 'votes', 'rate'];
-    dataSource = new DataSample();
 
-    SelectData1(){
-        this.dataSource = new DataSample();
-    	    }
-    SelectData2(){
-        this.dataSource = new DataSampleVP();
-          }
-    SelectData3(){
-        this.dataSource = new DataSampleGr();
-          }
+  displayedColumns = ['id', 'name', 'votes', 'rate'];
+  dataSource = new DataSample();
+  dataShow = new Array<Candidate>();
+
+  SelectData1() {
+    this.dataSource = new DataSample();
+    this.dataShow = candidatesP;
+    this.onChangeData();
+  }
+
+  SelectData2() {
+    this.dataSource = new DataSampleVP();
+    this.dataShow = candidatesVP;
+    this.onChangeData();
+  }
+
+  SelectData3() {
+    this.dataSource = new DataSampleGr();
+    this.dataShow = candidatesGR;
+    this.onChangeData();
+  }
+
+  onChangeData() {
+    this.dvService.resetPieChartData();
+    for (var i = 0; i < this.dataShow.length; i++) {
+      const option = this.dataShow[i];
+      this.dvService.addPieChartData(option.name, option.countsTotal);
+    }
+    this.dvService.updateChart();
+  }
 
 }
 
 
 export class DataSample extends DataSource<any> {
   /** Connect function called by the table to retrieve one stream containing the data to render. */
-  		
+
   connect(): Observable<Candidate[]> {
     return Observable.of(candidatesP);
   }
 
-  disconnect() {}
+  disconnect() {
+  }
 }
+
 export class DataSampleVP extends DataSource<any> {
   /** Connect function called by the table to retrieve one stream containing the data to render. */
-      
+
   connect(): Observable<Candidate[]> {
     return Observable.of(candidatesVP);
   }
 
-  disconnect() {}
+  disconnect() {
+  }
 }
+
 export class DataSampleGr extends DataSource<any> {
   /** Connect function called by the table to retrieve one stream containing the data to render. */
-      
+
   connect(): Observable<Candidate[]> {
     return Observable.of(candidatesGR);
   }
 
-  disconnect() {}
+  disconnect() {
+  }
+
+
 }
 
 

@@ -37,8 +37,9 @@ import {SignedInAuthGuardService} from './common/signed-in-auth-guard.service';
 import {ServerInteractService} from './common/serverInteract.service';
 import {HttpModule} from '@angular/http';
 import {BallotCheckComponent} from './ballot-check/ballot-check.component';
-import { ChartsModule } from 'ng2-charts/ng2-charts';
+import {ChartsModule} from 'ng2-charts/ng2-charts';
 import {GraphicalDataRepresentationComponent} from './graphical-data-representation/graphical-data-representation.component';
+import {DataViewService} from './common/data-view.service';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,11 @@ import {GraphicalDataRepresentationComponent} from './graphical-data-representat
     /** Admin module*/
     AdminModule,
   ],
-  providers: [AuthenticationService, NotSignedInGuardsService, SignedInAuthGuardService, ServerInteractService],
+  providers: [AuthenticationService,
+    NotSignedInGuardsService,
+    SignedInAuthGuardService,
+    ServerInteractService,
+    DataViewService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
