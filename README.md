@@ -3,7 +3,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.0.
 
 ## Name & Github Name
-Youlyu Zhang (lvergergsk)
+Youlyu Zhang (lvergergsk / YOULYU ZHANG)
 
 Jiangchuan Hu (Raymondhjc)
 
