@@ -11,7 +11,7 @@ describe('Tg-scanner-page',() =>{
         page.navigateTo();
         expect(page.getHeadTest1()).toEqual('Search Images');
     });
-    
+
     it('should display Counting the total number',() => {
         page.navigateTo();
         expect(page.getCountHeader()).toEqual('Counting the total number');
@@ -39,7 +39,7 @@ describe('Tg-scanner-page',() =>{
         expect(page.getImageName()).toEqual('votingImage2');
         page.getPreviousPageButton().click();
         expect(page.getImageName()).toEqual('votingImage2');
-        
+
     });
 
     it('should display the votingImage1,2,3 in the image display card',() => {
@@ -65,7 +65,7 @@ describe('Tg-scanner-page',() =>{
         //reset input
         page.getResetInputButton().click();
         expect(page.getImageName()).toEqual('votingImage1');
-        
+
     });
 
     it('should display count number',() => {
@@ -75,5 +75,5 @@ describe('Tg-scanner-page',() =>{
         page.getResetCountButton().click();
         expect(page.getCountNumber()).toEqual('0');
     });
-   
+
 })

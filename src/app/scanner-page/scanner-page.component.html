@@ -1,83 +1,96 @@
-  <mat-card class="searchcard">
-    <h1>Search Images</h1>
-    <mat-tab-group>
-      <mat-tab label = "Exist Image">
-        <div class = "searchImage">
-          <i class="material-icons" matPreffix>search</i>
-          <mat-form-field floatPlaceholder = "">
-            <input id = "placeholder" #placeholder matInput value="">
-          </mat-form-field>
+<div class="lverg-page-layout">
+  <div class="lverg-left-column">
+    <mat-card class="lverg-searchcard">
+      <h1>Search Images</h1>
+      <mat-tab-group>
+        <mat-tab label="Exist Image">
+          <div class="searchImage">
+            <i class="material-icons" matPreffix>search</i>
+            <mat-form-field floatPlaceholder="">
+              <input id="placeholder" #placeholder matInput value="">
+            </mat-form-field>
 
-          <button id = "searchButton" (click)="searchImage(placeholder, image)" mat-button color = "primary">Search</button>
-          <button id = "resetButton1" (click)="resetInput(placeholder,image)" mat-button color = "primary">Reset</button>
-        </div>
+            <button id="searchButton" (click)="searchImage(placeholder, image)" mat-button color="primary">Search
+            </button>
+            <button id="resetButton1" (click)="resetInput(placeholder,image)" mat-button color="primary">Reset</button>
+          </div>
 
-        <div class = "image-table">
-          <mat-table #table [dataSource] = "imageDetails" matSort>
-            <!-- ID Column -->
-            <ng-container matColumnDef = "id">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> ID</mat-header-cell>
-              <mat-cell *matCellDef = "let picture"> {{picture.id}}</mat-cell>
-            </ng-container>
+          <div class="image-table">
+            <mat-table #table [dataSource]="imageDetails" matSort>
+              <!-- ID Column -->
+              <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> ID</mat-header-cell>
+                <mat-cell *matCellDef="let picture"> {{picture.id}}</mat-cell>
+              </ng-container>
 
-            <!-- ImageName Column -->
-            <ng-container matColumnDef = "name">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> Image Name</mat-header-cell>
-              <mat-cell *matCellDef = "let picture"> {{picture.name}}</mat-cell>
-            </ng-container>
+              <!-- ImageName Column -->
+              <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Image Name</mat-header-cell>
+                <mat-cell *matCellDef="let picture"> {{picture.name}}</mat-cell>
+              </ng-container>
 
-            <mat-header-row *matHeaderRowDef = "displayedColumns"></mat-header-row>
-            <mat-row *matRowDef = "let row; columns: displayedColumns;"></mat-row>
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-          </mat-table>
-        </div>
-      </mat-tab>
-    </mat-tab-group>
-  </mat-card>
-
-  <div class = "countNum">
-    <mat-card >
-      <mat-card-header>
-        <mat-card-title id="matCardTitle1" >Counting the total number </mat-card-title>
-      </mat-card-header>
-      <div ng-app="">
-        <p id="count" #count> {{countNumber}} </p>
-      </div>
-
-      <mat-card-actions>
-        <button id="countButton" #countButton (click)="countImageNumber()" mat-button color = "primary">Count</button>
-        <button id="resetButton2" #resetButton (click)="resetImageNumber(image)" mat-button color = "primary">Reset</button>
-      </mat-card-actions>
+            </mat-table>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
     </mat-card>
   </div>
 
-  <div class = "LargeImage">
-    <mat-card>
-      <mat-card-header>
-        <div mat-card-avatar class="image"></div>
-        <mat-card-title id="matCardTitle2"> {{ImageName}}</mat-card-title>
+  <div class="lverg-right-column">
+    <div class="lverg-picture">
+      <mat-card>
+        <mat-card-header>
+          <div mat-card-avatar class="image"></div>
+          <mat-card-title id="matCardTitle2"> {{ImageName}}</mat-card-title>
+          <br>
+        </mat-card-header>
         <br>
-      </mat-card-header>
-      <br>
-      <img #image width = "300" height = "200" id="mat-card-image" src="{{ImageSrc}}">
-      <br>
+        <div style="text-align: center;">
+          <img #image width="300" height="200" id="mat-card-image" src="{{ImageSrc}}">
+        </div>
+        <br>
 
-      <mat-card-actions>
-        <button id = "previousButton" #previousButton [disabled] = "true" (click)="previousPage(image, previousButton, nextButton)" mat-button color = "primary">Previous</button>
-        <button id = "nextButton" #nextButton [disabled] = "false" (click)="nextPage(image, previousButton, nextButton)" mat-button color = "primary">Next</button>
-      </mat-card-actions>
-    </mat-card>
+        <mat-card-actions style="text-align: center;">
+          <button id="previousButton" #previousButton [disabled]="true"
+                  (click)="previousPage(image, previousButton, nextButton)" mat-button color="primary">Previous
+          </button>
+          <button id="nextButton" #nextButton [disabled]="false" (click)="nextPage(image, previousButton, nextButton)"
+                  mat-button color="primary">Next
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <div class="lverg-countNum">
+      <mat-card style="text-align: center;">
+        <mat-card-header>
+          <mat-card-title id="matCardTitle1">Counting the total number</mat-card-title>
+        </mat-card-header>
+        <div ng-app="">
+          <p id="count" #count> {{countNumber}} </p>
+        </div>
+
+        <mat-card-actions>
+          <button id="countButton" #countButton (click)="countImageNumber()" mat-button color="primary">Count</button>
+          <button id="resetButton2" #resetButton (click)="resetImageNumber(image)" mat-button color="primary">Reset
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
   </div>
 
-  <div id = "footer">
+
+  <div id="footer">
     <ul>
-      <li><a href = "">About Counting-system</a></li>
-      <li><a href = "">Help</a></li>
-      <li><a href = "">Contact Us</a></li>
+      <li><a href="">About Counting-system</a></li>
+      <li><a href="">Help</a></li>
+      <li><a href="">Contact Us</a></li>
     </ul>
   </div>
-
-
+</div>
 
 
 <!--

@@ -1,8 +1,11 @@
 import { browser, by, element} from 'protractor';
+import {SigninPage} from './signin-page.po';
 
 export class ScannerPage {
     navigateTo() {
-        return browser.get('/scanner');
+      let signinPage = new SigninPage();
+      signinPage.signinAsUser();
+      element(by.css('body > app-root > div > app-dashboard > div > div.lverg-right-column > button:nth-child(2)')).click();
     }
 
     getHeadTest1() {
@@ -28,7 +31,7 @@ export class ScannerPage {
     getPlaceholder() {
         return element(by.css('#placeholder'));
     }
-   
+
     getLargeImage() {
         return element(by.css('#mat-card-image'));
     }

@@ -1,158 +1,173 @@
-<mat-horizontal-stepper linear>
-    <mat-step [stepControl]="firstFormGroup">
+<div class="lverg-page-layout">
+  <mat-card>
+    <mat-horizontal-stepper linear>
+      <mat-step [stepControl]="firstFormGroup">
         <form id="firstFormGroup" [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Election Configuration</ng-template>
-            <mat-list>
-                <h2 matSubheader>Create a New Election</h2>
-                <mat-list-item>
-                    <mat-form-field>
-                        <input matInput placeholder="Election Name" formControlName="electionName" required>
-                    </mat-form-field>
-                </mat-list-item>
-                <mat-list-item>
-                    <mat-form-field>
-                        <input readonly="readonly" matInput [matDatepicker]="startDate" placeholder="startDate at MM/DD/YYYY" formControlName="startDate"
-                            required>
-                        <mat-datepicker-toggle id="startDateToggle" matSuffix [for]="startDate"></mat-datepicker-toggle>
-                        <mat-datepicker #startDate></mat-datepicker>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <input readonly="readonly" matInput [matDatepicker]="endDate" placeholder="endDate at MM/DD/YYYY" formControlName="endDate"
-                            required>
-                        <mat-datepicker-toggle id="endDateToggle" matSuffix [for]="endDate"></mat-datepicker-toggle>
-                        <mat-datepicker #endDate></mat-datepicker>
-                    </mat-form-field>
-                </mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>
-                    <mat-form-field>
-                        <input matInput type="number" placeholder="Total Count" formControlName="count" min="1">
-                        <mat-error *ngIf="firstFormGroup.get('count').invalid">Please input a valid number</mat-error>
-                    </mat-form-field>
-                </mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>(Other Configurations)</mat-list-item>
-            </mat-list>
+          <ng-template matStepLabel>Election Configuration</ng-template>
+          <mat-list>
+            <h2 matSubheader>Create a New Election</h2>
+            <mat-list-item>
+              <mat-form-field>
+                <input matInput placeholder="Election Name" formControlName="electionName" required>
+              </mat-form-field>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-form-field>
+                <input readonly="readonly" matInput [matDatepicker]="startDate" placeholder="startDate at MM/DD/YYYY"
+                       formControlName="startDate"
+                       required>
+                <mat-datepicker-toggle id="startDateToggle" matSuffix [for]="startDate"></mat-datepicker-toggle>
+                <mat-datepicker #startDate></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field>
+                <input readonly="readonly" matInput [matDatepicker]="endDate" placeholder="endDate at MM/DD/YYYY"
+                       formControlName="endDate"
+                       required>
+                <mat-datepicker-toggle id="endDateToggle" matSuffix [for]="endDate"></mat-datepicker-toggle>
+                <mat-datepicker #endDate></mat-datepicker>
+              </mat-form-field>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <mat-form-field>
+                <input matInput type="number" placeholder="Total Count" formControlName="count" min="1">
+                <mat-error *ngIf="firstFormGroup.get('count').invalid">Please input a valid number</mat-error>
+              </mat-form-field>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>(Other Configurations)</mat-list-item>
+          </mat-list>
 
-            <div>
-                <button class="stepper-button" type="button" mat-button matStepperNext>Next</button>
-            </div>
+          <div>
+            <button class="stepper-button" type="button" mat-button matStepperNext>Next</button>
+          </div>
         </form>
-    </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
         <ng-template matStepLabel>Election Content</ng-template>
         <form id="secondFormGroup" [formGroup]="secondFormGroup">
-            <div id="sections" formArrayName="sections">
-                <div class="section-card" *ngFor="let sectionCtrl of secondFormGroup.get('sections').controls; let i = index" [formGroupName]="i">
-                    <mat-card>
-                        <mat-grid-list cols="15" rowHeight="100px">
-                            <mat-grid-tile colspan="14">
-                                <mat-card-header>
-                                    <mat-card-title>
-                                        <div class="form-group">
-                                            <label for="sectionName">Section Name</label>
-                                            <mat-form-field>
-                                                <input matInput type="text" id="sectionName" formControlName="sectionName">
-                                            </mat-form-field>
-                                        </div>
-                                    </mat-card-title>
-                                </mat-card-header>
-                            </mat-grid-tile>
-                            <mat-grid-tile>
-                                <button mat-button (click)="onDeleteSection(i)">
-                                    <i class="material-icons">delete</i>
-                                </button>
-                            </mat-grid-tile>
-                        </mat-grid-list>
+          <div id="sections" formArrayName="sections">
+            <div class="section-card"
+                 *ngFor="let sectionCtrl of secondFormGroup.get('sections').controls; let i = index"
+                 [formGroupName]="i">
+              <mat-card>
+                <mat-grid-list cols="15" rowHeight="100px">
+                  <mat-grid-tile colspan="14">
+                    <mat-card-header>
+                      <mat-card-title>
+                        <div class="form-group">
+                          <label for="sectionName">Section Name</label>
+                          <mat-form-field>
+                            <input matInput type="text" id="sectionName" formControlName="sectionName">
+                          </mat-form-field>
+                        </div>
+                      </mat-card-title>
+                    </mat-card-header>
+                  </mat-grid-tile>
+                  <mat-grid-tile>
+                    <button mat-button (click)="onDeleteSection(i)">
+                      <i class="material-icons">delete</i>
+                    </button>
+                  </mat-grid-tile>
+                </mat-grid-list>
 
-                        <mat-card-content>
-                            <label for="options">Options</label>
-                            <div id="options" formArrayName="options">
-                                <div class="option-label-container" *ngFor="let optionCtrl of secondFormGroup.get('sections').controls[i].get('options').controls; let j = index">
-                                    <mat-form-field>
-                                        <input matInput type="text" [formControlName]="j" placeholder="option">
-                                    </mat-form-field>
-                                    <i class="material-icons" matSuffix (click)="onDeleteOption(i,j)">delete_forever</i>
-                                </div>
-                                <button id="addOptionBtn" type="button" mat-button (click)="onAddOption(i)">
-                                    <i class="material-icons" matPreffix>add</i>add option</button>
-                            </div>
-                        </mat-card-content>
-                    </mat-card>
-                </div>
+                <mat-card-content>
+                  <label for="options">Options</label>
+                  <div id="options" formArrayName="options">
+                    <div class="option-label-container"
+                         *ngFor="let optionCtrl of secondFormGroup.get('sections').controls[i].get('options').controls; let j = index">
+                      <mat-form-field>
+                        <input matInput type="text" [formControlName]="j" placeholder="option">
+                      </mat-form-field>
+                      <i class="material-icons" matSuffix (click)="onDeleteOption(i,j)">delete_forever</i>
+                    </div>
+                    <button id="addOptionBtn" type="button" mat-button (click)="onAddOption(i)">
+                      <i class="material-icons" matPreffix>add</i>add option
+                    </button>
+                  </div>
+                </mat-card-content>
+              </mat-card>
             </div>
+          </div>
         </form>
 
         <mat-expansion-panel [expanded]="addFinished" (opened)="addFinished = true">
-            <mat-expansion-panel-header>
-                <i class="material-icons" matPreffix>add</i>
-                <mat-panel-title>Add a new section</mat-panel-title>
-                <mat-panel-description>Click to select the type of the section</mat-panel-description>
-            </mat-expansion-panel-header>
-            <mat-radio-group [(ngModel)]="choiceType">
-                <mat-radio-button [value]="1">Single Choice</mat-radio-button>
-                <mat-radio-button [value]="2">Multiple Choices</mat-radio-button>
-            </mat-radio-group>
-            <div>
-                <button type="button" mat-button color="primary" (click)="onAddSection()">
-                    <i class="material-icons" matPreffix>add</i>
-                    Add Section
-                </button>
-            </div>
+          <mat-expansion-panel-header>
+            <i class="material-icons" matPreffix>add</i>
+            <mat-panel-title>Add a new section</mat-panel-title>
+            <mat-panel-description>Click to select the type of the section</mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-radio-group [(ngModel)]="choiceType">
+            <mat-radio-button [value]="1">Single Choice</mat-radio-button>
+            <mat-radio-button [value]="2">Multiple Choices</mat-radio-button>
+          </mat-radio-group>
+          <div>
+            <button type="button" mat-button color="primary" (click)="onAddSection()">
+              <i class="material-icons" matPreffix>add</i>
+              Add Section
+            </button>
+          </div>
         </mat-expansion-panel>
         <div>
-            <button class="stepper-button" type="button" mat-button matStepperPrevious>Back</button>
-            <button class="stepper-button" type="button" mat-button matStepperNext>Next</button>
+          <button class="stepper-button" type="button" mat-button matStepperPrevious>Back</button>
+          <button class="stepper-button" type="button" mat-button matStepperNext>Next</button>
         </div>
-    </mat-step>
-    <mat-step>
+      </mat-step>
+      <mat-step>
         <ng-template matStepLabel>Election Template</ng-template>
         <div>
-            <form [formGroup]="firstFormGroup">
-                <mat-list>
-                    <h1>{{firstFormGroup.value.electionName}}</h1>
-                    <h2 mat-subheader>Election Information</h2>
-                    <mat-list-item>
-                        <h4 mat-line>Start Date</h4>
-                        <p mat-line> {{electionStartDate}} </p>
-                    </mat-list-item>
-                    <mat-list-item>
-                        <h4 mat-line>End Date</h4>
-                        <p mat-line> {{electionEndDate}} </p>
-                    </mat-list-item>
-                    <mat-divider></mat-divider>
-                </mat-list>
-            </form>
-            <form [formGroup]="secondFormGroup">
-                <mat-list formArrayName="sections">
-                    <h2 mat-subheader>Questions</h2>
-                    <div *ngFor="let sectionCtrl of secondFormGroup.get('sections').controls; let i = index" [formGroupName]="i">
-                        <mat-list id="options" formArrayName="options">
-                            <h3>{{sectionCtrl.value.sectionName}}</h3>
-                            <div *ngIf="sectionCtrl.value.choiceType === 1; show">
-                                <mat-radio-group>
-                                    <div *ngFor="let optionCtrl of secondFormGroup.get('sections').controls[i].get('options').controls; let j = index">
-                                        <mat-list-item>
-                                            <mat-radio-button value="1">{{optionCtrl.value}}</mat-radio-button>
-                                        </mat-list-item>
-                                    </div>
-                                </mat-radio-group>
-                            </div>
-                            <div *ngIf="sectionCtrl.value.choiceType === 2; show">
-                                <div *ngFor="let optionCtrl of secondFormGroup.get('sections').controls[i].get('options').controls; let j = index">
-                                    <mat-list-item>
-                                        <mat-checkbox>{{optionCtrl.value}}</mat-checkbox>
-                                    </mat-list-item>
-                                </div>
-                            </div>
-                        </mat-list>
+          <form [formGroup]="firstFormGroup">
+            <mat-list>
+              <h1>{{firstFormGroup.value.electionName}}</h1>
+              <h2 mat-subheader>Election Information</h2>
+              <mat-list-item>
+                <h4 mat-line>Start Date</h4>
+                <p mat-line> {{electionStartDate}} </p>
+              </mat-list-item>
+              <mat-list-item>
+                <h4 mat-line>End Date</h4>
+                <p mat-line> {{electionEndDate}} </p>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+            </mat-list>
+          </form>
+          <form [formGroup]="secondFormGroup">
+            <mat-list formArrayName="sections">
+              <h2 mat-subheader>Questions</h2>
+              <div *ngFor="let sectionCtrl of secondFormGroup.get('sections').controls; let i = index"
+                   [formGroupName]="i">
+                <mat-list id="options" formArrayName="options">
+                  <h3>{{sectionCtrl.value.sectionName}}</h3>
+                  <div *ngIf="sectionCtrl.value.choiceType === 1; show">
+                    <mat-radio-group>
+                      <div
+                        *ngFor="let optionCtrl of secondFormGroup.get('sections').controls[i].get('options').controls; let j = index">
+                        <mat-list-item>
+                          <mat-radio-button value="1">{{optionCtrl.value}}</mat-radio-button>
+                        </mat-list-item>
+                      </div>
+                    </mat-radio-group>
+                  </div>
+                  <div *ngIf="sectionCtrl.value.choiceType === 2; show">
+                    <div
+                      *ngFor="let optionCtrl of secondFormGroup.get('sections').controls[i].get('options').controls; let j = index">
+                      <mat-list-item>
+                        <mat-checkbox>{{optionCtrl.value}}</mat-checkbox>
+                      </mat-list-item>
                     </div>
+                  </div>
                 </mat-list>
-            </form>
+              </div>
+            </mat-list>
+          </form>
         </div>
         <div>
-            <button class="stepper-button" type="button" mat-button matStepperPrevious>Back</button>
-            <button type="submit" mat-button (click)="onSubmit()">Done</button>
+          <button class="stepper-button" type="button" mat-button matStepperPrevious>Back</button>
+          <button type="submit" mat-button (click)="onSubmit()">Done</button>
         </div>
-    </mat-step>
-</mat-horizontal-stepper>
+      </mat-step>
+    </mat-horizontal-stepper>
+
+  </mat-card>
+</div>
+

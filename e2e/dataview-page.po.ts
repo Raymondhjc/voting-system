@@ -1,8 +1,11 @@
 import {browser, by, element} from 'protractor';
+import {SigninPage} from './signin-page.po';
 
 export class DataViewPage {
     navigateToThePage() {
-        return browser.get('/data-view');
+      let signinPage = new SigninPage();
+      signinPage.signinAsUser();
+      element(by.css('body > app-root > div > app-dashboard > div > div.lverg-right-column > button')).click();
     }
     getParagraphText() {
         return element(by.css('app-data-view h1')).getText();
@@ -32,6 +35,6 @@ export class DataViewPage {
     getCheckButton() {
         return element(by.css('.check-button'));
     }
-    
+
 
 }

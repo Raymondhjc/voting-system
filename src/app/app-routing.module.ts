@@ -26,13 +26,13 @@ const appRoute: Routes = [
   {path: 'signup', component: SignupComponent, canActivate: [SignedInAuthGuardService]},
   {path: 'signin', component: SigninComponent, canActivate: [SignedInAuthGuardService]},
 
-  {path: 'ballot-check', component: BallotCheckComponent},
-  {path: 'data-view', component: DataViewComponent},
-  {path: 'scanner', component: ScannerPageComponent},
-  {path: 'upload', component: UploadPageComponent},
-  {path: 'admin', component: AdminComponent},
-  {path: 'admin/new-election', component: newElectionComponent},
-  {path: 'visual', component: GraphicalDataRepresentationComponent}
+  {path: 'ballot-check', component: BallotCheckComponent, canActivate: [NotSignedInGuardsService]},
+  {path: 'data-view', component: DataViewComponent, canActivate: [NotSignedInGuardsService]},
+  {path: 'scanner', component: ScannerPageComponent, canActivate: [NotSignedInGuardsService]},
+  {path: 'upload', component: UploadPageComponent, canActivate: [NotSignedInGuardsService]},
+  {path: 'admin', component: AdminComponent, canActivate: [NotSignedInGuardsService]},
+  {path: 'admin/new-election', component: newElectionComponent, canActivate: [NotSignedInGuardsService]},
+  {path: 'visual', component: GraphicalDataRepresentationComponent, canActivate: [NotSignedInGuardsService]}
 ];
 
 @NgModule({

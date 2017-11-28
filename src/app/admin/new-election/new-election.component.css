@@ -8,3 +8,8 @@
   flex-grow: 1;
   margin-left: 32px;
 }
+
+.lverg-page-layout {
+  width: 90%;
+  margin: 30px auto 0 auto;
+}
