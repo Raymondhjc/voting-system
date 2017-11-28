@@ -1,4 +1,5 @@
 import { browser, by, element } from 'protractor';
+import { SigninPage } from './signin-page.po'
 
 export class AdminPage {
     navigateTo() {
@@ -13,6 +14,10 @@ export class AdminPage {
 
     getElectionNameInput() {
         return element(by.css('input[formControlName="electionName"]'));
+    }
+
+    getCountInput() {
+        return element(by.css('input[formControlName="count"]'));
     }
 
     getSecondForm() {
@@ -58,4 +63,30 @@ export class AdminPage {
     optionLabel(index, optionIndex) {
         return element(by.css('.section-card:nth-child(' + index + ') .option-label-container:nth-child(' + optionIndex + ') input'));;
     }
+    submitButton(){
+        return element(by.css('#submitBtn'));
+    }
+    navigateToTable() {
+        return browser.get('/admin');
+    }
+
+    // for sign in
+    getSigninDialogButton() {
+        return element(by.css('.lverg-header button:nth-child(3)'));
+    }
+
+    getUsernameInput() {
+        //return element(by.css('#cdk-overlay-1 > mat-dialog-container > app-signin > form > p > mat-form-fiel > #mat-input-0'));
+        return element(by.css('.username'))
+    }
+
+    getPasswordInput() {
+        //return element(by.css('#cdk-overlay-1 > mat-dialog-container > app-signin > form > p > mat-form-fiel > #mat-input-1'));
+        return element(by.css('.password'))
+    }
+
+    getSigninButton() {
+        return element(by.css('.signinButton'));
+    }
+
 }

@@ -1,9 +1,21 @@
-import {AdminPage} from './admin.po';
-import {browser} from 'protractor';
+import { AdminPage } from './admin.po';
+import { browser,protractor } from 'protractor';
+import { SigninPage } from './signin-page.po';
 
-describe('hjc-voting-system App', () => {
+fdescribe('hjc-voting-system App', () => {
   let page: AdminPage;
+  let signinPage: SigninPage
+  // beforeAll(() => {
+  //   signinPage = new SigninPage()
+  //   signinPage.navigateToThePage();
+  //   const signinButton = signinPage.getSigninButton();
 
+  //   expect(signinButton.isEnabled()).toBe(false);
+  //   signinPage.getUsernameInput().sendKeys('111111');
+  //   signinPage.getPasswordInput().sendKeys('111111');
+  //   expect(signinButton.isEnabled()).toBe(true);
+  //   signinPage.getSigninButton().click();
+  // });
   beforeEach(() => {
     page = new AdminPage();
   });
@@ -21,6 +33,7 @@ describe('hjc-voting-system App', () => {
     page.getElectionNameInput().sendKeys('test election name');
     page.startDateCalendar().click();
     page.getstartDate().click();
+    page.getCountInput().sendKeys(100);
     browser.sleep(1000);
 
     page.endDateCalendar().click();
@@ -36,6 +49,15 @@ describe('hjc-voting-system App', () => {
   });
 
   it('should generate a new election after valid inputs', () => {
+
+    page.navigateTo();
+    page.getSigninDialogButton().click();
+    page.getUsernameInput().sendKeys('111111');
+    page.getPasswordInput().sendKeys('111111');
+    page.getSigninButton().click();
+    // var EC = protractor.ExpectedConditions;
+    
+    // browser.wait(EC.presenceOf(page.get), 10000);
     page.navigateTo();
     // valid inputs of the first form
     const firstForm = page.getFirstForm();
@@ -45,6 +67,8 @@ describe('hjc-voting-system App', () => {
     browser.sleep(500);
     page.endDateCalendar().click();
     page.getendDate().click();
+    browser.sleep(500);
+    page.getCountInput().sendKeys(1000);
     browser.sleep(500);
 
     // navigate to the second step
@@ -82,5 +106,8 @@ describe('hjc-voting-system App', () => {
     // navigate to the third step
     page.stepperButton(2).click();
     browser.sleep(8000);
+    page.submitButton().click();
+    browser.sleep(500);
+    page.navigateToTable();
   });
 });
