@@ -1,19 +1,19 @@
 <div class="lverg-page-layout">
   <h1>ballot-check</h1>
-  <div class="ballot-view" >
-    <div>
-      <img src="assets/ballot.gif" alt="Ballot Sample"/>
+  <div class="ballot-view">
+    <div >
+      <img src="assets/ballot.jpg" alt="Ballot Sample" class="lverg-image"/>
     </div>
     <div class="PreNex">
-      <button mat-raised-button class="raised-button" >Previous</button>
-      <button mat-raised-button class="raised-button" >Next</button>
+      <button mat-raised-button class="raised-button">Previous</button>
+      <button mat-raised-button class="raised-button">Next</button>
     </div>
   </div>
   <div class="check">
     <form (ngSubmit)="onSubmit()" #resultForm="ngForm">
       <div class="sec">
         <div class="example-selected-value">{{questions[0]}}: {{result1}}</div>
-        <mat-radio-group class="example-radio-group" [(ngModel)]="result1" name="cds1" >
+        <mat-radio-group class="example-radio-group" [(ngModel)]="result1" name="cds1">
           <mat-radio-button class="example-radio-button" *ngFor="let cd1 of cds1" [value]="cd1.name">
             {{cd1.name}}
           </mat-radio-button>
@@ -35,7 +35,7 @@
           </mat-radio-button>
         </mat-radio-group>
       </div>
-      <button mat-raised-button type="submit" class="submit" >Submit</button>
+      <button mat-raised-button type="submit" class="submit">Submit</button>
     </form>
   </div>
 </div>
