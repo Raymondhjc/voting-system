@@ -1,12 +1,11 @@
 DROP TABLE IF EXISTS `ballots`;
 CREATE TABLE votingsystem.ballots (
-		ballotID INT(8) NOT NULL PRIMARY KEY,
+		ballotID INT(8) NOT NULL ,
 		rateOfRight Int(4) NOT NULL,
 		questionID Int(4) NOT NULL,
 		optionID VARCHAR(20) NOT NULL,
-		optionName VARCHAR(20) NOT NULL,
-		UNIQUE KEY (ballotID)
-);
+		optionName VARCHAR(20) NOT NULL
+		);
 INSERT INTO votingsystem.ballots (ballotID, 
 	rateOfRight, questionID, optionID, optionName)
 	VALUE	(102, 80, 1, 7,'Ronadlo'),

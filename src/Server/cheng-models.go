@@ -17,7 +17,7 @@ type Answer struct {
 type DataChange struct {
 	BallotID   int
 	ElectionID int
-	Answers    []string
+	Results    []string
 }
 type ElectionID struct {
 	ElectionID int

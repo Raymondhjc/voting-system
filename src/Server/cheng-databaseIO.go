@@ -17,7 +17,7 @@ import (
 
 //get the answer to the question rows(data-view)
 func (db *MyDB) getQuestionResult(questionID int, electionID int) ([]DataOfQuestion, error) {
-	q := fmt.Sprintf(`SELECT ID,optionName,soundvotes,unsurevotes,totalvotes FROM votingsystem.result WHERE questionID = %d AND eletionID = %d;`, questionID, electionID)
+	q := fmt.Sprintf(`SELECT ID,optionName,soundvotes,unsurevotes,totalvotes FROM votingsystem.result WHERE questionID = %d AND electionID = %d;`, questionID, electionID)
 	rows, err := db.Query(q)
 	var results []DataOfQuestion
 
@@ -51,14 +51,16 @@ func (db *MyDB) getQuestions(electionID int) ([]string, error) {
 
 //done
 //get the data of the ballot the whole row answer to the question and the correct probability
-func (db *MyDB) getBallotData(questionID int, ballot int) (string, int, error) {
+func (db *MyDB) getBallotData(questionID int, ballot int) (string, error) {
 	// get the answer to the question and rateOfRight
-	var rateOfRight int
+	//var rateOfRight int
+
 	var answer string
+
 	q1 := fmt.Sprintf(`SELECT optionName FROM votingsystem.ballots WHERE ballotID= '%d' AND questionID = %d;`, ballot, questionID)
-	q2 := fmt.Sprintf(`SELECT rate0fRight FROM votingsystem.ballots WHERE ballotID= '%d' ;`, ballot)
+	//q2 := fmt.Sprintf(`SELECT rate0fRight FROM votingsystem.ballots WHERE ballotID= '%d' AND questionID = %d;`, ballot, questionID)
 	rows, err := db.Query(q1)
-	err = db.QueryRow(q2).Scan(&rateOfRight)
+	//err = db.QueryRow(q2).Scan(&rateOfRight)
 	defer rows.Close()
 
 	if rows.Next() {
@@ -72,9 +74,10 @@ func (db *MyDB) getBallotData(questionID int, ballot int) (string, int, error) {
 	//scan the rate to rateOfRight
 	if err != nil {
 		fmt.Println("get ballot data failed:", err.Error())
-		return "", 0, err
+		return "", err
 	}
-	return answer, rateOfRight, nil
+	fmt.Println(answer)
+	return answer, nil
 
 }
 
@@ -83,6 +86,7 @@ func (db *MyDB) addCountValue(counttype string, optionName string, electionID in
 	q1 := fmt.Sprintf(`SELECT %s FROM votingsystem.result WHERE optionName ='%s' AND electionID = %d;`, counttype, optionName, electionID)
 	var number int8
 	err := db.QueryRow(q1).Scan(&number)
+	//fmt.Println(`%s:%d `, counttype, number)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -100,9 +104,10 @@ func (db *MyDB) addCountValue(counttype string, optionName string, electionID in
 
 //change the data of the answer to the result
 func (db *MyDB) minusCountValue(counttype string, optionName string, electionID int) {
-	q1 := fmt.Sprintf(`SELECT %s FROM votingsystem.result WHERE optionName ='%s' AND electionID = %d;`, counttype, optionName, electionID)
+	q1 := fmt.Sprintf(`SELECT %s FROM votingsystem.result WHERE optionName ='%s'`, counttype, optionName)
 	var number int8
 	err := db.QueryRow(q1).Scan(&number)
+	//fmt.Println(`%s:%d `, counttype, number)
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 )
@@ -38,28 +39,32 @@ func getQuestionsHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 //handle the data-change things
-// receive { "BallotID": int , " ElectionID" : int , Answers" :[{"question" : "int ","answer" : "context"}]}
+// receive { "BallotID": int , " ElectionID" : int , Results" :[{"answer1","answer2","answer3"}]}
 func ballotcheckHandler(w http.ResponseWriter, r *http.Request) {
+
+	fmt.Println("handle datachange")
 	data := readBytes(r)
 	var t DataChange
 	json.Unmarshal(data, &t)
+	fmt.Println(t)
+	fmt.Println(t.Results)
 	//for each answer, if it changes then change the number
-	for i := 0; i < len(t.Answers); i++ {
+	//for i := 0; i < len(t.Results); i++ {
+	for i := 0; i < 0; i++ {
 		//[]int the ID of the options
-		answerUnchanged, rate, err := db.getBallotData(i, t.BallotID)
-		rate++
+		answerUnchanged, err := db.getBallotData(i, t.BallotID)
 		if err != nil {
 			log.Fatal(err)
 		}
-		if answerUnchanged != t.Answers[i] {
+		if answerUnchanged != t.Results[i] {
 			// -1 : the number that has been changed
 			db.minusCountValue("unsurevotes", answerUnchanged, t.ElectionID)
 			db.minusCountValue("totalvotes", answerUnchanged, t.ElectionID)
 
 			// +1 : the number that has been changed
 
-			db.addCountValue("soundvotes", t.Answers[i], t.ElectionID)
-			db.addCountValue("totalvotes", t.Answers[i], t.ElectionID)
+			db.addCountValue("soundvotes", t.Results[i], t.ElectionID)
+			db.addCountValue("totalvotes", t.Results[i], t.ElectionID)
 		}
 	}
 }
