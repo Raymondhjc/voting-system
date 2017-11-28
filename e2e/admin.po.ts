@@ -3,7 +3,9 @@ import { SigninPage } from './signin-page.po'
 
 export class AdminPage {
     navigateTo() {
-        return browser.get('/admin/new-election');
+        let signinPage = new SigninPage();
+        signinPage.signinAsAdmin();
+        element(by.css('body > app-root > div > app-dashboard > div > div.lverg-right-column > button:nth-child(2)')).click();
     }
     getAddElectionNavBtu() {
         return element(by.css('lverg-sidenav button:nth-child(2)'))
@@ -70,23 +72,23 @@ export class AdminPage {
         return browser.get('/admin');
     }
 
-    // for sign in
-    getSigninDialogButton() {
-        return element(by.css('.lverg-header button:nth-child(3)'));
-    }
+    // // for sign in
+    // getSigninDialogButton() {
+    //     return element(by.css('.lverg-header button:nth-child(3)'));
+    // }
 
-    getUsernameInput() {
-        //return element(by.css('#cdk-overlay-1 > mat-dialog-container > app-signin > form > p > mat-form-fiel > #mat-input-0'));
-        return element(by.css('.username'))
-    }
+    // getUsernameInput() {
+    //     //return element(by.css('#cdk-overlay-1 > mat-dialog-container > app-signin > form > p > mat-form-fiel > #mat-input-0'));
+    //     return element(by.css('.username'))
+    // }
 
-    getPasswordInput() {
-        //return element(by.css('#cdk-overlay-1 > mat-dialog-container > app-signin > form > p > mat-form-fiel > #mat-input-1'));
-        return element(by.css('.password'))
-    }
+    // getPasswordInput() {
+    //     //return element(by.css('#cdk-overlay-1 > mat-dialog-container > app-signin > form > p > mat-form-fiel > #mat-input-1'));
+    //     return element(by.css('.password'))
+    // }
 
-    getSigninButton() {
-        return element(by.css('.signinButton'));
-    }
+    // getSigninButton() {
+    //     return element(by.css('.signinButton'));
+    // }
 
 }
