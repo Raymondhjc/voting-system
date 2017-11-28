@@ -4,8 +4,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Name & Github Name
 Youlyu Zhang (lvergergsk)
+
 Jiangchuan Hu (Raymondhjc)
+
 Tiange Bu (tiangeB)
+
 Cheng Liu (Cheng)
 
 
