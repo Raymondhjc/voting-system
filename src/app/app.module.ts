@@ -15,6 +15,7 @@ import {
     MatInputModule,
     MatMenuModule,
     MatSidenavModule,
+    MatSelectModule,
     MatTableModule,
     MatToolbarModule,
     MatTabsModule,
@@ -38,6 +39,7 @@ import {SignedInAuthGuardService} from './common/signed-in-auth-guard.service';
 import {ServerInteractService} from './common/serverInteract.service';
 import {HttpModule} from '@angular/http';
 import {BallotCheckComponent} from './ballot-check/ballot-check.component';
+import {ballotcheckService} from './ballot-check/ballot-check.service'
 import {UploadPageComponent} from './upload-page/upload-page.component';
 import {ScannerDownloadService} from './scanner-page/scanner-web.service';
 import {ChartsModule} from 'ng2-charts/ng2-charts';
@@ -82,6 +84,7 @@ UploadPageComponent
     MatRadioModule,
     ChartsModule,
 MatTableModule,
+MatSelectModule,
     /** Admin module*/
     AdminModule,
   ],
@@ -90,7 +93,8 @@ MatTableModule,
     SignedInAuthGuardService,
     ServerInteractService,
     DataViewService,
-    ScannerDownloadService],
+    ScannerDownloadService,
+    ballotcheckService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

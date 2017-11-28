@@ -32,6 +32,6 @@ export class DataViewPage {
     getCheckButton() {
         return element(by.css('.check-button'));
     }
-    get
+    
 
 }

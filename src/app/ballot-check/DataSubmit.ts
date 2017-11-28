@@ -1,7 +1,12 @@
 export class DataSubmit {
-    ballot: string;
-    result: string[];
+    BallotID: number;
+    ElectionID: number;
+    Results: string[];
 
-    constructor(ballot, result) {
+    constructor(ballot, election, results) {
+    	this.BallotID = ballot;
+    	this.ElectionID = election;
+    	this.Results = results;
+
     }
 }

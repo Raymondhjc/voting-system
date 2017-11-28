@@ -180,7 +180,7 @@ func (db *MyDB) insertQuestion(qu []Question, endQuID int, endEleID int, i int) 
 	if err != nil {
 		return err
 	}
-	
+
 	_, err = stmt.Exec()
 	if err != nil {
 		return err

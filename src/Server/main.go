@@ -64,6 +64,9 @@ func main() {
 	//Handlers
 	r.HandleFunc("/signup", signupHandler).Methods("POST")
 	r.HandleFunc("/signin", signinHandler).Methods("POST")
+	r.HandleFunc("/data-view", dataviewHandler).Methods("GET")
+	r.HandleFunc("/data-view/get", getQuestionsHandler).Methods("GET")
+	r.HandleFunc("/ballotcheck", ballotcheckHandler).Methods("POST")
 	r.HandleFunc("/exists/{username}", userExistHandler).Methods("GET")
 	r.HandleFunc("/whoami", authorize(whoamiHandler)).Methods("GET")
 	r.HandleFunc("/changePassword", authorize(changePasswordHandler)).Methods("POST")

@@ -1,23 +1,22 @@
-<h1 style="text-align:center">All the Positions</h1>
+
+<h1 style = "text-align:center">Election: Favourite Soccer Players and Coaches</h1>
 <div class="lverg-page-layout">
   <div class="lverg-left-column">
     <mat-card>
-      <div class="button-column">
+<div class = "select-column">
+<mat-form-field>
+  <mat-select [(value)]="selected">
+    <mat-option (click) = "SelectData1()" value={{questions[0]}}>{{questions[0]}}</mat-option>
+    <mat-option (click) = "SelectData2()" value={{questions[1]}}>{{questions[1]}}</mat-option>
+    <mat-option (click) = "SelectData3()" value={{questions[2]}}>{{questions[2]}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<p>{{selected}}</p>
+</div>
 
 
-        <button mat-raised-button (click)="SelectData1()" class="raised-button"> President</button>
-
-        <button mat-raised-button (click)="SelectData2()" class="raised-button" color="primary">vice-President
-        </button>
-
-        <button mat-raised-button (click)="SelectData3()" class="raised-button" color="accent">Governor</button>
-
-        <button mat-raised-button class="raised-button" disabled>Nobody</button>
-
-
-      </div>
-      <div>
-        <mat-tab-group>
+<div>
+    <mat-tab-group >
 
           <!--the first table shows the total votes -->
           <mat-tab label="Total">
