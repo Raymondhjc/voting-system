@@ -15,6 +15,7 @@ import {
     MatInputModule,
     MatMenuModule,
     MatSidenavModule,
+    MatTableModule,
     MatToolbarModule,
     MatTabsModule,
     MatExpansionModule,
@@ -37,6 +38,8 @@ import {SignedInAuthGuardService} from './common/signed-in-auth-guard.service';
 import {ServerInteractService} from './common/serverInteract.service';
 import {HttpModule} from '@angular/http';
 import {BallotCheckComponent} from './ballot-check/ballot-check.component';
+import {UploadPageComponent} from './upload-page/upload-page.component';
+import {ScannerDownloadService} from './scanner-page/scanner-web.service';
 
 @NgModule({
     declarations: [
@@ -48,6 +51,7 @@ import {BallotCheckComponent} from './ballot-check/ballot-check.component';
         WelcomePageComponent,
         DataViewComponent,
         ScannerPageComponent,
+        UploadPageComponent,
         BallotCheckComponent
     ],
     imports: [
@@ -72,10 +76,11 @@ import {BallotCheckComponent} from './ballot-check/ballot-check.component';
         MatListModule,
         MatTooltipModule,
         MatRadioModule,
+        MatTableModule,
         /** Admin module*/
         AdminModule,
     ],
-    providers: [AuthenticationService, NotSignedInGuardsService, SignedInAuthGuardService, ServerInteractService],
+    providers: [AuthenticationService, NotSignedInGuardsService, SignedInAuthGuardService, ServerInteractService, ScannerDownloadService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

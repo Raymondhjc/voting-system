@@ -1,26 +1,44 @@
+import { ImageDetails } from './Image-Details';
 import {Component, OnInit} from '@angular/core';
+import {DataSource} from '@angular/cdk/collections';
+import {Observable} from 'rxjs/Observable';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTableModule} from '@angular/material/table';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import {ScannerDownloadService} from './scanner-web.service';
 
 @Component({
     selector: 'app-scanner-page',
     templateUrl: './scanner-page.component.html',
     styleUrls: ['./scanner-page.component.css']
 })
+
 export class ScannerPageComponent implements OnInit {
 
     imageIndex = 0;
     originalImageArray: string[] = ['assets/votingImage1.jpg', 'assets/votingImage2.jpg', 'assets/votingImage3.jpg'];
     imageArray: string[] = ['assets/votingImage1.jpg', 'assets/votingImage2.jpg', 'assets/votingImage3.jpg'];
     resultImageArray: string[] = new Array();
+    displayedColumns = ['id', 'name'];
 
-    constructor() {
+    constructor(private scannerDownloadService: ScannerDownloadService) {
+        // private scannerDownloadService: ScannerDownloadService
     }
 
     ngOnInit() {
+        var response = this.scannerDownloadService.getPictureInfo().subscribe(
+            response=>{
+                const r= response.json()
+                console.log(r[0].pictureid)
+            }
+        )
+        console.log(response);
     }
 
     countNumber = this.getImageCount();
     ImageName = this.showImageName(this.imageIndex);
     ImageSrc = this.imageArray[this.imageIndex];
+    imageDetails = new ExampleImageDetails();
 
     previousPage(image: any, previousButton: any, nextButton: any) {
         if (this.imageIndex > 0) {
@@ -106,4 +124,43 @@ export class ScannerPageComponent implements OnInit {
 
         return realName;
     }
+
+    applyFilter(filterValue:string) {
+        filterValue = filterValue.trim();
+        //remove whitespace
+        filterValue = filterValue.toLowerCase();
+        //this.imageDetails.filter = filterValue;
+    }
+
 }
+
+/*
+export class ExampleImageDetails extends DataSource<any>{
+    connect(): Observable<ImageDetails[]> {
+        return Observable.of();
+    }
+    disconnect() {}
+}
+*/
+
+export interface Element {
+    name: string;
+    id: number;
+  }
+  
+  const data: Element[] = [
+    { id: 1, name: 'VotingImage1'},
+    { id: 2, name: 'VotingImage2'},
+    { id: 3, name: 'VotingImage3'},
+  ]
+  
+  export class ExampleImageDetails extends DataSource<any> {
+    /** Connect function called by the table to retrieve one stream containing the data to render. */
+    connect(): Observable<Element[]> {
+      return Observable.of(data);
+    }
+  
+    disconnect() {}
+  } 
+
+

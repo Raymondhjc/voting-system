@@ -3,9 +3,9 @@
 DROP TABLE votingsystem.pictures;
 
 CREATE TABLE votingsystem.pictures (
-  pictureId     INT(8) NOT NULL  PRIMARY KEY,
+  pictureId     INT(8) NOT NULL  auto_increment,
   pictureAddress VARCHAR(100),
-  UNIQUE KEY (pictureId)
+  primary KEY (pictureId)
 );
 
 SHOW TABLES FROM votingsystem;
