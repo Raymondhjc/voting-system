@@ -7,21 +7,22 @@ import {AdminModule} from './admin/admin.module';
 
 import {HeaderComponent} from './header/header.component';
 import {
-  MatButtonModule,
-  MatCardModule,
-  MatCheckboxModule,
-  MatDialogModule,
-  MatGridListModule,
-  MatInputModule,
-  MatMenuModule,
-  MatSidenavModule,
-  MatToolbarModule,
-  MatTabsModule,
-  MatExpansionModule,
-  MatSnackBarModule,
-  MatListModule,
-  MatTooltipModule,
-  MatRadioModule
+    MatButtonModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatDialogModule,
+    MatGridListModule,
+    MatInputModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatTableModule,
+    MatToolbarModule,
+    MatTabsModule,
+    MatExpansionModule,
+    MatSnackBarModule,
+    MatListModule,
+    MatTooltipModule,
+    MatRadioModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SignupComponent} from './authentication/signup/signup.component';
@@ -37,6 +38,8 @@ import {SignedInAuthGuardService} from './common/signed-in-auth-guard.service';
 import {ServerInteractService} from './common/serverInteract.service';
 import {HttpModule} from '@angular/http';
 import {BallotCheckComponent} from './ballot-check/ballot-check.component';
+import {UploadPageComponent} from './upload-page/upload-page.component';
+import {ScannerDownloadService} from './scanner-page/scanner-web.service';
 import {ChartsModule} from 'ng2-charts/ng2-charts';
 import {GraphicalDataRepresentationComponent} from './graphical-data-representation/graphical-data-representation.component';
 import {DataViewService} from './common/data-view.service';
@@ -52,7 +55,8 @@ import {DataViewService} from './common/data-view.service';
     DataViewComponent,
     ScannerPageComponent,
     BallotCheckComponent,
-    GraphicalDataRepresentationComponent
+    GraphicalDataRepresentationComponent,
+UploadPageComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +81,7 @@ import {DataViewService} from './common/data-view.service';
     MatTooltipModule,
     MatRadioModule,
     ChartsModule,
+MatTableModule,
     /** Admin module*/
     AdminModule,
   ],
@@ -84,7 +89,8 @@ import {DataViewService} from './common/data-view.service';
     NotSignedInGuardsService,
     SignedInAuthGuardService,
     ServerInteractService,
-    DataViewService],
+    DataViewService,
+    ScannerDownloadService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

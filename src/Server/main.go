@@ -45,6 +45,22 @@ func main() {
 
 	// Multiplexer.
 	r := mux.NewRouter()
+
+	// Declare the static file directory and point it to the
+	// directory we just made
+	staticFileDirectory := http.Dir("../ImageFiles/")
+	// Declare the handler, that routes requests to their respective filename.
+	// The fileserver is wrapped in the `stripPrefix` method, because we want to
+	// remove the "/ImageFiles/" prefix when looking for files.
+	// For example, if we type "/ImageFiles/index.html" in our browser, the file server
+	// will look for only "index.html" inside the directory declared above.
+	// If we did not strip the prefix, the file server would look for
+	// "./ImageFiles/ImageFiles/index.html", and yield an error
+	staticFileHandler := http.StripPrefix("/ImageFiles/", http.FileServer(staticFileDirectory))
+	// The "PathPrefix" method acts as a matcher, and matches all routes starting
+	// with "/ImageFiles/", instead of the absolute route itself
+	r.PathPrefix("/ImageFiles/").Handler(staticFileHandler).Methods("GET")
+
 	//Handlers
 	r.HandleFunc("/signup", signupHandler).Methods("POST")
 	r.HandleFunc("/signin", signinHandler).Methods("POST")
@@ -52,6 +68,9 @@ func main() {
 	r.HandleFunc("/whoami", authorize(whoamiHandler)).Methods("GET")
 	r.HandleFunc("/changePassword", authorize(changePasswordHandler)).Methods("POST")
 	r.HandleFunc("/changeEmail", authorize(changeEmailHandler)).Methods("POST")
+	r.HandleFunc("/upload", upload).Methods("GET")
+	r.HandleFunc("/upload", upload).Methods("POST")
+	r.HandleFunc("/download", getVotingImagesHandler).Methods("GET")
 	r.HandleFunc("/getElectionList", authorize(getElectionListHandler)).Methods("GET")
 	r.HandleFunc("/addElection", authorize(addElectionHandler)).Methods("POST")
 

@@ -1,5 +1,5 @@
 package main
-/*
+
 import (
 	"fmt"
 	"strconv"
@@ -14,19 +14,18 @@ type Picture struct {
 
 type Pictures []Picture
 
-func (db *MyDB) getPictures(pictureId int) (pictures Pictures, err error) {
+func (db *MyDB) getPictures() (pictures Pictures, err error) {
 	// Declaration
 
 	// prepare SQL statement.
-	var s = fmt.Sprintf(
-		`SELECT pictureAddress FROM votingsystem.pictures WHERE pictureId = %s`, pictureId)
+	rows, err := db.Query("SELECT pictureId, pictureAddress FROM votingsystem.pictures")
 
-	rows, err := db.Query(s)
 	if err != nil {
 		//if the picture does not exist add wrong massage to frontend
+		fmt.Println(err)
 		return pictures, err
-	} else{
-		//return the picture 
+	} else {
+		//return the picture
 	}
 	for rows.Next() {
 		// Fill the response here.
@@ -35,6 +34,7 @@ func (db *MyDB) getPictures(pictureId int) (pictures Pictures, err error) {
 
 		// Error handling
 		if err != nil {
+			fmt.Println(err)
 			return pictures, err
 		}
 
@@ -52,8 +52,29 @@ func (db MyDB) imageIdIsExist(username string) (bool, error) {
 	q := fmt.Sprintf(`SELECT username FROM votingsystem.users WHERE username = '%s';`, username)
 	rows, err := db.Query(q)
 	if err != nil {
-	  return false, err
+		return false, err
 	}
 	return rows.Next(), nil
-  }
-*/
+}
+
+func (db *MyDB) insertPicture(pictureAddress string) (bool, error) {
+	// Declaration
+
+	// insert
+	stmt, err := db.Prepare("insert into votingsystem.pictures (pictureAddress) values (?)")
+	if err != nil {
+		return false, err
+	}
+
+	res, err := stmt.Exec(pictureAddress)
+	if err != nil {
+		return false, err
+	}
+
+	id, err := res.LastInsertId()
+
+	fmt.Print(id)
+
+	// If no error, return list of pictures
+	return true, nil
+}
