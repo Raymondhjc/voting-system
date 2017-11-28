@@ -4,11 +4,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"github.com/gorilla/mux"
 )
 
 func getElectionListHandler(w http.ResponseWriter, r *http.Request) {
-	// get user
-	admin := "111111"
+	admin := mux.Vars(r)["userName"]
 	list, err := db.getElectionList(admin)
 	check(err)
 

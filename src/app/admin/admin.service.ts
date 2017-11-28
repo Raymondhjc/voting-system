@@ -4,8 +4,10 @@ import { Http, Headers } from '@angular/http';
 // for table
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import { ElectionDetails, Question, Option} from './election-details';
-import { ServerInteractService } from '../common/serverInteract.service'
+import { ElectionDetails, Question, Option } from './election-details';
+import { ServerInteractService } from '../common/serverInteract.service';
+import { AuthenticationService } from '../authentication/authentication.service'
+import { UserStatusModel } from '../common/user-status.model';
 
 
 @Injectable()
@@ -15,9 +17,13 @@ export class AdminService {
     dataChange: BehaviorSubject<ElectionDetails[]> = new BehaviorSubject<ElectionDetails[]>([]);
 
     fetchData() {
+        if(this.getUserName() == null){
+            //sesstion expired or not logged in
+            return
+        }
         const headers = new Headers({ 'content-type': 'text/plain' });
         headers.append('Authorization', 'Basic ' + this.sis.token);
-        this.http.get(this.serverURL + '/getElectionList', { headers: headers }).subscribe(data => {
+        this.http.get(this.serverURL + '/getElectionList/' + this.getUserName(), { headers: headers }).subscribe(data => {
             // Read the result field from the JSON response.
             const electionList = JSON.parse(data.text());
             var list = new Array<ElectionDetails>();
@@ -52,7 +58,7 @@ export class AdminService {
             this.getDate(form.meta.endDate),
             form.meta.count,
             "open",
-            "111111",
+            this.getUserName(),
             "",
             "",
             this.getContent(form.content.sections),
@@ -75,44 +81,41 @@ export class AdminService {
         return month + '/' + day + '/' + year;
     }
 
-    getContent(questions: Array<any>): Array<Question>{
+    getContent(questions: Array<any>): Array<Question> {
         let json = new Array<Question>();
-        for(let q of questions){
+        for (let q of questions) {
             let newS = new Question();
             newS.questionID = -1;
             newS.questionName = q.sectionName;
             newS.choiceType = q.choiceType;
             newS.options = new Array<Option>();
             for (let o of q.options) {
-              let newO = new Option();
-              newO.optionID = -1;
-              newO.label = o;
-              newO.count = 0;
-              newS.options.push(newO);
+                let newO = new Option();
+                newO.optionID = -1;
+                newO.label = o;
+                newO.count = 0;
+                newS.options.push(newO);
             }
             json.push(newS)
         }
         return json;
     }
 
-    constructor(private http: Http, private sis: ServerInteractService) {
+    getUserName(): string {
+        let userName = "";
+        var userStatus = this.authen.userStatus;
+        if (this.authen.userStatus == null) {
+            //session expired
+            return null
+        } else {
+            userName = userStatus.username;
+        }
+        return userName;
+    }
+
+    constructor(private http: Http, private sis: ServerInteractService, private authen: AuthenticationService) {
         this.fetchData();
     }
 }
 
-// export class NewElectionService {
-//     serverURL = 'http://localhost:4500/';
-//     submitForm(form): void {
-//         console.log(form.value);
-//         const body = JSON.stringify(form);
-//         this.http.post(this.serverURL + 'signup', body);
-//         this.serverInteract.postSignup(form).subscribe(
-//             (response) => console.log(response),
-//             (error) => console.log(error)
-//         );
-//     }
 
-//     constructor(private http: Http, private sis: ServerInteractService) {
-//     }
-
-// }

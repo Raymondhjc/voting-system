@@ -71,10 +71,10 @@ func main() {
 	r.HandleFunc("/whoami", authorize(whoamiHandler)).Methods("GET")
 	r.HandleFunc("/changePassword", authorize(changePasswordHandler)).Methods("POST")
 	r.HandleFunc("/changeEmail", authorize(changeEmailHandler)).Methods("POST")
+	r.HandleFunc("/getElectionList/{userName}", authorize(getElectionListHandler)).Methods("GET")
 	r.HandleFunc("/upload", upload).Methods("GET")
 	r.HandleFunc("/upload", upload).Methods("POST")
 	r.HandleFunc("/download", getVotingImagesHandler).Methods("GET")
-	r.HandleFunc("/getElectionList", authorize(getElectionListHandler)).Methods("GET")
 	r.HandleFunc("/addElection", authorize(addElectionHandler)).Methods("POST")
 
 	// Allow Cross Origin Resource Sharing with CORS middleware.

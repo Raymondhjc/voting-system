@@ -69,7 +69,6 @@ export class newElectionComponent implements OnInit {
   }
 
   isDateValid(control: AbstractControl) {
-    console.log();
     if (control.get('startDate').value != null && control.get('endDate').value != null) {
       let sDate = control.get('startDate').value,
         eDate = control.get('endDate').value,
@@ -111,12 +110,7 @@ export class newElectionComponent implements OnInit {
 
   /**Handeling forms here */
   onSubmit() {
-    this.firstFormGroup.addControl("admin",new FormControl("111111"));
-    // this.firstFormGroup.removeControl("startDate");
-    // this.firstFormGroup.addControl("startDate",new FormControl(this.electionStartDate));
-    // this.firstFormGroup.removeControl("endDate");
-    // this.firstFormGroup.addControl("endDate",new FormControl(this.electionEndDate));
-    // console.log(this.electionStartDate);
+    this.firstFormGroup.addControl("admin",new FormControl(this.adminService.getUserName()));
     let finalForm = new FormGroup({
       'meta': this.firstFormGroup,
       'content':this.secondFormGroup
